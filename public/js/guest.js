@@ -1987,6 +1987,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header"
 });
@@ -37655,9 +37659,22 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("header")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", [
+      _c("ul", [
+        _c("li", [
+          _c("a", { attrs: { href: "/register" } }, [_vm._v("Registrati")]),
+        ]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
