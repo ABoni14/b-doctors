@@ -36,14 +36,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../sass/guest/_vars.scss';
+
 header{
-  background-color: #066dbb;
+  background-color: $primary-color;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   nav{
-    background-color: #066dbb !important;
+    background-color: $primary-color !important;
     padding:0 !important;
     display: flex;
     justify-content: space-between;
@@ -51,21 +53,34 @@ header{
     .left-nav{
       .router{
         color: white !important;
+        font-size: 40px;
         &:hover{
           text-decoration: none;
         }
       }
     }
-    ul{
-      align-items: center;
-      .advanced-search{
-        margin-right: 15px;
+    .right-nav{
+      ul{
+        align-items: center;
+        .advanced-search{
+          margin: 0 15px;
+          // padding: 5px 10px;
+        }
+        a{
+          color: white !important;
+          text-decoration: none;
+          padding: 5px 10px;
+          margin: 0 15px;
+          display: block;
+          &:hover{
+            background-color: lighten($primary-color, 5%);
+            padding: 5px 10px;
+            border-radius: 15px;
+          }
+        }
       }
-      a{
-        color: white !important;
-        text-decoration: none;
     }
-    }
+    
     
   }
 }
