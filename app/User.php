@@ -54,4 +54,20 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Review');
     }
+
+    public function specializations()
+    {
+        return $this->belongsToMany('App\Specialization');
+    }
+
+    public function premium_options()
+    {
+        return $this->belongsToMany('App\Premium');
+    }
+
+    public function performances()
+    {
+        return $this->belongsToMany('App\Performance');
+    }
+
 }
