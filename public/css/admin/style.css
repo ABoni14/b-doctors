@@ -1,5 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.ab-card {
+  padding: 20px;
+  border-radius: 15px;
+  margin: 0 10px;
+  border: 1px solid grey;
+  text-align: center;
+  cursor: pointer;
+  background-color: #128deb;
+}
+
+.ab-navbar {
+  height: 80px !important;
+  background-color: #066dbb;
+  color: white;
+}
+
 /*!
  * Bootstrap v4.6.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
