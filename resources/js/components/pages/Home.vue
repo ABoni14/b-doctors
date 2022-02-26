@@ -11,19 +11,16 @@
           <img src="https://www.altroconsumo.it/-/media/altroconsumo/images/home/salute/diritti%20in%20salute/pediatra_shu_409317970_1600x900.jpg?rev=346e0a47-c527-44f0-aef0-e2a5f2916aa5&hash=E20754E8AB30F2EDACB21CEE91EF243D" class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
-          <!-- <img src="https://cdn.pixabay.com/photo/2021/10/11/17/37/doctor-6701410_960_720.jpg" class="d-block w-100" alt="..."> -->
           <img src="https://he.utexas.edu/images/easyblog_articles/243/GettyImages-823767128_high.jpg" class="d-block w-100" alt="...">
         </div>
       </div>
     </div>
     <!-- //Carousel -->
-
+    <!-- Search -->
     <div class="container ab-container mt-5 mb-5">
-      <!-- Search -->
+      
       <div class="search d-flex">
         <div class="left-search">
-          <!-- <img src="https://st2.depositphotos.com/3687485/12077/v/600/depositphotos_120776272-stock-illustration-different-doctors-charactsers-vector-set.jpg" alt=""> -->
-          
           <img src="https://i.pinimg.com/564x/5f/d6/67/5fd667c10719a499c617b17b7553182b.jpg" alt="">
         </div>
         <div class="right-search d-flex flex-column justify-content-center">
@@ -46,12 +43,11 @@
         </div> -->
       </div>
 
-
-
-      <!-- //Search -->
     </div>
-
-    <div class="container container-info mt-5 mb-5">
+    <!-- //Search -->
+    <!-- Come funziona -->
+    <div class="container-fluid bg-container">
+      <div class="container container-info mt-5 mb-5">
       <div class="row justify-content-center">
         <h5>Come funziona BDoctors?</h5>
       </div>
@@ -59,7 +55,7 @@
         <div class="col-3 img-info">
           <img src="https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg" alt="">
           <div class="text-info d-flex flex-column justify-content-center align-items-center">
-            <span class="title-info my-2">Trova lo specialista che fa per te</span>
+            <span class="title-info">Trova lo specialista che fa per te</span>
             <p>Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti.</p>
           </div>
           
@@ -67,22 +63,86 @@
         <div class="col-3 img-info d-flex flex-column justify-content-center align-items-center">
           <img src="https://i.pinimg.com/564x/d4/59/f6/d459f692eb585f435005a756a68534b5.jpg" alt="">
           <div class="text-info">
-            <span class="title-info my-2">Invia un messaggio per avere un appuntamento</span>
+            <span class="title-info">Invia un messaggio per avere un appuntamento</span>
             <p>Ci metterai un attimo: non serve telefonare e non è richiesta la carta di credito, pagherai direttamente in struttura.</p>
           </div>
         </div>
         <div class="col-3 img-info d-flex flex-column justify-content-center align-items-center">
           <img src="https://i.pinimg.com/564x/c5/1d/b5/c51db54a2a4b88f8b49b3d5737862428.jpg" alt="">
           <div class="text-info">
-            <span class="title-info my-2">Affidati alle mani degli esperti</span>
+            <span class="title-info">Affidati alle mani degli esperti</span>
             <p>Presentati alla visita nel giorno e nell'ora selezionati, successivamente se ti va potrai lasciare una recensione per aiutare nella scelta anche gli altri pazienti.</p>
           </div>
         </div>
   
       </div>
 
-
     </div>
+    </div>
+    <!-- //Come funziona -->
+
+    <!-- Dicono di noi -->
+    <div class="container-fluid container-fluid-us">
+      <div class="container container-us">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-6">
+            <h4>Dicono di noi</h4>
+            <p>
+              Oltre il 99% di pazienti soddisfatti <br><br>
+
+              iDoctors è il primo sito in Italia di prenotazioni di visite mediche ed esami diagnostici, online dal 2008. <br><br>
+
+              Crediamo nell'importanza dell'informazione e della trasparenza per aiutare i pazienti a scegliere il medico giusto tra gli oltre 9.000 presenti su iDoctors. <br><br>
+
+              Per questo su iDoctors, solo i pazienti che hanno prenotato attraverso il sito e svolto la prestazione possono rilasciare un feedback sul medico: una garanzia dell'affidabilità delle 113.553 recensioni che leggi.
+            </p>
+          </div>
+        
+          <div class="col-5">
+            <div class="container-img">
+              <img src="https://blog.hubspot.com/hubfs/GettyImages-974683580.jpg" alt="">
+            </div>
+            
+          </div>
+        </div>  
+      </div>
+    </div>
+    <!-- //Dicono di noi -->
+
+    <!-- Sei un medico -->
+    <div class="container-fluid container-med">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-6 d-flex justify-content-center">
+            <div class="container-img">
+              <img src="https://i.pinimg.com/564x/b6/fb/ae/b6fbae77fd650ee77826cf5887856dce.jpg" alt="">
+            </div>
+          </div>
+          <div class="col-6">
+            <h4>
+              Sei un medico? Iscriviti ora!
+            </h4>
+            <p> 
+              <strong>Iscriviti e raggiungi nuovi pazienti</strong>  <br><br>
+              Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. <br><br>
+              <strong>Con iDoctors:</strong> <br><br>
+              <ul>
+                <li>Ricevi prenotazioni da nuovi pazienti</li>
+                <li>Migliori la tua visibilità e la tua reputazione online</li>
+                <li>Organizzi al meglio il tuo lavoro con una suite completa di strumenti dedicati al Medico</li>
+                <li>Puoi usare la nostra App multipiattaforma dedicata ai Medici</li>
+                <li>Hai il nostro staff sempre disponibile ad aiutarti</li>
+              </ul>
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a class="btn btn-primary" href="#" role="button">Iscriviti</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     
 
   </div>
@@ -143,35 +203,111 @@ export default {
     }
   }
 
-  .container-info{
+  .bg-container{
+    background: linear-gradient(to bottom, #FFFFFF 0%, lighten($primary-color, 20%) 100%);
+    
 
-    h5{
-      padding: 30px 0;
-      color: $primary-color;
-      font-size: 25px;
-      margin: 0;
-    }
-    .img-info{
-      text-align: center;
-      
-      img{
-        height: 200px;
-        width: 200px;
-        border-radius: 50%;
-        box-shadow: 10px 10px 5px #dedede;
+
+    .container-info{
+      h5{
+        padding: 30px 0;
+        color: $primary-color;
+        font-size: 25px;
+        margin: 0;
       }
-      .text-info{
-        margin-top: 40px;
-        .title-info{
-          color: black;
-          font-size: 20px;
-
+      .img-info{
+        text-align: center;
+          
+        img{
+          height: 200px;
+          width: 200px;
+          border-radius: 50%;
+          border: 2px solid lighten($primary-color, 20%);
+          box-shadow: 10px 10px 5px lighten($primary-color, 15%);
         }
-        p{
-          color: black;
+        .text-info{
+          margin-top: 40px;
+          .title-info{
+            color: black;
+            font-size: 16px;
+            color: darken($primary-color, 10%);
+            font-weight: 600;
+
+          }
+          p{
+            color: black;
+            font-size: 13px;
+            margin-top: 10px;
+          }
         }
       }
     }
   }
+
+  .container-fluid-us{
+
+    .container-us{
+      margin-bottom: 20px;
+      h4{
+        font-size: 25px;
+        color: $primary-color;
+        padding: 10px 0 20px 0;
+      }
+      p{
+        font-size: 13px;
+      }
+      .container-img{
+        height: 300px;
+        width: 475px;
+        img{
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .container-med{
+    padding: 50px 0;
+    .container{
+      .row{
+        .container-img{
+          height: 330px;
+          width: 330px;
+          border-radius: 40px;
+          border: 1px solid lighten($primary-color, 25%);
+          box-shadow: 10px 10px 5px lighten($primary-color, 20%);
+
+          img{
+            border-radius: 40px;
+            height: 100%;
+            width: 100%;
+          }
+        }
+        h4{
+          color: $primary-color;
+          font-size: 25px;
+          padding: 10px 0;
+        }
+        p{
+          font-size: 13px;
+        }
+        a{
+          background-color: $primary-color;
+          border-color: $primary-color;
+          border-radius: 10px;
+          padding: 5px 30px;
+          &:hover{
+            background-color: darken($primary-color,10%);
+            border-color: darken($primary-color,10%);
+            color: white;
+
+          }
+        }
+      }
+
+    }
+  }
+  
 }
 </style>
