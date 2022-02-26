@@ -39,13 +39,12 @@ export default {
 @import '../../../sass/guest/_vars.scss';
 
 header{
-  background-color: $primary-color;
-  height: 80px;
+  background-color: lighten($primary-color, 15%);
   display: flex;
   justify-content: center;
   align-items: center;
   nav{
-    background-color: $primary-color !important;
+      background-color: lighten($primary-color, 15%) !important;
     padding:0 !important;
     display: flex;
     justify-content: space-between;
@@ -64,7 +63,6 @@ header{
         align-items: center;
         .advanced-search{
           margin: 0 15px;
-          // padding: 5px 10px;
         }
         a{
           color: white !important;
@@ -74,7 +72,7 @@ header{
           display: block;
           line-height: 80px;
           &:hover{
-            color: lighten($primary-color, 20%) !important ;
+            color: $primary-color !important ;
             transition: all 0.3s;
             
           }

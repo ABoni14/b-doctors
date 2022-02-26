@@ -2,7 +2,7 @@
   <div class="container-fluid home">
 
     <!-- Carousel -->
-    <div id="carouselExampleControls" class="carousel slide ab-carousel" data-ride="carousel">
+    <!-- <div id="carouselExampleControls" class="carousel slide ab-carousel" data-ride="carousel">
       <div class="carousel-inner ab-inner">
         <div class="carousel-item active">
           <img src="https://www.centromedicomirandola.it/newcm/wp-content/uploads/2020/01/boh-1.png" class="d-block w-100" alt="...">
@@ -14,7 +14,42 @@
           <img src="https://he.utexas.edu/images/easyblog_articles/243/GettyImages-823767128_high.jpg" class="d-block w-100" alt="...">
         </div>
       </div>
+    </div> -->
+
+
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade ab-carousel" data-ride="carousel">
+
+      <div class="carousel-inner ab-inner">
+        <div class="carousel-item active">
+          <img src="https://www.centromedicomirandola.it/newcm/wp-content/uploads/2020/01/boh-1.png" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block carousel-text">
+            <h5>Prenota la tua visita online</h5>
+            <p>Scegli tra più di 10 000 professionisti a tua disposizione.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://www.altroconsumo.it/-/media/altroconsumo/images/home/salute/diritti%20in%20salute/pediatra_shu_409317970_1600x900.jpg?rev=346e0a47-c527-44f0-aef0-e2a5f2916aa5&hash=E20754E8AB30F2EDACB21CEE91EF243D" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block carousel-text">
+            <h5>Chiedi al dottore</h5>
+            <p> Risolvi i tuoi dubbi riguardanti la salute chiedendo agli specialisti suggeriti. Riceverai più risposte in modo completamente gratuito, solitamente entro 48h. </p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://he.utexas.edu/images/easyblog_articles/243/GettyImages-823767128_high.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block carousel-text">
+            <h5>La tua opinione conta!</h5>
+            <p>Consulta le recensioni degli ex pazienti per scegliere con più consapevolezza e lasciane una a tua volta dopo la visita. </p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+        <span class="carousel-control-prev-icon d-inline-block carousel-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+        <span class="carousel-control-next-icon d-inline-block carousel-next-icon" aria-hidden="true"></span>
+      </button>
     </div>
+
     <!-- //Carousel -->
     <!-- Search -->
     <div class="container ab-container mt-5 mb-5">
@@ -165,16 +200,52 @@ export default {
 
   .ab-carousel{
     height: 450px;
+    
     .ab-inner{
       height: 450px;
       width: 100vw;
+      cursor: pointer;
+      &:hover{
+        img{
+          filter: none;
+            transition: all 0.3s;
+        }
+        .carousel-text{
+          background-color: rgba(255, 255, 255, 0.7);
+          color: darken($primary-color, 15%);
+          transition: all .3s;
+        }
+          
+      }
       img{
         height: 500px;
         width: auto;
-      
+        filter: grayscale(50%);
+        transition: all 0.3s;
+        
       }
+      .carousel-text{
+        color: darken($primary-color, 25%);
+        transition: all .3s;
+        background-color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 40px;
+      }
+      .carousel-control-prev, .carousel-control-next{
+        &:hover{
+          span{
+            filter: opacity(1);
+            color: white;
+            filter: drop-shadow(0 10px 10px gray);
+            transition: all .3s;
+          }
+          
+        }
+        
+      }
+     
     }
   }
+  //Search
   .ab-container{
     .search{
       .left-search{
@@ -212,7 +283,7 @@ export default {
     }
   }
 
-   //Search
+   //info
   .bg-container{
     background: linear-gradient(to bottom, #FFFFFF 0%, lighten($primary-color, 20%) 100%);
     .container-info{

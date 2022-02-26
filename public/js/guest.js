@@ -2112,6 +2112,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home"
 });
@@ -6596,7 +6631,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  width: 100vw;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #6bb0ff;\n  color: white;\n  border-radius: 0 10px 10px 0;\n  background-color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 0%, #d1e6ff 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #6bb0ff;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #d1e6ff;\n  box-shadow: 10px 10px 5px #b8d9ff;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #3895ff;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #6bb0ff;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #ebf4ff;\n  box-shadow: 10px 10px 5px #d1e6ff;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #6bb0ff;\n  border-color: #6bb0ff;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}", ""]);
+exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  width: 100vw;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: #1f87ff;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #006deb;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #6bb0ff;\n  color: white;\n  border-radius: 0 10px 10px 0;\n  background-color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 0%, #d1e6ff 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #6bb0ff;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #d1e6ff;\n  box-shadow: 10px 10px 5px #b8d9ff;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #3895ff;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #6bb0ff;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #ebf4ff;\n  box-shadow: 10px 10px 5px #d1e6ff;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #6bb0ff;\n  border-color: #6bb0ff;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -6634,7 +6669,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "header[data-v-79cec062] {\n  background-color: #6bb0ff;\n  height: 80px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\nheader nav[data-v-79cec062] {\n  background-color: #6bb0ff !important;\n  padding: 0 !important;\n  display: flex;\n  justify-content: space-between;\n  align-items: center !important;\n}\nheader nav .left-nav .router[data-v-79cec062] {\n  color: white !important;\n  font-size: 40px;\n}\nheader nav .left-nav .router[data-v-79cec062]:hover {\n  text-decoration: none;\n}\nheader nav .right-nav ul[data-v-79cec062] {\n  align-items: center;\n}\nheader nav .right-nav ul .advanced-search[data-v-79cec062] {\n  margin: 0 15px;\n}\nheader nav .right-nav ul a[data-v-79cec062] {\n  color: white !important;\n  text-decoration: none;\n  padding: 5px 10px;\n  margin: 0 15px;\n  display: block;\n  line-height: 80px;\n}\nheader nav .right-nav ul a[data-v-79cec062]:hover {\n  color: #d1e6ff !important;\n  transition: all 0.3s;\n}", ""]);
+exports.push([module.i, "header[data-v-79cec062] {\n  background-color: #b8d9ff;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\nheader nav[data-v-79cec062] {\n  background-color: #b8d9ff !important;\n  padding: 0 !important;\n  display: flex;\n  justify-content: space-between;\n  align-items: center !important;\n}\nheader nav .left-nav .router[data-v-79cec062] {\n  color: white !important;\n  font-size: 40px;\n}\nheader nav .left-nav .router[data-v-79cec062]:hover {\n  text-decoration: none;\n}\nheader nav .right-nav ul[data-v-79cec062] {\n  align-items: center;\n}\nheader nav .right-nav ul .advanced-search[data-v-79cec062] {\n  margin: 0 15px;\n}\nheader nav .right-nav ul a[data-v-79cec062] {\n  color: white !important;\n  text-decoration: none;\n  padding: 5px 10px;\n  margin: 0 15px;\n  display: block;\n  line-height: 80px;\n}\nheader nav .right-nav ul a[data-v-79cec062]:hover {\n  color: #6bb0ff !important;\n  transition: all 0.3s;\n}", ""]);
 
 // exports
 
@@ -38609,8 +38644,8 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "carousel slide ab-carousel",
-          attrs: { id: "carouselExampleControls", "data-ride": "carousel" },
+          staticClass: "carousel slide carousel-fade ab-carousel",
+          attrs: { id: "carouselExampleCaptions", "data-ride": "carousel" },
         },
         [
           _c("div", { staticClass: "carousel-inner ab-inner" }, [
@@ -38622,6 +38657,23 @@ var staticRenderFns = [
                   alt: "...",
                 },
               }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "carousel-caption d-none d-md-block carousel-text",
+                },
+                [
+                  _c("h5", [_vm._v("Prenota la tua visita online")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Scegli tra più di 10 000 professionisti a tua disposizione."
+                    ),
+                  ]),
+                ]
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "carousel-item" }, [
@@ -38632,6 +38684,23 @@ var staticRenderFns = [
                   alt: "...",
                 },
               }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "carousel-caption d-none d-md-block carousel-text",
+                },
+                [
+                  _c("h5", [_vm._v("Chiedi al dottore")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      " Risolvi i tuoi dubbi riguardanti la salute chiedendo agli specialisti suggeriti. Riceverai più risposte in modo completamente gratuito, solitamente entro 48h. "
+                    ),
+                  ]),
+                ]
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "carousel-item" }, [
@@ -38642,8 +38711,63 @@ var staticRenderFns = [
                   alt: "...",
                 },
               }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "carousel-caption d-none d-md-block carousel-text",
+                },
+                [
+                  _c("h5", [_vm._v("La tua opinione conta!")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Consulta le recensioni degli ex pazienti per scegliere con più consapevolezza e lasciane una a tua volta dopo la visita. "
+                    ),
+                  ]),
+                ]
+              ),
             ]),
           ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "carousel-control-prev",
+              attrs: {
+                type: "button",
+                "data-target": "#carouselExampleCaptions",
+                "data-slide": "prev",
+              },
+            },
+            [
+              _c("span", {
+                staticClass:
+                  "carousel-control-prev-icon d-inline-block carousel-prev-icon",
+                attrs: { "aria-hidden": "true" },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "carousel-control-next",
+              attrs: {
+                type: "button",
+                "data-target": "#carouselExampleCaptions",
+                "data-slide": "next",
+              },
+            },
+            [
+              _c("span", {
+                staticClass:
+                  "carousel-control-next-icon d-inline-block carousel-next-icon",
+                attrs: { "aria-hidden": "true" },
+              }),
+            ]
+          ),
         ]
       ),
       _vm._v(" "),
