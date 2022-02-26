@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="https://he.utexas.edu/images/easyblog_articles/243/GettyImages-823767128_high.jpg" class="d-block w-100" alt="...">
+          <img src="https://cdn-static.findly.com/wp-content/uploads/sites/566/2017/10/PA-Blog-Image.png" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block carousel-text">
             <h5>La tua opinione conta!</h5>
             <p>Consulta le recensioni degli ex pazienti per scegliere con più consapevolezza e lasciane una a tua volta dopo la visita. </p>
@@ -54,10 +54,10 @@
     <!-- Search -->
     <div class="container ab-container mt-5 mb-5">
       
-      <div class="search d-flex">
-        <div class="left-search">
+      <div class="search d-flex justify-content-center">
+        <!-- <div class="left-search">
           <img src="https://i.pinimg.com/564x/5f/d6/67/5fd667c10719a499c617b17b7553182b.jpg" alt="">
-        </div>
+        </div> -->
         <div class="right-search d-flex flex-column justify-content-center">
           <h4 class="my-3">Prenota online la tua visita medica</h4>
           <div class="input-group mb-3">
