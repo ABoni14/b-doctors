@@ -36,6 +36,7 @@
             <button class="btn btn-outline-primary" type="button" id="button-addon2">
               Cerca
             </button>
+            
           </div>
         </div>
         <!-- <div class="left-search">
@@ -141,6 +142,7 @@
         </div>
       </div>
     </div>
+    <!-- //Sei un medico -->
 
 
     
@@ -158,6 +160,9 @@ export default {
 @import '../../../sass/guest/_vars.scss';
 .home{
   padding: unset;
+
+  // Carousel
+
   .ab-carousel{
     height: 450px;
     .ab-inner{
@@ -191,23 +196,25 @@ export default {
         }
         button{
           border: 1px solid $primary-color;
-          color: $primary-color;
+          color: white;
           border-radius: 0 10px 10px 0;
+          background-color: $primary-color;
 
           &:hover{
-            background-color: $primary-color;
+            background-color: darken($primary-color,10%);
+            border-color: darken($primary-color,10%);
             color: white;
           }
+         
+
         }
       }
     }
   }
 
+   //Search
   .bg-container{
     background: linear-gradient(to bottom, #FFFFFF 0%, lighten($primary-color, 20%) 100%);
-    
-
-
     .container-info{
       h5{
         padding: 30px 0;
@@ -244,6 +251,7 @@ export default {
     }
   }
 
+  //About us
   .container-fluid-us{
 
     .container-us{
@@ -267,6 +275,7 @@ export default {
     }
   }
 
+  //Sei un medico?
   .container-med{
     padding: 50px 0;
     .container{

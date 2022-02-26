@@ -72,10 +72,11 @@ header{
           padding: 5px 10px;
           margin: 0 15px;
           display: block;
+          line-height: 80px;
           &:hover{
-            background-color: lighten($primary-color, 5%);
-            padding: 5px 10px;
-            border-radius: 15px;
+            color: lighten($primary-color, 20%) !important ;
+            transition: all 0.3s;
+            
           }
         }
       }
