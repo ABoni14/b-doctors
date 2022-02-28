@@ -15,6 +15,7 @@ class CreatePremiumOptionsTable extends Migration
     {
         Schema::create('premium_options', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->unsignedTinyInteger('level');
             $table->double('price', 5, 2);
             $table->unsignedInteger('duration');

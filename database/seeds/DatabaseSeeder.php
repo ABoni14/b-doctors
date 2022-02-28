@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewsTableSeeder::class);
         $this->call(SpecializationsTableSeeder::class);
         $this->call(UserSpecializationTableSeeder::class);
+        $this->call(Premium_OptionsTableSeeder::class);
     }
 }
