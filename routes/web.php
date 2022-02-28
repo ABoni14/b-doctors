@@ -22,6 +22,8 @@ Route::middleware("auth")
     ->group(function(){
         Route::get("/", "HomeController@index")->name("index");
         Route::resource("dashboard", 'UserController');
+        Route::resource("messages", "MessageController");
+        Route::resource("reviews", "ReviewController");
     });
 
 Route::get("{any?}", function(){

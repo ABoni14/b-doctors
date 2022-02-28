@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Review;
 use Illuminate\Http\Request;
-use App\User;
-use App\Specialization;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        $user = Auth::user();
-        return view('admin.home');
+        $reviews = Auth::user()->reviews;
+        return view("admin.review.index", compact("reviews"));
     }
 
     /**
@@ -51,8 +49,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('admin.dashboard.show', compact('user' ));
+        //
     }
 
     /**
@@ -63,8 +60,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('admin.dashboard.edit', compact("user"));
+        //
     }
 
     /**
@@ -74,12 +70,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, User $user)
+    public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $data = $request->all();
-        $user->update($data);
-        return redirect()->route("admin.dashboard.show", $user);
+        //
     }
 
     /**
