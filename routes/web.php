@@ -21,9 +21,10 @@ Route::middleware("auth")
     ->prefix("admin")
     ->group(function(){
         Route::get("/", "HomeController@index")->name("index");
+        Route::resource("dashboard", 'UserController');
     });
 
 Route::get("{any?}", function(){
     return view("guest.home");
 })->where("any", ".*")->name("home");
-    
+

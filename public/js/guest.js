@@ -54778,11 +54778,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /Users/luke/local-documents/Boolean/b-doctors/resources/js/guest.js */"./resources/js/guest.js");
-=======
-module.exports = __webpack_require__(/*! C:\Users\Giulia\Documents\Boolean\progetto finale\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
->>>>>>> master
 
 
 /***/ })

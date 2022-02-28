@@ -47,12 +47,12 @@ class User extends Authenticatable
 
     public function messages()
     {
-        return $this->belongsToMany('App\Message');
+        return $this->hasMany('App\Message');
     }
 
     public function reviews()
     {
-        return $this->belongsToMany('App\Review');
+        return $this->hasMany('App\Review');
     }
 
     public function specializations()
