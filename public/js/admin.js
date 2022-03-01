@@ -37270,6 +37270,11 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var trigger = document.querySelector("menu > .trigger");
+trigger.addEventListener('click', function (e) {
+  e.currentTarget.parentElement.classList.toggle("open");
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

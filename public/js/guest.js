@@ -2152,19 +2152,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home"
 });
@@ -2233,6 +2220,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6668,7 +6666,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  width: 100vw;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: #1f87ff;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #006deb;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #6bb0ff;\n  color: white;\n  border-radius: 0 10px 10px 0;\n  background-color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 0%, #d1e6ff 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #6bb0ff;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #d1e6ff;\n  box-shadow: 10px 10px 5px #b8d9ff;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #3895ff;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #6bb0ff;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #ebf4ff;\n  box-shadow: 10px 10px 5px #d1e6ff;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #6bb0ff;\n  border-color: #6bb0ff;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}", ""]);
+exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  width: 100vw;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: #1f87ff;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  -o-object-fit: cover;\n     object-fit: cover;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #006deb;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #6bb0ff;\n  color: white;\n  border-radius: 0 10px 10px 0;\n  background-color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 0%, #d1e6ff 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #6bb0ff;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #d1e6ff;\n  box-shadow: 10px 10px 5px #b8d9ff;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #3895ff;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #6bb0ff;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #ebf4ff;\n  box-shadow: 10px 10px 5px #d1e6ff;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #6bb0ff;\n  border-color: #6bb0ff;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -38904,7 +38902,7 @@ var staticRenderFns = [
                 "right-search d-flex flex-column justify-content-center align-items-center",
             },
             [
-              _c("h4", { staticClass: "my-3" }, [
+              _c("h4", { staticClass: "my-3 text-center" }, [
                 _vm._v("Prenota online la tua visita medica"),
               ]),
               _vm._v(" "),
@@ -38944,39 +38942,43 @@ var staticRenderFns = [
             "div",
             { staticClass: "row justify-content-around align-items-center" },
             [
-              _c("div", { staticClass: "col-xl-4 col-lg-1 img-info" }, [
-                _c("img", {
-                  attrs: {
-                    src: "https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg",
-                    alt: "",
-                  },
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "text-info d-flex flex-column justify-content-center align-items-center",
-                  },
-                  [
-                    _c("span", { staticClass: "title-info" }, [
-                      _vm._v("Trova lo specialista che fa per te"),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti."
-                      ),
-                    ]),
-                  ]
-                ),
-              ]),
+              _c(
+                "div",
+                { staticClass: "col-12 col-sm-12 col-md-4 col-lg-4 img-info" },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg",
+                      alt: "",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "text-info d-flex flex-column justify-content-center align-items-center",
+                    },
+                    [
+                      _c("span", { staticClass: "title-info" }, [
+                        _vm._v("Trova lo specialista che fa per te"),
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti."
+                        ),
+                      ]),
+                    ]
+                  ),
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass:
-                    "col-xl-4 col-lg-1 img-info d-flex flex-column justify-content-center align-items-center",
+                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center",
                 },
                 [
                   _c("img", {
@@ -39004,7 +39006,7 @@ var staticRenderFns = [
                 "div",
                 {
                   staticClass:
-                    "col-xl-4 col-lg-1 img-info d-flex flex-column justify-content-center align-items-center",
+                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center",
                 },
                 [
                   _c("img", {
@@ -39038,7 +39040,7 @@ var staticRenderFns = [
             "div",
             { staticClass: "row justify-content-center align-items-center" },
             [
-              _c("div", { staticClass: "col-6" }, [
+              _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
                 _c("h4", [_vm._v("Dicono di noi")]),
                 _vm._v(" "),
                 _c("p", [
@@ -39061,8 +39063,8 @@ var staticRenderFns = [
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-5" }, [
-                _c("div", { staticClass: "container-img" }, [
+              _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
+                _c("div", { staticClass: "container-img mt-5" }, [
                   _c("img", {
                     attrs: {
                       src: "https://blog.hubspot.com/hubfs/GettyImages-974683580.jpg",
@@ -39084,9 +39086,12 @@ var staticRenderFns = [
             [
               _c(
                 "div",
-                { staticClass: "col-6 d-flex justify-content-center" },
+                {
+                  staticClass:
+                    "col-12 col-sm-12 order-sm-2 col-md-6 col-lg-6 d-flex justify-content-center",
+                },
                 [
-                  _c("div", { staticClass: "container-img" }, [
+                  _c("div", { staticClass: "container-img mt-5" }, [
                     _c("img", {
                       attrs: {
                         src: "https://i.pinimg.com/564x/b6/fb/ae/b6fbae77fd650ee77826cf5887856dce.jpg",
@@ -39097,78 +39102,86 @@ var staticRenderFns = [
                 ]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-6" }, [
-                _c("h4", [
-                  _vm._v(
-                    "\n            Sei un medico? Iscriviti ora!\n          "
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("strong", [
-                    _vm._v("Iscriviti e raggiungi nuovi pazienti"),
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(
-                    "\n            Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. "
-                  ),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("strong", [_vm._v("Con iDoctors:")]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("ul", [
-                    _c("li", [_vm._v("Ricevi prenotazioni da nuovi pazienti")]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Migliori la tua visibilità e la tua reputazione online"
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Organizzi al meglio il tuo lavoro con una suite completa di strumenti dedicati al Medico"
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Puoi usare la nostra App multipiattaforma dedicata ai Medici"
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Hai il nostro staff sempre disponibile ad aiutarti"
-                      ),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "d-grid gap-2 d-md-flex justify-content-md-end",
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { href: "#", role: "button" },
-                      },
-                      [_vm._v("Iscriviti")]
+              _c(
+                "div",
+                {
+                  staticClass: "col-12 col-sm-12 order-sm-1 col-md-6 col-lg-6",
+                },
+                [
+                  _c("h4", [
+                    _vm._v(
+                      "\n            Sei un medico? Iscriviti ora!\n          "
                     ),
-                  ]
-                ),
-              ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c("strong", [
+                      _vm._v("Iscriviti e raggiungi nuovi pazienti"),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _c("br"),
+                    _vm._v(
+                      "\n            Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. "
+                    ),
+                    _c("br"),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Con iDoctors:")]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("ul", [
+                      _c("li", [
+                        _vm._v("Ricevi prenotazioni da nuovi pazienti"),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._v(
+                          "Migliori la tua visibilità e la tua reputazione online"
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._v(
+                          "Organizzi al meglio il tuo lavoro con una suite completa di strumenti dedicati al Medico"
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._v(
+                          "Puoi usare la nostra App multipiattaforma dedicata ai Medici"
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._v(
+                          "Hai il nostro staff sempre disponibile ad aiutarti"
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-grid gap-2 d-md-flex justify-content-md-end",
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { href: "#", role: "button" },
+                        },
+                        [_vm._v("Iscriviti")]
+                      ),
+                    ]
+                  ),
+                ]
+              ),
             ]
           ),
         ]),
