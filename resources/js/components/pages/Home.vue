@@ -73,22 +73,22 @@
         <h5>Come funziona BDoctors?</h5>
       </div>
       <div class="row justify-content-around align-items-center">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3">
           <img src="https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg" alt="">
-          <div class="text-info d-flex flex-column justify-content-center align-items-center">
+          <div class="text-info">
             <span class="title-info">Trova lo specialista che fa per te</span>
             <p>Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti.</p>
           </div>
           
         </div>
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3">
           <img src="https://i.pinimg.com/564x/d4/59/f6/d459f692eb585f435005a756a68534b5.jpg" alt="">
           <div class="text-info">
             <span class="title-info">Invia un messaggio per avere un appuntamento</span>
             <p>Ci metterai un attimo: non serve telefonare e non è richiesta la carta di credito, pagherai direttamente in struttura.</p>
           </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3">
           <img src="https://i.pinimg.com/564x/c5/1d/b5/c51db54a2a4b88f8b49b3d5737862428.jpg" alt="">
           <div class="text-info">
             <span class="title-info">Affidati alle mani degli esperti</span>

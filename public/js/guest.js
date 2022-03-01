@@ -1965,6 +1965,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdvancedSearch"
 });
@@ -6685,7 +6724,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "footer[data-v-bc338846] {\n  background-color: #6bb0ff;\n  padding: 40px 0;\n  color: white;\n}\nfooter .top-footer[data-v-bc338846] {\n  padding-bottom: 60px;\n}\nfooter .top-footer .logo-footer[data-v-bc338846] {\n  padding: 0;\n  font-size: 40px;\n  text-align: center;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846] {\n  color: white;\n  cursor: pointer;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846]:hover {\n  text-decoration: none;\n}\nfooter .top-footer p[data-v-bc338846] {\n  margin-bottom: 0;\n  font-size: 12px;\n}\nfooter .top-footer ul li[data-v-bc338846] {\n  display: inline-block;\n  text-decoration: none;\n  list-style: none;\n  cursor: pointer;\n  padding: 0 5px;\n}\nfooter .bottom-footer .link-footer-bottom[data-v-bc338846] {\n  text-align: center;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846] {\n  color: white;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846]:hover {\n  text-decoration: none;\n  color: #057aff;\n}", ""]);
+exports.push([module.i, "footer[data-v-bc338846] {\n  background-color: #6bb0ff;\n  padding: 40px 0;\n  color: white;\n}\nfooter .top-footer[data-v-bc338846] {\n  padding-bottom: 60px;\n}\nfooter .top-footer .logo-footer[data-v-bc338846] {\n  padding: 0;\n  font-size: 40px;\n  text-align: center;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846] {\n  color: white;\n  cursor: pointer;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846]:hover {\n  text-decoration: none;\n}\nfooter .top-footer p[data-v-bc338846] {\n  margin-bottom: 0;\n  font-size: 12px;\n}\nfooter .top-footer ul[data-v-bc338846] {\n  margin: 0;\n  padding: 0;\n}\nfooter .top-footer ul li[data-v-bc338846] {\n  display: inline-block;\n  text-decoration: none;\n  list-style: none;\n  cursor: pointer;\n  padding: 0 5px;\n}\nfooter .bottom-footer .link-footer-bottom[data-v-bc338846] {\n  text-align: center;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846] {\n  color: white;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846]:hover {\n  text-decoration: none;\n  color: #057aff;\n}", ""]);
 
 // exports
 
@@ -38727,7 +38766,98 @@ var staticRenderFns = [
                   ]),
                 ]),
               ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary my-5",
+                  attrs: { href: "#", role: "button" },
+                },
+                [_vm._v("Cerca")]
+              ),
             ]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("form", [
+          _c("div", { staticClass: "form-row" }, [
+            _c("div", { staticClass: "col-md-4 mb-3" }, [
+              _c("label", { attrs: { for: "validationServer01" } }, [
+                _vm._v("Nome"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "validationServer01",
+                  placeholder: "Nome",
+                  required: "",
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4 mb-3" }, [
+              _c("label", { attrs: { for: "validationServer02" } }, [
+                _vm._v("Cognome"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "validationServer02",
+                  placeholder: "Cognome",
+                  required: "",
+                },
+              }),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-row" }, [
+            _c("div", { staticClass: "col-md-6 mb-3" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "form-label",
+                  attrs: { for: "validationServer03" },
+                },
+                [_vm._v("Scrivi il tuo messaggio:")]
+              ),
+              _vm._v(" "),
+              _c("textarea", {
+                staticClass: "form-control",
+                attrs: { id: "validationServer03", required: "", rows: "3" },
+              }),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "form-check" }, [
+              _c("input", {
+                staticClass: "form-check-input",
+                attrs: { type: "checkbox", value: "", required: "" },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "form-check-label",
+                  attrs: { for: "invalidCheck3" },
+                },
+                [
+                  _vm._v(
+                    "\n              Agree to terms and conditions\n            "
+                  ),
+                ]
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+            [_vm._v("Submit")]
           ),
         ]),
       ]),
@@ -38944,7 +39074,10 @@ var staticRenderFns = [
             [
               _c(
                 "div",
-                { staticClass: "col-12 col-sm-12 col-md-4 col-lg-4 img-info" },
+                {
+                  staticClass:
+                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
+                },
                 [
                   _c("img", {
                     attrs: {
@@ -38953,24 +39086,17 @@ var staticRenderFns = [
                     },
                   }),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "text-info d-flex flex-column justify-content-center align-items-center",
-                    },
-                    [
-                      _c("span", { staticClass: "title-info" }, [
-                        _vm._v("Trova lo specialista che fa per te"),
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti."
-                        ),
-                      ]),
-                    ]
-                  ),
+                  _c("div", { staticClass: "text-info" }, [
+                    _c("span", { staticClass: "title-info" }, [
+                      _vm._v("Trova lo specialista che fa per te"),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti."
+                      ),
+                    ]),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -38978,7 +39104,7 @@ var staticRenderFns = [
                 "div",
                 {
                   staticClass:
-                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center",
+                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
                 },
                 [
                   _c("img", {
@@ -39006,7 +39132,7 @@ var staticRenderFns = [
                 "div",
                 {
                   staticClass:
-                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center",
+                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
                 },
                 [
                   _c("img", {
@@ -39227,29 +39353,48 @@ var staticRenderFns = [
                 "row d-flex justify-content-center align-items-center",
             },
             [
-              _c("div", { staticClass: "col-3 logo-footer" }, [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("BDoctors")]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-12 col-sm-12 col-md-4 col-lg-3 logo-footer text-center justify-content-center align-items-center",
+                },
+                [_c("a", { attrs: { href: "#" } }, [_vm._v("BDoctors")])]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-6" }, [
-                _c("p", [
-                  _vm._v(
-                    "\n            Doctolib Srl, - Società con socio unico, soggetta a direzione e coordinamento di Doctolib SAS - Sede Legale: Milano, Corso Giacomo Matteotti n. 1 - Capitale Sociale: euro 3.010.000,00 i.v.\n            Codice Fiscale e Registro Imprese di Milano Monza Brianza Lodi n. 11537360965 - REA: MI - 2609715 - doctolib.it – PEC doctolibsrl@legalmail.it\n          "
-                  ),
-                ]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "my-4 col-12 col-sm-10 col-md-6 col-lg-6 text-center justify-content-center align-items-center",
+                },
+                [
+                  _c("p", [
+                    _vm._v(
+                      "\n            Doctolib Srl, - Società con socio unico, soggetta a direzione e coordinamento di Doctolib SAS - Sede Legale: Milano, Corso Giacomo Matteotti n. 1 - Capitale Sociale: euro 3.010.000,00 i.v.\n            Codice Fiscale e Registro Imprese di Milano Monza Brianza Lodi n. 11537360965 - REA: MI - 2609715 - doctolib.it – PEC doctolibsrl@legalmail.it\n          "
+                    ),
+                  ]),
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-3" }, [
-                _c("ul", [
-                  _c("li", [_vm._v("Logo")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Logo")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Logo")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Logo")]),
-                ]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-12 col-sm-12 col-md-4 col-lg-3 text-center justify-content-center align-items-center",
+                },
+                [
+                  _c("ul", [
+                    _c("li", [_vm._v("Logo")]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v("Logo")]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v("Logo")]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v("Logo")]),
+                  ]),
+                ]
+              ),
             ]
           ),
         ]),

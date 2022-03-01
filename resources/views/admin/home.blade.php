@@ -13,13 +13,17 @@
 
     <div class="container-menu">
          <menu>
-            <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="action">La mia Pagina</a></a>
+            <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="action">La mia Pagina</a>
             <a href="{{ route('admin.messages.index', Auth::user() )}}" class="action">Messaggi</a>
             <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="action">Recensioni</a>
 
-            <a href="#" class="trigger"><img style="height: 100px; width: 100px" src="url(https://media.discordapp.net/attachments/946052311883595776/948178075949097060/B-Doctors_1.png)" alt=""></a>
+            <a href="#" class="trigger">
+                <img style="    height: 200px; width: 200px; border-radius: 20px;" src="https://static.vecteezy.com/ti/vettori-gratis/p1/4234470-schermo-portatile-con-terapeuta-in-chat-consultazione-online-con-medico-chiedi-a-un-medico-online-consulenza-medica-o-servizio-di-consultazione-icona-glifo-di-telemedicina-vettoriale.jpg" alt="">
+            </a>
         </menu>
     </div>
+
+    
    
 
 </div>
