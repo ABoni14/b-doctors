@@ -2165,8 +2165,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home"
 });
@@ -38903,7 +38901,7 @@ var staticRenderFns = [
             "div",
             {
               staticClass:
-                "right-search d-flex flex-column justify-content-center",
+                "right-search d-flex flex-column justify-content-center align-items-center",
             },
             [
               _c("h4", { staticClass: "my-3" }, [
@@ -38946,7 +38944,7 @@ var staticRenderFns = [
             "div",
             { staticClass: "row justify-content-around align-items-center" },
             [
-              _c("div", { staticClass: "col-3 img-info" }, [
+              _c("div", { staticClass: "col-xl-4 col-lg-1 img-info" }, [
                 _c("img", {
                   attrs: {
                     src: "https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg",
@@ -38978,7 +38976,7 @@ var staticRenderFns = [
                 "div",
                 {
                   staticClass:
-                    "col-3 img-info d-flex flex-column justify-content-center align-items-center",
+                    "col-xl-4 col-lg-1 img-info d-flex flex-column justify-content-center align-items-center",
                 },
                 [
                   _c("img", {
@@ -39006,7 +39004,7 @@ var staticRenderFns = [
                 "div",
                 {
                   staticClass:
-                    "col-3 img-info d-flex flex-column justify-content-center align-items-center",
+                    "col-xl-4 col-lg-1 img-info d-flex flex-column justify-content-center align-items-center",
                 },
                 [
                   _c("img", {
@@ -54778,7 +54776,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\aboni\OneDrive\Documents\Boolean\LARAVEL\PROGETTO FINALE\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
+module.exports = __webpack_require__(/*! C:\Users\Giulia\Documents\Boolean\progetto finale\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
 
 
 /***/ })

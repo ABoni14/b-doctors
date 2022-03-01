@@ -58,7 +58,7 @@
         <!-- <div class="left-search">
           <img src="https://i.pinimg.com/564x/5f/d6/67/5fd667c10719a499c617b17b7553182b.jpg" alt="">
         </div> -->
-        <div class="right-search d-flex flex-column justify-content-center">
+        <div class="right-search d-flex flex-column justify-content-center align-items-center">
           <h4 class="my-3">Prenota online la tua visita medica</h4>
           <div class="input-group mb-3">
             <input
@@ -74,9 +74,7 @@
             
           </div>
         </div>
-        <!-- <div class="left-search">
-          <img src="https://i.pinimg.com/564x/5f/d6/67/5fd667c10719a499c617b17b7553182b.jpg" alt="">
-        </div> -->
+
       </div>
 
     </div>
@@ -88,7 +86,7 @@
         <h5>Come funziona BDoctors?</h5>
       </div>
       <div class="row justify-content-around align-items-center">
-        <div class="col-3 img-info">
+        <div class="col-xl-4 col-lg-1 img-info">
           <img src="https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg" alt="">
           <div class="text-info d-flex flex-column justify-content-center align-items-center">
             <span class="title-info">Trova lo specialista che fa per te</span>
@@ -96,14 +94,14 @@
           </div>
           
         </div>
-        <div class="col-3 img-info d-flex flex-column justify-content-center align-items-center">
+        <div class="col-xl-4 col-lg-1 img-info d-flex flex-column justify-content-center align-items-center">
           <img src="https://i.pinimg.com/564x/d4/59/f6/d459f692eb585f435005a756a68534b5.jpg" alt="">
           <div class="text-info">
             <span class="title-info">Invia un messaggio per avere un appuntamento</span>
             <p>Ci metterai un attimo: non serve telefonare e non è richiesta la carta di credito, pagherai direttamente in struttura.</p>
           </div>
         </div>
-        <div class="col-3 img-info d-flex flex-column justify-content-center align-items-center">
+        <div class="col-xl-4 col-lg-1 img-info d-flex flex-column justify-content-center align-items-center">
           <img src="https://i.pinimg.com/564x/c5/1d/b5/c51db54a2a4b88f8b49b3d5737862428.jpg" alt="">
           <div class="text-info">
             <span class="title-info">Affidati alle mani degli esperti</span>

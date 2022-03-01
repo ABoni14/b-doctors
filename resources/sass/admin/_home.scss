@@ -5,5 +5,24 @@
   border: 1px solid grey;
   text-align: center;
   cursor: pointer;
-  background-color: #6bb0ff;
+  background-color: #b8d9ff;
+}
+
+
+main{
+  background-color: #b8d9ff;
+  height: calc(100vh - 80px);
+  width: 100vw;
+  // background-image: url('../../../public/img/B-Doctors_1.png');
+  
+  // background-attachment: fixed;
+  // background-position: cover;
+  // background-repeat: no-repeat;
+  // background-image: url('https://img.freepik.com/premium-photo/medical-stethoscope-blue-background-health-care_106006-1364.jpg?size=626&ext=jpg');
+  background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1614388182_23-p-svetlii-meditsinskii-fon-25.jpg');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
 }

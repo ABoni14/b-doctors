@@ -7,12 +7,22 @@
   border: 1px solid grey;
   text-align: center;
   cursor: pointer;
-  background-color: #6bb0ff;
+  background-color: #b8d9ff;
+}
+
+main {
+  background-color: #b8d9ff;
+  height: calc(100vh - 80px);
+  width: 100vw;
+  background-image: url("https://catherineasquithgallery.com/uploads/posts/2021-02/1614388182_23-p-svetlii-meditsinskii-fon-25.jpg");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
 }
 
 .ab-navbar {
   height: 80px !important;
-  background-color: #6bb0ff;
+  background-color: #b8d9ff;
   color: white;
 }
 
