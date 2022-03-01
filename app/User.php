@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function performances()
     {
-        return $this->belongsToMany('App\Performance');
+        return $this->belongsToMany('App\Performance', 'user_performance');
     }
 
 }
