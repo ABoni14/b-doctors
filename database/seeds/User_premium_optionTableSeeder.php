@@ -25,8 +25,8 @@ class User_premium_optionTableSeeder extends Seeder
 
             $currentDate = new \DateTime();
             $subscriptions = Premium_option::InRandomOrder()->first()->id;
-            $randomDate = Date('Y-m-d H:i:s', $faker->unixTime(new DateTime('+1 weeks')));
-            // $optionDuration = $options->select('duration')->where('id', $subscriptions)->first();
+            $randomDate = $faker->dateTimeBetween($currentDate, '+2 days');
+
 
             DB::table('user_premium_option')->insert([
                 'user_id' => $user->id,

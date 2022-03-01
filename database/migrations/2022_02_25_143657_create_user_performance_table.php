@@ -21,10 +21,10 @@ class CreateUserPerformanceTable extends Migration
                     ->on('users')
                     ->onDelete('cascade');
 
-            $table->unsignedBigInteger('user_performance_id');
-            $table->foreign('user_performance_id')
+            $table->unsignedBigInteger('performance_id');
+            $table->foreign('performance_id')
                     ->references('id')
-                    ->on('user_performance')
+                    ->on('performances')
                     ->onDelete('cascade');
             $table->timestamps();
         });
