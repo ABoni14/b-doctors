@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\User;
 use App\Performance;
+use App\User;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class user_performanceTableSeeder extends Seeder
+class User_performanceTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
