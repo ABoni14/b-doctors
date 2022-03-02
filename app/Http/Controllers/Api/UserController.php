@@ -14,7 +14,9 @@ class UserController extends Controller
     {
         $user = User::with(['reviews','specializations','performances'])->get();
 
-        return response()->json(compact('user'));
+        $specialization = Specialization::all();
+
+        return response()->json(compact('user', 'specialization'));
     }
 
     public function getDoctorBySpecialization($spec_slug){
