@@ -28,12 +28,29 @@
       </div>
 
       <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="text" 
+        value="{{old("email", $user->email)}}"
+        class="form-control" 
+        id="email" name="email"
+        placeholder="Inserisci E-mail">
+      </div>
+
+      <div class="form-group">
+        <label for="address">Indirizzo</label>
+        <input type="address" 
+        value="{{old("address", $user->address)}}"
+        class="form-control" 
+        id="address" name="address"
+        placeholder="Inserisci indirizzo">
+      </div>
+
+      <div class="form-group">
         <label for="content">CV</label>
         <textarea 
         class="form-control" 
         id="cv" name="cv"
-        placeholder="Inserisci il tuo cv">{{old("cv", $user->cv)}}
-        </textarea>
+        placeholder="Inserisci il tuo cv">{{old("cv", $user->cv)}}</textarea>
       </div>
 
       <div class="mb-3">
@@ -55,7 +72,6 @@
         <option value="">Seleziona specializzazione</option>
         @foreach ($specializations as $item)
           <option
-          @if($item->id == old('item_id', $doctor->item_id)) selected  @endif
           value="{{ $item->id }}">{{ $item->name }}</option>
        @endforeach
       </select>
