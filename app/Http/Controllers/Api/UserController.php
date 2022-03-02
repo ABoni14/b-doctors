@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function getDoctorBySpecialization($spec_slug){
 
-        $specialization = Specialization::where('slug', $spec_slug)->with('users')->first();
+        $specialization = Specialization::where('slug', $spec_slug)->with('users.reviews')->first();
 
         $success = true;
         $error = '';

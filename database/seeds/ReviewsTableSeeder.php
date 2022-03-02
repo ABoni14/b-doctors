@@ -18,9 +18,13 @@ class ReviewsTableSeeder extends Seeder
 
         $gender = $faker->randomElements(['male', 'female']);
 
+
+
         foreach ($users as $user){
 
-            for($i = 0; $i < count($users); $i++) {
+            $random = rand(1,10);
+
+            for($i = 0; $i < $random; $i++) {
                 $new_review = new Review();
                 $new_review->user_id = $user->id;
                 $new_review->vote = rand(1,5);
