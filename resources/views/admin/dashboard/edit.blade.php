@@ -36,6 +36,30 @@
         </textarea>
       </div>
 
+      <div class="mb-3">
+
+          @if ($user->photo)
+              <div>
+                  <img width="150" src="{{ asset('storage/' . $user->photo) }}" alt="...">
+              </div>
+          @endif
+
+
+          <label for="photo">Immagine</label>
+          <input
+              class="form-control"
+              type="file" name="photo" id="photo">
+      </div>
+
+      <select name="specialization_id" id="specialization_id">
+        <option value="">Seleziona specializzazione</option>
+        @foreach ($specializations as $item)
+          <option
+          @if($item->id == old('item_id', $doctor->item_id)) selected  @endif
+          value="{{ $item->id }}">{{ $item->name }}</option>
+       @endforeach
+      </select>
+
       {{-- <div class="mb-3">
         <label for="category_id" class="form-label">Inserisci una categoria</label>
         <select class="form-select" name="catgory_id" id="category_id">
