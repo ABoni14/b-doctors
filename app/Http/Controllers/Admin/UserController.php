@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Performance;
 use Illuminate\Http\Request;
 use App\User;
 use App\Specialization;
@@ -52,7 +53,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('admin.dashboard.show', compact('user' ));
+        return view('admin.dashboard.show', compact('user'));
     }
 
     /**
@@ -64,7 +65,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.dashboard.edit', compact("user"));
+        $specializations = Specialization::all();
+        $performances = Performance::all();
+        return view('admin.dashboard.edit', compact("user", "specializations", "performances"));
     }
 
     /**
@@ -74,10 +77,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, User $user)
+    public function update(Request $request, $id, User $user )
     {
         $user = User::find($id);
         $data = $request->all();
+
+        // if (array_key_exists('cover', $data)) {
+        //     // eliminare la vecchia immagine (se esiste)
+        //     if ($user->photo) {
+        //         Storage::delete($post->cover);
+        //     }
+        //     // prendere il nome originale della nuova immagine
+        //     $form_data['cover_original_name'] = $request->file('cover')->getClientOriginalName();
+        //     // salvare l'immagine caricata e prendere il percorso da fillare
+        //     $img_path = Storage::put('uploads', $form_data['cover']);
+        //     $form_data['cover'] = $img_path;
+        // }
+
         $user->update($data);
         return redirect()->route("admin.dashboard.show", $user);
     }
