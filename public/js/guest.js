@@ -1969,43 +1969,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "AdvancedSearch"
+  name: "AdvancedSearch",
+  data: function data() {
+    return {
+      apiUrl: ''
+    };
+  }
 });
 
 /***/ }),
@@ -2259,6 +2229,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38713,154 +38688,58 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "advanced-search" }, [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "row flex-column justify-content-center align-items-center",
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "container" }, [
+              _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(
+                  _vm.user.specialization,
+                  function (specialization, index) {
+                    return _c("div", { key: index, staticClass: "col-6" })
+                  }
+                ),
+                0
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary my-5",
+                attrs: { href: "#", role: "button" },
+              },
+              [_vm._v("Cerca")]
+            ),
+          ]
+        ),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "advanced-search" }, [
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "row flex-column justify-content-center align-items-center",
-            },
-            [
-              _c("div", { staticClass: "container-img" }, [
-                _c("img", {
-                  attrs: {
-                    src: "https://img.freepik.com/free-vector/patients-doctors-meeting-waiting-clinic-hall-hospital-interior-illustration-with-reception-person-wheelchair-visiting-doctor-office-medical-examination-consultation_74855-8496.jpg?w=1060",
-                    alt: "",
-                  },
-                }),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "search-bar w-50" }, [
-                _c("select", { staticClass: "custom-select" }, [
-                  _c("option", { attrs: { selected: "" } }, [
-                    _vm._v("Scegli la specializzazione"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "1" } }, [
-                    _vm._v("Cardiologia"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "2" } }, [
-                    _vm._v("Neurologia"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "3" } }, [
-                    _vm._v("Ortopedia"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "4" } }, [
-                    _vm._v("Dermatologia"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "5" } }, [
-                    _vm._v("Pediatria"),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary my-5",
-                  attrs: { href: "#", role: "button" },
-                },
-                [_vm._v("Cerca")]
-              ),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("form", [
-          _c("div", { staticClass: "form-row" }, [
-            _c("div", { staticClass: "col-md-4 mb-3" }, [
-              _c("label", { attrs: { for: "validationServer01" } }, [
-                _vm._v("Nome"),
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "validationServer01",
-                  placeholder: "Nome",
-                  required: "",
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4 mb-3" }, [
-              _c("label", { attrs: { for: "validationServer02" } }, [
-                _vm._v("Cognome"),
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "validationServer02",
-                  placeholder: "Cognome",
-                  required: "",
-                },
-              }),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-row" }, [
-            _c("div", { staticClass: "col-md-6 mb-3" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "form-label",
-                  attrs: { for: "validationServer03" },
-                },
-                [_vm._v("Scrivi il tuo messaggio:")]
-              ),
-              _vm._v(" "),
-              _c("textarea", {
-                staticClass: "form-control",
-                attrs: { id: "validationServer03", required: "", rows: "3" },
-              }),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("div", { staticClass: "form-check" }, [
-              _c("input", {
-                staticClass: "form-check-input",
-                attrs: { type: "checkbox", value: "", required: "" },
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass: "form-check-label",
-                  attrs: { for: "invalidCheck3" },
-                },
-                [
-                  _vm._v(
-                    "\n              Agree to terms and conditions\n            "
-                  ),
-                ]
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_vm._v("Submit")]
-          ),
-        ]),
-      ]),
+    return _c("div", { staticClass: "container-img" }, [
+      _c("img", {
+        attrs: {
+          src: "https://img.freepik.com/free-vector/patients-doctors-meeting-waiting-clinic-hall-hospital-interior-illustration-with-reception-person-wheelchair-visiting-doctor-office-medical-examination-consultation_74855-8496.jpg?w=1060",
+          alt: "",
+        },
+      }),
     ])
   },
 ]
