@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Specialization;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -82,18 +83,15 @@ class UserController extends Controller
         $user = User::find($id);
         $data = $request->all();
 
-        // if (array_key_exists('cover', $data)) {
-        //     // eliminare la vecchia immagine (se esiste)
-        //     if ($user->photo) {
-        //         Storage::delete($post->cover);
-        //     }
-        //     // prendere il nome originale della nuova immagine
-        //     $form_data['cover_original_name'] = $request->file('cover')->getClientOriginalName();
-        //     // salvare l'immagine caricata e prendere il percorso da fillare
-        //     $img_path = Storage::put('uploads', $form_data['cover']);
-        //     $form_data['cover'] = $img_path;
-        // }
-
+        if (array_key_exists('photo', $data)) {
+            // eliminare la vecchia immagine (se esiste)
+            if ($user->photo) {
+                Storage::delete($user->photo);
+            }
+            $img_path = Storage::put('uploads', $data['photo']);
+            $data['photo'] = $img_path;
+        }
+        dd($data);
         $user->update($data);
         return redirect()->route("admin.dashboard.show", $user);
     }
