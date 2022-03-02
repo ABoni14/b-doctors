@@ -1969,12 +1969,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdvancedSearch",
   data: function data() {
     return {
-      apiUrl: ''
+      apiUrl: 'http://127.0.0.1:8000/api/doctors/',
+      specialization: []
     };
+  },
+  mounted: function mounted() {
+    this.getApi();
+  },
+  methods: {
+    getApi: function getApi() {
+      var _this = this;
+
+      axios.get(this.apiUrl).then(function (res) {
+        _this.specialization = res.data.specialization;
+        console.log(_this.specialization);
+      });
+    }
   }
 });
 
@@ -2229,6 +2245,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6718,7 +6746,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "header[data-v-79cec062] {\n  background-color: #b8d9ff;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\nheader nav[data-v-79cec062] {\n  background-color: #b8d9ff !important;\n  padding: 0 !important;\n  display: flex;\n  justify-content: space-between;\n  align-items: center !important;\n}\nheader nav .left-nav .router[data-v-79cec062] {\n  color: white !important;\n  font-size: 40px;\n}\nheader nav .left-nav .router[data-v-79cec062]:hover {\n  text-decoration: none;\n}\nheader nav .right-nav ul[data-v-79cec062] {\n  align-items: center;\n}\nheader nav .right-nav ul .advanced-search[data-v-79cec062] {\n  margin: 0 15px;\n}\nheader nav .right-nav ul a[data-v-79cec062] {\n  color: white !important;\n  text-decoration: none;\n  padding: 5px 10px;\n  margin: 0 15px;\n  display: block;\n  line-height: 80px;\n}\nheader nav .right-nav ul a[data-v-79cec062]:hover {\n  color: #6bb0ff !important;\n  transition: all 0.3s;\n}", ""]);
+exports.push([module.i, "header[data-v-79cec062] {\n  background-color: #b8d9ff;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\nheader nav[data-v-79cec062] {\n  background-color: #b8d9ff !important;\n  padding: 0 !important;\n  display: flex;\n  justify-content: space-between;\n  align-items: center !important;\n}\nheader nav .left-nav .router[data-v-79cec062] {\n  color: white !important;\n  font-size: 40px;\n}\nheader nav .left-nav .router[data-v-79cec062]:hover {\n  text-decoration: none;\n}\nheader nav .right-nav ul[data-v-79cec062] {\n  align-items: center;\n}\nheader nav .right-nav ul .advanced-search[data-v-79cec062] {\n  margin: 0 15px;\n}\nheader nav .right-nav ul a[data-v-79cec062] {\n  color: white !important;\n  text-decoration: none;\n  padding: 5px 10px;\n  margin: 0 15px;\n  display: block;\n  line-height: 80px;\n}\nheader nav .right-nav ul a[data-v-79cec062]:hover {\n  color: #6bb0ff !important;\n  transition: all 0.3s;\n}\nheader nav .animated-icon3[data-v-79cec062] {\n  width: 30px;\n  height: 20px;\n  position: relative;\n  margin: 0px;\n  transform: rotate(0deg);\n  transition: 0.5s ease-in-out;\n  cursor: pointer;\n}\nheader nav .animated-icon3 span[data-v-79cec062] {\n  background-color: black;\n  display: block;\n  position: absolute;\n  height: 3px;\n  width: 100%;\n  border-radius: 9px;\n  opacity: 1;\n  left: 0;\n  transform: rotate(0deg);\n  transition: 0.25s ease-in-out;\n}\nheader nav .animated-icon3 span[data-v-79cec062]:nth-child(1) {\n  top: 0px;\n  transform-origin: left center;\n}\nheader nav .animated-icon3 span[data-v-79cec062]:nth-child(2) {\n  top: 10px;\n  transform-origin: left center;\n}\nheader nav .animated-icon3 span[data-v-79cec062]:nth-child(3) {\n  top: 20px;\n  transform-origin: left center;\n}\nheader nav .animated-icon3.open span[data-v-79cec062]:nth-child(1) {\n  transform: rotate(45deg);\n  top: 0px;\n  left: 8px;\n}\nheader nav .animated-icon3.open span[data-v-79cec062]:nth-child(2) {\n  width: 0%;\n  opacity: 0;\n}\nheader nav .animated-icon3.open span[data-v-79cec062]:nth-child(3) {\n  transform: rotate(-45deg);\n  top: 21px;\n  left: 8px;\n}", ""]);
 
 // exports
 
@@ -38705,9 +38733,13 @@ var render = function () {
                 "div",
                 { staticClass: "row" },
                 _vm._l(
-                  _vm.user.specialization,
-                  function (specialization, index) {
-                    return _c("div", { key: index, staticClass: "col-6" })
+                  _vm.specialization,
+                  function (singleSpecialization, index) {
+                    return _c("div", { key: index, staticClass: "col-6" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _vm._v(_vm._s(singleSpecialization.name)),
+                      ]),
+                    ])
                   }
                 ),
                 0
@@ -39344,21 +39376,26 @@ var render = function () {
               "div",
               {
                 staticClass: "collapse navbar-collapse",
-                attrs: { id: "navbarSupportedContent" },
+                attrs: { id: "navbarSupportedContent22" },
               },
               [
-                _c("ul", { staticClass: "navbar-nav me-auto mb-2 mb-lg-0" }, [
+                _c("ul", { staticClass: "navbar-nav mr-auto" }, [
                   _c(
                     "li",
-                    { staticClass: "nav-item" },
+                    { staticClass: "nav-item active" },
                     [
                       _c(
                         "router-link",
                         {
-                          staticClass: "advanced-search",
+                          staticClass: "advanced-search nav-link",
                           attrs: { to: { name: "AdvancedSearch" } },
                         },
-                        [_vm._v("Ricerca avanzata")]
+                        [
+                          _vm._v("Ricerca avanzata"),
+                          _c("span", { staticClass: "sr-only" }, [
+                            _vm._v("(current)"),
+                          ]),
+                        ]
                       ),
                     ],
                     1
@@ -39384,17 +39421,23 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "navbar-toggler",
+        staticClass: "navbar-toggler third-button",
         attrs: {
           type: "button",
-          "data-bs-toggle": "collapse",
-          "data-bs-target": "#navbarSupportedContent",
-          "aria-controls": "navbarSupportedContent",
+          "data-toggle": "collapse",
+          "data-target": "#navbarSupportedContent22",
+          "aria-controls": "navbarSupportedContent22",
           "aria-expanded": "false",
           "aria-label": "Toggle navigation",
         },
       },
-      [_c("span", { staticClass: "navbar-toggler-icon" })]
+      [
+        _c("div", { staticClass: "animated-icon3" }, [
+          _c("span"),
+          _c("span"),
+          _c("span"),
+        ]),
+      ]
     )
   },
   function () {
@@ -54766,6 +54809,11 @@ var app = new Vue({
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
   }
+});
+$(document).ready(function () {
+  $('.third-button').on('click', function () {
+    $('.animated-icon3').toggleClass('open');
+  });
 });
 
 /***/ }),

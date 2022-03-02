@@ -10,9 +10,11 @@
           <div class="container">
             <div class="row">
               <div 
-              v-for="(specialization, index) in user.specialization"
+              v-for="(singleSpecialization, index) in specialization"
               :key="index"
-              class="col-6"></div>
+              class="col-6">
+                <a href="">{{singleSpecialization.name}}</a>
+              </div>
             </div>
 
           </div>
@@ -33,9 +35,23 @@ export default {
   name: "AdvancedSearch",
   data(){
     return{
-      apiUrl: ''
+      apiUrl: 'http://127.0.0.1:8000/api/doctors/',
+      specialization: []
+    }
+  },
+  mounted(){
+    this.getApi();
+  },
+  methods:{
+    getApi(){
+      axios.get(this.apiUrl)
+      .then(res => {
+        this.specialization = res.data.specialization;
+        console.log(this.specialization);
+      })
     }
   }
+
 }
 </script>
 
