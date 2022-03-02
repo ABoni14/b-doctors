@@ -17,9 +17,12 @@ class MessagesTableSeeder extends Seeder
     {
         $users = User::all();
 
+
         foreach ($users as $user){
 
-            for($i = 0; $i < count($users); $i++) {
+            $random = rand(1,5);
+
+            for($i = 0; $i < $random; $i++) {
                 $new_message = new Message();
                 $new_message->user_id = $user->id;
                 $new_message->email = $faker->email();
