@@ -134,12 +134,12 @@
     <div class="container-fluid container-med">
       <div class="container">
         <div class="row justify-content-center align-items-center">
-          <div class="col-12 col-sm-12 order-sm-2 col-md-6 col-lg-6 d-flex justify-content-center">
+          <div class="col-12 col-sm-12 order-sm-2 col-md-6 order-md-1 col-lg-6 d-flex justify-content-center">
             <div class="container-img mt-5">
               <img src="https://i.pinimg.com/564x/b6/fb/ae/b6fbae77fd650ee77826cf5887856dce.jpg" alt="">
             </div>
           </div>
-          <div class="col-12 col-sm-12 order-sm-1 col-md-6 col-lg-6">
+          <div class="col-12 col-sm-12 order-sm-1 col-md-6 order-md-2 col-lg-6">
             <h4>
               Sei un medico? Iscriviti ora!
             </h4>

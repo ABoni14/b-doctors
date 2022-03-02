@@ -28,13 +28,53 @@
       </div>
 
       <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="text" 
+        value="{{old("email", $user->email)}}"
+        class="form-control" 
+        id="email" name="email"
+        placeholder="Inserisci E-mail">
+      </div>
+
+      <div class="form-group">
+        <label for="address">Indirizzo</label>
+        <input type="address" 
+        value="{{old("address", $user->address)}}"
+        class="form-control" 
+        id="address" name="address"
+        placeholder="Inserisci indirizzo">
+      </div>
+
+      <div class="form-group">
         <label for="content">CV</label>
         <textarea 
         class="form-control" 
         id="cv" name="cv"
-        placeholder="Inserisci il tuo cv">{{old("cv", $user->cv)}}
-        </textarea>
+        placeholder="Inserisci il tuo cv">{{old("cv", $user->cv)}}</textarea>
       </div>
+
+      <div class="mb-3">
+
+          @if ($user->photo)
+              <div>
+                  <img width="150" src="{{ asset('storage/' . $user->photo) }}" alt="...">
+              </div>
+          @endif
+
+
+          <label for="photo">Immagine</label>
+          <input
+              class="form-control"
+              type="file" name="photo" id="photo">
+      </div>
+
+      <select name="specialization_id" id="specialization_id">
+        <option value="">Seleziona specializzazione</option>
+        @foreach ($specializations as $item)
+          <option
+          value="{{ $item->id }}">{{ $item->name }}</option>
+       @endforeach
+      </select>
 
       {{-- <div class="mb-3">
         <label for="category_id" class="form-label">Inserisci una categoria</label>
