@@ -1965,8 +1965,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "AdvancedSearch"
+  name: "AdvancedSearch",
+  data: function data() {
+    return {
+      apiUrl: ''
+    };
+  }
 });
 
 /***/ }),
@@ -1980,21 +1989,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2235,6 +2229,22 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6670,7 +6680,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  width: 100vw;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: #1f87ff;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #006deb;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #6bb0ff;\n  color: white;\n  border-radius: 0 10px 10px 0;\n  background-color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 0%, #d1e6ff 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #6bb0ff;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #d1e6ff;\n  box-shadow: 10px 10px 5px #b8d9ff;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #3895ff;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #6bb0ff;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #ebf4ff;\n  box-shadow: 10px 10px 5px #d1e6ff;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #6bb0ff;\n  border-color: #6bb0ff;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}", ""]);
+exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  width: 100vw;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: #1f87ff;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  -o-object-fit: cover;\n     object-fit: cover;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #006deb;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #6bb0ff;\n  color: white;\n  border-radius: 0 10px 10px 0;\n  background-color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 0%, #d1e6ff 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #6bb0ff;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #d1e6ff;\n  box-shadow: 10px 10px 5px #b8d9ff;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #3895ff;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #6bb0ff;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #ebf4ff;\n  box-shadow: 10px 10px 5px #d1e6ff;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #6bb0ff;\n  border-color: #6bb0ff;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -6689,7 +6699,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "footer[data-v-bc338846] {\n  background-color: #6bb0ff;\n  padding: 40px 0;\n  color: white;\n}\nfooter .top-footer[data-v-bc338846] {\n  padding-bottom: 60px;\n}\nfooter .top-footer .logo-footer[data-v-bc338846] {\n  padding: 0;\n  font-size: 40px;\n  text-align: center;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846] {\n  color: white;\n  cursor: pointer;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846]:hover {\n  text-decoration: none;\n}\nfooter .top-footer p[data-v-bc338846] {\n  margin-bottom: 0;\n  font-size: 12px;\n}\nfooter .top-footer ul li[data-v-bc338846] {\n  display: inline-block;\n  text-decoration: none;\n  list-style: none;\n  cursor: pointer;\n  padding: 0 5px;\n}\nfooter .bottom-footer .link-footer-bottom[data-v-bc338846] {\n  text-align: center;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846] {\n  color: white;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846]:hover {\n  text-decoration: none;\n  color: #057aff;\n}", ""]);
+exports.push([module.i, "footer[data-v-bc338846] {\n  background-color: #6bb0ff;\n  padding: 40px 0;\n  color: white;\n}\nfooter .top-footer[data-v-bc338846] {\n  padding-bottom: 60px;\n}\nfooter .top-footer .logo-footer[data-v-bc338846] {\n  padding: 0;\n  font-size: 40px;\n  text-align: center;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846] {\n  color: white;\n  cursor: pointer;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846]:hover {\n  text-decoration: none;\n}\nfooter .top-footer p[data-v-bc338846] {\n  margin-bottom: 0;\n  font-size: 12px;\n}\nfooter .top-footer ul[data-v-bc338846] {\n  margin: 0;\n  padding: 0;\n}\nfooter .top-footer ul li[data-v-bc338846] {\n  display: inline-block;\n  text-decoration: none;\n  list-style: none;\n  cursor: pointer;\n  padding: 0 5px;\n}\nfooter .bottom-footer .link-footer-bottom[data-v-bc338846] {\n  text-align: center;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846] {\n  color: white;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846]:hover {\n  text-decoration: none;\n  color: #057aff;\n}", ""]);
 
 // exports
 
@@ -38678,63 +38688,58 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "advanced-search" }, [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "row flex-column justify-content-center align-items-center",
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "container" }, [
+              _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(
+                  _vm.user.specialization,
+                  function (specialization, index) {
+                    return _c("div", { key: index, staticClass: "col-6" })
+                  }
+                ),
+                0
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary my-5",
+                attrs: { href: "#", role: "button" },
+              },
+              [_vm._v("Cerca")]
+            ),
+          ]
+        ),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "advanced-search" }, [
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "row flex-column justify-content-center align-items-center",
-            },
-            [
-              _c("div", { staticClass: "container-img" }, [
-                _c("img", {
-                  attrs: {
-                    src: "https://img.freepik.com/free-vector/patients-doctors-meeting-waiting-clinic-hall-hospital-interior-illustration-with-reception-person-wheelchair-visiting-doctor-office-medical-examination-consultation_74855-8496.jpg?w=1060",
-                    alt: "",
-                  },
-                }),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "search-bar w-50" }, [
-                _c("select", { staticClass: "custom-select" }, [
-                  _c("option", { attrs: { selected: "" } }, [
-                    _vm._v("Scegli la specializzazione"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "1" } }, [
-                    _vm._v("Cardiologia"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "2" } }, [
-                    _vm._v("Neurologia"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "3" } }, [
-                    _vm._v("Ortopedia"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "4" } }, [
-                    _vm._v("Dermatologia"),
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "5" } }, [
-                    _vm._v("Pediatria"),
-                  ]),
-                ]),
-              ]),
-            ]
-          ),
-        ]),
-      ]),
+    return _c("div", { staticClass: "container-img" }, [
+      _c("img", {
+        attrs: {
+          src: "https://img.freepik.com/free-vector/patients-doctors-meeting-waiting-clinic-hall-hospital-interior-illustration-with-reception-person-wheelchair-visiting-doctor-office-medical-examination-consultation_74855-8496.jpg?w=1060",
+          alt: "",
+        },
+      }),
     ])
   },
 ]
@@ -38903,10 +38908,10 @@ var staticRenderFns = [
             "div",
             {
               staticClass:
-                "right-search d-flex flex-column justify-content-center",
+                "right-search d-flex flex-column justify-content-center align-items-center",
             },
             [
-              _c("h4", { staticClass: "my-3" }, [
+              _c("h4", { staticClass: "my-3 text-center" }, [
                 _vm._v("Prenota online la tua visita medica"),
               ]),
               _vm._v(" "),
@@ -38946,21 +38951,21 @@ var staticRenderFns = [
             "div",
             { staticClass: "row justify-content-around align-items-center" },
             [
-              _c("div", { staticClass: "col-3 img-info" }, [
-                _c("img", {
-                  attrs: {
-                    src: "https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg",
-                    alt: "",
-                  },
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "text-info d-flex flex-column justify-content-center align-items-center",
-                  },
-                  [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg",
+                      alt: "",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-info" }, [
                     _c("span", { staticClass: "title-info" }, [
                       _vm._v("Trova lo specialista che fa per te"),
                     ]),
@@ -38970,15 +38975,15 @@ var staticRenderFns = [
                         "Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti."
                       ),
                     ]),
-                  ]
-                ),
-              ]),
+                  ]),
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass:
-                    "col-3 img-info d-flex flex-column justify-content-center align-items-center",
+                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
                 },
                 [
                   _c("img", {
@@ -39006,7 +39011,7 @@ var staticRenderFns = [
                 "div",
                 {
                   staticClass:
-                    "col-3 img-info d-flex flex-column justify-content-center align-items-center",
+                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
                 },
                 [
                   _c("img", {
@@ -39040,7 +39045,7 @@ var staticRenderFns = [
             "div",
             { staticClass: "row justify-content-center align-items-center" },
             [
-              _c("div", { staticClass: "col-6" }, [
+              _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
                 _c("h4", [_vm._v("Dicono di noi")]),
                 _vm._v(" "),
                 _c("p", [
@@ -39063,8 +39068,8 @@ var staticRenderFns = [
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-5" }, [
-                _c("div", { staticClass: "container-img" }, [
+              _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
+                _c("div", { staticClass: "container-img mt-5" }, [
                   _c("img", {
                     attrs: {
                       src: "https://blog.hubspot.com/hubfs/GettyImages-974683580.jpg",
@@ -39086,9 +39091,12 @@ var staticRenderFns = [
             [
               _c(
                 "div",
-                { staticClass: "col-6 d-flex justify-content-center" },
+                {
+                  staticClass:
+                    "col-12 col-sm-12 order-sm-2 col-md-6 col-lg-6 d-flex justify-content-center",
+                },
                 [
-                  _c("div", { staticClass: "container-img" }, [
+                  _c("div", { staticClass: "container-img mt-5" }, [
                     _c("img", {
                       attrs: {
                         src: "https://i.pinimg.com/564x/b6/fb/ae/b6fbae77fd650ee77826cf5887856dce.jpg",
@@ -39099,78 +39107,86 @@ var staticRenderFns = [
                 ]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-6" }, [
-                _c("h4", [
-                  _vm._v(
-                    "\n            Sei un medico? Iscriviti ora!\n          "
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("strong", [
-                    _vm._v("Iscriviti e raggiungi nuovi pazienti"),
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(
-                    "\n            Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. "
-                  ),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("strong", [_vm._v("Con iDoctors:")]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("ul", [
-                    _c("li", [_vm._v("Ricevi prenotazioni da nuovi pazienti")]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Migliori la tua visibilità e la tua reputazione online"
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Organizzi al meglio il tuo lavoro con una suite completa di strumenti dedicati al Medico"
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Puoi usare la nostra App multipiattaforma dedicata ai Medici"
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Hai il nostro staff sempre disponibile ad aiutarti"
-                      ),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "d-grid gap-2 d-md-flex justify-content-md-end",
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { href: "#", role: "button" },
-                      },
-                      [_vm._v("Iscriviti")]
+              _c(
+                "div",
+                {
+                  staticClass: "col-12 col-sm-12 order-sm-1 col-md-6 col-lg-6",
+                },
+                [
+                  _c("h4", [
+                    _vm._v(
+                      "\n            Sei un medico? Iscriviti ora!\n          "
                     ),
-                  ]
-                ),
-              ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c("strong", [
+                      _vm._v("Iscriviti e raggiungi nuovi pazienti"),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _c("br"),
+                    _vm._v(
+                      "\n            Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. "
+                    ),
+                    _c("br"),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Con iDoctors:")]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("ul", [
+                      _c("li", [
+                        _vm._v("Ricevi prenotazioni da nuovi pazienti"),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._v(
+                          "Migliori la tua visibilità e la tua reputazione online"
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._v(
+                          "Organizzi al meglio il tuo lavoro con una suite completa di strumenti dedicati al Medico"
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._v(
+                          "Puoi usare la nostra App multipiattaforma dedicata ai Medici"
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._v(
+                          "Hai il nostro staff sempre disponibile ad aiutarti"
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-grid gap-2 d-md-flex justify-content-md-end",
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { href: "#", role: "button" },
+                        },
+                        [_vm._v("Iscriviti")]
+                      ),
+                    ]
+                  ),
+                ]
+              ),
             ]
           ),
         ]),
@@ -39216,29 +39232,48 @@ var staticRenderFns = [
                 "row d-flex justify-content-center align-items-center",
             },
             [
-              _c("div", { staticClass: "col-3 logo-footer" }, [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("BDoctors")]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-12 col-sm-12 col-md-4 col-lg-3 logo-footer text-center justify-content-center align-items-center",
+                },
+                [_c("a", { attrs: { href: "#" } }, [_vm._v("BDoctors")])]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-6" }, [
-                _c("p", [
-                  _vm._v(
-                    "\n            Doctolib Srl, - Società con socio unico, soggetta a direzione e coordinamento di Doctolib SAS - Sede Legale: Milano, Corso Giacomo Matteotti n. 1 - Capitale Sociale: euro 3.010.000,00 i.v.\n            Codice Fiscale e Registro Imprese di Milano Monza Brianza Lodi n. 11537360965 - REA: MI - 2609715 - doctolib.it – PEC doctolibsrl@legalmail.it\n          "
-                  ),
-                ]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "my-4 col-12 col-sm-10 col-md-6 col-lg-6 text-center justify-content-center align-items-center",
+                },
+                [
+                  _c("p", [
+                    _vm._v(
+                      "\n            Doctolib Srl, - Società con socio unico, soggetta a direzione e coordinamento di Doctolib SAS - Sede Legale: Milano, Corso Giacomo Matteotti n. 1 - Capitale Sociale: euro 3.010.000,00 i.v.\n            Codice Fiscale e Registro Imprese di Milano Monza Brianza Lodi n. 11537360965 - REA: MI - 2609715 - doctolib.it – PEC doctolibsrl@legalmail.it\n          "
+                    ),
+                  ]),
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-3" }, [
-                _c("ul", [
-                  _c("li", [_vm._v("Logo")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Logo")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Logo")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("Logo")]),
-                ]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-12 col-sm-12 col-md-4 col-lg-3 text-center justify-content-center align-items-center",
+                },
+                [
+                  _c("ul", [
+                    _c("li", [_vm._v("Logo")]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v("Logo")]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v("Logo")]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v("Logo")]),
+                  ]),
+                ]
+              ),
             ]
           ),
         ]),
@@ -54778,7 +54813,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\aboni\OneDrive\Documents\Boolean\LARAVEL\PROGETTO FINALE\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
+module.exports = __webpack_require__(/*! C:\Users\Giulia\Documents\Boolean\progetto finale\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
 
 
 /***/ })

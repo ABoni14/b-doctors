@@ -20,11 +20,27 @@
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/login">Login</a>
               </li>
+              
+        
+                          
+                        
+                  
             </ul>
           </div>
         </div>
         
-      </nav>
+      </nav> 
+      
+     
+
+      
+
+
+
+
+
+      
+
     </div>
   </header>
 </template>

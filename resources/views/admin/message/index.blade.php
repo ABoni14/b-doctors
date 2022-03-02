@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container container-table">
 
   <table class="table">
     <thead>
@@ -37,7 +37,9 @@
       
     </tbody>
   </table>
-            
-    </div>
+
+  <a href="{{ route('admin.index', Auth::user() ) }}" class="action">Indietro</a>
+       
 </div>
+
 @endsection

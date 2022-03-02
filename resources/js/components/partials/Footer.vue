@@ -3,16 +3,16 @@
     <div class="container">
       <div class="top-footer">
         <div class="row d-flex justify-content-center align-items-center">
-          <div class="col-3 logo-footer">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-3 logo-footer text-center justify-content-center align-items-center">
             <a href="#">BDoctors</a>
             </div>
-          <div class="col-6">
+          <div class="my-4 col-12 col-sm-10 col-md-6 col-lg-6 text-center justify-content-center align-items-center">
             <p>
               Doctolib Srl, - Società con socio unico, soggetta a direzione e coordinamento di Doctolib SAS - Sede Legale: Milano, Corso Giacomo Matteotti n. 1 - Capitale Sociale: euro 3.010.000,00 i.v.
               Codice Fiscale e Registro Imprese di Milano Monza Brianza Lodi n. 11537360965 - REA: MI - 2609715 - doctolib.it – PEC doctolibsrl@legalmail.it
             </p>
           </div>
-          <div class="col-3">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-3 text-center justify-content-center align-items-center">
             <ul>
               <li>Logo</li>
               <li>Logo</li>
@@ -75,6 +75,8 @@ footer{
       font-size: 12px;
     }
     ul{
+      margin: 0;
+      padding: 0;
       li{
         display: inline-block;
         text-decoration: none;

@@ -12,4 +12,6 @@
 
 </p>
 
+<a href="{{ route('admin.index', Auth::user() ) }}" class="action">Indietro</a>
+
 @endsection

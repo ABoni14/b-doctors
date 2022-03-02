@@ -37270,6 +37270,11 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var trigger = document.querySelector("menu > .trigger");
+trigger.addEventListener('click', function (e) {
+  e.currentTarget.parentElement.classList.toggle("open");
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37346,9 +37351,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\aboni\OneDrive\Documents\Boolean\LARAVEL\PROGETTO FINALE\b-doctors\resources\js\admin.js */"./resources/js/admin.js");
-__webpack_require__(/*! C:\Users\aboni\OneDrive\Documents\Boolean\LARAVEL\PROGETTO FINALE\b-doctors\resources\sass\admin\style.scss */"./resources/sass/admin/style.scss");
-module.exports = __webpack_require__(/*! C:\Users\aboni\OneDrive\Documents\Boolean\LARAVEL\PROGETTO FINALE\b-doctors\resources\sass\guest\style.scss */"./resources/sass/guest/style.scss");
+__webpack_require__(/*! C:\Users\Giulia\Documents\Boolean\progetto finale\b-doctors\resources\js\admin.js */"./resources/js/admin.js");
+__webpack_require__(/*! C:\Users\Giulia\Documents\Boolean\progetto finale\b-doctors\resources\sass\admin\style.scss */"./resources/sass/admin/style.scss");
+module.exports = __webpack_require__(/*! C:\Users\Giulia\Documents\Boolean\progetto finale\b-doctors\resources\sass\guest\style.scss */"./resources/sass/guest/style.scss");
 
 
 /***/ })

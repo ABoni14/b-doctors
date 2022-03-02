@@ -2,19 +2,6 @@
   <div class="container-fluid home">
 
     <!-- Carousel -->
-    <!-- <div id="carouselExampleControls" class="carousel slide ab-carousel" data-ride="carousel">
-      <div class="carousel-inner ab-inner">
-        <div class="carousel-item active">
-          <img src="https://www.centromedicomirandola.it/newcm/wp-content/uploads/2020/01/boh-1.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="https://www.altroconsumo.it/-/media/altroconsumo/images/home/salute/diritti%20in%20salute/pediatra_shu_409317970_1600x900.jpg?rev=346e0a47-c527-44f0-aef0-e2a5f2916aa5&hash=E20754E8AB30F2EDACB21CEE91EF243D" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="https://he.utexas.edu/images/easyblog_articles/243/GettyImages-823767128_high.jpg" class="d-block w-100" alt="...">
-        </div>
-      </div>
-    </div> -->
 
 
     <div id="carouselExampleCaptions" class="carousel slide carousel-fade ab-carousel" data-ride="carousel">
@@ -58,8 +45,8 @@
         <!-- <div class="left-search">
           <img src="https://i.pinimg.com/564x/5f/d6/67/5fd667c10719a499c617b17b7553182b.jpg" alt="">
         </div> -->
-        <div class="right-search d-flex flex-column justify-content-center">
-          <h4 class="my-3">Prenota online la tua visita medica</h4>
+        <div class="right-search d-flex flex-column justify-content-center align-items-center">
+          <h4 class="my-3 text-center">Prenota online la tua visita medica</h4>
           <div class="input-group mb-3">
             <input
             type="text"
@@ -74,9 +61,7 @@
             
           </div>
         </div>
-        <!-- <div class="left-search">
-          <img src="https://i.pinimg.com/564x/5f/d6/67/5fd667c10719a499c617b17b7553182b.jpg" alt="">
-        </div> -->
+
       </div>
 
     </div>
@@ -88,22 +73,22 @@
         <h5>Come funziona BDoctors?</h5>
       </div>
       <div class="row justify-content-around align-items-center">
-        <div class="col-3 img-info">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3">
           <img src="https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg" alt="">
-          <div class="text-info d-flex flex-column justify-content-center align-items-center">
+          <div class="text-info">
             <span class="title-info">Trova lo specialista che fa per te</span>
             <p>Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti.</p>
           </div>
           
         </div>
-        <div class="col-3 img-info d-flex flex-column justify-content-center align-items-center">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3">
           <img src="https://i.pinimg.com/564x/d4/59/f6/d459f692eb585f435005a756a68534b5.jpg" alt="">
           <div class="text-info">
             <span class="title-info">Invia un messaggio per avere un appuntamento</span>
             <p>Ci metterai un attimo: non serve telefonare e non è richiesta la carta di credito, pagherai direttamente in struttura.</p>
           </div>
         </div>
-        <div class="col-3 img-info d-flex flex-column justify-content-center align-items-center">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3">
           <img src="https://i.pinimg.com/564x/c5/1d/b5/c51db54a2a4b88f8b49b3d5737862428.jpg" alt="">
           <div class="text-info">
             <span class="title-info">Affidati alle mani degli esperti</span>
@@ -121,7 +106,7 @@
     <div class="container-fluid container-fluid-us">
       <div class="container container-us">
         <div class="row justify-content-center align-items-center">
-          <div class="col-6">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
             <h4>Dicono di noi</h4>
             <p>
               Oltre il 99% di pazienti soddisfatti <br><br>
@@ -134,8 +119,8 @@
             </p>
           </div>
         
-          <div class="col-5">
-            <div class="container-img">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="container-img mt-5">
               <img src="https://blog.hubspot.com/hubfs/GettyImages-974683580.jpg" alt="">
             </div>
             
@@ -149,12 +134,12 @@
     <div class="container-fluid container-med">
       <div class="container">
         <div class="row justify-content-center align-items-center">
-          <div class="col-6 d-flex justify-content-center">
-            <div class="container-img">
+          <div class="col-12 col-sm-12 order-sm-2 col-md-6 col-lg-6 d-flex justify-content-center">
+            <div class="container-img mt-5">
               <img src="https://i.pinimg.com/564x/b6/fb/ae/b6fbae77fd650ee77826cf5887856dce.jpg" alt="">
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-12 order-sm-1 col-md-6 col-lg-6">
             <h4>
               Sei un medico? Iscriviti ora!
             </h4>
@@ -220,6 +205,7 @@ export default {
       img{
         height: 500px;
         width: auto;
+        object-fit: cover;
         filter: grayscale(50%);
         transition: all 0.3s;
         
