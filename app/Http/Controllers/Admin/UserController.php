@@ -51,8 +51,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
+        $id = Auth::id();
         $user = User::find($id);
         return view('admin.dashboard.show', compact('user'));
     }
@@ -63,8 +64,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
+
+        $id = Auth::id();
         $user = User::find($id);
         $specializations = Specialization::all();
         $performances = Performance::all();
@@ -83,16 +86,32 @@ class UserController extends Controller
         $user = User::find($id);
         $data = $request->all();
 
+        $validator->validate([
+            'phone' => 'nullable| max:255',
+            'email' => 'required| ',
+            'phone' => '',
+            'phone' => '',
+            'phone' => '',
+        ])
+
+
+
         if (array_key_exists('photo', $data)) {
-            // eliminare la vecchia immagine (se esiste)
             if ($user->photo) {
                 Storage::delete($user->photo);
             }
-            $img_path = Storage::put('uploads', $data['photo']);
+            $img_path = Storage::put('image', $data['photo']);
             $data['photo'] = $img_path;
         }
-        dd($data);
+        // dd($data);
         $user->update($data);
+
+        if(array_key_exists('specializations', $data)){
+            $user->specializations()->sync($data['specializations']);
+        }else{
+            $user->specializations()->detach();
+        }
+
         return redirect()->route("admin.dashboard.show", $user);
     }
 
