@@ -7,25 +7,25 @@
             <img src="https://img.freepik.com/free-vector/patients-doctors-meeting-waiting-clinic-hall-hospital-interior-illustration-with-reception-person-wheelchair-visiting-doctor-office-medical-examination-consultation_74855-8496.jpg?w=1060" alt="">
           </div>
 
-          <!-- <div class="container">
+          <div class="container">
             <div class="row">
-              <div 
+              <div
               v-for="(singleSpecialization, index) in specialization"
               :key="index"
               class="col-6">
-                <a href="">{{singleSpecialization.name}}</a>
+                <router-link :to="{ name: 'SpecializationDoctors' , params: { slug: singleSpecialization.slug } }">{{ singleSpecialization.name }}</router-link>
               </div>
             </div>
-          </div> -->
-          
-          
+          </div>
+
+
           <!-- <a class="btn btn-primary my-5" href="#" role="button">Cerca</a> -->
         </div>
       </div>
 
-      <SpecializationDoctors 
+      <!-- <SpecializationDoctors
       :specialization= 'specialization'
-      />
+      /> -->
 
 
     </div>

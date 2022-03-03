@@ -4,20 +4,21 @@
         {{post.title}}
       </router-link> -->
 
-      <div class="container">
+      <!-- <div class="container">
         <div class="row">
-          <div 
+          <div
           v-for="(singleSpecialization, index) in specialization"
           :key="index"
-          @click="$emit('specialization', specialization)"
           class="col-6">
             <a href="">{{singleSpecialization.name}}</a>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <CardsDoctors 
-      :specializationSlug= specializationSlug
+      <CardsDoctors
+        v-for="(doctor, index) in doctors"
+        :key="index"
+        :doctorInfo = 'doctor'
       />
   </div>
 </template>
@@ -27,16 +28,15 @@ import CardsDoctors from './CardsDoctors.vue'
 
 export default {
   name: 'SpecializationDoctors',
-  props: {
-    specializationSlug: String
-  },
+//   props: ['slug'],
   components:{
     CardsDoctors
   },
   data(){
     return{
-      apiUrl: 'http://127.0.0.1:8000/api/doctors/',
-      specialization: []
+      apiUrl: 'http://127.0.0.1:8000/api/doctors/specialization/',
+      doctors: [],
+      slug: this.$route.params.slug
     }
   },
   mounted(){
@@ -44,11 +44,11 @@ export default {
   },
   methods:{
     getApi(){
-      axios.get(this.apiUrl)
+      axios.get(this.apiUrl + this.slug)
       .then(res => {
-        this.specialization = res.data.specialization;
-        console.log('specialization',this.specialization);
-        console.log('specializationSlug',this.specialization.slug);
+        this.doctors = res.data.specialization.users;
+        // console.log(this.specialization);
+        // console.log(this.doctors);
       })
     }
   }
