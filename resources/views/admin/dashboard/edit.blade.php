@@ -13,42 +13,42 @@
       </ul>
     </div>
     @endif --}}
-    
 
-    <form action="{{route("admin.dashboard.update", Auth::user())}}" method="POST">
+
+    <form action="{{route("admin.dashboard.update", Auth::user())}}" method="POST" enctype="multipart/form-data">
       @csrf
       @method("PUT")
       <div class="form-group">
         <label for="phone">Telefono</label>
-        <input type="text" 
+        <input type="text"
         value="{{old("phone", $user->phone)}}"
-        class="form-control" 
+        class="form-control"
         id="phone" name="phone"
         placeholder="Inserisci numero di telefono">
       </div>
 
       <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="text" 
+        <input type="text"
         value="{{old("email", $user->email)}}"
-        class="form-control" 
+        class="form-control"
         id="email" name="email"
         placeholder="Inserisci E-mail">
       </div>
 
       <div class="form-group">
         <label for="address">Indirizzo</label>
-        <input type="address" 
+        <input type="address"
         value="{{old("address", $user->address)}}"
-        class="form-control" 
+        class="form-control"
         id="address" name="address"
         placeholder="Inserisci indirizzo">
       </div>
 
       <div class="form-group">
         <label for="content">CV</label>
-        <textarea 
-        class="form-control" 
+        <textarea
+        class="form-control"
         id="cv" name="cv"
         placeholder="Inserisci il tuo cv">{{old("cv", $user->cv)}}</textarea>
       </div>
@@ -68,13 +68,18 @@
               type="file" name="photo" id="photo">
       </div>
 
-      <select name="specialization_id" id="specialization_id">
-        <option value="">Seleziona specializzazione</option>
+      <div>
         @foreach ($specializations as $item)
-          <option
-          value="{{ $item->id }}">{{ $item->name }}</option>
-       @endforeach
-      </select>
+          <input type="checkbox" id="{{$item->id}}" name="specializations[]" value="{{$item->id}}"
+          @if(!$errors->any() && $user->specializations->contains($item->id))
+          checked
+          @elseif ($errors->any() && in_array($item->id, old('specializations', [])))
+          checked
+          @endif
+          >
+          <label for="{{$item->id}}">{{$item->name}}</label>
+        @endforeach
+      </div>
 
       {{-- <div class="mb-3">
         <label for="category_id" class="form-label">Inserisci una categoria</label>
@@ -95,6 +100,6 @@
 
       <button type="submit" class="btn btn-primary">Change</button>
     </form>
-    
+
 </div>
 @endsection
