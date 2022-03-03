@@ -86,14 +86,25 @@ class UserController extends Controller
         $user = User::find($id);
         $data = $request->all();
 
-        $validator->validate([
-            'phone' => 'nullable| max:255',
-            'email' => 'required| ',
-            'phone' => '',
-            'phone' => '',
-            'phone' => '',
-        ])
-
+        $request->validate([
+            'phone' => 'nullable| regex:/^([0-9\s\-\+\(\)]*)$/ | max:20',
+            'email' => 'required| max:50',
+            'address' => 'required| min:5 | max:255',
+            'cv' => 'nullable| min:5 | max:2000',
+            'photo' => 'nullable|mimes:jpeg,jpg,bmp,svg,webp,png|max:32000',
+            'specializations' => 'required',
+        ],[
+            'phone.regex' => 'Il campo telefono può contenere solamente i seguenti caratteri speciali ( - , + , (), )',
+            'phone.max' => 'Il Numero di telefono no deve superare i :max caratteri',
+            'email.required' => 'Il campo email è obbligatorio',
+            'email.min' => 'Il campo email deve contenere al minimo :min caratteri',
+            'email.max' => 'Il campo email deve contenere al massimo :max caratteri',
+            'cv.min' => 'Il campo deve contenere una descrizione minima di almeno :min caratteri',
+            'cv.max' => 'Il campo deve contenere una descrizione di massimo :max caratteri',
+            'photo.mimes' => 'Il formato deve essere: (jpeg,jpg,bmp,svg,webp,png)',
+            'photo.max' => 'Il file non deve pesare più di :max',
+            'specializations.required' => 'Il campo è obbligatorio',
+        ]);
 
 
         if (array_key_exists('photo', $data)) {
@@ -103,7 +114,7 @@ class UserController extends Controller
             $img_path = Storage::put('image', $data['photo']);
             $data['photo'] = $img_path;
         }
-        // dd($data);
+        dd($data);
         $user->update($data);
 
         if(array_key_exists('specializations', $data)){
@@ -121,8 +132,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $id = Auth::id();
+        $user = User::find($id);
+        Auth::logout();
+        $user->delete();
+
+        return redirect()->route("login");
     }
 }
