@@ -28,7 +28,7 @@ import CardsDoctors from './CardsDoctors.vue'
 export default {
   name: 'SpecializationDoctors',
   props: {
-    specialization: Object
+    specializationSlug: String
   },
   components:{
     CardsDoctors

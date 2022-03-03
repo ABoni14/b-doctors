@@ -23,9 +23,9 @@
 
 export default {
   name: 'CardsDoctors',
-  props: {
+    props: {
     specializationSlug: String
-  }
+  },
 }
 </script>
 

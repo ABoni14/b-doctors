@@ -2282,7 +2282,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SpecializationDoctors',
   props: {
-    specialization: Object
+    specializationSlug: String
   },
   components: {
     CardsDoctors: _CardsDoctors_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
