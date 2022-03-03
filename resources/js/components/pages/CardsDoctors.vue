@@ -20,8 +20,12 @@
 </template>
 
 <script>
+
 export default {
   name: 'CardsDoctors',
+  props: {
+    specializationSlug: String
+  }
 }
 </script>
 

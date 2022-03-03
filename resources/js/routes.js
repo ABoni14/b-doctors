@@ -4,7 +4,6 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 import Home from "./components/pages/Home.vue";
 import AdvancedSearch from "./components/pages/AdvancedSearch.vue";
-import SpecializationDoctors from "./components/pages/SpecializationDoctors.vue";
 
 const router = new VueRouter({
   mode: "history",
@@ -20,11 +19,7 @@ const router = new VueRouter({
       name: "AdvancedSearch",
       component: AdvancedSearch
     },
-    {
-      path: "/specialization-doctors/:slug",
-      name: "SpecializationDoctors",
-      component: SpecializationDoctors
-    },
+    
   ]
 });
 
