@@ -20,7 +20,8 @@
       @method("PUT")
       <div class="form-group">
         <label for="phone">Telefono</label>
-        <input type="text" 
+        <input type="number" 
+        maxlength="20"
         value="{{old("phone", $user->phone)}}"
         class="form-control" 
         id="phone" name="phone"
@@ -29,7 +30,8 @@
 
       <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="text" 
+        <input type="email"
+        required maxlength="50"
         value="{{old("email", $user->email)}}"
         class="form-control" 
         id="email" name="email"
@@ -39,6 +41,7 @@
       <div class="form-group">
         <label for="address">Indirizzo</label>
         <input type="address" 
+        minlength="5" maxlength="255" required
         value="{{old("address", $user->address)}}"
         class="form-control" 
         id="address" name="address"
@@ -48,6 +51,7 @@
       <div class="form-group">
         <label for="content">CV</label>
         <textarea 
+        minlength="5" maxlength="2000"
         class="form-control" 
         id="cv" name="cv"
         placeholder="Inserisci il tuo cv">{{old("cv", $user->cv)}}</textarea>

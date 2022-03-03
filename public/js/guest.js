@@ -2547,6 +2547,46 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/SpecializationDoctors.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/SpecializationDoctors.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'SpecializationDoctors',
+  data: function data() {
+    return {
+      apiUrl: 'http://127.0.0.1:8000/api/doctors/',
+      doctors: []
+    };
+  },
+  mounted: function mounted() {
+    this.getApi();
+  },
+  methods: {
+    getApi: function getApi() {
+      var _this = this;
+
+      axios.get(this.apiUrl + this.$route.params.slug).then(function (res) {
+        _this.doctors = res.data;
+        console.log(_this.doctors);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/Footer.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/Footer.vue?vue&type=script&lang=js& ***!
@@ -39064,11 +39104,18 @@ var render = function () {
                 _vm._l(
                   _vm.specialization,
                   function (singleSpecialization, index) {
-                    return _c("div", { key: index, staticClass: "col-6" }, [
-                      _c("a", { attrs: { href: "" } }, [
-                        _vm._v(_vm._s(singleSpecialization.name)),
-                      ]),
-                    ])
+                    return _c(
+                      "div",
+                      { key: index, staticClass: "col-6" },
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: { name: "SpecializationDoctors" } } },
+                          [_vm._v(_vm._s(singleSpecialization.name))]
+                        ),
+                      ],
+                      1
+                    )
                   }
                 ),
                 0
@@ -39448,13 +39495,16 @@ var staticRenderFns = [
         _c("div", { staticClass: "container" }, [
           _c(
             "div",
-            { staticClass: "row justify-content-center align-items-center" },
+            {
+              staticClass:
+                "row justify-content-center align-items-center flex-wrap-reverse",
+            },
             [
               _c(
                 "div",
                 {
                   staticClass:
-                    "col-12 col-sm-12 order-sm-2 col-md-6 order-md-1 col-lg-6 d-flex justify-content-center",
+                    "col-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center",
                 },
                 [
                   _c("div", { staticClass: "container-img mt-5" }, [
@@ -39468,87 +39518,78 @@ var staticRenderFns = [
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-12 col-sm-12 order-sm-1 col-md-6 order-md-2 col-lg-6",
-                },
-                [
-                  _c("h4", [
-                    _vm._v(
-                      "\n            Sei un medico? Iscriviti ora!\n          "
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c("strong", [
-                      _vm._v("Iscriviti e raggiungi nuovi pazienti"),
-                    ]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _c("br"),
-                    _vm._v(
-                      "\n            Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. "
-                    ),
-                    _c("br"),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("strong", [_vm._v("Con iDoctors:")]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c("li", [
-                        _vm._v("Ricevi prenotazioni da nuovi pazienti"),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _vm._v(
-                          "Migliori la tua visibilità e la tua reputazione online"
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _vm._v(
-                          "Organizzi al meglio il tuo lavoro con una suite completa di strumenti dedicati al Medico"
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _vm._v(
-                          "Puoi usare la nostra App multipiattaforma dedicata ai Medici"
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _vm._v(
-                          "Hai il nostro staff sempre disponibile ad aiutarti"
-                        ),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "d-grid gap-2 d-md-flex justify-content-md-end",
-                    },
-                    [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { href: "#", role: "button" },
-                        },
-                        [_vm._v("Iscriviti")]
-                      ),
-                    ]
+              _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
+                _c("h4", [
+                  _vm._v(
+                    "\n            Sei un medico? Iscriviti ora!\n          "
                   ),
-                ]
-              ),
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [
+                    _vm._v("Iscriviti e raggiungi nuovi pazienti"),
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _c("br"),
+                  _vm._v(
+                    "\n            Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. "
+                  ),
+                  _c("br"),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("strong", [_vm._v("Con iDoctors:")]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("ul", [
+                    _c("li", [_vm._v("Ricevi prenotazioni da nuovi pazienti")]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "Migliori la tua visibilità e la tua reputazione online"
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "Organizzi al meglio il tuo lavoro con una suite completa di strumenti dedicati al Medico"
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "Puoi usare la nostra App multipiattaforma dedicata ai Medici"
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "Hai il nostro staff sempre disponibile ad aiutarti"
+                      ),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "d-grid gap-2 d-md-flex justify-content-md-end",
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { href: "#", role: "button" },
+                      },
+                      [_vm._v("Iscriviti")]
+                    ),
+                  ]
+                ),
+              ]),
             ]
           ),
         ]),
@@ -39556,6 +39597,30 @@ var staticRenderFns = [
     ])
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/SpecializationDoctors.vue?vue&type=template&id=2a852903&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/SpecializationDoctors.vue?vue&type=template&id=2a852903&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -54932,6 +54997,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/SpecializationDoctors.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/pages/SpecializationDoctors.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SpecializationDoctors_vue_vue_type_template_id_2a852903_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpecializationDoctors.vue?vue&type=template&id=2a852903&scoped=true& */ "./resources/js/components/pages/SpecializationDoctors.vue?vue&type=template&id=2a852903&scoped=true&");
+/* harmony import */ var _SpecializationDoctors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SpecializationDoctors.vue?vue&type=script&lang=js& */ "./resources/js/components/pages/SpecializationDoctors.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SpecializationDoctors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SpecializationDoctors_vue_vue_type_template_id_2a852903_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SpecializationDoctors_vue_vue_type_template_id_2a852903_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "2a852903",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/pages/SpecializationDoctors.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/SpecializationDoctors.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/pages/SpecializationDoctors.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpecializationDoctors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SpecializationDoctors.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/SpecializationDoctors.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpecializationDoctors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/SpecializationDoctors.vue?vue&type=template&id=2a852903&scoped=true&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/pages/SpecializationDoctors.vue?vue&type=template&id=2a852903&scoped=true& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpecializationDoctors_vue_vue_type_template_id_2a852903_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./SpecializationDoctors.vue?vue&type=template&id=2a852903&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/SpecializationDoctors.vue?vue&type=template&id=2a852903&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpecializationDoctors_vue_vue_type_template_id_2a852903_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpecializationDoctors_vue_vue_type_template_id_2a852903_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/partials/Footer.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/partials/Footer.vue ***!
@@ -55152,9 +55286,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/pages/Home.vue */ "./resources/js/components/pages/Home.vue");
 /* harmony import */ var _components_pages_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/pages/AdvancedSearch.vue */ "./resources/js/components/pages/AdvancedSearch.vue");
+/* harmony import */ var _components_pages_SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/pages/SpecializationDoctors.vue */ "./resources/js/components/pages/SpecializationDoctors.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -55168,6 +55304,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     path: "/advanced-search",
     name: "AdvancedSearch",
     component: _components_pages_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }, {
+    path: "/specialization-doctors/:slug",
+    name: "SpecializationDoctors",
+    component: _components_pages_SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);

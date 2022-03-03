@@ -13,7 +13,7 @@
               v-for="(singleSpecialization, index) in specialization"
               :key="index"
               class="col-6">
-                <a href="">{{singleSpecialization.name}}</a>
+                <router-link :to="{name: 'SpecializationDoctors'}">{{singleSpecialization.name}}</router-link>
               </div>
             </div>
 
