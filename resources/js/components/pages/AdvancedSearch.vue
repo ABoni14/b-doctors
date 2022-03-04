@@ -1,78 +1,109 @@
 <template>
-  <div class="advanced-search">
-    <div class="container-fluid">
-      <div class="container">
-        <div class="row flex-column justify-content-center align-items-center">
-          <div class="container-img">
-            <img src="https://img.freepik.com/free-vector/patients-doctors-meeting-waiting-clinic-hall-hospital-interior-illustration-with-reception-person-wheelchair-visiting-doctor-office-medical-examination-consultation_74855-8496.jpg?w=1060" alt="">
-          </div>
+    <div class="advanced-search">
+        <div class="container-fluid">
+            <div class="container">
+                <div
+                    class="row flex-column justify-content-center align-items-center"
+                >
+                    <div class="container-img">
+                        <img
+                            src="https://img.freepik.com/free-vector/patients-doctors-meeting-waiting-clinic-hall-hospital-interior-illustration-with-reception-person-wheelchair-visiting-doctor-office-medical-examination-consultation_74855-8496.jpg?w=1060"
+                            alt=""
+                        />
+                    </div>
 
-          <div class="container">
-            <div class="row">
-              <div
-              v-for="(singleSpecialization, index) in specialization"
-              :key="index"
-              class="col-6">
-                <router-link :to="{ name: 'SpecializationDoctors' , params: { slug: singleSpecialization.slug } }">{{ singleSpecialization.name }}</router-link>
-              </div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <select class="select-spec"
+                                name="specializations"
+                                id="specializations"
+                                @click="getDoctorsBySpec()"
+                                v-model="specToSearch">
+                                <option value="">Seleziona la specializzazione</option>
+                                <option
+                                v-for="(singleSpecialization, index) in specialization"
+                                :key="index"
+                                :value="singleSpecialization.slug"
+                                :name="singleSpecialization.name"
+                                class="col-6">
+                                {{singleSpecialization.name}}</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <SpecializationDoctors
+                            :doctors="doctors"
+                            :specialization="specialization"
+                            :error="error"
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-
-
-          <!-- <a class="btn btn-primary my-5" href="#" role="button">Cerca</a> -->
         </div>
-      </div>
-
-      <!-- <SpecializationDoctors
-      :specialization= 'specialization'
-      /> -->
-
-
     </div>
-  </div>
 </template>
 
 <script>
-import SpecializationDoctors from './SpecializationDoctors.vue'
+import SpecializationDoctors from "./SpecializationDoctors.vue";
 export default {
-  name: "AdvancedSearch",
-  components:{
-    SpecializationDoctors
-  },
-  data(){
-    return{
-      apiUrl: 'http://127.0.0.1:8000/api/doctors/',
-      specialization: []
+    name: 'AdvancedSearch',
+    components:{
+        SpecializationDoctors,
+    },
+    data(){
+        return {
+            baseApi: "http://127.0.0.1:8000/api/doctors/",
+            spec: 'specialization/',
+            doctors: [],
+            specialization: [],
+            specToSearch: '',
+            error: ""
+        }
+    },
+    methods:{
+        getApi(){
+            axios.get(this.baseApi)
+            .then(res => {
+                this.specialization = res.data.specialization;
+            })
+        },
+        getDoctorsBySpec(){
+            axios.get(this.baseApi + this.spec + this.specToSearch)
+            .then(res => {
+                this.doctors= res.data.specialization.users;
+                this.error= res.data.error;
+            })
+        }
+    },
+    mounted(){
+        this.getApi();
     }
-  },
-  mounted(){
-    this.getApi();
-  },
-  methods:{
-    getApi(){
-      axios.get(this.apiUrl)
-      .then(res => {
-        this.specialization = res.data.specialization;
-        console.log('specializationAD',this.specialization);
-      })
-    }
-  }
 
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.advanced-search{
-  padding-bottom: 150px;
-  .container{
-    .container-img{
-      height: 350px;
-      width: 600px;
-      img{
-        height: 100%;
-        width: 100%;
-      }
+.advanced-search {
+    padding-bottom: 150px;
+    .container {
+        .container-img {
+            height: 350px;
+            width: 600px;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        #specializations{
+            width: 80%;
+            border-radius: 10px;
+            padding: 5px 15px;
+            border: 1px solid lightskyblue;
+            &:focus, &:focus-visible{
+                border: 2px solid lightskyblue !important;   
+                outline: 2px solid lightskyblue !important;
+            }
+        }
     }
-  }
 }
 </style>

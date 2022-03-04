@@ -12,14 +12,14 @@ const router = new VueRouter({
   linkExactActiveClass: "active",
   routes:[
     {
-      path: "/",
-      name: "home",
-      component: Home
+        path: "/",
+        name: "home",
+        component: Home
     },
     {
-      path: "/advanced-search",
-      name: "AdvancedSearch",
-      component: AdvancedSearch
+        path: "/advanced-search",
+        name: "AdvancedSearch",
+        component: AdvancedSearch
     },
     {
         path: "/advanced-search/:slug",
@@ -28,10 +28,10 @@ const router = new VueRouter({
         props: true,
     },
     {
-      path: "/details/:id",
-      name: "DoctorPage",
-      component: DoctorPage,
-      props: true,
+        path: "/details/:id",
+        name: "DoctorPage",
+        component: DoctorPage,
+        props: true,
     }
 
   ]
