@@ -2086,17 +2086,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'DoctorPage',
-  props: ["DoctorPage"],
-  setup: function setup(props) {
-    console.log(JSON.parse(props.DoctorPage));
+  data: function data() {
+    return {
+      apiUrl: 'http://127.0.0.1:8000/api/profile-detail/',
+      doctor_id: this.$route.params.id,
+      doctor_profile: {}
+    };
   },
-  // data(){
-  //   return{
-  //     doctors: this.$route.params
-  //   }
-  // },
+  methods: {
+    getDoctorById: function getDoctorById() {
+      var _this = this;
+
+      axios.get(this.apiUrl + this.doctor_id).then(function (res) {
+        _this.doctor_profile = res.data;
+        console.log(_this.doctor_profile);
+      });
+    }
+  },
   mounted: function mounted() {
-    console.log();
+    this.getDoctorById();
   }
 });
 
@@ -39004,7 +39012,23 @@ var render = function () {
       _c("h4", { staticClass: "vote my-3" }, [_vm._v("voto")]),
     ]),
     _vm._v(" "),
-    _vm._m(1),
+    _c(
+      "div",
+      { staticClass: "button-profile" },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "btn btn-doctors",
+            attrs: {
+              to: { name: "DoctorPage", params: { id: _vm.doctorInfo.id } },
+            },
+          },
+          [_vm._v("Vai al Profilo")]
+        ),
+      ],
+      1
+    ),
   ])
 }
 var staticRenderFns = [
@@ -39017,16 +39041,6 @@ var staticRenderFns = [
         staticClass: "img-fluid",
         attrs: { src: "https://picsum.photos/130/130?image=1027" },
       }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "button-profile" }, [
-      _c("button", { staticClass: "btn btn-doctors" }, [
-        _vm._v("Vai al profilo"),
-      ]),
     ])
   },
 ]
@@ -39051,7 +39065,9 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  " + _vm._s(JSON.parse(_vm.DoctorPage)) + "\n")])
+  return _c("div", [
+    _vm._v("\n    " + _vm._s(_vm.doctor_profile.first_name) + "\n"),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55384,7 +55400,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _components_pages_SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     props: true
   }, {
-    path: "/details/",
+    path: "/details/:id",
     name: "DoctorPage",
     component: _components_pages_DoctorPage_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     props: true
@@ -55401,7 +55417,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Giulia\Documents\Boolean\progetto finale\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
+module.exports = __webpack_require__(/*! /Users/luke/local-documents/Boolean/b-doctors/resources/js/guest.js */"./resources/js/guest.js");
 
 
 /***/ })
