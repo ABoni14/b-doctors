@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="container">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <select class="select-spec"
                                 name="specializations"
                                 id="specializations"
@@ -31,6 +31,9 @@
                         </div>
                         <div class="row">
                             <SpecializationDoctors
+                            :doctors="doctors"
+                            :specialization="specialization"
+                            :error="error"
                             />
                         </div>
                     </div>
@@ -54,19 +57,21 @@ export default {
             doctors: [],
             specialization: [],
             specToSearch: '',
+            error: ""
         }
     },
     methods:{
         getApi(){
             axios.get(this.baseApi)
             .then(res => {
-                this.specialization = res.data.specialization
+                this.specialization = res.data.specialization;
             })
         },
         getDoctorsBySpec(){
             axios.get(this.baseApi + this.spec + this.specToSearch)
             .then(res => {
-                this.doctors= res.data.specialization.users
+                this.doctors= res.data.specialization.users;
+                this.error= res.data.error;
             })
         }
     },
@@ -87,6 +92,16 @@ export default {
             img {
                 height: 100%;
                 width: 100%;
+            }
+        }
+        #specializations{
+            width: 80%;
+            border-radius: 10px;
+            padding: 5px 15px;
+            border: 1px solid lightskyblue;
+            &:focus, &:focus-visible{
+                border: 2px solid lightskyblue !important;   
+                outline: 2px solid lightskyblue !important;
             }
         }
     }
