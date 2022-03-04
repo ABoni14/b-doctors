@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <div class="container">
+    <div class="row">
+      <CardsDoctors
+        v-for="(doctor, index) in doctors"
+        :key="index"
+        :doctorInfo = 'doctor'
+      />
+    </div>
       <!-- <router-link :to="{name: 'detail', params: {slug: specializationSlug}}">
         {{post.title}}
       </router-link> -->
@@ -15,11 +22,7 @@
         </div>
       </div> -->
 
-      <CardsDoctors
-        v-for="(doctor, index) in doctors"
-        :key="index"
-        :doctorInfo = 'doctor'
-      />
+      
   </div>
 </template>
 
