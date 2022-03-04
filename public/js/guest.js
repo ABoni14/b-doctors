@@ -1974,30 +1974,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "AdvancedSearch",
+  name: 'AdvancedSearch',
   components: {
     SpecializationDoctors: _SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      apiUrl: 'http://127.0.0.1:8000/api/doctors/',
-      specialization: []
+      baseApi: "http://127.0.0.1:8000/api/doctors/",
+      spec: 'specialization/',
+      doctors: [],
+      specialization: [],
+      specToSearch: ''
     };
-  },
-  mounted: function mounted() {
-    this.getApi();
   },
   methods: {
     getApi: function getApi() {
       var _this = this;
 
-      axios.get(this.apiUrl).then(function (res) {
+      axios.get(this.baseApi).then(function (res) {
         _this.specialization = res.data.specialization;
-        console.log('specializationAD', _this.specialization);
+      });
+    },
+    getDoctorsBySpec: function getDoctorsBySpec() {
+      var _this2 = this;
+
+      axios.get(this.baseApi + this.spec + this.specToSearch).then(function (res) {
+        _this2.doctors = res.data.specialization.users;
       });
     }
+  },
+  mounted: function mounted() {
+    this.getApi();
   }
 });
 
@@ -2323,38 +2340,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SpecializationDoctors',
-  //   props: ['slug'],
+  name: "SpecializationDoctors",
+  props: {},
   components: {
     CardsDoctors: _CardsDoctors_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      apiUrl: 'http://127.0.0.1:8000/api/doctors/specialization/',
       doctors: [],
-      specialization: "",
-      slug: this.$route.params.slug
+      specialization: ""
     };
-  },
-  mounted: function mounted() {
-    this.getApi();
-  },
-  methods: {
-    getApi: function getApi() {
-      var _this = this;
-
-      axios.get(this.apiUrl + this.slug).then(function (res) {
-        _this.doctors = res.data.specialization.users;
-        _this.specialization = res.data.specialization; // console.log(this.specialization);
-
-        console.log('specialization', _this.specialization);
-      });
-    }
   }
 });
 
@@ -38920,34 +38917,74 @@ var render = function () {
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "container" }, [
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.specToSearch,
+                        expression: "specToSearch",
+                      },
+                    ],
+                    staticClass: "select-spec",
+                    attrs: { name: "specializations", id: "specializations" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.getDoctorsBySpec()
+                      },
+                      change: function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.specToSearch = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                    },
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Seleziona la specializzazione"),
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(
+                      _vm.specialization,
+                      function (singleSpecialization, index) {
+                        return _c(
+                          "option",
+                          {
+                            key: index,
+                            staticClass: "col-6",
+                            attrs: { name: singleSpecialization.name },
+                            domProps: { value: singleSpecialization.slug },
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(singleSpecialization.name)
+                            ),
+                          ]
+                        )
+                      }
+                    ),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "row" },
-                _vm._l(
-                  _vm.specialization,
-                  function (singleSpecialization, index) {
-                    return _c(
-                      "div",
-                      { key: index, staticClass: "col-6" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              to: {
-                                name: "SpecializationDoctors",
-                                params: { slug: singleSpecialization.slug },
-                              },
-                            },
-                          },
-                          [_vm._v(_vm._s(singleSpecialization.name))]
-                        ),
-                      ],
-                      1
-                    )
-                  }
-                ),
-                0
+                [_c("SpecializationDoctors")],
+                1
               ),
             ]),
           ]
@@ -39538,8 +39575,12 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container my-4" }, [
-    _c("h2", { staticClass: "text-center my-5 " }, [
-      _vm._v("Ecco i dottori per " + _vm._s(_vm.specialization.name)),
+    _c("h2", { staticClass: "text-center my-5" }, [
+      _vm._v(
+        "\n        Ecco i dottori per " +
+          _vm._s(_vm.specialization.name) +
+          "\n    "
+      ),
     ]),
     _vm._v(" "),
     _c(
@@ -54759,14 +54800,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!**********************************************************!*\
   !*** ./resources/js/components/pages/AdvancedSearch.vue ***!
   \**********************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AdvancedSearch_vue_vue_type_template_id_781a2080_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true& */ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=template&id=781a2080&scoped=true&");
 /* harmony import */ var _AdvancedSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdvancedSearch.vue?vue&type=script&lang=js& */ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _AdvancedSearch_vue_vue_type_style_index_0_id_781a2080_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true& */ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AdvancedSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AdvancedSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _AdvancedSearch_vue_vue_type_style_index_0_id_781a2080_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true& */ "./resources/js/components/pages/AdvancedSearch.vue?vue&type=style&index=0&id=781a2080&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -54798,7 +54840,7 @@ component.options.__file = "resources/js/components/pages/AdvancedSearch.vue"
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/pages/AdvancedSearch.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
