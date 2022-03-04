@@ -6,7 +6,7 @@
             </div>
             <div class="bottom-card">
                 <h4>{{doctorInfo.first_name}} {{doctorInfo.last_name}}</h4>
-
+                <router-link :to="{ name: 'DoctorPage' , params: { DoctorPage: JSON.stringify(doctorInfo) } }">Vai al profilo</router-link>
                 <strong>Vote: </strong>
                 <i
                     v-for="(item, index) in 5"
@@ -15,6 +15,7 @@
                     :class="index < getAvgVote() ? 'fas' : 'far'"
                 ></i>
             </div>
+            
         </div>
     </div>
 </template>

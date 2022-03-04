@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="row">
-      <CardsDoctors
+        <CardsDoctors
         v-for="(doctor, index) in doctors"
         :key="index"
-        :doctorInfo = 'doctor'
-      />
+        :doctorInfo = 'doctor'/>
+      
     </div>
       <!-- <router-link :to="{name: 'detail', params: {slug: specializationSlug}}">
         {{post.title}}
