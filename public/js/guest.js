@@ -1922,25 +1922,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
-  // data(){
-  //     return{
-  //       apiUrl: 'http://127.0.0.1:8000/api/doctors/specialization/',
-  //       doctors: []
-  //     }
-  //   },
   components: {
     Header: _components_partials_Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Footer: _components_partials_Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  } // methods:{
-  //   getApi(){
-  //     // console.log('apiurl',this.apiUrl + 'radioterapia');
-  //     axios.get(this.apiUrl + this.$route.params.slug)
-  //     .then(res => {
-  //       this.doctors = res.data;
-  //     })
-  //   }
-  // }
-
+  }
 });
 
 /***/ }),
@@ -2049,8 +2034,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "CardsDoctors",
+  name: "card-doctorsDoctors",
   props: {
     doctorInfo: Object
   },
@@ -2315,15 +2318,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SpecializationDoctors',
@@ -2335,6 +2329,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       apiUrl: 'http://127.0.0.1:8000/api/doctors/specialization/',
       doctors: [],
+      specialization: "",
       slug: this.$route.params.slug
     };
   },
@@ -2346,8 +2341,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(this.apiUrl + this.slug).then(function (res) {
-        _this.doctors = res.data.specialization.users; // console.log(this.specialization);
-        // console.log(this.doctors);
+        _this.doctors = res.data.specialization.users;
+        _this.specialization = res.data.specialization; // console.log(this.specialization);
+
+        console.log('specialization', _this.specialization);
       });
     }
   }
@@ -6845,7 +6842,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".card[data-v-57578267] {\n  margin: 15px 0;\n  border-radius: 15px;\n  padding: 10px;\n}", ""]);
+exports.push([module.i, ".card-doctor[data-v-57578267] {\n  width: 250px;\n  padding: 20px 0;\n  margin-bottom: 30px;\n  background-color: #f7f5ec;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #1369ce;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.9;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #1369ce;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  box-shadow: 0 0 0 14px #f7f5ec;\n  transform: scale(0.7);\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #1369ce;\n}\n.btn-doctors[data-v-57578267]:hover {\n  border-radius: 20px;\n  transition: all 1s;\n}", ""]);
 
 // exports
 
@@ -38987,48 +38984,27 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-3" }, [
-    _c("div", { staticClass: "card" }, [
-      _vm._m(0),
+  return _c("div", { staticClass: "card-doctor mx-3" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "team-content" }, [
+      _c("h3", { staticClass: "name" }, [
+        _vm._v(
+          " " +
+            _vm._s(_vm.doctorInfo.first_name) +
+            " " +
+            _vm._s(_vm.doctorInfo.last_name)
+        ),
+      ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "bottom-card" },
-        [
-          _c("h4", [
-            _vm._v(
-              _vm._s(_vm.doctorInfo.first_name) +
-                " " +
-                _vm._s(_vm.doctorInfo.last_name)
-            ),
-          ]),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              attrs: {
-                to: {
-                  name: "DoctorPage",
-                  params: { DoctorPage: JSON.stringify(_vm.doctorInfo) },
-                },
-              },
-            },
-            [_vm._v("Vai al profilo")]
-          ),
-          _vm._v(" "),
-          _c("strong", [_vm._v("Vote: ")]),
-          _vm._v(" "),
-          _vm._l(5, function (item, index) {
-            return _c("i", {
-              key: index,
-              staticClass: "fa-star",
-              class: index < _vm.getAvgVote() ? "fas" : "far",
-            })
-          }),
-        ],
-        2
-      ),
+      _c("span", { staticClass: "my-2" }, [
+        _vm._v(_vm._s(_vm.doctorInfo.address)),
+      ]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "vote my-3" }, [_vm._v("voto")]),
     ]),
+    _vm._v(" "),
+    _vm._m(1),
   ])
 }
 var staticRenderFns = [
@@ -39036,8 +39012,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "top-card" }, [
-      _c("img", { attrs: { src: "doctorInfo.photo", alt: "..." } }),
+    return _c("div", { staticClass: "picture" }, [
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: "https://picsum.photos/130/130?image=1027" },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "button-profile" }, [
+      _c("button", { staticClass: "btn btn-doctors" }, [
+        _vm._v("Vai al profilo"),
+      ]),
     ])
   },
 ]
@@ -39532,10 +39521,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container my-4" }, [
+    _c("h2", { staticClass: "text-center my-5 " }, [
+      _vm._v("Ecco i dottori per " + _vm._s(_vm.specialization.name)),
+    ]),
+    _vm._v(" "),
     _c(
       "div",
-      { staticClass: "row" },
+      { staticClass: "row justify-content-center" },
       _vm._l(_vm.doctors, function (doctor, index) {
         return _c("CardsDoctors", { key: index, attrs: { doctorInfo: doctor } })
       }),
@@ -55408,7 +55401,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\aboni\OneDrive\Documents\Boolean\LARAVEL\PROGETTO FINALE\b-doctors\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
+module.exports = __webpack_require__(/*! C:\Users\Giulia\Documents\Boolean\progetto finale\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
 
 
 /***/ })
