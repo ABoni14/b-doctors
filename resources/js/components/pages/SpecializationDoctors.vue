@@ -1,26 +1,17 @@
 <template>
-  <div class="container">
-    <div class="row">
+  <div class="container my-4">
+
+    <h2 class="text-center my-5 ">Ecco i dottori per {{specialization.name}}</h2>
+
+    <div class="row justify-content-center">
+
         <CardsDoctors
         v-for="(doctor, index) in doctors"
         :key="index"
         :doctorInfo = 'doctor'/>
       
     </div>
-      <!-- <router-link :to="{name: 'detail', params: {slug: specializationSlug}}">
-        {{post.title}}
-      </router-link> -->
 
-      <!-- <div class="container">
-        <div class="row">
-          <div
-          v-for="(singleSpecialization, index) in specialization"
-          :key="index"
-          class="col-6">
-            <a href="">{{singleSpecialization.name}}</a>
-          </div>
-        </div>
-      </div> -->
 
       
   </div>
@@ -39,6 +30,7 @@ export default {
     return{
       apiUrl: 'http://127.0.0.1:8000/api/doctors/specialization/',
       doctors: [],
+      specialization: "",
       slug: this.$route.params.slug
     }
   },
@@ -50,8 +42,9 @@ export default {
       axios.get(this.apiUrl + this.slug)
       .then(res => {
         this.doctors = res.data.specialization.users;
+        this.specialization = res.data.specialization;
         // console.log(this.specialization);
-        // console.log(this.doctors);
+        console.log('specialization',this.specialization);
       })
     }
   }
