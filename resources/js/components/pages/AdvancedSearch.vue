@@ -9,21 +9,23 @@
 
           <div class="container">
             <div class="row">
-              <div 
+              <div
               v-for="(singleSpecialization, index) in specialization"
               :key="index"
               class="col-6">
-                <a href="">{{singleSpecialization.name}}</a>
+                <router-link :to="{ name: 'SpecializationDoctors' , params: { slug: singleSpecialization.slug } }">{{ singleSpecialization.name }}</router-link>
               </div>
             </div>
-
           </div>
-          
-          
-          <a class="btn btn-primary my-5" href="#" role="button">Cerca</a>
+
+
+          <!-- <a class="btn btn-primary my-5" href="#" role="button">Cerca</a> -->
         </div>
       </div>
 
+      <!-- <SpecializationDoctors
+      :specialization= 'specialization'
+      /> -->
 
 
     </div>
@@ -31,8 +33,12 @@
 </template>
 
 <script>
+import SpecializationDoctors from './SpecializationDoctors.vue'
 export default {
   name: "AdvancedSearch",
+  components:{
+    SpecializationDoctors
+  },
   data(){
     return{
       apiUrl: 'http://127.0.0.1:8000/api/doctors/',
@@ -47,7 +53,7 @@ export default {
       axios.get(this.apiUrl)
       .then(res => {
         this.specialization = res.data.specialization;
-        console.log(this.specialization);
+        console.log('specializationAD',this.specialization);
       })
     }
   }
