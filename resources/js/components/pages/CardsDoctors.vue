@@ -15,11 +15,11 @@
                     :class="index < getAvgVote() ? 'fas' : 'far'"
                 ></i>
             </div>
-            
+
         </div>
     </div> -->
 
-   
+
             <div class="card-doctor mx-3">
                 <div class="picture">
                     <img class="img-fluid" src="https://picsum.photos/130/130?image=1027">
@@ -30,12 +30,12 @@
                     <h4 class="vote my-3">voto</h4>
                 </div>
                 <div class="button-profile">
-                    <button class="btn btn-doctors">Vai al profilo</button>
+                    <router-link class="btn btn-doctors" :to="{ name: 'DoctorPage' , params: { id: doctorInfo.id } }">Vai al Profilo</router-link>
                 </div>
-                
+
             </div>
 
- 
+
 </template>
 
 <script>
@@ -61,7 +61,7 @@ export default {
 //     margin: 15px 0;
 //     border-radius: 15px;
 //     padding: 10px;
-// 
+//
 
 .card-doctor {
     width: 250px;
@@ -138,7 +138,7 @@ export default {
 .btn-doctors{
     padding: 5px 10px;
     background-color: #1369ce;
-    
+
 }
 
 .btn-doctors:hover{

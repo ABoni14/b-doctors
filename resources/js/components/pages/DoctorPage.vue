@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{JSON.parse(DoctorPage)}}
+      {{doctor_profile.first_name}}
   </div>
 </template>
 
@@ -8,19 +8,24 @@
 export default {
   name: 'DoctorPage',
 
-  props: ["DoctorPage"],
-  setup(props){
-    console.log(JSON.parse(props.DoctorPage));
+  data(){
+    return{
+        apiUrl: 'http://127.0.0.1:8000/api/profile-detail/',
+        doctor_id: this.$route.params.id,
+        doctor_profile: {},
+    }
   },
-
-  // data(){
-  //   return{
-  //     doctors: this.$route.params
-  //   }
-  // },
-
+  methods:{
+      getDoctorById(){
+          axios.get(this.apiUrl + this.doctor_id)
+            .then(res => {
+                this.doctor_profile = res.data;
+                console.log(this.doctor_profile);
+            })
+      }
+  },
   mounted(){
-    console.log();
+      this.getDoctorById();
   }
 }
 </script>

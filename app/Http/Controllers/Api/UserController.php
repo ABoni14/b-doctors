@@ -37,5 +37,12 @@ class UserController extends Controller
         return response()->json(compact('specialization', 'success', 'error'));
     }
 
+    public function getDoctorById($id){
+
+        $doctor_profile = User::where('id', $id)->with(['reviews','specializations','performances'])->first();
+
+        return response()->json($doctor_profile);
+    }
+
 
 }
