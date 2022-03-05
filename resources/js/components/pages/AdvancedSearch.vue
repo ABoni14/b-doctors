@@ -17,7 +17,7 @@
                             <select class="select-spec"
                                 name="specializations"
                                 id="specializations"
-                                @click="getDoctorsBySpec()"
+                                @change="getDoctorsBySpec()"
                                 v-model="specToSearch">
                                 <option value="">Seleziona la specializzazione</option>
                                 <option
@@ -66,12 +66,18 @@ export default {
             .then(res => {
                 this.specialization = res.data.specialization;
             })
+            .catch(error =>{
+                console.error(error);
+            })
         },
         getDoctorsBySpec(){
             axios.get(this.baseApi + this.spec + this.specToSearch)
             .then(res => {
                 this.doctors= res.data.specialization.users;
                 this.error= res.data.error;
+            })
+            .catch(error =>{
+                console.error(error);
             })
         }
     },
@@ -100,7 +106,7 @@ export default {
             padding: 5px 15px;
             border: 1px solid lightskyblue;
             &:focus, &:focus-visible{
-                border: 2px solid lightskyblue !important;   
+                border: 2px solid lightskyblue !important;
                 outline: 2px solid lightskyblue !important;
             }
         }

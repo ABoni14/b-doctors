@@ -72,7 +72,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'address' => $data['address'],
             'email' => $data['email'],
-            'slug' =>  Str::slug($data['first_name'] . $data['last_name'], '-'),
+            'slug' =>  Str::slug($data['first_name']. '-'. $data['last_name'], '-'),
             'password' => Hash::make($data['password']),
         ]);
     }

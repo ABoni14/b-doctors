@@ -22,7 +22,10 @@ class UsersTableSeeder extends Seeder
             $new_user->email = $faker->email();
             $new_user->password = Hash::make(12341234);
             $new_user->address = $faker->streetAddress();
-            $new_user->slug =  Str::slug($new_user->first_name . $new_user->last_name, '-');
+            $new_user->cv = $faker->realText($maxNbChars = 300, $indexSize = 2);
+            $new_user->phone = $faker->phoneNumber();
+            $new_user->photo = $faker->imageUrl(150, 150, 'placeholder', true);
+            $new_user->slug =  Str::slug($new_user->first_name . '-' . $new_user->last_name, '-');
             $new_user->save();
         }
     }

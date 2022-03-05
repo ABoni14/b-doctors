@@ -22,7 +22,7 @@
 
             <div class="card-doctor mx-3">
                 <div class="picture">
-                    <img class="img-fluid" src="https://picsum.photos/130/130?image=1027">
+                    <img class="img-fluid" :src="doctorInfo.photo">
                 </div>
                 <div class="team-content">
                     <h3 class="name"> {{doctorInfo.first_name}} {{doctorInfo.last_name}}</h3>

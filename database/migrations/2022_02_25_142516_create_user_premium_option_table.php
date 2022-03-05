@@ -29,7 +29,6 @@ class CreateUserPremiumOptionTable extends Migration
 
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->timestamps();
         });
     }
 
