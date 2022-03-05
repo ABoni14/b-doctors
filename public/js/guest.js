@@ -2007,6 +2007,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.baseApi).then(function (res) {
         _this.specialization = res.data.specialization;
+      })["catch"](function (error) {
+        console.error(error);
       });
     },
     getDoctorsBySpec: function getDoctorsBySpec() {
@@ -2015,6 +2017,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.baseApi + this.spec + this.specToSearch).then(function (res) {
         _this2.doctors = res.data.specialization.users;
         _this2.error = res.data.error;
+      })["catch"](function (error) {
+        console.error(error);
       });
     }
   },
@@ -2380,9 +2384,8 @@ __webpack_require__.r(__webpack_exports__);
     CardsDoctors: _CardsDoctors_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
-    return {
-      // doctors: [],
-      specialization: ""
+    return {// doctors: [],
+      // specialization: "",
     };
   }
 });
@@ -39013,22 +39016,24 @@ var render = function () {
                     staticClass: "select-spec",
                     attrs: { name: "specializations", id: "specializations" },
                     on: {
-                      click: function ($event) {
-                        return _vm.getDoctorsBySpec()
-                      },
-                      change: function ($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function (o) {
-                            return o.selected
-                          })
-                          .map(function (o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.specToSearch = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
+                      change: [
+                        function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.specToSearch = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function ($event) {
+                          return _vm.getDoctorsBySpec()
+                        },
+                      ],
                     },
                   },
                   [

@@ -1,13 +1,13 @@
 <template>
     <div class="container my-4">
-        <h2 
+        <h2
             v-if="doctors.length > 0" class="text-center my-5">
             I risultati della tua ricerca
-            </h2> 
+            </h2>
             <div v-else class="text-center">
             Cerca qualcosa!
             </div>
-               
+
 
             <div  class="row">
                 <CardsDoctors
@@ -15,7 +15,7 @@
                 :key="index"
                 :doctorInfo="doctor"
                 />
-            </div> 
+            </div>
     </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
     data() {
         return {
             // doctors: [],
-            specialization: "",
+            // specialization: "",
         };
     },
 };
