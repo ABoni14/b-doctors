@@ -24,15 +24,23 @@ class User_premium_optionTableSeeder extends Seeder
         foreach ($users as $user){
 
             $currentDate = new \DateTime();
-            $subscriptions = Premium_option::InRandomOrder()->first()->id;
-            $randomDate = $faker->dateTimeBetween($currentDate, '+2 days');
+            $subscription = Premium_option::InRandomOrder()->first()->id;
+
+            //get the duration of each premium options and parse it to make it into a end_date format value
+            $duration = Premium_option::select('duration')->where('id', $subscription)->get()->map(function($val) {
+                return $val->duration;
+            });
+            $parsedDuration = $duration->pipe(function($duration){
+                return $duration->sum();
+            });
+            $endDate = date("Y-m-d H:m:s", strtotime(sprintf("+%d hours",$parsedDuration )));
 
 
             DB::table('user_premium_option')->insert([
                 'user_id' => $user->id,
-                'premium_option_id' => $subscriptions,
+                'premium_option_id' => $subscription,
                 'start_date' => $currentDate,
-                'end_date' => $randomDate
+                'end_date' => $endDate
             ]);
         }
     }
