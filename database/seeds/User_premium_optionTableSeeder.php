@@ -31,7 +31,7 @@ class User_premium_optionTableSeeder extends Seeder
                 return $val->duration;
             });
             $parsedDuration = $duration->pipe(function($duration){
-                return $duration->sum();
+                return $duration->pop();
             });
             $endDate = date("Y-m-d H:m:s", strtotime(sprintf("+%d hours",$parsedDuration )));
 
