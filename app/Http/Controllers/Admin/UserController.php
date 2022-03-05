@@ -114,13 +114,19 @@ class UserController extends Controller
             $img_path = Storage::put('image', $data['photo']);
             $data['photo'] = $img_path;
         }
-        dd($data);
+        // dd($data);
         $user->update($data);
 
         if(array_key_exists('specializations', $data)){
             $user->specializations()->sync($data['specializations']);
         }else{
             $user->specializations()->detach();
+        }
+
+        if(array_key_exists('performances', $data)){
+            $user->performances()->sync($data['performances']);
+        }else{
+            $user->performances()->detach();
         }
 
         return redirect()->route("admin.dashboard.show", $user);
