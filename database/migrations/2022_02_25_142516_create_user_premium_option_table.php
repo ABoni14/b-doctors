@@ -28,7 +28,7 @@ class CreateUserPremiumOptionTable extends Migration
                     ->onDelete('cascade');
 
             $table->dateTime('start_date');
-            $table->string('end_date');
+            $table->dateTime('end_date');
         });
     }
 
