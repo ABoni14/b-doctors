@@ -39,7 +39,7 @@
 
       <div class="form-group">
         <label for="address">Indirizzo</label>
-        <input type="address" 
+        <input type="address"
         minlength="5" maxlength="255" required
         value="{{old("address", $user->address)}}"
         class="form-control"
@@ -49,9 +49,9 @@
 
       <div class="form-group">
         <label for="content">CV</label>
-        <textarea 
+        <textarea
         minlength="5" maxlength="2000"
-        class="form-control" 
+        class="form-control"
         id="cv" name="cv"
         placeholder="Inserisci il tuo cv">{{old("cv", $user->cv)}}</textarea>
       </div>
@@ -84,23 +84,20 @@
         @endforeach
       </div>
 
-      {{-- <div class="mb-3">
-        <label for="category_id" class="form-label">Inserisci una categoria</label>
-        <select class="form-select" name="catgory_id" id="category_id">
-          @foreach ($categories as $category)
-            <option @if($category->id == old("category_id", $post->category_id)) selected @endif value="{{$category->id}}">{{$category->name}}</option>
-          @endforeach
-        </select>
-      </div> --}}
-
-      {{-- <div>
-        <h4>Tag</h4>
-        @foreach ($tags as $tag)
-          <input type="checkbox" name="tags[]" id="tag{{$loop->iteration}}" value="{{$tag->id}}" @if(!$errors->any() && $post->tags->contains($tag->id)) checked @elseif($errors->any() && in_array($tag->id, old("tags", []))) checked @endif>
-          <label for="tag{{$loop->iteration}}" class="mr-3">{{$tag->name}}</label>
-        @endforeach
-      </div> --}}
-
+      <div>
+        <select class="custom-select" multiple="multiple" name="performances[]">
+            @foreach ($performances as $performance)
+                <option
+                    value="{{ $performance->id }}"
+                    @if(!$errors->any() && $user->performances->contains($performance->id))
+                    selected
+                    @elseif ($errors->any() && in_array($performance->id, old('performances', [])))
+                    selected
+                    @endif
+                >{{ $performance->name }}</option>
+            @endforeach
+          </select>
+      </div>
       <button type="submit" class="btn btn-primary">Change</button>
     </form>
 
