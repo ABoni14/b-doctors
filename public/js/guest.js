@@ -39124,7 +39124,12 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-doctor mx-3" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "picture" }, [
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: _vm.doctorInfo.photo },
+      }),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "team-content" }, [
       _c("h3", { staticClass: "name" }, [
@@ -39162,19 +39167,7 @@ var render = function () {
     ),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "picture" }, [
-      _c("img", {
-        staticClass: "img-fluid",
-        attrs: { src: "https://picsum.photos/130/130?image=1027" },
-      }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

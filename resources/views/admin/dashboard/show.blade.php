@@ -16,7 +16,7 @@
 <div class="container">
     <div class="profile-top mt-3 px-3 d-flex align-items-center">
         <div>
-            <img src="https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png" alt="not-found" width="200px">
+            <img src="{{ $user->photo }}" alt="not-found" width="200px">
         </div>
         <div class="ml-5">
             <h2 class="font-weight-bolder">Dr. {{ $user->first_name }} {{ $user->last_name }}</h2>
@@ -33,7 +33,7 @@
         <p><strong>Indirizzo:</strong> {{ $user->address }}</p>
         <p><strong>E-Mail:</strong> {{ $user->email }}</p>
         <p><strong>Telefono:</strong> {{ $user->phone }}</p>
-        <p><strong>Prestazioni:</strong> 
+        <p><strong>Prestazioni:</strong>
             @foreach ($user->performances as $perf)
                 {{ $perf->name }}
             @endforeach
@@ -54,7 +54,7 @@
             <a href="{{ route('admin.index', Auth::user() ) }}" class="btn btn-success action mt-4">Indietro</a>
         </div>
     </div>
-    
+
 
 </div>
 
