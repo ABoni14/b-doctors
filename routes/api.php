@@ -23,6 +23,7 @@ Route::namespace('Api')
         ->group(function()
         {
             Route::get('/doctors', 'UserController@index');
+            Route::get('/specializations', 'UserController@specializations');
             Route::get('doctors/specialization/{slug}', 'UserController@getDoctorBySpecialization' );
             Route::get('profile-detail/{id}', 'UserController@getDoctorById');
             Route::post('message/', 'MessageController@store');

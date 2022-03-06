@@ -52,8 +52,9 @@ export default {
     },
     data(){
         return {
-            baseApi: "http://127.0.0.1:8000/api/doctors/",
-            spec: 'specialization/',
+            baseApi: "http://127.0.0.1:8000/api/",
+            specList: 'http://127.0.0.1:8000/api/specializations',
+            spec: 'doctors/specialization/',
             doctors: [],
             specialization: [],
             specToSearch: '',
@@ -61,8 +62,8 @@ export default {
         }
     },
     methods:{
-        getApi(){
-            axios.get(this.baseApi)
+        getSpecList(){
+            axios.get(this.specList)
             .then(res => {
                 this.specialization = res.data.specialization;
             })
@@ -82,7 +83,7 @@ export default {
         }
     },
     mounted(){
-        this.getApi();
+        this.getSpecList();
     }
 
 };
