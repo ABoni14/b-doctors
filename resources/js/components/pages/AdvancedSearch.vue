@@ -59,38 +59,43 @@ export default {
             doctors: [],
             specialization: [],
             specToSearch: '',
-            error: "",
+            error: '',
             homeSpec: '',
         }
     },
     methods:{
         getSpecList(){
+            this.error = '';
             axios.get(this.specList)
             .then(res => {
                 this.specialization = res.data.specialization;
             })
-            .catch(error =>{
-                console.error(error);
+            .catch(err =>{
+                console.error(err);
             })
         },
+        // search through advanced search page
         getDoctorsBySpec(){
+            this.error = '';
             axios.get(this.baseApi + this.spec + this.specToSearch)
             .then(res => {
                 this.doctors= res.data.specialization.users;
                 this.error= res.data.error;
             })
-            .catch(error =>{
-                console.error(error);
+            .catch(err =>{
+                console.error(err);
             })
         },
+        // search through search bar on Home page
         getDoctorsHome(){
+            this.error = '';
             axios.get(this.baseApi + this.spec + this.homeSpec)
             .then(res => {
                 this.doctors= res.data.specialization.users;
                 this.error= res.data.error;
             })
-            .catch(error =>{
-                console.error(error);
+            .catch(err =>{
+                console.error(err);
             })
         },
 
@@ -98,12 +103,12 @@ export default {
     },
     mounted(){
         this.getSpecList();
-        console.log(this.$route.params.slug);
+        // console.log(this.$route.params.slug);
         if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
             this.homeSpec = this.$route.params.slug;
             this.getDoctorsHome();
         }else{
-            console.log('null search');
+            console.log('search was null or empty try searching something');
         }
     },
 
