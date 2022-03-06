@@ -74,6 +74,7 @@ export default {
                 console.error(err);
             })
         },
+        // search through advanced search page
         getDoctorsBySpec(){
             this.error = '';
             axios.get(this.baseApi + this.spec + this.specToSearch)
@@ -85,6 +86,7 @@ export default {
                 console.error(err);
             })
         },
+        // search through search bar on Home page
         getDoctorsHome(){
             this.error = '';
             axios.get(this.baseApi + this.spec + this.homeSpec)

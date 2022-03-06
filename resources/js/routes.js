@@ -6,6 +6,7 @@ import Home from "./components/pages/Home.vue";
 import AdvancedSearch from "./components/pages/AdvancedSearch.vue";
 import SpecializationDoctors from "./components/pages/SpecializationDoctors.vue";
 import DoctorPage from "./components/pages/DoctorPage.vue";
+import Error404 from "./components/pages/Error404.vue";
 
 const router = new VueRouter({
   mode: "history",
@@ -32,6 +33,11 @@ const router = new VueRouter({
         name: "DoctorPage",
         component: DoctorPage,
         props: true,
+    },
+    {
+        path: "/:catchAll(.*)",
+        name: "Error404",
+        component: Error404,
     }
 
   ]
