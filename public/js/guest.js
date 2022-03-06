@@ -2000,7 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
       doctors: [],
       specialization: [],
       specToSearch: '',
-      error: "",
+      error: '',
       homeSpec: ''
     };
   },
@@ -2008,42 +2008,44 @@ __webpack_require__.r(__webpack_exports__);
     getSpecList: function getSpecList() {
       var _this = this;
 
+      this.error = '';
       axios.get(this.specList).then(function (res) {
         _this.specialization = res.data.specialization;
-      })["catch"](function (error) {
-        console.error(error);
+      })["catch"](function (err) {
+        console.error(err);
       });
     },
     getDoctorsBySpec: function getDoctorsBySpec() {
       var _this2 = this;
 
+      this.error = '';
       axios.get(this.baseApi + this.spec + this.specToSearch).then(function (res) {
         _this2.doctors = res.data.specialization.users;
         _this2.error = res.data.error;
-      })["catch"](function (error) {
-        console.error(error);
+      })["catch"](function (err) {
+        console.error(err);
       });
     },
     getDoctorsHome: function getDoctorsHome() {
       var _this3 = this;
 
+      this.error = '';
       axios.get(this.baseApi + this.spec + this.homeSpec).then(function (res) {
         _this3.doctors = res.data.specialization.users;
         _this3.error = res.data.error;
-      })["catch"](function (error) {
-        console.error(error);
+      })["catch"](function (err) {
+        console.error(err);
       });
     }
   },
   mounted: function mounted() {
-    this.getSpecList();
-    console.log(this.$route.params.slug);
+    this.getSpecList(); // console.log(this.$route.params.slug);
 
     if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
       this.homeSpec = this.$route.params.slug;
       this.getDoctorsHome();
     } else {
-      console.log('null search');
+      console.log('search was null or empty try searching something');
     }
   }
 });
@@ -2413,6 +2415,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CardsDoctors_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardsDoctors.vue */ "./resources/js/components/pages/CardsDoctors.vue");
+//
 //
 //
 //
@@ -39825,10 +39828,14 @@ var render = function () {
   return _c("div", { staticClass: "container my-4" }, [
     _vm.doctors.length > 0
       ? _c("h2", { staticClass: "text-center my-5" }, [
-          _vm._v("\n        I risultati della tua ricerca\n        "),
+          _vm._v("\n        I risultati della tua ricerca\n    "),
         ])
-      : _c("div", { staticClass: "text-center" }, [
-          _vm._v("\n        Cerca qualcosa!\n        "),
+      : _vm.error
+      ? _c("h2", { staticClass: "text-center my-3" }, [
+          _vm._v("\n        " + _vm._s(_vm.error) + "\n    "),
+        ])
+      : _c("h2", { staticClass: "text-center" }, [
+          _vm._v("\n        Cerca qualcosa!\n    "),
         ]),
     _vm._v(" "),
     _c(
