@@ -51,13 +51,16 @@
             <input
             type="text"
             class="form-control"
+            list="specs"
             v-model="specToSearch"
             placeholder="Ricerca il medico per specializzazione"
             />
-            <datalist>
-                <option>
-                    Crediamo
-                </option>
+            <datalist id="specs">
+                <option
+                    v-for="(spec, index) in specs"
+                    :key="index"
+                    :value="spec.name"
+                >{{spec.name}}</option>
             </datalist>
             <router-link :to="{ name: 'AdvancedSearch' }">
                 <button class="btn btn-outline-primary" type="button" id="search">
@@ -180,11 +183,24 @@ export default {
   name: "Home",
   data(){
       return {
+        apiUrl: 'http://127.0.0.1:8000/api/specializations',
+        specs: [],
         specToSearch: '',
       }
   },
   methods: {
-
+      getSpecs(){
+          axios.get(this.apiUrl)
+            .then(res =>{
+                this.specs = res.data.specialization
+            })
+            .catch(err =>{
+                console.error(err);
+            })
+      }
+  },
+  mounted(){
+      this.getSpecs();
   }
 }
 </script>

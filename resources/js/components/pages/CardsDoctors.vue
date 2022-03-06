@@ -30,7 +30,7 @@
                     <h4 class="vote my-3">voto</h4>
                 </div>
                 <div class="button-profile">
-                    <router-link class="btn btn-doctors text-white" :to="{ name: 'DoctorPage' , params: { id: doctorInfo.id } }">Vai al Profilo</router-link>
+                    <router-link class="btn btn-doctors text-white" :to="{ name: 'DoctorPage' , params: { slug: doctorInfo.slug } }">Vai al Profilo</router-link>
                 </div>
             </div>
 

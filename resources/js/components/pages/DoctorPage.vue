@@ -31,7 +31,7 @@ export default {
   data(){
     return{
         apiUrl: 'http://127.0.0.1:8000/api/profile-detail/',
-        doctor_id: this.$route.params.id,
+        doctor_id: this.$route.params.slug,
         doctor_profile: {},
     }
   },

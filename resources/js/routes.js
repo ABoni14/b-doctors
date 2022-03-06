@@ -28,7 +28,7 @@ const router = new VueRouter({
         props: true,
     },
     {
-        path: "/details/:id",
+        path: "/details/:slug",
         name: "DoctorPage",
         component: DoctorPage,
         props: true,

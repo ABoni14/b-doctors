@@ -2134,7 +2134,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       apiUrl: 'http://127.0.0.1:8000/api/profile-detail/',
-      doctor_id: this.$route.params.id,
+      doctor_id: this.$route.params.slug,
       doctor_profile: {}
     };
   },
@@ -2341,14 +2341,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
     return {
+      apiUrl: 'http://127.0.0.1:8000/api/specializations',
+      specs: [],
       specToSearch: ''
     };
   },
-  methods: {}
+  methods: {
+    getSpecs: function getSpecs() {
+      var _this = this;
+
+      axios.get(this.apiUrl).then(function (res) {
+        _this.specs = res.data.specialization;
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getSpecs();
+  }
 });
 
 /***/ }),
@@ -39169,7 +39187,7 @@ var render = function () {
           {
             staticClass: "btn btn-doctors text-white",
             attrs: {
-              to: { name: "DoctorPage", params: { id: _vm.doctorInfo.id } },
+              to: { name: "DoctorPage", params: { slug: _vm.doctorInfo.slug } },
             },
           },
           [_vm._v("Vai al Profilo")]
@@ -39296,6 +39314,7 @@ var render = function () {
                   staticClass: "form-control",
                   attrs: {
                     type: "text",
+                    list: "specs",
                     placeholder: "Ricerca il medico per specializzazione",
                   },
                   domProps: { value: _vm.specToSearch },
@@ -39309,7 +39328,18 @@ var render = function () {
                   },
                 }),
                 _vm._v(" "),
-                _vm._m(1),
+                _c(
+                  "datalist",
+                  { attrs: { id: "specs" } },
+                  _vm._l(_vm.specs, function (spec, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: spec.name } },
+                      [_vm._v(_vm._s(spec.name))]
+                    )
+                  }),
+                  0
+                ),
                 _vm._v(" "),
                 _c(
                   "router-link",
@@ -39333,11 +39363,11 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
     _vm._m(2),
     _vm._v(" "),
     _vm._m(3),
-    _vm._v(" "),
-    _vm._m(4),
   ])
 }
 var staticRenderFns = [
@@ -39471,14 +39501,6 @@ var staticRenderFns = [
         ),
       ]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("datalist", [
-      _c("option", [_vm._v("\n                  Crediamo\n              ")]),
-    ])
   },
   function () {
     var _vm = this
@@ -55642,7 +55664,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _components_pages_SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     props: true
   }, {
-    path: "/details/:id",
+    path: "/details/:slug",
     name: "DoctorPage",
     component: _components_pages_DoctorPage_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     props: true
