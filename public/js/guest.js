@@ -2368,6 +2368,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
@@ -39387,7 +39388,11 @@ var render = function () {
                       "button",
                       {
                         staticClass: "btn btn-outline-primary",
-                        attrs: { type: "button", id: "search" },
+                        attrs: {
+                          type: "submit",
+                          disabled: !_vm.specToSearch,
+                          id: "search",
+                        },
                       },
                       [_vm._v("\n                  Cerca\n              ")]
                     ),

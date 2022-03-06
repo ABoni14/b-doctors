@@ -65,7 +65,8 @@
             <router-link :to="{ name: 'AdvancedSearch', params: {slug: this.output} }">
                 <button
                     class="btn btn-outline-primary"
-                    type="button"
+                    type="submit"
+                    :disabled="!specToSearch"
                     id="search"
                 >
                     Cerca
