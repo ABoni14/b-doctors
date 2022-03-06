@@ -31,13 +31,13 @@ export default {
   data(){
     return{
         apiUrl: 'http://127.0.0.1:8000/api/profile-detail/',
-        doctor_id: this.$route.params.id,
+        doctor_slug: this.$route.params.slug,
         doctor_profile: {},
     }
   },
   methods:{
       getDoctorById(){
-          axios.get(this.apiUrl + this.doctor_id)
+          axios.get(this.apiUrl + this.doctor_slug)
             .then(res => {
                 this.doctor_profile = res.data;
                 console.log(this.doctor_profile);

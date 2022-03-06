@@ -40,7 +40,7 @@
     <!-- //Carousel -->
     <!-- Search -->
     <div class="container ab-container mt-5 mb-5">
-      
+
       <div class="search d-flex justify-content-center">
         <!-- <div class="left-search">
           <img src="https://i.pinimg.com/564x/5f/d6/67/5fd667c10719a499c617b17b7553182b.jpg" alt="">
@@ -51,14 +51,26 @@
             <input
             type="text"
             class="form-control"
-            placeholder="Ricerca il medico per nome o specializzazione"
-            aria-label="Recipient's username"
-            aria-describedby="button-addon2"
+            list="specs"
+            v-model="specToSearch"
+            placeholder="Ricerca il medico per specializzazione"
             />
-            <button class="btn btn-outline-primary" type="button" id="button-addon2">
-              Cerca
-            </button>
-            
+            <datalist id="specs">
+                <option
+                    v-for="(spec, index) in specs"
+                    :key="index"
+                    :value="spec.name"
+                >{{spec.name}}</option>
+            </datalist>
+            <router-link :to="{ name: 'AdvancedSearch', params: {slug: this.output} }">
+                <button
+                    class="btn btn-outline-primary"
+                    type="button"
+                    id="search"
+                >
+                    Cerca
+                </button>
+            </router-link>
           </div>
         </div>
 
@@ -79,7 +91,7 @@
             <span class="title-info">Trova lo specialista che fa per te</span>
             <p>Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti.</p>
           </div>
-          
+
         </div>
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3">
           <img src="https://i.pinimg.com/564x/d4/59/f6/d459f692eb585f435005a756a68534b5.jpg" alt="">
@@ -95,7 +107,7 @@
             <p>Presentati alla visita nel giorno e nell'ora selezionati, successivamente se ti va potrai lasciare una recensione per aiutare nella scelta anche gli altri pazienti.</p>
           </div>
         </div>
-  
+
       </div>
 
     </div>
@@ -118,14 +130,14 @@
               Per questo su iDoctors, solo i pazienti che hanno prenotato attraverso il sito e svolto la prestazione possono rilasciare un feedback sul medico: una garanzia dell'affidabilità delle 113.553 recensioni che leggi.
             </p>
           </div>
-        
+
           <div class="col-12 col-sm-12 col-md-6 col-lg-6">
             <div class="container-img mt-5">
               <img src="https://blog.hubspot.com/hubfs/GettyImages-974683580.jpg" alt="">
             </div>
-            
+
           </div>
-        </div>  
+        </div>
       </div>
     </div>
     <!-- //Dicono di noi -->
@@ -143,7 +155,7 @@
             <h4>
               Sei un medico? Iscriviti ora!
             </h4>
-            <p> 
+            <p>
               <strong>Iscriviti e raggiungi nuovi pazienti</strong>  <br><br>
               Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. <br><br>
               <strong>Con iDoctors:</strong> <br><br>
@@ -165,14 +177,47 @@
     <!-- //Sei un medico -->
 
 
-    
+
 
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  data(){
+      return {
+        apiUrl: 'http://127.0.0.1:8000/api/specializations',
+        specs: [],
+        specToSearch: '',
+        slug: this.output
+      }
+  },
+  methods: {
+      getSpecs(){
+          axios.get(this.apiUrl)
+            .then(res =>{
+                this.specs = res.data.specialization
+            })
+            .catch(err =>{
+                console.error(err);
+            })
+      },
+  },
+  computed:{
+    output: function () {
+        this.slug = this.specToSearch
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/&/g, `-and-`)
+          .replace(/--/g, `-`);
+
+        return this.slug;
+    }
+  },
+  mounted(){
+      this.getSpecs();
+  }
 }
 </script>
 
@@ -185,7 +230,7 @@ export default {
 
   .ab-carousel{
     height: 450px;
-    
+
     .ab-inner{
       height: 450px;
       width: 100vw;
@@ -200,7 +245,7 @@ export default {
           color: darken($primary-color, 15%);
           transition: all .3s;
         }
-          
+
       }
       img{
         height: 500px;
@@ -208,7 +253,7 @@ export default {
         object-fit: cover;
         filter: grayscale(50%);
         transition: all 0.3s;
-        
+
       }
       .carousel-text{
         color: darken($primary-color, 25%);
@@ -224,11 +269,11 @@ export default {
             filter: drop-shadow(0 10px 10px gray);
             transition: all .3s;
           }
-          
+
         }
-        
+
       }
-     
+
     }
   }
   //Search
@@ -262,7 +307,7 @@ export default {
             border-color: darken($primary-color,10%);
             color: white;
           }
-         
+
 
         }
       }
@@ -281,7 +326,7 @@ export default {
       }
       .img-info{
         text-align: center;
-          
+
         img{
           height: 200px;
           width: 200px;
@@ -374,6 +419,6 @@ export default {
 
     }
   }
-  
+
 }
 </style>

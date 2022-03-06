@@ -1991,21 +1991,24 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     SpecializationDoctors: _SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: ['slug'],
   data: function data() {
     return {
-      baseApi: "http://127.0.0.1:8000/api/doctors/",
-      spec: 'specialization/',
+      baseApi: "http://127.0.0.1:8000/api/",
+      specList: 'http://127.0.0.1:8000/api/specializations',
+      spec: 'doctors/specialization/',
       doctors: [],
       specialization: [],
       specToSearch: '',
-      error: ""
+      error: "",
+      homeSpec: ''
     };
   },
   methods: {
-    getApi: function getApi() {
+    getSpecList: function getSpecList() {
       var _this = this;
 
-      axios.get(this.baseApi).then(function (res) {
+      axios.get(this.specList).then(function (res) {
         _this.specialization = res.data.specialization;
       })["catch"](function (error) {
         console.error(error);
@@ -2020,10 +2023,28 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.error(error);
       });
+    },
+    getDoctorsHome: function getDoctorsHome() {
+      var _this3 = this;
+
+      axios.get(this.baseApi + this.spec + this.homeSpec).then(function (res) {
+        _this3.doctors = res.data.specialization.users;
+        _this3.error = res.data.error;
+      })["catch"](function (error) {
+        console.error(error);
+      });
     }
   },
   mounted: function mounted() {
-    this.getApi();
+    this.getSpecList();
+    console.log(this.$route.params.slug);
+
+    if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
+      this.homeSpec = this.$route.params.slug;
+      this.getDoctorsHome();
+    } else {
+      console.log('null search');
+    }
   }
 });
 
@@ -2133,7 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       apiUrl: 'http://127.0.0.1:8000/api/profile-detail/',
-      doctor_id: this.$route.params.id,
+      doctor_slug: this.$route.params.slug,
       doctor_profile: {}
     };
   },
@@ -2141,7 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
     getDoctorById: function getDoctorById() {
       var _this = this;
 
-      axios.get(this.apiUrl + this.doctor_id).then(function (res) {
+      axios.get(this.apiUrl + this.doctor_slug).then(function (res) {
         _this.doctor_profile = res.data;
         console.log(_this.doctor_profile);
       });
@@ -2335,8 +2356,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Home"
+  name: "Home",
+  data: function data() {
+    return {
+      apiUrl: 'http://127.0.0.1:8000/api/specializations',
+      specs: [],
+      specToSearch: '',
+      slug: this.output
+    };
+  },
+  methods: {
+    getSpecs: function getSpecs() {
+      var _this = this;
+
+      axios.get(this.apiUrl).then(function (res) {
+        _this.specs = res.data.specialization;
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    }
+  },
+  computed: {
+    output: function output() {
+      this.slug = this.specToSearch.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "-and-").replace(/--/g, "-");
+      return this.slug;
+    }
+  },
+  mounted: function mounted() {
+    this.getSpecs();
+  }
 });
 
 /***/ }),
@@ -39157,7 +39218,7 @@ var render = function () {
           {
             staticClass: "btn btn-doctors text-white",
             attrs: {
-              to: { name: "DoctorPage", params: { id: _vm.doctorInfo.id } },
+              to: { name: "DoctorPage", params: { slug: _vm.doctorInfo.slug } },
             },
           },
           [_vm._v("Vai al Profilo")]
@@ -39252,427 +39313,485 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container-fluid home" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "container ab-container mt-5 mb-5" }, [
+      _c("div", { staticClass: "search d-flex justify-content-center" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "right-search d-flex flex-column justify-content-center align-items-center",
+          },
+          [
+            _c("h4", { staticClass: "my-3 text-center" }, [
+              _vm._v("Prenota online la tua visita medica"),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "input-group mb-3" },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.specToSearch,
+                      expression: "specToSearch",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    list: "specs",
+                    placeholder: "Ricerca il medico per specializzazione",
+                  },
+                  domProps: { value: _vm.specToSearch },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.specToSearch = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "datalist",
+                  { attrs: { id: "specs" } },
+                  _vm._l(_vm.specs, function (spec, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: spec.name } },
+                      [_vm._v(_vm._s(spec.name))]
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "AdvancedSearch",
+                        params: { slug: this.output },
+                      },
+                    },
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-outline-primary",
+                        attrs: { type: "button", id: "search" },
+                      },
+                      [_vm._v("\n                  Cerca\n              ")]
+                    ),
+                  ]
+                ),
+              ],
+              1
+            ),
+          ]
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _vm._m(3),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid home" }, [
-      _c(
-        "div",
-        {
-          staticClass: "carousel slide carousel-fade ab-carousel",
-          attrs: { id: "carouselExampleCaptions", "data-ride": "carousel" },
-        },
-        [
-          _c("div", { staticClass: "carousel-inner ab-inner" }, [
-            _c("div", { staticClass: "carousel-item active" }, [
-              _c("img", {
-                staticClass: "d-block w-100",
-                attrs: {
-                  src: "https://www.centromedicomirandola.it/newcm/wp-content/uploads/2020/01/boh-1.png",
-                  alt: "...",
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "carousel-caption d-none d-md-block carousel-text",
-                },
-                [
-                  _c("h5", [_vm._v("Prenota la tua visita online")]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "Scegli tra più di 10 000 professionisti a tua disposizione."
-                    ),
-                  ]),
-                ]
-              ),
-            ]),
+    return _c(
+      "div",
+      {
+        staticClass: "carousel slide carousel-fade ab-carousel",
+        attrs: { id: "carouselExampleCaptions", "data-ride": "carousel" },
+      },
+      [
+        _c("div", { staticClass: "carousel-inner ab-inner" }, [
+          _c("div", { staticClass: "carousel-item active" }, [
+            _c("img", {
+              staticClass: "d-block w-100",
+              attrs: {
+                src: "https://www.centromedicomirandola.it/newcm/wp-content/uploads/2020/01/boh-1.png",
+                alt: "...",
+              },
+            }),
             _vm._v(" "),
-            _c("div", { staticClass: "carousel-item" }, [
-              _c("img", {
-                staticClass: "d-block w-100",
-                attrs: {
-                  src: "https://www.altroconsumo.it/-/media/altroconsumo/images/home/salute/diritti%20in%20salute/pediatra_shu_409317970_1600x900.jpg?rev=346e0a47-c527-44f0-aef0-e2a5f2916aa5&hash=E20754E8AB30F2EDACB21CEE91EF243D",
-                  alt: "...",
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "carousel-caption d-none d-md-block carousel-text",
-                },
-                [
-                  _c("h5", [_vm._v("Chiedi al dottore")]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      " Risolvi i tuoi dubbi riguardanti la salute chiedendo agli specialisti suggeriti. Riceverai più risposte in modo completamente gratuito, solitamente entro 48h. "
-                    ),
-                  ]),
-                ]
-              ),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "carousel-item" }, [
-              _c("img", {
-                staticClass: "d-block w-100",
-                attrs: {
-                  src: "https://cdn-static.findly.com/wp-content/uploads/sites/566/2017/10/PA-Blog-Image.png",
-                  alt: "...",
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "carousel-caption d-none d-md-block carousel-text",
-                },
-                [
-                  _c("h5", [_vm._v("La tua opinione conta!")]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "Consulta le recensioni degli ex pazienti per scegliere con più consapevolezza e lasciane una a tua volta dopo la visita. "
-                    ),
-                  ]),
-                ]
-              ),
-            ]),
+            _c(
+              "div",
+              {
+                staticClass: "carousel-caption d-none d-md-block carousel-text",
+              },
+              [
+                _c("h5", [_vm._v("Prenota la tua visita online")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Scegli tra più di 10 000 professionisti a tua disposizione."
+                  ),
+                ]),
+              ]
+            ),
           ]),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "carousel-control-prev",
+          _c("div", { staticClass: "carousel-item" }, [
+            _c("img", {
+              staticClass: "d-block w-100",
               attrs: {
-                type: "button",
-                "data-target": "#carouselExampleCaptions",
-                "data-slide": "prev",
+                src: "https://www.altroconsumo.it/-/media/altroconsumo/images/home/salute/diritti%20in%20salute/pediatra_shu_409317970_1600x900.jpg?rev=346e0a47-c527-44f0-aef0-e2a5f2916aa5&hash=E20754E8AB30F2EDACB21CEE91EF243D",
+                alt: "...",
               },
-            },
-            [
-              _c("span", {
-                staticClass:
-                  "carousel-control-prev-icon d-inline-block carousel-prev-icon",
-                attrs: { "aria-hidden": "true" },
-              }),
-            ]
-          ),
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "carousel-caption d-none d-md-block carousel-text",
+              },
+              [
+                _c("h5", [_vm._v("Chiedi al dottore")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    " Risolvi i tuoi dubbi riguardanti la salute chiedendo agli specialisti suggeriti. Riceverai più risposte in modo completamente gratuito, solitamente entro 48h. "
+                  ),
+                ]),
+              ]
+            ),
+          ]),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "carousel-control-next",
+          _c("div", { staticClass: "carousel-item" }, [
+            _c("img", {
+              staticClass: "d-block w-100",
               attrs: {
-                type: "button",
-                "data-target": "#carouselExampleCaptions",
-                "data-slide": "next",
+                src: "https://cdn-static.findly.com/wp-content/uploads/sites/566/2017/10/PA-Blog-Image.png",
+                alt: "...",
               },
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "carousel-caption d-none d-md-block carousel-text",
+              },
+              [
+                _c("h5", [_vm._v("La tua opinione conta!")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Consulta le recensioni degli ex pazienti per scegliere con più consapevolezza e lasciane una a tua volta dopo la visita. "
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "carousel-control-prev",
+            attrs: {
+              type: "button",
+              "data-target": "#carouselExampleCaptions",
+              "data-slide": "prev",
             },
-            [
-              _c("span", {
-                staticClass:
-                  "carousel-control-next-icon d-inline-block carousel-next-icon",
-                attrs: { "aria-hidden": "true" },
-              }),
-            ]
-          ),
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "container ab-container mt-5 mb-5" }, [
-        _c("div", { staticClass: "search d-flex justify-content-center" }, [
-          _c(
-            "div",
-            {
+          },
+          [
+            _c("span", {
               staticClass:
-                "right-search d-flex flex-column justify-content-center align-items-center",
+                "carousel-control-prev-icon d-inline-block carousel-prev-icon",
+              attrs: { "aria-hidden": "true" },
+            }),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "carousel-control-next",
+            attrs: {
+              type: "button",
+              "data-target": "#carouselExampleCaptions",
+              "data-slide": "next",
             },
-            [
-              _c("h4", { staticClass: "my-3 text-center" }, [
-                _vm._v("Prenota online la tua visita medica"),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group mb-3" }, [
-                _c("input", {
-                  staticClass: "form-control",
+          },
+          [
+            _c("span", {
+              staticClass:
+                "carousel-control-next-icon d-inline-block carousel-next-icon",
+              attrs: { "aria-hidden": "true" },
+            }),
+          ]
+        ),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container-fluid bg-container" }, [
+      _c("div", { staticClass: "container container-info mt-5 mb-5" }, [
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("h5", [_vm._v("Come funziona BDoctors?")]),
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row justify-content-around align-items-center" },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
+              },
+              [
+                _c("img", {
                   attrs: {
-                    type: "text",
-                    placeholder:
-                      "Ricerca il medico per nome o specializzazione",
-                    "aria-label": "Recipient's username",
-                    "aria-describedby": "button-addon2",
+                    src: "https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg",
+                    alt: "",
                   },
                 }),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary",
-                    attrs: { type: "button", id: "button-addon2" },
+                _c("div", { staticClass: "text-info" }, [
+                  _c("span", { staticClass: "title-info" }, [
+                    _vm._v("Trova lo specialista che fa per te"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti."
+                    ),
+                  ]),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
+              },
+              [
+                _c("img", {
+                  attrs: {
+                    src: "https://i.pinimg.com/564x/d4/59/f6/d459f692eb585f435005a756a68534b5.jpg",
+                    alt: "",
                   },
-                  [_vm._v("\n            Cerca\n          ")]
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-info" }, [
+                  _c("span", { staticClass: "title-info" }, [
+                    _vm._v("Invia un messaggio per avere un appuntamento"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Ci metterai un attimo: non serve telefonare e non è richiesta la carta di credito, pagherai direttamente in struttura."
+                    ),
+                  ]),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
+              },
+              [
+                _c("img", {
+                  attrs: {
+                    src: "https://i.pinimg.com/564x/c5/1d/b5/c51db54a2a4b88f8b49b3d5737862428.jpg",
+                    alt: "",
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-info" }, [
+                  _c("span", { staticClass: "title-info" }, [
+                    _vm._v("Affidati alle mani degli esperti"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Presentati alla visita nel giorno e nell'ora selezionati, successivamente se ti va potrai lasciare una recensione per aiutare nella scelta anche gli altri pazienti."
+                    ),
+                  ]),
+                ]),
+              ]
+            ),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container-fluid container-fluid-us" }, [
+      _c("div", { staticClass: "container container-us" }, [
+        _c(
+          "div",
+          { staticClass: "row justify-content-center align-items-center" },
+          [
+            _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
+              _c("h4", [_vm._v("Dicono di noi")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("\n            Oltre il 99% di pazienti soddisfatti "),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "\n\n            iDoctors è il primo sito in Italia di prenotazioni di visite mediche ed esami diagnostici, online dal 2008. "
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "\n\n            Crediamo nell'importanza dell'informazione e della trasparenza per aiutare i pazienti a scegliere il medico giusto tra gli oltre 9.000 presenti su iDoctors. "
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "\n\n            Per questo su iDoctors, solo i pazienti che hanno prenotato attraverso il sito e svolto la prestazione possono rilasciare un feedback sul medico: una garanzia dell'affidabilità delle 113.553 recensioni che leggi.\n          "
                 ),
               ]),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container-fluid bg-container" }, [
-        _c("div", { staticClass: "container container-info mt-5 mb-5" }, [
-          _c("div", { staticClass: "row justify-content-center" }, [
-            _c("h5", [_vm._v("Come funziona BDoctors?")]),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "row justify-content-around align-items-center" },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
-                },
-                [
-                  _c("img", {
-                    attrs: {
-                      src: "https://i.pinimg.com/564x/9c/ed/db/9ceddb3bc9c39f16e49dd9f07493fac6.jpg",
-                      alt: "",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text-info" }, [
-                    _c("span", { staticClass: "title-info" }, [
-                      _vm._v("Trova lo specialista che fa per te"),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Puoi scegliere il medico valutando il curriculum, le patologie trattate, le sue prestazioni ed il prezzo e le recensioni degli altri pazienti."
-                      ),
-                    ]),
-                  ]),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
-                },
-                [
-                  _c("img", {
-                    attrs: {
-                      src: "https://i.pinimg.com/564x/d4/59/f6/d459f692eb585f435005a756a68534b5.jpg",
-                      alt: "",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text-info" }, [
-                    _c("span", { staticClass: "title-info" }, [
-                      _vm._v("Invia un messaggio per avere un appuntamento"),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Ci metterai un attimo: non serve telefonare e non è richiesta la carta di credito, pagherai direttamente in struttura."
-                      ),
-                    ]),
-                  ]),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3",
-                },
-                [
-                  _c("img", {
-                    attrs: {
-                      src: "https://i.pinimg.com/564x/c5/1d/b5/c51db54a2a4b88f8b49b3d5737862428.jpg",
-                      alt: "",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text-info" }, [
-                    _c("span", { staticClass: "title-info" }, [
-                      _vm._v("Affidati alle mani degli esperti"),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Presentati alla visita nel giorno e nell'ora selezionati, successivamente se ti va potrai lasciare una recensione per aiutare nella scelta anche gli altri pazienti."
-                      ),
-                    ]),
-                  ]),
-                ]
-              ),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container-fluid container-fluid-us" }, [
-        _c("div", { staticClass: "container container-us" }, [
-          _c(
-            "div",
-            { staticClass: "row justify-content-center align-items-center" },
-            [
-              _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
-                _c("h4", [_vm._v("Dicono di noi")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v("\n            Oltre il 99% di pazienti soddisfatti "),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(
-                    "\n\n            iDoctors è il primo sito in Italia di prenotazioni di visite mediche ed esami diagnostici, online dal 2008. "
-                  ),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(
-                    "\n\n            Crediamo nell'importanza dell'informazione e della trasparenza per aiutare i pazienti a scegliere il medico giusto tra gli oltre 9.000 presenti su iDoctors. "
-                  ),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(
-                    "\n\n            Per questo su iDoctors, solo i pazienti che hanno prenotato attraverso il sito e svolto la prestazione possono rilasciare un feedback sul medico: una garanzia dell'affidabilità delle 113.553 recensioni che leggi.\n          "
-                  ),
-                ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
+              _c("div", { staticClass: "container-img mt-5" }, [
+                _c("img", {
+                  attrs: {
+                    src: "https://blog.hubspot.com/hubfs/GettyImages-974683580.jpg",
+                    alt: "",
+                  },
+                }),
               ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container-fluid container-med" }, [
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "row justify-content-center align-items-center flex-wrap-reverse",
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "col-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center",
+              },
+              [
                 _c("div", { staticClass: "container-img mt-5" }, [
                   _c("img", {
                     attrs: {
-                      src: "https://blog.hubspot.com/hubfs/GettyImages-974683580.jpg",
+                      src: "https://i.pinimg.com/564x/b6/fb/ae/b6fbae77fd650ee77826cf5887856dce.jpg",
                       alt: "",
                     },
                   }),
                 ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
+              _c("h4", [
+                _vm._v(
+                  "\n            Sei un medico? Iscriviti ora!\n          "
+                ),
               ]),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container-fluid container-med" }, [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "row justify-content-center align-items-center flex-wrap-reverse",
-            },
-            [
+              _vm._v(" "),
+              _c("p", [
+                _c("strong", [_vm._v("Iscriviti e raggiungi nuovi pazienti")]),
+                _vm._v(" "),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "\n            Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. "
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("strong", [_vm._v("Con iDoctors:")]),
+                _vm._v(" "),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("ul", [
+                  _c("li", [_vm._v("Ricevi prenotazioni da nuovi pazienti")]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "Migliori la tua visibilità e la tua reputazione online"
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "Organizzi al meglio il tuo lavoro con una suite completa di strumenti dedicati al Medico"
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "Puoi usare la nostra App multipiattaforma dedicata ai Medici"
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "Hai il nostro staff sempre disponibile ad aiutarti"
+                    ),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 {
-                  staticClass:
-                    "col-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center",
+                  staticClass: "d-grid gap-2 d-md-flex justify-content-md-end",
                 },
                 [
-                  _c("div", { staticClass: "container-img mt-5" }, [
-                    _c("img", {
-                      attrs: {
-                        src: "https://i.pinimg.com/564x/b6/fb/ae/b6fbae77fd650ee77826cf5887856dce.jpg",
-                        alt: "",
-                      },
-                    }),
-                  ]),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { href: "#", role: "button" },
+                    },
+                    [_vm._v("Iscriviti")]
+                  ),
                 ]
               ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
-                _c("h4", [
-                  _vm._v(
-                    "\n            Sei un medico? Iscriviti ora!\n          "
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("strong", [
-                    _vm._v("Iscriviti e raggiungi nuovi pazienti"),
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(
-                    "\n            Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. "
-                  ),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("strong", [_vm._v("Con iDoctors:")]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("ul", [
-                    _c("li", [_vm._v("Ricevi prenotazioni da nuovi pazienti")]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Migliori la tua visibilità e la tua reputazione online"
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Organizzi al meglio il tuo lavoro con una suite completa di strumenti dedicati al Medico"
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Puoi usare la nostra App multipiattaforma dedicata ai Medici"
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "Hai il nostro staff sempre disponibile ad aiutarti"
-                      ),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "d-grid gap-2 d-md-flex justify-content-md-end",
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { href: "#", role: "button" },
-                      },
-                      [_vm._v("Iscriviti")]
-                    ),
-                  ]
-                ),
-              ]),
-            ]
-          ),
-        ]),
+            ]),
+          ]
+        ),
       ]),
     ])
   },
@@ -55583,7 +55702,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _components_pages_SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     props: true
   }, {
-    path: "/details/:id",
+    path: "/user/:slug/details",
     name: "DoctorPage",
     component: _components_pages_DoctorPage_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     props: true

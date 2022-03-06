@@ -14,9 +14,14 @@ class UserController extends Controller
     {
         $user = User::with(['reviews','specializations','performances'])->get();
 
+        return response()->json(compact('user'));
+    }
+
+    public function specializations()
+    {
         $specialization = Specialization::all();
 
-        return response()->json(compact('user', 'specialization'));
+        return response()->json(compact('specialization'));
     }
 
     public function getDoctorBySpecialization($spec_slug){
@@ -37,12 +42,10 @@ class UserController extends Controller
         return response()->json(compact('specialization', 'success', 'error'));
     }
 
-    public function getDoctorById($id){
+    public function getDoctorById($slug){
 
-        $doctor_profile = User::where('id', $id)->with(['reviews','specializations','performances'])->first();
+        $doctor_profile = User::where('slug', $slug)->with(['reviews','specializations','performances'])->first();
 
         return response()->json($doctor_profile);
     }
-
-
 }
