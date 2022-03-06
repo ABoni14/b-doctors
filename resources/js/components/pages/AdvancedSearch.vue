@@ -50,6 +50,7 @@ export default {
     components:{
         SpecializationDoctors,
     },
+    props: ['slug'],
     data(){
         return {
             baseApi: "http://127.0.0.1:8000/api/",
@@ -58,7 +59,8 @@ export default {
             doctors: [],
             specialization: [],
             specToSearch: '',
-            error: ""
+            error: "",
+            homeSpec: '',
         }
     },
     methods:{
@@ -80,11 +82,31 @@ export default {
             .catch(error =>{
                 console.error(error);
             })
-        }
+        },
+        getDoctorsHome(){
+            axios.get(this.baseApi + this.spec + this.homeSpec)
+            .then(res => {
+                this.doctors= res.data.specialization.users;
+                this.error= res.data.error;
+            })
+            .catch(error =>{
+                console.error(error);
+            })
+        },
+
+
     },
     mounted(){
         this.getSpecList();
-    }
+        console.log(this.$route.params.slug);
+        if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
+            this.homeSpec = this.$route.params.slug;
+            this.getDoctorsHome();
+        }else{
+            console.log('null search');
+        }
+    },
+
 
 };
 </script>

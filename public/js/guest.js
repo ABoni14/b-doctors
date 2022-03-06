@@ -1991,6 +1991,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     SpecializationDoctors: _SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: ['slug'],
   data: function data() {
     return {
       baseApi: "http://127.0.0.1:8000/api/",
@@ -1999,7 +2000,8 @@ __webpack_require__.r(__webpack_exports__);
       doctors: [],
       specialization: [],
       specToSearch: '',
-      error: ""
+      error: "",
+      homeSpec: ''
     };
   },
   methods: {
@@ -2021,10 +2023,28 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.error(error);
       });
+    },
+    getDoctorsHome: function getDoctorsHome() {
+      var _this3 = this;
+
+      axios.get(this.baseApi + this.spec + this.homeSpec).then(function (res) {
+        _this3.doctors = res.data.specialization.users;
+        _this3.error = res.data.error;
+      })["catch"](function (error) {
+        console.error(error);
+      });
     }
   },
   mounted: function mounted() {
     this.getSpecList();
+    console.log(this.$route.params.slug);
+
+    if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
+      this.homeSpec = this.$route.params.slug;
+      this.getDoctorsHome();
+    } else {
+      console.log('null search');
+    }
   }
 });
 
@@ -2134,7 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       apiUrl: 'http://127.0.0.1:8000/api/profile-detail/',
-      doctor_id: this.$route.params.slug,
+      doctor_slug: this.$route.params.slug,
       doctor_profile: {}
     };
   },
@@ -2142,7 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
     getDoctorById: function getDoctorById() {
       var _this = this;
 
-      axios.get(this.apiUrl + this.doctor_id).then(function (res) {
+      axios.get(this.apiUrl + this.doctor_slug).then(function (res) {
         _this.doctor_profile = res.data;
         console.log(_this.doctor_profile);
       });
@@ -2344,13 +2364,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
     return {
       apiUrl: 'http://127.0.0.1:8000/api/specializations',
       specs: [],
-      specToSearch: ''
+      specToSearch: '',
+      slug: this.output
     };
   },
   methods: {
@@ -2362,6 +2387,12 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.error(err);
       });
+    }
+  },
+  computed: {
+    output: function output() {
+      this.slug = this.specToSearch.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "-and-").replace(/--/g, "-");
+      return this.slug;
     }
   },
   mounted: function mounted() {
@@ -39343,7 +39374,14 @@ var render = function () {
                 _vm._v(" "),
                 _c(
                   "router-link",
-                  { attrs: { to: { name: "AdvancedSearch" } } },
+                  {
+                    attrs: {
+                      to: {
+                        name: "AdvancedSearch",
+                        params: { slug: this.output },
+                      },
+                    },
+                  },
                   [
                     _c(
                       "button",
@@ -55664,7 +55702,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _components_pages_SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     props: true
   }, {
-    path: "/details/:slug",
+    path: "/user/:slug/details",
     name: "DoctorPage",
     component: _components_pages_DoctorPage_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     props: true

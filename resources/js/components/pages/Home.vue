@@ -62,8 +62,12 @@
                     :value="spec.name"
                 >{{spec.name}}</option>
             </datalist>
-            <router-link :to="{ name: 'AdvancedSearch' }">
-                <button class="btn btn-outline-primary" type="button" id="search">
+            <router-link :to="{ name: 'AdvancedSearch', params: {slug: this.output} }">
+                <button
+                    class="btn btn-outline-primary"
+                    type="button"
+                    id="search"
+                >
                     Cerca
                 </button>
             </router-link>
@@ -186,6 +190,7 @@ export default {
         apiUrl: 'http://127.0.0.1:8000/api/specializations',
         specs: [],
         specToSearch: '',
+        slug: this.output
       }
   },
   methods: {
@@ -197,7 +202,18 @@ export default {
             .catch(err =>{
                 console.error(err);
             })
-      }
+      },
+  },
+  computed:{
+    output: function () {
+        this.slug = this.specToSearch
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/&/g, `-and-`)
+          .replace(/--/g, `-`);
+
+        return this.slug;
+    }
   },
   mounted(){
       this.getSpecs();
