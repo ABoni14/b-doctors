@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="sendReview" action="http://127.0.0.1:8000/api/review/" method="POST">
+    <form @submit="sendReview" action="http://127.0.0.1:8000/api/review/" method="POST">
         <div class="form-row">
             <input type="hidden" name="user_id" id="user_id" :value="doctor_id"/>
             <div class="form-group col-md-6">

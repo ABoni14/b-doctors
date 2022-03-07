@@ -39,7 +39,7 @@ class ReviewController extends Controller
         $new_review = new Review();
         $new_review->fill($data);
         $new_review->user_id = $data['user_id'];
-        dd($data);
+        // dd($data);
         $new_review->save();
 
         return redirect()->back()->with('message', 'la recensione è stata correttamente postata');

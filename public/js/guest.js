@@ -40641,12 +40641,7 @@ var render = function () {
     "form",
     {
       attrs: { action: "http://127.0.0.1:8000/api/review/", method: "POST" },
-      on: {
-        submit: function ($event) {
-          $event.preventDefault()
-          return _vm.sendReview.apply(null, arguments)
-        },
-      },
+      on: { submit: _vm.sendReview },
     },
     [
       _c("div", { staticClass: "form-row" }, [
