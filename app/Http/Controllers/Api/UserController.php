@@ -52,7 +52,7 @@ class UserController extends Controller
 
     public function getPremium(){
 
-        $doctors = Premium_option::where('id', '>', 1)->with('users')->get();
+        $doctors = Premium_option::where('id', '>', 1)->with('users.specializations', 'users.performances')->get();
 
         return response()->json(compact('doctors'));
     }
