@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Premium_option extends Model
 {
 
+    protected $table = 'premium_options';
+
     protected $fillable = [
         'name',
         'level',
@@ -16,6 +18,6 @@ class Premium_option extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User', 'user_premium_option');
     }
 }

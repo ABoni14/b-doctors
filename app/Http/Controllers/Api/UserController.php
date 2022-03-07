@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Review;
 use App\Specialization;
+use App\Premium_option;
 
 class UserController extends Controller
 {
@@ -47,5 +48,12 @@ class UserController extends Controller
         $doctor_profile = User::where('slug', $slug)->with(['reviews','specializations','performances'])->first();
 
         return response()->json($doctor_profile);
+    }
+
+    public function getPremium(){
+
+        $doctors = Premium_option::where('id', '>', 1)->with('users.specializations', 'users.performances')->get();
+
+        return response()->json(compact('doctors'));
     }
 }
