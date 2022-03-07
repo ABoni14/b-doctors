@@ -27,4 +27,5 @@ Route::namespace('Api')
             Route::get('doctors/specialization/{slug}', 'UserController@getDoctorBySpecialization' );
             Route::get('profile-detail/{id}', 'UserController@getDoctorById');
             Route::post('message/', 'MessageController@store');
+            Route::get("doctors/premium", "PremiumController@index");
         });
