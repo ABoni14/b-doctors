@@ -52,8 +52,7 @@ class UserController extends Controller
 
     public function getPremium(){
 
-        $doctors = Premium_option::where('id', 4)->with('users')->first();
-
+        $doctors = Premium_option::where('id', '>', 1)->with('users')->get();
 
         return response()->json(compact('doctors'));
     }
