@@ -27,7 +27,12 @@ class UserController extends Controller
 
     public function getDoctorBySpecialization($spec_slug){
 
-        $specialization = Specialization::where('slug', $spec_slug)->with('users.reviews')->first();
+        $specialization = Specialization::where('slug', $spec_slug)
+        ->with('users.reviews', 'users.premium_options')
+        ->where(function($query){
+            $query->where('premium_options.id', '=', 3)->orWhere('premium_options.name', '=', 'advanced');
+        })
+        ->first();
 
         $success = true;
         $error = '';

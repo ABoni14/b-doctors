@@ -56840,7 +56840,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: "home",
     component: _components_pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
-    path: "/advanced-search/:slug",
+    path: "/advanced-search/",
     name: "AdvancedSearch",
     component: _components_pages_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     props: true
