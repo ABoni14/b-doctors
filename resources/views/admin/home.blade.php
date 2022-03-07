@@ -63,6 +63,21 @@
                 <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="icon">
                     <img src="{{asset('img/review.png')}}" alt="review">
                 </a>
+                <a href="{{ route('admin.messages.index', Auth::user() )}}" class="icon">
+                    <img src="{{asset('img/email.png')}}" alt="messages">
+                </a>
+                <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="icon">
+                    <img src="{{asset('img/home.png')}}" alt="home">
+                </a>
+                <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="icon">
+                    <img src="{{asset('img/review.png')}}" alt="review">
+                </a>
+                <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="icon">
+                    <img src="{{asset('img/home.png')}}" alt="home">
+                </a>
+                <a href="{{ route('admin.messages.index', Auth::user() )}}" class="icon">
+                    <img src="{{asset('img/email.png')}}" alt="messages">
+                </a>
             </div>
         </div>
     </div>

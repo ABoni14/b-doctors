@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 section {
-  height: 100vh;
+  height: 125vh;
 }
 section .banner {
   text-align: center;
@@ -46,25 +46,37 @@ section .banner .logo {
   position: relative;
 }
 section .banner .logo .image {
-  padding-top: 100px;
+  padding-top: 210px;
 }
 section .banner .logo .image img {
-  width: 250px;
-  background-color: transparent;
+  width: 500px;
+  background-color: #eef7ff;
   border-radius: 50%;
-  box-shadow: 0 4px 94px #384fde;
+  box-shadow: 0 4px 500px #384fde;
 }
 section .banner .circle {
-  width: 356px;
-  height: 356px;
+  width: 756px;
+  height: 756px;
   display: inline-block;
   border-radius: 50%;
   border: 1px solid #fff;
   position: absolute;
-  top: 45px;
+  top: 70px;
   left: 0;
   right: 0;
   margin: 0 auto;
+  -webkit-animation: circle 30s linear 0s infinite;
+          animation: circle 30s linear 0s infinite;
+}
+@-webkit-keyframes circle {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes circle {
+  to {
+    transform: rotate(360deg);
+  }
 }
 section .banner .circle .icon {
   position: absolute;
@@ -75,13 +87,8 @@ section .banner .circle .icon {
   border: 1px solid #fff;
   background-color: #3a9bdc;
   transition: all ease 0.5s;
-  -webkit-animation: circle 300s linear 0s infinite;
-          animation: circle 300s linear 0s infinite;
-}
-@-webkit-keyframes circle {
-  to {
-    transform: rotate(360deg);
-  }
+  -webkit-animation: circle 100s linear 0s infinite;
+          animation: circle 100s linear 0s infinite;
 }
 @keyframes circle {
   to {
@@ -94,23 +101,43 @@ section .banner .circle .icon:hover {
   box-shadow: 0 4px 94px #384fde;
 }
 section .banner .circle .icon:nth-child(1) {
-  top: -46px;
+  top: -40px;
   left: 41%;
 }
 section .banner .circle .icon:nth-child(2) {
-  top: 175px;
-  left: -45px;
+  top: 70px;
+  right: 50px;
 }
 section .banner .circle .icon:nth-child(3) {
-  top: 270px;
-  right: 30px;
+  top: 330px;
+  right: -50px;
+}
+section .banner .circle .icon:nth-child(4) {
+  bottom: 60px;
+  right: 60px;
+}
+section .banner .circle .icon:nth-child(5) {
+  bottom: -40px;
+  right: 41%;
+}
+section .banner .circle .icon:nth-child(6) {
+  bottom: 70px;
+  left: 45px;
+}
+section .banner .circle .icon:nth-child(7) {
+  bottom: 575px;
+  left: 45px;
+}
+section .banner .circle .icon:nth-child(8) {
+  bottom: 328px;
+  left: -55px;
 }
 section .banner .circle .icon img {
   width: 130%;
 }
 
 main {
-  background-color: whitesmoke;
+  background-color: linear-gradient(120deg, #2980b9, #8e44ad);
   min-height: calc(100vh - 80px);
   color: black;
   padding-top: 50px;
@@ -122,36 +149,107 @@ main {
   border-bottom: 1px solid #ffffff15;
 }
 
-.login {
-  padding: 50px 80px;
-  box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
 }
-
-input {
+.center h1 {
+  font-weight: 900;
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid silver;
+}
+.center form {
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+.center form .txt_field {
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+}
+.center form .txt_field input {
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
   border: none;
-  border-bottom: 1px solid #999;
-}
-input:focus-visible, input:focus {
-  border-bottom: 1px solid black;
+  background: none;
   outline: none;
 }
-input:focus::-webkit-input-placeholder {
-  color: black;
+.center form .txt_field label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.5s;
 }
-
-.dashboard {
-  box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
+.center form .txt_field span::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: 0.5s;
 }
-.dashboard .profile-top div {
-  padding: 40px 30px;
+.center form .txt_field input:focus ~ label, .center form .txt_field input:valid ~ label {
+  top: -5px;
+  color: #2691d9;
 }
-.dashboard .profile-bottom {
-  padding: 0 40px;
+.center form .txt_field input:focus ~ span::before, .center form .txt_field input:valid ~ span::before {
+  width: 100%;
 }
-.dashboard img {
-  border-radius: 50%;
+.center form .pass {
+  margin: -5px 0 20px 5px;
+  cursor: pointer;
+}
+.center form .pass a {
+  text-decoration: none;
+  color: #a6a6a6;
+}
+.center form .pass:hover {
+  text-decoration: underline;
+  color: #a6a6a6;
+}
+.center form button[type=submit] {
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+.center form button[type=submit]:hover {
+  border-color: #2691d9;
+  transition: 0.5s;
+}
+.center form .signup_link {
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: #666666;
+}
+.center form .signup_link a {
+  color: #2691d9;
+  text-decoration: none;
+}
+.center form .signup_link a:hover {
+  text-decoration: underline;
 }
 
 /*!
