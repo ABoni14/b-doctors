@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public function premium_options()
     {
-        return $this->belongsToMany('App\Premium');
+        return $this->belongsToMany('App\Premium_options', 'user_premium_option');
     }
 
     public function performances()
