@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container container-table">
+<div class="container container-table py-5 border rounded">
 
-  <table class="table">
+  <table class="table text-white">
     <thead>
       <tr>
         <th scope="col">#</th>

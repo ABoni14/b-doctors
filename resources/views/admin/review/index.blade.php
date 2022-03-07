@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container container-review p-3">
+<div class="container container-review p-3 border rounded">
   <h2>Le mie recensioni</h2>
 
   @foreach ($reviews as $review)

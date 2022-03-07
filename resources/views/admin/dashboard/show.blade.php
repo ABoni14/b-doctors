@@ -13,8 +13,8 @@
 </p>
 
 <a href="{{ route('admin.index', Auth::user() ) }}" class="action">Indietro</a> --}}
-<div class="container">
-    <div class="profile-top mt-3 px-3 d-flex align-items-center">
+<div class="container py-4 border rounded">
+    <div class="profile-top p-3 d-flex align-items-center">
         <div>
             <img src="{{ $user->photo }}" alt="not-found" width="200px">
         </div>
