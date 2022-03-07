@@ -51,7 +51,7 @@
 
         <div class="logo">
             <div class="image">
-                <img src="{{asset('img/NicePng_earth-png_175972.png')}}" alt="logo">
+                <img src="{{asset('img/logo.png')}}" alt="logo">
             </div>
             <div class="circle">
                 <a href="{{ route('admin.messages.index', Auth::user() )}}" class="icon">
