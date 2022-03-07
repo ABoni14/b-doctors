@@ -17,9 +17,10 @@ const router = new VueRouter({
         component: Home
     },
     {
-        path: "/advanced-search",
+        path: "/advanced-search/",
         name: "AdvancedSearch",
-        component: AdvancedSearch
+        component: AdvancedSearch,
+        props: true,
     },
     {
         path: "/user/:slug/details",
