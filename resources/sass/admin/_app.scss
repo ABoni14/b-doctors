@@ -1,11 +1,16 @@
 main{
-  background-color: #292c45;
+  background-color: white;
   min-height: calc(100vh - 80px);
-  color: white;
+  color: #3951e8;
   padding-top: 50px;
 }
+
 .ab-navbar{
   height: 80px !important;
-  background-color: #292c45;
+  background-color: #abd1fd;
   border-bottom: 1px solid #ffffff15;
+}
+
+.card-header{
+  background-color: red !important;
 }
