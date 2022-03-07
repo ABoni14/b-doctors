@@ -18,7 +18,8 @@ class MessageController extends Controller
             'email' => 'required | max:255',
             'first_name' => 'required | min:2 | max:255',
             'content' => 'required | max:2000',
-        ],[
+        ],
+        [
             'email.required' => 'email è un campo obbligatorio',
             'email.max' => "l'email può contenere solamente :max caratteri",
             'first_name.required' => 'il nome è un campo obbligatorio',
@@ -28,7 +29,7 @@ class MessageController extends Controller
             'content.max' => 'il contenuto può contenere massimo :max caratteri',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json([
                 'success' => false,
                 'errors' => $validator->errors(),
@@ -38,8 +39,9 @@ class MessageController extends Controller
         $new_message = new Message();
         $new_message->fill($data);
         $new_message->user_id = $data['user_id'];
+        // dd($data);
         $new_message->save();
 
-        return response()->json(compact('success'));
+        return redirect()->back()->with('message', 'il messaggio è stato invitato correttamente');
     }
 }
