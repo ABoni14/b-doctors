@@ -1,7 +1,7 @@
 main{
-  background-color: white;
+  background-color: rgb(245, 245, 245);
   min-height: calc(100vh - 80px);
-  color: #3951e8;
+  color: black;
   padding-top: 50px;
 }
 
@@ -11,6 +11,35 @@ main{
   border-bottom: 1px solid #ffffff15;
 }
 
-.card-header{
-  background-color: red !important;
+.login{
+  padding: 50px 80px;
+  box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
 }
+
+input{
+  border: none;
+  border-bottom: 1px solid #999;
+  &:focus-visible, &:focus{
+    border-bottom: 1px solid black;
+    outline: none;
+  }
+  &:focus::-webkit-input-placeholder{
+    color: black;
+  }
+}
+
+.dashboard{
+  box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  .profile-top div{
+    padding: 40px 30px;
+  }
+  .profile-bottom{
+    padding: 0 40px;
+  }
+  img{
+    border-radius: 50%;
+  }
+}
+

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container container-table py-5 border rounded">
 
-  <table class="table text-white">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
