@@ -8,6 +8,7 @@ use App\User;
 use App\Review;
 use App\Specialization;
 use App\Premium_option;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserController extends Controller
 {
@@ -28,11 +29,7 @@ class UserController extends Controller
     public function getDoctorBySpecialization($spec_slug){
 
         $specialization = Specialization::where('slug', $spec_slug)
-        ->with('users.reviews', 'users.premium_options')
-        ->where(function($query){
-            $query->where('premium_options.id', '=', 3)->orWhere('premium_options.name', '=', 'advanced');
-        })
-        ->first();
+        ->with('users.reviews', 'users.premium_options')->first();
 
         $success = true;
         $error = '';
@@ -55,10 +52,19 @@ class UserController extends Controller
         return response()->json($doctor_profile);
     }
 
-    public function getPremium(){
+    // public function getPremium(){
 
-        $doctors = Premium_option::where('id', '>', 1)->with('users.specializations', 'users.performances')->get();
+    //     $doctors = Premium_option::where('id', '>', 1)->with('users.specializations', 'users.performances')->paginate(5);
 
-        return response()->json(compact('doctors'));
+    //     return response()->json($doctors);
+    // }
+
+    public function getPremium()
+    {
+        $doctors = User::whereHas('premium_options' , function(Builder $query){
+            $query->where('premium_option_id', '>', 1);
+        })->with('premium_options')->paginate(5);
+
+        return response()->json($doctors);
     }
 }
