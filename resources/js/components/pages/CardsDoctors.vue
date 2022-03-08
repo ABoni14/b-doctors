@@ -19,8 +19,8 @@
         </div>
     </div> -->
 
-
-            <div class="card-doctor mx-3">
+        
+            <div class="card-doctor">
                 <div class="picture">
                     <img class="img-fluid" :src="doctorInfo.photo">
                 </div>
@@ -62,13 +62,14 @@ export default {
 //
 
 .card-doctor {
-    width: 250px;
+    width: calc(100% / 4 - 20px) !important;
   padding: 20px 0;
-  margin-bottom: 30px;
+  margin: 10px;
   background-color: #f7f5ec;
   text-align: center;
   overflow: hidden;
   position: relative;
+
 }
 
 .card-doctor .picture {
