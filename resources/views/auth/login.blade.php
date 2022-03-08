@@ -82,7 +82,7 @@
                 </span>
             @enderror
           <span></span>
-          <label for="email">Email address</label>
+          <label for="email">Indirizzo email</label>
         </div>
         <div class="txt_field">
           <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
