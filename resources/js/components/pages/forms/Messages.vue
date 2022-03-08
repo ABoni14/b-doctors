@@ -1,62 +1,69 @@
 <template>
-    <form @submit="sendMessage" action="http://127.0.0.1:8000/api/message/" method="POST">
-        <div class="form-row">
-            <input type="hidden" name="user_id" id="user_id" :value="doctor_id"/>
-            <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    v-model="email"
+    <div>
+         <h5 class="my-3 font-weight-bold text-center">Manda un messaggio al medico</h5>
+        <form @submit="sendMessage" action="http://127.0.0.1:8000/api/message/" method="POST">
+
+            <div class="form">
+                <input type="hidden" name="user_id" id="user_id" :value="doctor_id"/>
+
+                <div class="txt_field">
+                    
+                    <label for="email"></label>
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        id="email"
+                        name="email"
+                        v-model="email"
+                        required
+                    />
+                    <p v-if="error.email" class="errors">{{ error.email[0] }}</p>
+                </div>
+                <div class="txt_field">
+                    <label for="first_name"></label>
+                    <input
+                        type="text"
+                        placeholder="Nome e Cognome"
+                        name="first_name"
+                        id="first_name"
+                        v-model="name"
+                        required
+                    />
+                    <p v-if="error.name" class="errors">{{ error.name[0] }}</p>
+                </div>
+            </div>
+            <div>
+                <label class="d-block" for="content"></label>
+                <textarea
+                    name="content"
+                    id="content"
+                    placeholder="Scrivi il tuo messaggio"
+                    rows="5"
+                    v-model="content"
                     required
-                />
-                <p v-if="error.email" class="errors">{{ error.email[0] }}</p>
+                ></textarea>
+                <p v-if="error.content" class="errors">{{ error.content[0] }}</p>
             </div>
-            <div class="form-group col-md-6">
-                <label for="first_name">Nome</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    name="first_name"
-                    id="first_name"
-                    v-model="name"
-                    required
-                />
-                <p v-if="error.name" class="errors">{{ error.name[0] }}</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="d-block" for="content">Messaggio</label>
-            <textarea
-                name="content"
-                id="content"
-                cols="50"
-                rows="5"
-                v-model="content"
-                required
-            ></textarea>
-            <p v-if="error.content" class="errors">{{ error.content[0] }}</p>
-        </div>
-        <!-- <div class="form-group">
-            <div class="form-check">
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="gridCheck"
-                />
-                <label class="form-check-label" for="gridCheck">
-                   Privacy Policy
-                </label>
-            </div>
-        </div> -->
-        <button
-            type="submit"
-            class="btn btn-primary"
-            :disabled="sending"
-        >{{ sending ? 'invio in corso' : 'invia'}}</button>
-    </form>
+            <!-- <div class="form-group">
+                <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="gridCheck"
+                    />
+                    <label class="form-check-label" for="gridCheck">
+                    Privacy Policy
+                    </label>
+                </div>
+            </div> -->
+            <button
+                type="submit"
+                class="btn btn-primary"
+                :disabled="sending"
+            >{{ sending ? 'invio in corso' : 'invia'}}</button>
+        </form>
+    </div>
+   
 </template>
 
 <script>
@@ -98,4 +105,62 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+form{
+    .txt_field{
+      border-bottom: 2px solid #adadad;
+      margin: 30px 0;
+      input{
+        width: 100%;
+        padding: 0 5px;
+        height: 40px;
+        font-size: 16px;
+        border: none;
+        background: none;
+        outline: none;
+        &:focus, &:focus-visible{
+          outline: 1px solid rgb(6, 92, 190);
+        }
+      }
+      label{
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        color: #adadad;
+        font-size: 16px;
+      }
+    }
+    button[type="submit"]{
+      width: 100%;
+      height: 50px;
+      border: none;
+      background: rgb(255, 240, 75);
+      border-radius: 5px;
+      font-size: 18px;
+      color: rgb(0, 35, 75);
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+      margin-top: 20px;
+      &:hover{
+        background-color: rgb(0, 35, 75);
+        color: white;
+        transition: .5s;
+      }
+    }
+    textarea{
+        width: 100%;
+        padding: 10px 5px;
+        border: 1px solid #adadad;
+        border-bottom: 2px solid #adadad;
+        background: none;
+        outline: none;
+        resize: none;
+        &:focus, &:focus-visible{
+          border: 1px solid rgb(6, 92, 190);
+        }
+    }
+  }
+
+</style>

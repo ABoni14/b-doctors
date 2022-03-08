@@ -46,7 +46,7 @@ export default {
 @import '../../../sass/guest/_vars.scss';
 
 footer{
-  background-color: $primary-color;
+  background-color: rgb(0, 35, 75);
   padding: 40px 0;
   color:white;
   
