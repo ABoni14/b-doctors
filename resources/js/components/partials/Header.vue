@@ -1,20 +1,33 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <router-link :to="{name: 'home'}" class="logo">BDoctors</router-link>
+    <nav class="navbar navbar-expand-lg navbar">
+      <router-link :to="{name: 'home'}" class="logo">
+        <img src="../../../../public/img/logo.png" alt="logo" width="70px">
+        BDoctors
+      </router-link>
       <button class="navbar-toggler third-button px-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent22" aria-controls="navbarSupportedContent22" aria-expanded="false" aria-label="Toggle navigation">
         <div class="animated-icon3"><span></span><span></span><span></span></div>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent22">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0 px-5">
           <li class="nav-item ml-auto active">
-             <router-link :to="{name: 'AdvancedSearch'}" class="advanced-search nav-link">Ricerca avanzata<span class="sr-only">(current)</span></router-link>
+             <router-link :to="{name: 'AdvancedSearch'}" class="advanced-search nav-link">
+               <i class="fas fa-search"></i>
+               Ricerca avanzata
+               <span class="sr-only">(current)</span>
+             </router-link>
            </li>
            <li class="nav-item ml-auto">
-             <a class="nav-link" aria-current="page" href="/register">Registrati</a>
+             <a class="nav-link" aria-current="page" href="/register">
+                <i class="fas fa-user-plus"></i>
+                Registrati
+             </a>
            </li>
            <li class="nav-item ml-auto">
-             <a class="nav-link" aria-current="page" href="/login">Login</a>
+             <a class="nav-link" aria-current="page" href="/login">
+                <i class="fas fa-sign-in-alt"></i>
+                Login
+             </a>
            </li>
         </ul>
       </div>
@@ -32,23 +45,22 @@ export default {
 @import '../../../sass/guest/_vars.scss';
 
 header{
-    background-color: lighten($primary-color, 15%);
+    background-color: rgb(255, 240, 75);
+    color: rgb(0, 35, 75);
   nav{
-      background-color: lighten($primary-color, 15%) !important;
     padding:0 !important;
     .logo{
       font-size: 40px;
       text-decoration: none;
       padding: 5px 25px;
       margin: 0 15px;
-      color: white;
     }
     button{
       border-color: transparent !important; 
     }
     li a{
-      color: white !important;
       text-decoration: none;
+      color: rgb(0, 35, 75) !important;
       padding: 5px 10px;
       margin: 0 15px;
       display: block;

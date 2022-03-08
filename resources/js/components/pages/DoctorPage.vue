@@ -153,21 +153,27 @@
                         <img :src="doctor_profile.photo" alt="..." />
                     </div>
                     <div>
-                        <h3 class="doctor-name">
+                        <h1>
                             {{ doctor_profile.first_name }}
                             {{ doctor_profile.last_name }}
-                        </h3>
+                        </h1>
                         <div
                             v-for="(specialization, index) in doctor_profile.specializations"
                             :key="index"
                             >
                             <h5>
-                                <i class="fas fa-check mr-2"></i
-                                >{{ specialization.name }}
+                                <i class="fas fa-user-md mr-3"></i>
+                                {{ specialization.name }}
                             </h5>
                         </div>
-                        <span class="d-block">{{ doctor_profile.address }}</span>
-                        <span>{{ doctor_profile.phone }}</span>
+                        <span class="d-block">
+                            <i class="fas fa-map mr-3"></i>
+                            {{ doctor_profile.address }}
+                        </span>
+                        <span>
+                            <i class="fas fa-phone mr-3"></i>
+                            {{ doctor_profile.phone }}
+                        </span>
                     </div>
                 </div>
                 
@@ -319,29 +325,29 @@ export default {
 //     margin-bottom: 20px;
 // }
 .doctor{
-
     min-height: 300px;
     padding: 20px 30px;
+    color: rgb(0, 35, 75);
     img{
         border-radius: 50%;
     }
     .doc-top{
         padding-bottom: 30px;
-        border-bottom: 2px solid silver;
+        border-bottom: 1px solid lightgray;
     }
     .doc-bottom{
         padding: 30px 0;
-        border-bottom: 2px solid silver;
+        border-bottom: 1px solid lightgray;
         .vote{
             width: 300px;
             padding-right: 35px;
-            border-right: 2px solid silver;
+            border-right: 1px solid lightgray;
         }
         .reviews{
             // width: 70%;
             height: 400px;
             overflow: auto;
-            // border-left: 2px solid silver;
+            // border-left: 2px solid lightgray;
             margin-left: 40px;
             &::-webkit-scrollbar{
                 display: block;
@@ -350,7 +356,7 @@ export default {
         
     }
     .doctor-details{
-        border-bottom: 2px solid silver;
+        border-bottom: 4px solid rgb(240, 240, 240);
         padding-bottom: 50px;
     }
 }
@@ -362,7 +368,7 @@ export default {
     border: 1px solid lightgrey;
 
     .form-top{
-        border-bottom: 2px solid silver;
+        border-bottom: 2px solid lightgray;
         margin-bottom: 30px;
     }
 }
