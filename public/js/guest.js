@@ -2656,6 +2656,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7755,7 +7818,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".doctor-page[data-v-3ba5a564] {\n  margin-top: 20px;\n  margin-bottom: 20px;\n  border-radius: 15px;\n  padding: 20px;\n}\n.doctor-page .image[data-v-3ba5a564] {\n  border-radius: 50%;\n  border: 1px solid grey;\n  padding: 5px;\n  background-color: white;\n}\n.doctor-page .image img[data-v-3ba5a564] {\n  width: 100%;\n  border-radius: 50%;\n}\n.doctor-page.review-contain[data-v-3ba5a564] {\n  height: 327px;\n  overflow: auto;\n  margin-left: -15px;\n  padding-left: -15px !important;\n}\n.title-area[data-v-3ba5a564] {\n  margin-left: 20px;\n  color: white;\n}\n[data-v-3ba5a564]::-webkit-scrollbar {\n  display: block;\n}\n.top-container[data-v-3ba5a564] {\n  background-image: linear-gradient(white, #2a77d1);\n}\n.main-container[data-v-3ba5a564] {\n  background-color: white;\n  padding: 20px;\n  border-radius: 15px;\n}\n.components[data-v-3ba5a564] {\n  background-color: white;\n}\n.macro-contain[data-v-3ba5a564] {\n  background-color: #2a77d1;\n  padding: 15px;\n  border-radius: 15px;\n  margin-bottom: 20px;\n}", ""]);
+exports.push([module.i, ".doctor[data-v-3ba5a564] {\n  width: 60%;\n  min-height: 500px;\n  padding: 20px 30px;\n  background-color: aquamarine;\n}\n.doctor img[data-v-3ba5a564] {\n  border-radius: 50%;\n}\n.doctor .doc-top[data-v-3ba5a564] {\n  padding-bottom: 30px;\n  border-bottom: 2px solid silver;\n}\n.doctor .doc-bottom[data-v-3ba5a564] {\n  padding-top: 30px;\n}\n.doctor .doc-bottom .vote[data-v-3ba5a564] {\n  width: 30%;\n  height: 200px;\n  background-color: cadetblue;\n}\n.doctor .doc-bottom .reviews[data-v-3ba5a564] {\n  width: 70%;\n  height: 400px;\n  background-color: forestgreen;\n}\n.forms[data-v-3ba5a564] {\n  width: 40%;\n  min-height: 500px;\n  padding: 20px 30px;\n  background-color: bisque;\n}", ""]);
 
 // exports
 
@@ -40096,227 +40159,104 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "doctor-page macro-contain" }, [
-      _c("div", { staticClass: "row text-white" }, [
-        _c("div", { staticClass: "col-3" }, [
-          _vm.doctor_profile.photo === null
-            ? _c("div", { staticClass: "image" }, [
-                _c("img", {
-                  attrs: {
-                    src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOQAAADdCAMAAACc/C7aAAAAaVBMVEXDw8MAAADGxsaXl5fJycnMzMxSUlKRkZF1dXV5eXnCwsIFBQWlpaV+fn66urqurq5dXV1sbGxMTEyKiopXV1czMzOcnJwaGhqoqKiEhIQlJSUrKysODg5mZmZHR0ezs7M7OzsVFRU5OTmFwHepAAAC+klEQVR4nO3bi1KjMBSAYXIarIbea2uttVXf/yE36Q0qobrITHP0/2Z2Zt2xDP+GQEDMMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANQ56dCtY+JcZge9zgzsrXvipGc61EtzLO29KbpKLMx9mkPpI83H410XFiblyGFufy7Ph0lHPnSya/aByFuqRv7sSqchUvwV83k4EHFtt6QhcrwOl4GXZdv9VBApq3CdK/w1c9nykNUQ+XK6pG/abin5SFmWy5Z+u6FMP7K6unttt6cKIqflSE4a9tQd/zRtKflI6ZeRw6Y9deFS2ryl5COzUXkzMWoIcZm45bixUkGkfd6PormyyBMZPxkzaVouKIjM7PAwjtPm/XRP4Rse8/hgaoh0djzdbl9XeePJxc7CUBdmHi/REOkPx3Bb2DTlnOwP6L34vNQReZ3szqffRXRa/oJIcetzpJnksS2pj3T5pPrIqmfr6wL9kbZvynWf/8uuPi21Rzrxa4WijCzMW/0j6iKdV/lSZPH5Ges0V3+4flqi+uV77Ql07QmCtkg7GlcumM4uI0/ZC+UjGe67FpVl+qhWGGw/f0pRpIS99aeWjTtV2rdopBleTktNkZkMwvmzMHf20BCaY42FWV3MXFWR2eZY8ezvpY/N8aF8UhuZz84jtV+Iu/d4YfiGu+oHFUX6e43i1LDODs1FfCT9P8+lXN7piZRxNWOS23nTOB7syvsRPZHZ+qKhv2uckMfBLqelmsjLew1/anlpOlbLwT5vSUeks/2rQVG9U5eSyLC0+f+3JE53XToiRT6+OjhjPjRFunz6dVHM9DAtVURG7zW+ZbAfSw2R0mpCHvi1vFMRabctC/1/zdaKisjTTwnaRIYfhCmIdHbQunF/Rl5J8pEizfca37Pxkzr5yNnXHdfNJPGRHNrRvP9D81HqkbnNO5D2W5K//X1XFyK7kuyby3/iHXTp8rcJVmk2/onfCwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALi1f4DsKck70eEzAAAAAElFTkSuQmCC",
-                    alt: "",
-                  },
-                }),
-              ])
-            : _c("div", { staticClass: "image" }, [
-                _c("img", {
-                  attrs: { src: _vm.doctor_profile.photo, alt: "..." },
-                }),
-              ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-4 d-flex align-items-center pl-4" }, [
-          _c("h3", { staticClass: "doctor-name" }, [
-            _vm._v(
-              "\n                    " +
-                _vm._s(_vm.doctor_profile.first_name) +
-                "\n                    " +
-                _vm._s(_vm.doctor_profile.last_name) +
-                "\n                "
-            ),
-          ]),
-        ]),
+  return _c("div", { staticClass: "container d-flex" }, [
+    _c("div", { staticClass: "doctor" }, [
+      _c("div", { staticClass: "doc-top d-flex align-items-center" }, [
+        _vm.doctor_profile.photo === null
+          ? _c("div", { staticClass: "mr-5" }, [
+              _c("img", {
+                attrs: {
+                  src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOQAAADdCAMAAACc/C7aAAAAaVBMVEXDw8MAAADGxsaXl5fJycnMzMxSUlKRkZF1dXV5eXnCwsIFBQWlpaV+fn66urqurq5dXV1sbGxMTEyKiopXV1czMzOcnJwaGhqoqKiEhIQlJSUrKysODg5mZmZHR0ezs7M7OzsVFRU5OTmFwHepAAAC+klEQVR4nO3bi1KjMBSAYXIarIbea2uttVXf/yE36Q0qobrITHP0/2Z2Zt2xDP+GQEDMMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANQ56dCtY+JcZge9zgzsrXvipGc61EtzLO29KbpKLMx9mkPpI83H410XFiblyGFufy7Ph0lHPnSya/aByFuqRv7sSqchUvwV83k4EHFtt6QhcrwOl4GXZdv9VBApq3CdK/w1c9nykNUQ+XK6pG/abin5SFmWy5Z+u6FMP7K6unttt6cKIqflSE4a9tQd/zRtKflI6ZeRw6Y9deFS2ryl5COzUXkzMWoIcZm45bixUkGkfd6PormyyBMZPxkzaVouKIjM7PAwjtPm/XRP4Rse8/hgaoh0djzdbl9XeePJxc7CUBdmHi/REOkPx3Bb2DTlnOwP6L34vNQReZ3szqffRXRa/oJIcetzpJnksS2pj3T5pPrIqmfr6wL9kbZvynWf/8uuPi21Rzrxa4WijCzMW/0j6iKdV/lSZPH5Ges0V3+4flqi+uV77Ql07QmCtkg7GlcumM4uI0/ZC+UjGe67FpVl+qhWGGw/f0pRpIS99aeWjTtV2rdopBleTktNkZkMwvmzMHf20BCaY42FWV3MXFWR2eZY8ezvpY/N8aF8UhuZz84jtV+Iu/d4YfiGu+oHFUX6e43i1LDODs1FfCT9P8+lXN7piZRxNWOS23nTOB7syvsRPZHZ+qKhv2uckMfBLqelmsjLew1/anlpOlbLwT5vSUeks/2rQVG9U5eSyLC0+f+3JE53XToiRT6+OjhjPjRFunz6dVHM9DAtVURG7zW+ZbAfSw2R0mpCHvi1vFMRabctC/1/zdaKisjTTwnaRIYfhCmIdHbQunF/Rl5J8pEizfca37Pxkzr5yNnXHdfNJPGRHNrRvP9D81HqkbnNO5D2W5K//X1XFyK7kuyby3/iHXTp8rcJVmk2/onfCwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALi1f4DsKck70eEzAAAAAElFTkSuQmCC",
+                  alt: "",
+                },
+              }),
+            ])
+          : _c("div", { staticClass: "mr-5" }, [
+              _c("img", {
+                attrs: { src: _vm.doctor_profile.photo, alt: "..." },
+              }),
+            ]),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "col-4 d-flex flex-column justify-content-center" },
           [
-            _c("h4", [
-              _c("i", { staticClass: "fas fa-map-marker-alt mr-2" }),
-              _vm._v(_vm._s(_vm.doctor_profile.address) + "\n                "),
+            _c("h3", { staticClass: "doctor-name" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.doctor_profile.first_name) +
+                  "\n                    " +
+                  _vm._s(_vm.doctor_profile.last_name) +
+                  "\n                "
+              ),
             ]),
             _vm._v(" "),
-            _c("h4", [
-              _c("i", { staticClass: "fas fa-envelope mr-2" }),
-              _vm._v(_vm._s(_vm.doctor_profile.email) + "\n                "),
+            _vm._l(
+              _vm.doctor_profile.specializations,
+              function (specialization, index) {
+                return _c("div", { key: index }, [
+                  _c("h5", [
+                    _c("i", { staticClass: "fas fa-check mr-2" }),
+                    _vm._v(
+                      _vm._s(specialization.name) + "\n                     "
+                    ),
+                  ]),
+                ])
+              }
+            ),
+            _vm._v(" "),
+            _c("span", { staticClass: "d-block" }, [
+              _vm._v(_vm._s(_vm.doctor_profile.address)),
             ]),
             _vm._v(" "),
-            _c("h4", [
-              _c("i", { staticClass: "fas fa-phone mr-2" }),
-              _vm._v(_vm._s(_vm.doctor_profile.phone) + "\n                "),
-            ]),
-          ]
+            _c("span", [_vm._v(_vm._s(_vm.doctor_profile.phone))]),
+          ],
+          2
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "doc-bottom d-flex" }, [
+        _c(
+          "div",
+          { staticClass: "vote" },
+          _vm._l(_vm.doctor_profile.reviews, function (review, key) {
+            return _c("div", { key: key, staticClass: "review" }, [
+              _c("h5", [
+                _vm._v(
+                  "\n                        Voto: " +
+                    _vm._s(review.vote) +
+                    "\n                    "
+                ),
+              ]),
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "reviews" },
+          _vm._l(_vm.doctor_profile.reviews, function (review, key) {
+            return _c("div", { key: key, staticClass: "review" }, [
+              _c("h5", [
+                _vm._v(
+                  "\n                        Nome utente:\n                        " +
+                    _vm._s(review.user_review_name) +
+                    "\n                    "
+                ),
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(review.content))]),
+            ])
+          }),
+          0
         ),
       ]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "main-container" }, [
-      _c("div", { staticClass: "macro-contain" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "doctor-page components" }, [
-          _c("div", { staticClass: "row mt-3" }, [
-            _c("div", { staticClass: "col-12" }, [
-              _vm._v(_vm._s(_vm.doctor_profile.cv)),
-            ]),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row mt-3" }, [
-        _c("div", { staticClass: "col-6" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-12" }, [
-              _c("div", { staticClass: "macro-contain" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "doctor-page components" },
-                  _vm._l(
-                    _vm.doctor_profile.specializations,
-                    function (specialization, index) {
-                      return _c("div", { key: index }, [
-                        _c("h5", [
-                          _c("i", { staticClass: "fas fa-check mr-2" }),
-                          _vm._v(
-                            _vm._s(specialization.name) +
-                              "\n                                    "
-                          ),
-                        ]),
-                      ])
-                    }
-                  ),
-                  0
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12" }, [
-              _c("div", { staticClass: "macro-contain" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "doctor-page components" },
-                  _vm._l(
-                    _vm.doctor_profile.performances,
-                    function (performance, i) {
-                      return _c("div", { key: i }, [
-                        _c("h5", [_vm._v(_vm._s(performance.name))]),
-                        _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(performance.description))]),
-                      ])
-                    }
-                  ),
-                  0
-                ),
-              ]),
-            ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
-          _c("div", { staticClass: "macro-contain" }, [
-            _vm._m(3),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12" }, [
-              _c(
-                "div",
-                { staticClass: "doctor-page review-contain components" },
-                _vm._l(_vm.doctor_profile.reviews, function (review, key) {
-                  return _c("div", { key: key, staticClass: "review" }, [
-                    _c("h5", [
-                      _vm._v(
-                        "\n                                    Nome utente:\n                                    " +
-                          _vm._s(review.user_review_name) +
-                          "\n                                "
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("h5", [_vm._v("Voto: " + _vm._s(review.vote))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(review.content))]),
-                  ])
-                }),
-                0
-              ),
-            ]),
-          ]),
-        ]),
-      ]),
-    ]),
-    _vm._v(" "),
-    _vm._m(4),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mb-5" }, [
-      _c(
-        "div",
-        { staticClass: "col-6", attrs: { id: "messages" } },
-        [_c("Messages", { attrs: { doctor_id: _vm.doctorId } })],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-6", attrs: { id: "reviews" } },
-        [_c("Reviews", { attrs: { doctor_id: _vm.doctorId } })],
-        1
-      ),
-    ]),
+    _c("div", { staticClass: "forms" }),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title-area" }, [_c("h4", [_vm._v("CV")])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title-area" }, [
-      _c("h4", [_vm._v("Specializzazioni")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title-area" }, [
-      _c("h4", [_vm._v("Performance")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title-area" }, [
-      _c("h4", [_vm._v("Recensioni")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-3 mb-5 justify-content-center" }, [
-      _c("div", { staticClass: "col-4" }, [
-        _c("a", { staticClass: "doctor-page", attrs: { href: "" } }, [
-          _vm._v(" Invia messaggio "),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-4" }, [
-        _c("a", { staticClass: "doctor-page", attrs: { href: "" } }, [
-          _vm._v(" Scrivi una recensione "),
-        ]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
