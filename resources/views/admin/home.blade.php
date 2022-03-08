@@ -51,7 +51,7 @@
 
         <div class="logo">
             <div class="image">
-                <img src="{{asset('img/NicePng_earth-png_175972.png')}}" alt="logo">
+                <img src="{{asset('img/logo.png')}}" alt="logo">
             </div>
             <div class="circle">
                 <a href="{{ route('admin.messages.index', Auth::user() )}}" class="icon">
@@ -62,6 +62,21 @@
                 </a>
                 <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="icon">
                     <img src="{{asset('img/review.png')}}" alt="review">
+                </a>
+                <a href="{{ route('admin.messages.index', Auth::user() )}}" class="icon">
+                    <img src="{{asset('img/email.png')}}" alt="messages">
+                </a>
+                <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="icon">
+                    <img src="{{asset('img/home.png')}}" alt="home">
+                </a>
+                <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="icon">
+                    <img src="{{asset('img/review.png')}}" alt="review">
+                </a>
+                <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="icon">
+                    <img src="{{asset('img/home.png')}}" alt="home">
+                </a>
+                <a href="{{ route('admin.messages.index', Auth::user() )}}" class="icon">
+                    <img src="{{asset('img/email.png')}}" alt="messages">
                 </a>
             </div>
         </div>

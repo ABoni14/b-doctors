@@ -232,7 +232,6 @@ export default {
 
     .ab-inner{
       height: 450px;
-      width: 100vw;
       cursor: pointer;
       &:hover{
         img{

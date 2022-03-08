@@ -1,4 +1,5 @@
 <template>
+
     <div class="advanced-search">
         <div class="container-fluid">
             <div class="container">
@@ -13,7 +14,9 @@
                     </div>
 
                     <div class="container">
-                        <div class="row justify-content-center">
+
+                        <div
+                        class="row justify-content-center">
                             <select class="select-spec"
                                 name="specializations"
                                 id="specializations"
@@ -29,13 +32,22 @@
                                 {{singleSpecialization.name}}</option>
                             </select>
                         </div>
-                        <div class="row">
-                            <SpecializationDoctors
-                            :doctors="doctors"
-                            :specialization="specialization"
-                            :error="error"
-                            />
+                        <div>
+                            <div v-if="isLoading">
+                                <Loader />
+                            </div>
+
+
+                            <div v-else
+                            class="row">
+                                <SpecializationDoctors
+                                :doctors="doctors"
+                                :specialization="specialization"
+                                :error="error"
+                                />
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -45,10 +57,12 @@
 
 <script>
 import SpecializationDoctors from "./SpecializationDoctors.vue";
+import Loader from "./Loader.vue";
 export default {
     name: 'AdvancedSearch',
     components:{
         SpecializationDoctors,
+        Loader,
     },
     props: ['slug'],
     data(){
@@ -61,11 +75,13 @@ export default {
             specToSearch: '',
             error: '',
             homeSpec: '',
+            isLoading: false,
         }
     },
     methods:{
         getSpecList(){
             this.error = '';
+
             axios.get(this.specList)
             .then(res => {
                 this.specialization = res.data.specialization;
@@ -77,17 +93,21 @@ export default {
         // search through advanced search page
         getDoctorsBySpec(){
             this.error = '';
+            this.isLoading = true;
             axios.get(this.baseApi + this.spec + this.specToSearch)
             .then(res => {
                 this.doctors= res.data.specialization.users;
                 this.error= res.data.error;
+                this.isLoading = false;
             })
             .catch(err =>{
                 console.error(err);
+
             })
         },
         // search through search bar on Home page
         getDoctorsHome(){
+
             this.error = '';
             axios.get(this.baseApi + this.spec + this.homeSpec)
             .then(res => {

@@ -124,6 +124,11 @@ export default {
   transform: scale(0.7);
 }
 
+.card-doctor:hover .btn-doctors{
+    border-radius: 20px;
+    transition: all 0.7s;
+}
+
 
 
 .card-doctor .vote {
@@ -139,10 +144,7 @@ export default {
 
 }
 
-.btn-doctors:hover{
-    border-radius: 20px;
-    transition: all 1s;
-}
+
 
 
 
