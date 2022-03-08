@@ -2827,6 +2827,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CardsDoctors_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardsDoctors.vue */ "./resources/js/components/pages/CardsDoctors.vue");
+/* harmony import */ var _Loader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loader.vue */ "./resources/js/components/pages/Loader.vue");
 //
 //
 //
@@ -3010,14 +3012,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
+  components: {
+    CardsDoctors: _CardsDoctors_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Loader: _Loader_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   data: function data() {
     return {
       apiUrl: 'http://127.0.0.1:8000/api/specializations',
+      apiPremium: 'http://127.0.0.1:8000/api/premium',
       specs: [],
+      doctors: [],
       specToSearch: '',
-      slug: this.output
+      slug: this.output,
+      pagination: {},
+      isLoading: false
     };
   },
   methods: {
@@ -3029,7 +3077,37 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.error(err);
       });
-    }
+    },
+    getDoctorsPremium: function getDoctorsPremium() {
+      var _this2 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.isLoading = true;
+      axios.get(this.apiPremium + '?page=' + page).then(function (res) {
+        _this2.doctors = res.data.data;
+        _this2.pagination = {
+          current: res.data.current_page,
+          last: res.data.last_page
+        };
+        _this2.isLoading = false;
+      });
+    },
+    nextpage: function nextpage(page) {
+      if (page <= this.totalPages) {
+        if (this.orderBy != "default") ++this.currentPage;
+      }
+    },
+    prevpage: function prevpage(page) {
+      console.log("pagina corrente:", page);
+
+      if (page > 0) {
+        this.currentPage--;
+        if (this.orderBy != "default") this.searchnew(--this.currentPage, this.orderBy);else {
+          this.searchbycount(--this.currentPage, this.orderByCount);
+        }
+      }
+    },
+    searchIndex: function searchIndex() {}
   },
   computed: {
     output: function output() {
@@ -3039,6 +3117,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getSpecs();
+    this.getDoctorsPremium();
   }
 });
 
@@ -7854,7 +7933,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".card-doctor[data-v-57578267] {\n  width: 250px;\n  padding: 20px 0;\n  margin-bottom: 30px;\n  background-color: #f7f5ec;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #1369ce;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.9;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #1369ce;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  box-shadow: 0 0 0 14px #f7f5ec;\n  transform: scale(0.7);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  border-radius: 20px;\n  transition: all 0.7s;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #1369ce;\n}", ""]);
+exports.push([module.i, ".card-doctor[data-v-57578267] {\n  width: calc(25% - 20px) !important;\n  padding: 20px 0;\n  margin: 10px;\n  background-color: #f7f5ec;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #1369ce;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.9;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #1369ce;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  box-shadow: 0 0 0 14px #f7f5ec;\n  transform: scale(0.7);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  border-radius: 20px;\n  transition: all 0.7s;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #1369ce;\n}", ""]);
 
 // exports
 
@@ -7892,7 +7971,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: #1f87ff;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  -o-object-fit: cover;\n     object-fit: cover;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #006deb;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #6bb0ff;\n  color: white;\n  border-radius: 0 10px 10px 0;\n  background-color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 0%, #d1e6ff 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #6bb0ff;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #d1e6ff;\n  box-shadow: 10px 10px 5px #b8d9ff;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #3895ff;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #6bb0ff;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #ebf4ff;\n  box-shadow: 10px 10px 5px #d1e6ff;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #6bb0ff;\n  border-color: #6bb0ff;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}", ""]);
+exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: #1f87ff;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  -o-object-fit: cover;\n     object-fit: cover;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #006deb;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #6bb0ff;\n  color: white;\n  border-radius: 0 10px 10px 0;\n  background-color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}\n.home .title-premium[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .navigation[data-v-a9aac016] {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.home .navigation button[data-v-a9aac016] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: white;\n  border: 1px solid #6bb0ff;\n  margin: 20px 0;\n  border-radius: 0px 10px 10px 0;\n  color: #1369ce;\n}\n.home .navigation button[data-v-a9aac016]:disabled {\n  color: lightgrey;\n}\n.home .navigation button i[data-v-a9aac016] {\n  padding: 15px;\n  font-size: 20px;\n}\n.home .navigation button.prev[data-v-a9aac016] {\n  border-radius: 15px 0 0 15px;\n}\n.home .navigation button.next[data-v-a9aac016] {\n  border-radius: 0 15px 15px 0;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 0%, #d1e6ff 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #6bb0ff;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #d1e6ff;\n  box-shadow: 10px 10px 5px #b8d9ff;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #3895ff;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #6bb0ff;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #ebf4ff;\n  box-shadow: 10px 10px 5px #d1e6ff;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #6bb0ff;\n  border-color: #6bb0ff;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -40246,7 +40325,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card-doctor mx-3" }, [
+  return _c("div", { staticClass: "card-doctor" }, [
     _c("div", { staticClass: "picture" }, [
       _c("img", {
         staticClass: "img-fluid",
@@ -40620,11 +40699,73 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _vm._m(1),
+    _vm.isLoading
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "container d-flex justify-content-center align-items-center",
+          },
+          [_c("Loader")],
+          1
+        )
+      : _c("div", { staticClass: "container" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _vm.isLoading ? _c("Loader") : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.doctors, function (doctor, index) {
+                return _c("CardsDoctors", {
+                  key: index,
+                  attrs: { doctorInfo: doctor },
+                })
+              }),
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "navigation" }, [
+            _c(
+              "button",
+              {
+                staticClass: "prev",
+                attrs: { disabled: _vm.pagination.current === 1 },
+                on: {
+                  click: function ($event) {
+                    return _vm.getDoctorsPremium(_vm.pagination.current - 1)
+                  },
+                },
+              },
+              [_c("i", { staticClass: "fas fa-arrow-left" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "next",
+                attrs: {
+                  disabled: _vm.pagination.current === _vm.pagination.last,
+                },
+                on: {
+                  click: function ($event) {
+                    return _vm.getDoctorsPremium(_vm.pagination.current + 1)
+                  },
+                },
+              },
+              [_c("i", { staticClass: "fas fa-arrow-right" })]
+            ),
+          ]),
+        ]),
     _vm._v(" "),
     _vm._m(2),
     _vm._v(" "),
     _vm._m(3),
+    _vm._v(" "),
+    _vm._m(4),
   ])
 }
 var staticRenderFns = [
@@ -40758,6 +40899,16 @@ var staticRenderFns = [
         ),
       ]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row justify-content-center" }, [
+      _c("h5", { staticClass: "title-premium" }, [
+        _vm._v("Medici in evidenza"),
+      ]),
+    ])
   },
   function () {
     var _vm = this

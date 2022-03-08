@@ -77,6 +77,42 @@
 
     </div>
     <!-- //Search -->
+
+    <!-- Dottori premium -->
+    <div 
+    v-if="isLoading"
+    class="container d-flex justify-content-center align-items-center">
+      <Loader />
+    </div>
+
+    <div 
+    v-else
+    class="container">
+      <div class="row justify-content-center">
+        <h5 class="title-premium">Medici in evidenza</h5>
+      </div>
+      <div class="row">
+          <Loader v-if="isLoading"/>
+          <CardsDoctors 
+          v-for="(doctor, index) in doctors"
+          :key="index"
+          :doctorInfo="doctor"
+        />
+      </div>
+      <div class="navigation" >
+                    <button class="prev"
+                        @click="getDoctorsPremium(pagination.current - 1)"
+                        :disabled = "pagination.current === 1"
+                    ><i class="fas fa-arrow-left"></i></button>
+
+                    <button class="next"
+                        @click="getDoctorsPremium(pagination.current + 1)"
+                        :disabled = "pagination.current === pagination.last"
+                    ><i class="fas fa-arrow-right"></i></button>
+                </div>
+    </div>
+    <!-- //Dottori premium -->
+
     <!-- Come funziona -->
     <div class="container-fluid bg-container">
       <div class="container container-info mt-5 mb-5">
@@ -182,14 +218,27 @@
 </template>
 
 <script>
+import CardsDoctors from "./CardsDoctors.vue"
+import Loader from "./Loader.vue"
+
 export default {
   name: "Home",
+
+  components:{
+    CardsDoctors,
+    Loader
+  },
+
   data(){
       return {
         apiUrl: 'http://127.0.0.1:8000/api/specializations',
+        apiPremium: 'http://127.0.0.1:8000/api/premium',
         specs: [],
+        doctors: [],
         specToSearch: '',
-        slug: this.output
+        slug: this.output,
+        pagination: {},
+        isLoading: false,
       }
   },
   methods: {
@@ -202,6 +251,41 @@ export default {
                 console.error(err);
             })
       },
+
+      getDoctorsPremium(page = 1){
+        this.isLoading = true;
+        axios.get(this.apiPremium + '?page=' + page)
+          .then(res =>{
+            this.doctors = res.data.data;
+            this.pagination = {
+              current: res.data.current_page,
+              last: res.data.last_page,
+            };
+            this.isLoading = false;
+          })
+      },
+
+      nextpage(page) {
+      if (page <= this.totalPages) {
+        if (this.orderBy != "default")
+          ++this.currentPage;
+        }
+      },
+      prevpage(page) {
+        console.log("pagina corrente:", page);
+        if (page > 0) {
+          this.currentPage--;
+          if (this.orderBy != "default")
+            this.searchnew(--this.currentPage, this.orderBy);
+          else {
+            this.searchbycount(--this.currentPage, this.orderByCount);
+          }
+        }
+      },  
+      searchIndex(){
+
+      }
+
   },
   computed:{
     output: function () {
@@ -216,6 +300,7 @@ export default {
   },
   mounted(){
       this.getSpecs();
+      this.getDoctorsPremium();
   }
 }
 </script>
@@ -308,6 +393,41 @@ export default {
 
 
         }
+      }
+    }
+  }
+
+  //premium
+  .title-premium{
+    color: $primary-color;
+    font-size: 25px;
+    padding: 10px 0;
+  }
+  .navigation{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      border: 1px solid $primary-color;
+      margin: 20px 0;
+      border-radius: 0px 10px 10px 0;
+      color: #1369ce;
+      &:disabled{
+        color: lightgrey;
+      }
+      i{
+        padding: 15px;
+        font-size: 20px;
+      }
+      &.prev{
+        border-radius: 15px 0 0 15px;
+      }
+      &.next{
+        border-radius: 0 15px 15px 0;
       }
     }
   }
