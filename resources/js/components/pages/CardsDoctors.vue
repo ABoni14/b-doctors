@@ -138,7 +138,7 @@ export default {
 }
 
 .card-doctor:hover .btn-doctors{
-    border-radius: 20px;
+
     transition: all 0.7s;
     background-color: rgb(255, 240, 75);
     color: rgb(0, 35, 75) !important;

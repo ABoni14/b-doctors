@@ -1,19 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- <p>
-    {{ $user->first_name }}
 
-    @foreach ($user->specializations as $spec)
-        {{ $spec->name }}
-    @endforeach
 
-    <a href="{{route("admin.dashboard.edit", Auth::user())}}" class="btn btn-primary">MODIFICA PROFILO</a>
-
-</p>
-
-<a href="{{ route('admin.index', Auth::user() ) }}" class="action">Indietro</a> --}}
-<div class="container py-4 dashboard">
+<div class="container py-4 profile">
     <div class="profile-top d-flex justify-content-between align-items-center row">
         <div class=" col-sm-12 col-md-8">
             <div class="d-flex">
@@ -28,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-4">
+        <div class="col-sm-12 col-md-4 info-doctor">
             <p><strong>Indirizzo:</strong> {{ $user->address }}</p>
             <p><strong>E-Mail:</strong> {{ $user->email }}</p>
             <p><strong>Telefono:</strong> {{ $user->phone }}</p>
@@ -47,16 +37,18 @@
 
     <div class="d-flex justify-content-between">
         <div>
-            <a href="{{route("admin.dashboard.edit", Auth::user())}}" class="btn btn-primary mt-4 mr-3">MODIFICA PROFILO</a>
-            <a href="#" class="btn btn-danger mt-4">ELIMINA PROFILO</a>
+            <a href="{{route("admin.dashboard.edit", Auth::user())}}" class="btn-doctors">MODIFICA PROFILO</a>
+            <a href="#" class="btn-doctors">ELIMINA PROFILO</a>
         </div>
 
         <div>
-            <a href="{{ route('admin.index', Auth::user() ) }}" class="btn btn-success action mt-4">Indietro</a>
+            <a href="{{ route('admin.index', Auth::user() ) }}" class="btn-doctors-back">Indietro</a>
         </div>
     </div>
 
 
 </div>
+
+
 
 @endsection

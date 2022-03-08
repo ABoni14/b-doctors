@@ -1,23 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h2>Profilo dottor</h2>
-
-    {{-- @if ($errors->any())
-    <div class="alert alert-danger" role="alert">
-      <ul>
-        @foreach ($errors->all() as $error)
-          <li>{{$error}}</li>
-        @endforeach
-      </ul>
-    </div>
-    @endif --}}
+<div class="container profile">
+    <h2>Profilo dottor {{ $user->first_name }} {{ $user->last_name }}</h2>
 
 
     <form action="{{route("admin.dashboard.update", Auth::user())}}" method="POST" enctype="multipart/form-data">
       @csrf
-      @method("PUT")
+      @method("PUT") 
+      <div class="mb-3">
+
+          @if ($user->photo)
+              <div>
+                  <img width="150" src="{{ asset('storage/' . $user->photo) }}" alt="...">
+              </div>
+          @endif
+
+          <label for="photo">Cambia la tua foto</label>
+          <input
+          style="height: 45px"
+              class="form-control"
+              type="file" name="photo" id="photo">
+      </div>
+      
       <div class="form-group">
         <label for="phone">Telefono</label>
         <input type="text"
@@ -56,22 +61,9 @@
         placeholder="Inserisci il tuo cv">{{old("cv", $user->cv)}}</textarea>
       </div>
 
-      <div class="mb-3">
+     
 
-          @if ($user->photo)
-              <div>
-                  <img width="150" src="{{ asset('storage/' . $user->photo) }}" alt="...">
-              </div>
-          @endif
-
-
-          <label for="photo">Immagine</label>
-          <input
-              class="form-control"
-              type="file" name="photo" id="photo">
-      </div>
-
-      <div>
+      {{-- <div>
         @foreach ($specializations as $item)
           <input type="checkbox" id="{{$item->id}}" name="specializations[]" value="{{$item->id}}"
           @if(!$errors->any() && $user->specializations->contains($item->id))
@@ -82,10 +74,36 @@
           >
           <label for="{{$item->id}}">{{$item->name}}</label>
         @endforeach
+      </div> --}}
+
+
+      
+      <div class="container">
+        <ul class="ks-cboxtags">
+          @foreach ($specializations as $item)
+            <li>
+              <input type="checkbox" id="{{$item->id}}" name="specializations[]" value="{{$item->id}}"
+              @if(!$errors->any() && $user->specializations->contains($item->id))
+              checked
+              @elseif ($errors->any() && in_array($item->id, old('specializations', [])))
+              checked
+              @endif
+              >
+              <label for="{{$item->id}}">{{$item->name}}</label>
+            </li>
+          @endforeach
+
+        </ul>
+      
       </div>
 
-      <div>
-        <select class="custom-select" multiple="multiple" name="performances[]">
+
+      
+
+
+        <div>
+          <select name="sources performances[]" id="sources" class="custom-select sources" placeholder="Source Type">
+
             @foreach ($performances as $performance)
                 <option
                     value="{{ $performance->id }}"
@@ -97,8 +115,23 @@
                 >{{ $performance->name }}</option>
             @endforeach
           </select>
+        </div>
+      <div>
+{{--         
+        <select class="custom-select" multiple="multiple" name="performances[]">
+            @foreach ($performances as $performance)
+                <option
+                    value="{{ $performance->id }}"
+                    @if(!$errors->any() && $user->performances->contains($performance->id))
+                    selected
+                    @elseif ($errors->any() && in_array($performance->id, old('performances', [])))
+                    selected
+                    @endif
+                >{{ $performance->name }}</option>
+            @endforeach
+          </select> --}}
       </div>
-      <button type="submit" class="btn btn-primary">Change</button>
+      <button type="submit" class="btn btn-primary my-5">Change</button>
     </form>
 
 </div>
