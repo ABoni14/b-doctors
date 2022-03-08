@@ -25,12 +25,20 @@
                     <img class="img-fluid" :src="doctorInfo.photo">
                 </div>
                 <div class="team-content">
-                    <h3 class="name"> {{doctorInfo.first_name}} {{doctorInfo.last_name}}</h3>
-                    <span class="my-2">{{doctorInfo.address}}</span>
+                    <h3 class="name"> 
+                        {{doctorInfo.first_name}} {{doctorInfo.last_name}}
+                    </h3>
+                    <span class="my-2">
+                        <i class="fas fa-map-marker-alt mr-1"></i>
+                        {{doctorInfo.address}}
+                    </span>
                     <h4 class="vote my-3">voto</h4>
                 </div>
                 <div class="button-profile">
-                    <router-link class="btn btn-doctors text-white" :to="{ name: 'DoctorPage' , params: { slug: doctorInfo.slug } }">Vai al Profilo</router-link>
+                    <router-link class="btn btn-doctors text-white" :to="{ name: 'DoctorPage' , params: { slug: doctorInfo.slug } }">
+                        Vai al Profilo
+                        <i class="fas fa-mouse-pointer ml-1"></i>
+                    </router-link>
                 </div>
             </div>
 
@@ -62,14 +70,19 @@ export default {
 //
 
 .card-doctor {
-    width: calc(100% / 4 - 20px) !important;
+  width: calc(100% / 4 - 20px) !important;
   padding: 20px 0;
   margin: 10px;
-  background-color: #f7f5ec;
+  background-color: #f5f5f5;
   text-align: center;
   overflow: hidden;
   position: relative;
-
+  border-radius:  10px;
+  box-shadow: 3px 10px 10px#b5b7b9;
+  transition: all 0.5s ease 0s;
+  &:hover{
+    box-shadow: 8px 18px 15px#b5b7b9;
+  }
 }
 
 .card-doctor .picture {
@@ -86,7 +99,7 @@ export default {
   width: 100%;
   height: 0;
   border-radius: 50%;
-  background-color: #1369ce;
+  background-color: rgb(0, 35, 75);
   position: absolute;
   bottom: 135%;
   right: 0;
@@ -105,7 +118,7 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: #1369ce;
+  background-color: rgb(0, 35, 75);
   position: absolute;
   top: 0;
   left: 0;
@@ -121,13 +134,15 @@ export default {
 }
 
 .card-doctor:hover .picture img {
-  box-shadow: 0 0 0 14px #f7f5ec;
-  transform: scale(0.7);
+  transform: scale(0.85);
 }
 
 .card-doctor:hover .btn-doctors{
     border-radius: 20px;
     transition: all 0.7s;
+    background-color: rgb(255, 240, 75);
+    color: rgb(0, 35, 75) !important;
+    font-weight: 600;
 }
 
 
@@ -141,8 +156,11 @@ export default {
 
 .btn-doctors{
     padding: 5px 10px;
-    background-color: #1369ce;
+    background-color: rgb(0, 35, 75);
+}
 
+.name{
+    min-height: 70px;
 }
 
 
