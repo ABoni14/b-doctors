@@ -36,11 +36,11 @@
                         <div class="row justify-content-center">
                             <div class="mr-5">
                                 <h4>Ordina per media voti</h4>
-                                <select 
-                                @change="calcAverage()"
-                                v-model="filterStar"
-                                name="" id="">
-                                    <option 
+                                <select
+                                    @change="averageVoteFilter"
+                                    v-model="filterStar"
+                                >
+                                    <option
                                     v-for="(star, index) in stars"
                                     :key="index"
                                     :value="star[0]">{{star[1]}}</option>
@@ -50,16 +50,16 @@
 
                             <div>
                                 <h4>Ordina per numero recensioni</h4>
-                                <select 
-                                v-model="filterReview"
-                                @change="filterNumberReview"
-                                name="" id="">
-                                    <option 
+                                <select
+                                    v-model="filterReview"
+                                    @change="filterNumberReview"
+                                >
+                                    <option
                                     v-for="(review, index) in reviews"
                                     :key="index"
                                     :value="review[0]">{{review[1]}}</option>
                                 </select>
-                            </div>  
+                            </div>
                         </div>
 
                         <div>
@@ -70,13 +70,13 @@
                             <div v-else
                             class="row">
                                 <SpecializationDoctors
-                                :doctors="doctors"
+                                :doctors="filteredDoctors"
                                 :error="error"
                                 :title_spec="title_spec"
                                 />
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -106,10 +106,8 @@ export default {
             filterStar: 0,
             filterReview: 0,
             error: '',
-            homeSpec: '',
             isLoading: false,
-            doctorArray: [],
-            doctorArrayDuplicate: [],
+            filteredDoctors: [],
             stars: [
                 [0, "Qualsiasi valutazione"],
                 [1, "Almeno una stella"],
@@ -121,17 +119,18 @@ export default {
             reviews: [
                 [0, "Qualsiasi numero di recensioni"],
                 [1, "Almeno due recensione"],
-                [2, "Almeno quattro stelle"],
+                [2, "Almeno tre recensioni"],
             ],
+            reviewNumber: 0,
             sum: 0,
             avg: 0,
             length: 0,
         }
     },
     methods:{
+        //get specializations list
         getSpecList(){
             this.error = '';
-
             axios.get(this.specList)
             .then(res => {
                 this.specialization = res.data.specialization;
@@ -140,14 +139,14 @@ export default {
                 console.error(err);
             })
         },
-        // search through advanced search page
+        // search through advanced-search page
         getDoctorsBySpec(){
             this.error = '';
             this.isLoading = true;
             axios.get(this.baseApi + this.spec + this.specToSearch)
             .then(res => {
-                this.doctors= res.data.premium_users;
-                this.doctorArrayDuplicate= res.data.premium_users;
+                this.doctors = res.data.premium_users;
+                this.filteredDoctors = res.data.premium_users;
                 this.title_spec = res.data.specialization.name;
                 this.error= res.data.error;
                 this.isLoading = false;
@@ -157,12 +156,15 @@ export default {
 
             })
         },
-        // search through search bar on Home page
+        // search through search-bar from Home page (redirect)
         getDoctorsHome(){
             this.error = '';
+            this.isLoading = true;
             axios.get(this.baseApi + this.spec + this.specToSearch)
             .then(res => {
                 this.doctors= res.data.premium_users;
+                this.filteredDoctors = res.data.premium_users;
+                this.title_spec = res.data.specialization.name;
                 this.error= res.data.error;
             })
             .catch(err =>{
@@ -170,9 +172,10 @@ export default {
             })
         },
 
-        calcAverage() {
-            this.doctorArray = [];
-            this.doctorArrayDuplicate.forEach(doctor => {
+        averageVoteFilter() {
+            this.filteredDoctors = [];
+            this.filterArr = this.doctors;
+            this.filterArr.forEach(doctor => {
                 this.sum = 0;
                 this.avg = 0;
                 doctor.reviews.forEach(review => {
@@ -181,17 +184,26 @@ export default {
                 this.length = doctor.reviews.length;
                 this.avg = this.sum / this.length;
                 if(this.avg >= this.filterStar){
-                    this.doctorArray.push(doctor);
+                    this.filteredDoctors.push(doctor);
                 }
             });
-            this.doctors = this.doctorArray;
+            return this.filteredDoctors;
         },
 
         filterNumberReview(){
-            
+            this.reviewNumber = 0;
+            this.filteredDoctors = [];
+            this.filterArr = this.doctors;
+            this.filterArr.forEach((doctor) => {
+                this.reviewNumber = doctor.reviews.length;
+
+                if(this.reviewNumber >= this.filterReview){
+                    this.filteredDoctors.push(doctor);
+                }
+            })
+            return this.filteredDoctors;
         }
     },
-
     mounted(){
 
         this.getSpecList();
