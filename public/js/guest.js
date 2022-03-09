@@ -2218,6 +2218,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardsDoctors",
   props: {
@@ -2233,10 +2234,10 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return parseInt(total / length);
-    },
-    getFirstSpec: function getFirstSpec() {
-      this.doctorInfo.specialization;
     }
+  },
+  mounted: function mounted() {
+    console.log(this.doctorInfo);
   }
 });
 
@@ -40175,6 +40176,8 @@ var render = function () {
             _vm._s(_vm.doctorInfo.last_name)
         ),
       ]),
+      _vm._v(" "),
+      _c("h5", [_vm._v(_vm._s(_vm.doctorInfo.specializations[0].name))]),
       _vm._v(" "),
       _c("span", { staticClass: "my-2 address" }, [
         _vm._v(_vm._s(_vm.doctorInfo.address)),

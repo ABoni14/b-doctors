@@ -19,7 +19,7 @@
         </div>
     </div> -->
 
-        
+
             <div class="card-doctor">
                 <div class="picture">
                     <img class="img-fluid" :src="doctorInfo.photo">
@@ -29,11 +29,12 @@
                 <!-- </div> -->
                 <div class="team-content">
                     <h3 class="name"> {{doctorInfo.first_name}} {{doctorInfo.last_name}}</h3>
+                    <h5>{{ doctorInfo.specializations[0].name }}</h5>
                     <span class="my-2 address">{{doctorInfo.address}}</span>
                     <h5 class="vote my-3">
-                        <i 
-                        v-for="(int, index) in 5" 
-                        :key="index" 
+                        <i
+                        v-for="(int, index) in 5"
+                        :key="index"
                         class="fa-star"
                         :class="index < calcAverage() ? 'fas' : 'far'"
                         >
@@ -56,7 +57,6 @@ export default {
     props: {
         doctorInfo: Object,
     },
-
     methods: {
         calcAverage() {
             var total = 0,
@@ -68,10 +68,9 @@ export default {
 
             return parseInt(total / length);
         },
-
-        getFirstSpec(){
-            this.doctorInfo.specialization
-        }
+    },
+    mounted(){
+        console.log(this.doctorInfo);
     }
 };
 </script>

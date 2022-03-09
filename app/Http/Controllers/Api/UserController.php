@@ -31,7 +31,7 @@ class UserController extends Controller
     public function getDoctorBySpecialization($spec_slug){
 
         $specialization = Specialization::where('slug', $spec_slug)
-        ->with('users.reviews', 'users.premium_options')->with(['users.premium_options' => function($query){
+        ->with('users.reviews', 'users.premium_options', 'users.specializations')->with(['users.premium_options' => function($query){
             $query->whereDate('user_premium_option.start_date', '<=', Carbon::now()->toDateTimeString())->whereDate('user_premium_option.end_date', '>=', Carbon::now()->toDateTimeString());
         }])->first();
         $premium_users = $specialization->users->sortByDesc(function ($item, $key){
@@ -74,7 +74,7 @@ class UserController extends Controller
     {
         $doctors = User::whereHas('premium_options' , function(Builder $query){
             $query->where('premium_option_id', '>', 1);
-        })->with(['premium_options', 'reviews'])->paginate(4);
+        })->with(['premium_options', 'reviews', 'specializations'])->paginate(4);
 
         return response()->json($doctors);
     }
