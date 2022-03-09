@@ -30,5 +30,4 @@ Route::namespace('Api')
             Route::post('message/', 'MessageController@store');
             Route::post('review/', 'ReviewController@store');
             Route::get("doctors/premium", "PremiumController@index");
-            Route::get('doctors/performance', 'UserController@getDoctorByPerformance');
         });

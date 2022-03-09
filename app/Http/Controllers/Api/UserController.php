@@ -69,22 +69,5 @@ class UserController extends Controller
         return response()->json($doctors);
     }
 
-    public function getDoctorByPerformance($slug_performance){
-
-        $performance = Performance::where('slug', $slug_performance)->first();
-        $success = true;
-        $error = '';
-        if(!$performance){
-            $success = false;
-            $error = 'Performance inesistente';
-        }elseif($performance && count($performance['users']) === 0){
-            $success = false;
-            $error = 'Non ci sono dottori con queste performance';
-        }
-
-        return response()->json(compact('success', 'performance', 'error'));
-
-    }
-
 
 }

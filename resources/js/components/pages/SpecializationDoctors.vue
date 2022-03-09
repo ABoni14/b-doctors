@@ -11,10 +11,6 @@
         </h2>
 
         <div  class="row">
-            <!-- <Sidebar 
-            :performances="performances"
-            @filteredDoctorByPerformance="filteredDoctorByPerformance"
-            /> -->
             <CardsDoctors
             v-for="(doctor, index) in doctors"
             :key="index"
@@ -26,7 +22,6 @@
 
 <script>
 import CardsDoctors from "./CardsDoctors.vue";
-import Sidebar from "../partials/Sidebar.vue"
 
 export default {
     name: "SpecializationDoctors",
@@ -34,36 +29,9 @@ export default {
         doctors: Array,
         specialization: Array,
         error: String,
-        // performances: Array
     },
     components: {
-        CardsDoctors,
-        Sidebar
-    },
-
-    data(){
-        return{
-            apiUrl: 'http://127.0.0.1:8000/api/doctors',
-            performances: []
-        }
-    },
-
-    methods:{
-        filteredDoctorByPerformance(slug_performance){
-            axios.get(this.apiUrl + '/performance/' + slug_performance)
-                .then(res =>{
-                    console.log(this.slug_performance);
-                    this.performances = res.data.performance;
-                    console.log(this.performances);
-                })
-        }
-    },
-
-    mounted(){
-        this.filteredDoctorByPerformance(this.performances);
-        console.log();
-        // console.log(this.performances);
-        // console.log(this.performances);
+        CardsDoctors
     }
 };
 </script>

@@ -32,11 +32,40 @@
                                 {{singleSpecialization.name}}</option>
                             </select>
                         </div>
+
+                        <div class="row justify-content-center">
+                            <div class="mr-5">
+                                <h4>Ordina per media voti</h4>
+                                <select 
+                                @change="calcAverage()"
+                                v-model="filterStar"
+                                name="" id="">
+                                    <option 
+                                    v-for="(star, index) in stars"
+                                    :key="index"
+                                    :value="star[0]">{{star[1]}}</option>
+
+                                </select>
+                            </div>
+
+                            <div>
+                                <h4>Ordina per numero recensioni</h4>
+                                <select 
+                                v-model="filterReview"
+                                @change="filterNumberReview"
+                                name="" id="">
+                                    <option 
+                                    v-for="(review, index) in reviews"
+                                    :key="index"
+                                    :value="review[0]">{{review[1]}}</option>
+                                </select>
+                            </div>  
+                        </div>
+
                         <div>
                             <div v-if="isLoading">
                                 <Loader />
                             </div>
-
 
                             <div v-else
                             class="row">
@@ -73,9 +102,29 @@ export default {
             doctors: [],
             specialization: [],
             specToSearch: '',
+            filterStar: 0,
+            filterReview: 0,
             error: '',
             homeSpec: '',
             isLoading: false,
+            doctorArray: [],
+            doctorArrayDuplicate: [],
+            stars: [
+                [0, "Qualsiasi valutazione"],
+                [1, "Almeno una stella"],
+                [2, "Almeno due stelle"],
+                [3, "Almeno tre stelle"],
+                [4, "Almeno quattro stelle"],
+                [5, "Cinque stelle"],
+            ],
+            reviews: [
+                [0, "Qualsiasi numero di recensioni"],
+                [1, "Almeno due recensione"],
+                [2, "Almeno quattro stelle"],
+            ],
+            sum: 0,
+            avg: 0,
+            length: 0,
         }
     },
     methods:{
@@ -97,6 +146,7 @@ export default {
             axios.get(this.baseApi + this.spec + this.specToSearch)
             .then(res => {
                 this.doctors= res.data.specialization.users;
+                this.doctorArrayDuplicate= res.data.specialization.users;
                 this.error= res.data.error;
                 this.isLoading = false;
             })
@@ -119,11 +169,31 @@ export default {
             })
         },
 
+        calcAverage() {
+            this.doctorArray = [];
+            this.doctorArrayDuplicate.forEach(doctor => {
+                this.sum = 0;
+                this.avg = 0;
+                doctor.reviews.forEach(review => {
+                    this.sum += review.vote;
+                });
+                this.length = doctor.reviews.length;
+                this.avg = this.sum / this.length;
+                if(this.avg >= this.filterStar){
+                    this.doctorArray.push(doctor);
+                }
+            });
+            this.doctors = this.doctorArray;
+        },
 
+        filterNumberReview(){
+            
+        }
     },
+
     mounted(){
+
         this.getSpecList();
-        // console.log(this.$route.params.slug);
         if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
             this.homeSpec = this.$route.params.slug;
             this.getDoctorsHome();

@@ -27,7 +27,7 @@
                 <div class="team-content">
                     <h3 class="name"> {{doctorInfo.first_name}} {{doctorInfo.last_name}}</h3>
                     <span class="my-2 address">{{doctorInfo.address}}</span>
-                    <h5 class="vote my-3" v-if="this.doctorInfo.reviews.length != 0">
+                    <h5 class="vote my-3">
                         <i 
                         v-for="(int, index) in 5" 
                         :key="index" 
@@ -35,9 +35,6 @@
                         :class="index < calcAverage() ? 'fas' : 'far'"
                         >
                         </i>
-                    </h5>
-                    <h5 v-else class="no-vote">
-                        Vote: N/N
                     </h5>
                 </div>
                 <div class="button-profile">
