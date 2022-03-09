@@ -35,14 +35,14 @@
         <p>{{ $user->cv }}</p>
     </div>
 
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between align-items-center">
         <div>
-            <a href="{{route("admin.dashboard.edit", Auth::user())}}" class="btn-doctors">MODIFICA PROFILO</a>
+            <a href="{{route("admin.dashboard.edit", Auth::user())}}" class="btn-doctors mr-2">MODIFICA PROFILO</a>
             <a href="#" class="btn-doctors">ELIMINA PROFILO</a>
         </div>
 
         <div>
-            <a href="{{ route('admin.index', Auth::user() ) }}" class="btn-doctors-back">Indietro</a>
+            <a href="{{ route('admin.index', Auth::user() ) }}" class="btn-doctors button-back">Indietro</a>
         </div>
     </div>
 

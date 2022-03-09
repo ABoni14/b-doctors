@@ -1,16 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container container-review p-3 border rounded">
-  <h2>Le mie recensioni</h2>
 
-  @foreach ($reviews as $review)
-    <h4>{{ $review->user_review_name }}</h4>
-    <h6>{{ $review->vote }}</h6>
-    <p>{{ $review->content }}</p>
+<div class="container container-table">
+  <a href="{{ route('admin.index', Auth::user() ) }}" class="action btn-doctors button-back mb-3">Indietro</a>
 
-  @endforeach
+  <div class="container-messages">
+    <h1 class="text-center mb-3">Recensioni</h2>
+    <ul class="responsive-table">
+      <li class="row table-header">
+        <div class="space col-3"><i class="fas fa-user"></i> Nome utente</div>
+        <div class="space col-3"><i class="fas fa-star"></i></i> Voto</div>
+        <div class="space col-6"><i class="fas fa-comment-alt"></i> Contenuto recensione</div>
+      </li>
 
-  <a href="{{ route('admin.index', Auth::user() ) }}" class="action">Indietro</a>
+      @foreach ($reviews as $review)
+        <li class="row table-row">
+          <div class="space col-3">{{ $review->user_review_name }}</div>
+          <div class="space col-3">{{ $review->vote }}</div>
+          <div class="space col-6">{{Str::limit($review->content, 50, $end = '...')  }}</div>
+        </li>
+      @endforeach
+     
+    </ul>
+  </div>
+
 </div>
 @endsection
