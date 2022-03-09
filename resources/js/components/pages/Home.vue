@@ -91,7 +91,7 @@
       <div class="row justify-content-center">
         <h5 class="title-premium">Medici in evidenza</h5>
       </div>
-      <div class="row">
+      <div class="container-grid">
           <Loader v-if="isLoading"/>
           <CardsDoctors
           v-for="(doctor, index) in doctors"
@@ -307,6 +307,14 @@ export default {
 @import '../../../sass/guest/_vars.scss';
 .home{
   padding: unset;
+
+    // card
+    .container-grid{
+    display: grid;
+    margin: 0.2rem;
+    gap: 0.7rem;
+    grid-template-columns:  repeat(4, 1fr);
+    }
 
   // Carousel
 

@@ -21,6 +21,9 @@
 
 
             <div class="card-doctor">
+                <!-- <div v-if="doctorInfo.premium_options > 1" class="favicon">
+                    <i class="fas fa-crown"></i>
+                </div> -->
                 <div class="picture">
                     <img class="img-fluid" :src="doctorInfo.photo">
                 </div>
@@ -80,9 +83,9 @@ export default {
 //
 
 .card-doctor {
-    width: calc(100% / 4 - 20px) !important;
+    // width: calc(100% / 4 - 20px);
   padding: 30px 0;
-  margin: 10px;
+  margin: 1rem;
   background-color: #f5f5f5;
   text-align: center;
   overflow: hidden;
@@ -178,7 +181,7 @@ export default {
 }
 
 .name{
-    min-height: 70px;
+    min-height: 60px;
 }
 
 
