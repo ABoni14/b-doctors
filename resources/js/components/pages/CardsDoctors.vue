@@ -24,6 +24,9 @@
                 <div class="picture">
                     <img class="img-fluid" :src="doctorInfo.photo">
                 </div>
+                <!-- <div v-if="doctorInfo."> -->
+
+                <!-- </div> -->
                 <div class="team-content">
                     <h3 class="name"> {{doctorInfo.first_name}} {{doctorInfo.last_name}}</h3>
                     <span class="my-2 address">{{doctorInfo.address}}</span>

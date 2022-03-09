@@ -2407,6 +2407,7 @@ __webpack_require__.r(__webpack_exports__);
       spec: 'doctors/specialization/',
       doctors: [],
       specialization: [],
+      title_spec: '',
       specToSearch: '',
       filterStar: 0,
       filterReview: 0,
@@ -2442,6 +2443,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.baseApi + this.spec + this.specToSearch).then(function (res) {
         _this2.doctors = res.data.premium_users;
         _this2.doctorArrayDuplicate = res.data.premium_users;
+        _this2.title_spec = res.data.specialization.name;
         _this2.error = res.data.error;
         _this2.isLoading = false;
       })["catch"](function (err) {
@@ -2453,7 +2455,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.error = '';
-      axios.get(this.baseApi + this.spec + this.homeSpec).then(function (res) {
+      axios.get(this.baseApi + this.spec + this.specToSearch).then(function (res) {
         _this3.doctors = res.data.premium_users;
         _this3.error = res.data.error;
       })["catch"](function (err) {
@@ -2485,7 +2487,7 @@ __webpack_require__.r(__webpack_exports__);
     this.getSpecList();
 
     if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
-      this.homeSpec = this.$route.params.slug;
+      this.specToSearch = this.$route.params.slug;
       this.getDoctorsHome();
     } else {
       console.log('search was null or empty try searching something');
@@ -2504,6 +2506,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -3257,7 +3262,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "SpecializationDoctors",
   props: {
     doctors: Array,
-    specialization: Array,
+    title_spec: String,
     error: String
   },
   components: {
@@ -40441,8 +40446,8 @@ var render = function () {
                         _c("SpecializationDoctors", {
                           attrs: {
                             doctors: _vm.doctors,
-                            specialization: _vm.specialization,
                             error: _vm.error,
+                            title_spec: _vm.title_spec,
                           },
                         }),
                       ],
@@ -41403,7 +41408,11 @@ var render = function () {
   return _c("div", { staticClass: "container my-4" }, [
     _vm.doctors.length > 0
       ? _c("h2", { staticClass: "text-center my-5" }, [
-          _vm._v("\n        I risultati della tua ricerca\n    "),
+          _vm._v(
+            "\n        I risultati della tua ricerca per " +
+              _vm._s(_vm.title_spec) +
+              "\n    "
+          ),
         ])
       : _vm.error
       ? _c("h2", { staticClass: "text-center my-3" }, [

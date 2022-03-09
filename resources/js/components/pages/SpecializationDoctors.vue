@@ -1,7 +1,7 @@
 <template>
     <div class="container my-4">
         <h2 v-if="doctors.length > 0" class="text-center my-5">
-            I risultati della tua ricerca
+            I risultati della tua ricerca per {{title_spec}}
         </h2>
         <h2 v-else-if="error" class="text-center my-3">
             {{error}}
@@ -27,7 +27,7 @@ export default {
     name: "SpecializationDoctors",
     props: {
         doctors: Array,
-        specialization: Array,
+        title_spec: String,
         error: String,
     },
     components: {

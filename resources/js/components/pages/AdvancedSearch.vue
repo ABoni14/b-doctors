@@ -71,8 +71,8 @@
                             class="row">
                                 <SpecializationDoctors
                                 :doctors="doctors"
-                                :specialization="specialization"
                                 :error="error"
+                                :title_spec="title_spec"
                                 />
                             </div>
                         </div>
@@ -101,6 +101,7 @@ export default {
             spec: 'doctors/specialization/',
             doctors: [],
             specialization: [],
+            title_spec: '',
             specToSearch: '',
             filterStar: 0,
             filterReview: 0,
@@ -147,6 +148,7 @@ export default {
             .then(res => {
                 this.doctors= res.data.premium_users;
                 this.doctorArrayDuplicate= res.data.premium_users;
+                this.title_spec = res.data.specialization.name;
                 this.error= res.data.error;
                 this.isLoading = false;
             })
@@ -157,9 +159,8 @@ export default {
         },
         // search through search bar on Home page
         getDoctorsHome(){
-
             this.error = '';
-            axios.get(this.baseApi + this.spec + this.homeSpec)
+            axios.get(this.baseApi + this.spec + this.specToSearch)
             .then(res => {
                 this.doctors= res.data.premium_users;
                 this.error= res.data.error;
@@ -187,7 +188,7 @@ export default {
         },
 
         filterNumberReview(){
-
+            
         }
     },
 
@@ -195,14 +196,12 @@ export default {
 
         this.getSpecList();
         if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
-            this.homeSpec = this.$route.params.slug;
+            this.specToSearch = this.$route.params.slug;
             this.getDoctorsHome();
         }else{
             console.log('search was null or empty try searching something');
         }
     },
-
-
 };
 </script>
 
