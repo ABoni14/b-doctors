@@ -26,8 +26,19 @@
                 </div>
                 <div class="team-content">
                     <h3 class="name"> {{doctorInfo.first_name}} {{doctorInfo.last_name}}</h3>
-                    <span class="my-2">{{doctorInfo.address}}</span>
-                    <h4 class="vote my-3">voto</h4>
+                    <span class="my-2 address">{{doctorInfo.address}}</span>
+                    <h5 class="vote my-3" v-if="this.doctorInfo.reviews.length != 0">
+                        <i 
+                        v-for="(int, index) in 5" 
+                        :key="index" 
+                        class="fa-star"
+                        :class="index < calcAverage() ? 'fas' : 'far'"
+                        >
+                        </i>
+                    </h5>
+                    <h5 v-else class="no-vote">
+                        Vote: N/N
+                    </h5>
                 </div>
                 <div class="button-profile">
                     <router-link class="btn btn-doctors text-white" :to="{ name: 'DoctorPage' , params: { slug: doctorInfo.slug } }">Vai al Profilo</router-link>
@@ -38,17 +49,21 @@
 
 <script>
 export default {
-    name: "card-doctorsDoctors",
+    name: "CardsDoctors",
     props: {
         doctorInfo: Object,
     },
-    methods: {
-        getAvgVote(){
-            for(var i = 0; i < this.doctorInfo.reviews.length; i++){
-                let vote = this.doctorInfo.reviews.vote;
-                console.log(vote);
 
+    methods: {
+        calcAverage() {
+            var total = 0,
+                length = this.doctorInfo.reviews.length;
+
+            for (var i = 0; i < length; i++) {
+                total += parseFloat(this.doctorInfo.reviews[i].vote);
             }
+
+            return parseInt(total / length);
         }
     }
 };
@@ -63,13 +78,22 @@ export default {
 
 .card-doctor {
     width: calc(100% / 4 - 20px) !important;
-  padding: 20px 0;
+  padding: 30px 0;
   margin: 10px;
   background-color: #f7f5ec;
   text-align: center;
   overflow: hidden;
   position: relative;
-
+    .no-vote{
+    font-size: 12px;
+    padding: 13px 0;
+    }
+    .name{
+    font-size: 22px;
+    }
+    .address{
+        font-size: 14px;
+    }
 }
 
 .card-doctor .picture {
@@ -130,8 +154,6 @@ export default {
     transition: all 0.7s;
 }
 
-
-
 .card-doctor .vote {
   display: block;
   font-size: 15px;
@@ -144,6 +166,7 @@ export default {
     background-color: #1369ce;
 
 }
+
 
 
 
