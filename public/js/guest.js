@@ -2235,9 +2235,6 @@ __webpack_require__.r(__webpack_exports__);
 
       return parseInt(total / length);
     }
-  },
-  mounted: function mounted() {
-    console.log(this.doctorInfo);
   }
 });
 

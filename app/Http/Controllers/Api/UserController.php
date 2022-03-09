@@ -63,13 +63,6 @@ class UserController extends Controller
         return response()->json($doctor_profile);
     }
 
-    // public function getPremium(){
-
-    //     $doctors = Premium_option::where('id', '>', 1)->with('users.specializations', 'users.performances')->paginate(5);
-
-    //     return response()->json($doctors);
-    // }
-
     public function getPremium()
     {
         $doctors = User::whereHas('premium_options' , function(Builder $query){
@@ -78,6 +71,5 @@ class UserController extends Controller
 
         return response()->json($doctors);
     }
-
 
 }

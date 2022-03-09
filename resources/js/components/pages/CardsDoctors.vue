@@ -69,9 +69,6 @@ export default {
             return parseInt(total / length);
         },
     },
-    mounted(){
-        console.log(this.doctorInfo);
-    }
 };
 </script>
 
