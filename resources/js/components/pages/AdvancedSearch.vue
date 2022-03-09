@@ -122,9 +122,9 @@ export default {
                 [2, "Almeno tre recensioni"],
             ],
             reviewNumber: 0,
-            sum: 0,
-            avg: 0,
-            length: 0,
+            vote_sum: 0,
+            vote_avg: 0,
+            vote_arr_length: 0,
         }
     },
     methods:{
@@ -171,25 +171,25 @@ export default {
                 console.error(err);
             })
         },
-
+        // filter doctors for avg reviews votes
         averageVoteFilter() {
             this.filteredDoctors = [];
             this.filterArr = this.doctors;
             this.filterArr.forEach(doctor => {
-                this.sum = 0;
-                this.avg = 0;
+                this.vote_sum = 0;
+                this.vote_avg = 0;
                 doctor.reviews.forEach(review => {
-                    this.sum += review.vote;
+                    this.vote_sum += review.vote;
                 });
-                this.length = doctor.reviews.length;
-                this.avg = this.sum / this.length;
-                if(this.avg >= this.filterStar){
+                this.vote_arr_length = doctor.reviews.length;
+                this.vote_avg = this.vote_sum / this.length;
+                if(this.vote_avg >= this.filterStar){
                     this.filteredDoctors.push(doctor);
                 }
             });
             return this.filteredDoctors;
         },
-
+        //filter doctors for numbers of reviews posted by users (relevance)
         filterNumberReview(){
             this.reviewNumber = 0;
             this.filteredDoctors = [];
@@ -205,8 +205,9 @@ export default {
         }
     },
     mounted(){
-
         this.getSpecList();
+
+        // get slug from home-page for API getDoctorsHome call
         if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
             this.specToSearch = this.$route.params.slug;
             this.getDoctorsHome();

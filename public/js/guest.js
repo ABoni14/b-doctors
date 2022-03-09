@@ -2053,9 +2053,9 @@ __webpack_require__.r(__webpack_exports__);
       stars: [[0, "Qualsiasi valutazione"], [1, "Almeno una stella"], [2, "Almeno due stelle"], [3, "Almeno tre stelle"], [4, "Almeno quattro stelle"], [5, "Cinque stelle"]],
       reviews: [[0, "Qualsiasi numero di recensioni"], [1, "Almeno due recensione"], [2, "Almeno tre recensioni"]],
       reviewNumber: 0,
-      sum: 0,
-      avg: 0,
-      length: 0
+      vote_sum: 0,
+      vote_avg: 0,
+      vote_arr_length: 0
     };
   },
   methods: {
@@ -2101,26 +2101,28 @@ __webpack_require__.r(__webpack_exports__);
         console.error(err);
       });
     },
+    // filter doctors for avg reviews votes
     averageVoteFilter: function averageVoteFilter() {
       var _this4 = this;
 
       this.filteredDoctors = [];
       this.filterArr = this.doctors;
       this.filterArr.forEach(function (doctor) {
-        _this4.sum = 0;
-        _this4.avg = 0;
+        _this4.vote_sum = 0;
+        _this4.vote_avg = 0;
         doctor.reviews.forEach(function (review) {
-          _this4.sum += review.vote;
+          _this4.vote_sum += review.vote;
         });
-        _this4.length = doctor.reviews.length;
-        _this4.avg = _this4.sum / _this4.length;
+        _this4.vote_arr_length = doctor.reviews.length;
+        _this4.vote_avg = _this4.vote_sum / _this4.length;
 
-        if (_this4.avg >= _this4.filterStar) {
+        if (_this4.vote_avg >= _this4.filterStar) {
           _this4.filteredDoctors.push(doctor);
         }
       });
       return this.filteredDoctors;
     },
+    //filter doctors for numbers of reviews posted by users (relevance)
     filterNumberReview: function filterNumberReview() {
       var _this5 = this;
 
@@ -2138,7 +2140,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getSpecList();
+    this.getSpecList(); // get slug from home-page for API getDoctorsHome call
 
     if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
       this.specToSearch = this.$route.params.slug;
