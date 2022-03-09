@@ -17,6 +17,7 @@
 
                         <div
                         class="row justify-content-center">
+                            <h4>Seleziona una specializzazione</h4>
                             <select class="select-spec"
                                 name="specializations"
                                 id="specializations"
@@ -28,17 +29,18 @@
                                 :key="index"
                                 :value="singleSpecialization.slug"
                                 :name="singleSpecialization.name"
-                                class="col-6">
+                            >
                                 {{singleSpecialization.name}}</option>
                             </select>
                         </div>
 
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center mt-4">
                             <div class="mr-5">
-                                <h4>Ordina per media voti</h4>
+                                <h5>Filtra per media voti</h5>
                                 <select
                                     @change="averageVoteFilter"
                                     v-model="filterStar"
+                                    :disabled="!specToSearch"
                                 >
                                     <option
                                     v-for="(star, index) in stars"
@@ -49,10 +51,11 @@
                             </div>
 
                             <div>
-                                <h4>Ordina per numero recensioni</h4>
+                                <h5>Filtra per numero recensioni</h5>
                                 <select
                                     v-model="filterReview"
                                     @change="filterNumberReview"
+                                    :disabled="!specToSearch"
                                 >
                                     <option
                                     v-for="(review, index) in reviews"
@@ -166,6 +169,7 @@ export default {
                 this.filteredDoctors = res.data.premium_users;
                 this.title_spec = res.data.specialization.name;
                 this.error= res.data.error;
+                this.isLoading = false;
             })
             .catch(err =>{
                 console.error(err);
@@ -182,7 +186,7 @@ export default {
                     this.vote_sum += review.vote;
                 });
                 this.vote_arr_length = doctor.reviews.length;
-                this.vote_avg = this.vote_sum / this.length;
+                this.vote_avg = this.vote_sum / this.vote_arr_length;
                 if(this.vote_avg >= this.filterStar){
                     this.filteredDoctors.push(doctor);
                 }
@@ -206,7 +210,6 @@ export default {
     },
     mounted(){
         this.getSpecList();
-
         // get slug from home-page for API getDoctorsHome call
         if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
             this.specToSearch = this.$route.params.slug;

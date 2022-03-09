@@ -7,7 +7,7 @@
             {{error}}
         </h2>
         <h2 v-else class="text-center">
-            Cerca qualcosa!
+            Avvia una Ricerca!
         </h2>
 
         <div  class="row">

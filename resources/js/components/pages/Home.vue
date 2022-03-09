@@ -79,13 +79,13 @@
     <!-- //Search -->
 
     <!-- Dottori premium -->
-    <div 
+    <div
     v-if="isLoading"
     class="container d-flex justify-content-center align-items-center">
       <Loader />
     </div>
 
-    <div 
+    <div
     v-else
     class="container">
       <div class="row justify-content-center">
@@ -93,7 +93,7 @@
       </div>
       <div class="row">
           <Loader v-if="isLoading"/>
-          <CardsDoctors 
+          <CardsDoctors
           v-for="(doctor, index) in doctors"
           :key="index"
           :doctorInfo="doctor"
@@ -283,11 +283,7 @@ export default {
             this.searchbycount(--this.currentPage, this.orderByCount);
           }
         }
-      },  
-      searchIndex(){
-
-      }
-
+      },
   },
   computed:{
     output: function () {

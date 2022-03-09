@@ -2027,6 +2027,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2097,6 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.filteredDoctors = res.data.premium_users;
         _this3.title_spec = res.data.specialization.name;
         _this3.error = res.data.error;
+        _this3.isLoading = false;
       })["catch"](function (err) {
         console.error(err);
       });
@@ -2114,7 +2118,7 @@ __webpack_require__.r(__webpack_exports__);
           _this4.vote_sum += review.vote;
         });
         _this4.vote_arr_length = doctor.reviews.length;
-        _this4.vote_avg = _this4.vote_sum / _this4.length;
+        _this4.vote_avg = _this4.vote_sum / _this4.vote_arr_length;
 
         if (_this4.vote_avg >= _this4.filterStar) {
           _this4.filteredDoctors.push(doctor);
@@ -2848,8 +2852,7 @@ __webpack_require__.r(__webpack_exports__);
           this.searchbycount(--this.currentPage, this.orderByCount);
         }
       }
-    },
-    searchIndex: function searchIndex() {}
+    }
   },
   computed: {
     output: function output() {
@@ -39937,6 +39940,8 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "container" }, [
               _c("div", { staticClass: "row justify-content-center" }, [
+                _c("h4", [_vm._v("Seleziona una specializzazione")]),
+                _vm._v(" "),
                 _c(
                   "select",
                   {
@@ -39983,7 +39988,6 @@ var render = function () {
                           "option",
                           {
                             key: index,
-                            staticClass: "col-6",
                             attrs: { name: singleSpecialization.name },
                             domProps: { value: singleSpecialization.slug },
                           },
@@ -40001,9 +40005,9 @@ var render = function () {
                 ),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row justify-content-center" }, [
+              _c("div", { staticClass: "row justify-content-center mt-4" }, [
                 _c("div", { staticClass: "mr-5" }, [
-                  _c("h4", [_vm._v("Ordina per media voti")]),
+                  _c("h5", [_vm._v("Filtra per media voti")]),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -40016,6 +40020,7 @@ var render = function () {
                           expression: "filterStar",
                         },
                       ],
+                      attrs: { disabled: !_vm.specToSearch },
                       on: {
                         change: [
                           function ($event) {
@@ -40047,7 +40052,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", [
-                  _c("h4", [_vm._v("Ordina per numero recensioni")]),
+                  _c("h5", [_vm._v("Filtra per numero recensioni")]),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -40060,6 +40065,7 @@ var render = function () {
                           expression: "filterReview",
                         },
                       ],
+                      attrs: { disabled: !_vm.specToSearch },
                       on: {
                         change: [
                           function ($event) {
@@ -41074,7 +41080,7 @@ var render = function () {
           _vm._v("\n        " + _vm._s(_vm.error) + "\n    "),
         ])
       : _c("h2", { staticClass: "text-center" }, [
-          _vm._v("\n        Cerca qualcosa!\n    "),
+          _vm._v("\n        Avvia una Ricerca!\n    "),
         ]),
     _vm._v(" "),
     _c(
