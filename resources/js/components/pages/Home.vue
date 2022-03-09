@@ -100,16 +100,18 @@
         />
       </div>
       <div class="navigation" >
-                    <button class="prev"
-                        @click="getDoctorsPremium(pagination.current - 1)"
-                        :disabled = "pagination.current === 1"
-                    ><i class="fas fa-arrow-left"></i></button>
+        <button class="prev"
+        @click="getDoctorsPremium(pagination.current - 1)"
+        :disabled = "pagination.current === 1">
+          <i class="fas fa-arrow-left"></i>
+        </button>
 
-                    <button class="next"
-                        @click="getDoctorsPremium(pagination.current + 1)"
-                        :disabled = "pagination.current === pagination.last"
-                    ><i class="fas fa-arrow-right"></i></button>
-                </div>
+        <button class="next"
+        @click="getDoctorsPremium(pagination.current + 1)"
+        :disabled = "pagination.current === pagination.last">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
     </div>
     <!-- //Dottori premium -->
 

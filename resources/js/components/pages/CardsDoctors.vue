@@ -25,14 +25,20 @@
                     <img class="img-fluid" :src="doctorInfo.photo">
                 </div>
                 <div class="team-content">
-                    <h3 class="name"> 
-                        {{doctorInfo.first_name}} {{doctorInfo.last_name}}
-                    </h3>
-                    <span class="my-2">
-                        <i class="fas fa-map-marker-alt mr-1"></i>
-                        {{doctorInfo.address}}
-                    </span>
-                    <h4 class="vote my-3">voto</h4>
+                    <h3 class="name"> {{doctorInfo.first_name}} {{doctorInfo.last_name}}</h3>
+                    <span class="my-2 address">{{doctorInfo.address}}</span>
+                    <h5 class="vote my-3" v-if="this.doctorInfo.reviews.length != 0">
+                        <i 
+                        v-for="(int, index) in 5" 
+                        :key="index" 
+                        class="fa-star"
+                        :class="index < calcAverage() ? 'fas' : 'far'"
+                        >
+                        </i>
+                    </h5>
+                    <h5 v-else class="no-vote">
+                        Vote: N/N
+                    </h5>
                 </div>
                 <div class="button-profile">
                     <router-link class="btn btn-doctors text-white" :to="{ name: 'DoctorPage' , params: { slug: doctorInfo.slug } }">
@@ -46,17 +52,21 @@
 
 <script>
 export default {
-    name: "card-doctorsDoctors",
+    name: "CardsDoctors",
     props: {
         doctorInfo: Object,
     },
-    methods: {
-        getAvgVote(){
-            for(var i = 0; i < this.doctorInfo.reviews.length; i++){
-                let vote = this.doctorInfo.reviews.vote;
-                console.log(vote);
 
+    methods: {
+        calcAverage() {
+            var total = 0,
+                length = this.doctorInfo.reviews.length;
+
+            for (var i = 0; i < length; i++) {
+                total += parseFloat(this.doctorInfo.reviews[i].vote);
             }
+
+            return parseInt(total / length);
         }
     }
 };
@@ -70,8 +80,8 @@ export default {
 //
 
 .card-doctor {
-  width: calc(100% / 4 - 20px) !important;
-  padding: 20px 0;
+    width: calc(100% / 4 - 20px) !important;
+  padding: 30px 0;
   margin: 10px;
   background-color: #f5f5f5;
   text-align: center;
@@ -83,6 +93,16 @@ export default {
   &:hover{
     box-shadow: 8px 18px 15px#b5b7b9;
   }
+    .no-vote{
+    font-size: 12px;
+    padding: 13px 0;
+    }
+    .name{
+    font-size: 22px;
+    }
+    .address{
+        font-size: 14px;
+    }
 }
 
 .card-doctor .picture {
@@ -145,8 +165,6 @@ export default {
     font-weight: 600;
 }
 
-
-
 .card-doctor .vote {
   display: block;
   font-size: 15px;
@@ -162,6 +180,7 @@ export default {
 .name{
     min-height: 70px;
 }
+
 
 
 

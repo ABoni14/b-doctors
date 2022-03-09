@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Performance;
 use Illuminate\Http\Request;
 use App\User;
 use App\Review;
@@ -63,8 +64,27 @@ class UserController extends Controller
     {
         $doctors = User::whereHas('premium_options' , function(Builder $query){
             $query->where('premium_option_id', '>', 1);
-        })->with('premium_options')->paginate(4);
+        })->with(['premium_options', 'reviews'])->paginate(4);
 
         return response()->json($doctors);
     }
+
+    public function getDoctorByPerformance($slug_performance){
+
+        $performance = Performance::where('slug', $slug_performance)->first();
+        $success = true;
+        $error = '';
+        if(!$performance){
+            $success = false;
+            $error = 'Performance inesistente';
+        }elseif($performance && count($performance['users']) === 0){
+            $success = false;
+            $error = 'Non ci sono dottori con queste performance';
+        }
+
+        return response()->json(compact('success', 'performance', 'error'));
+
+    }
+
+
 }
