@@ -2440,8 +2440,8 @@ __webpack_require__.r(__webpack_exports__);
       this.error = '';
       this.isLoading = true;
       axios.get(this.baseApi + this.spec + this.specToSearch).then(function (res) {
-        _this2.doctors = res.data.specialization.users;
-        _this2.doctorArrayDuplicate = res.data.specialization.users;
+        _this2.doctors = res.data.premium_users;
+        _this2.doctorArrayDuplicate = res.data.premium_users;
         _this2.error = res.data.error;
         _this2.isLoading = false;
       })["catch"](function (err) {
@@ -2454,7 +2454,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.error = '';
       axios.get(this.baseApi + this.spec + this.homeSpec).then(function (res) {
-        _this3.doctors = res.data.specialization.users;
+        _this3.doctors = res.data.premium_users;
         _this3.error = res.data.error;
       })["catch"](function (err) {
         console.error(err);

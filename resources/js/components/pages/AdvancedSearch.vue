@@ -145,8 +145,8 @@ export default {
             this.isLoading = true;
             axios.get(this.baseApi + this.spec + this.specToSearch)
             .then(res => {
-                this.doctors= res.data.specialization.users;
-                this.doctorArrayDuplicate= res.data.specialization.users;
+                this.doctors= res.data.premium_users;
+                this.doctorArrayDuplicate= res.data.premium_users;
                 this.error= res.data.error;
                 this.isLoading = false;
             })
@@ -161,7 +161,7 @@ export default {
             this.error = '';
             axios.get(this.baseApi + this.spec + this.homeSpec)
             .then(res => {
-                this.doctors= res.data.specialization.users;
+                this.doctors= res.data.premium_users;
                 this.error= res.data.error;
             })
             .catch(err =>{
@@ -187,7 +187,7 @@ export default {
         },
 
         filterNumberReview(){
-            
+
         }
     },
 
