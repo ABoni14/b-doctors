@@ -6,8 +6,8 @@
 <div class="container py-4 profile">
     <div class="profile-top d-flex justify-content-between align-items-center row">
         <div class=" col-sm-12 col-md-8">
-            <div class="d-flex">
-                <img class="" src="{{ $user->photo }}" alt="not-found" width="200px">
+            <div class="d-flex align-items-center">
+                <img class="mr-3 rounded-circle" src="{{ $user->photo }}" alt="not-found" width="200px">
                 <div>
                     <h2 class="font-weight-bolder">Dr. {{ $user->first_name }} {{ $user->last_name }}</h2>
                     <h5>
