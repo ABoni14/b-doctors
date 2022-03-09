@@ -109,16 +109,30 @@ module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/li
 
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
+var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
 var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
 var buildFullPath = __webpack_require__(/*! ../core/buildFullPath */ "./node_modules/axios/lib/core/buildFullPath.js");
 var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
 var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
 var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
+var Cancel = __webpack_require__(/*! ../cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
     var requestData = config.data;
     var requestHeaders = config.headers;
+    var responseType = config.responseType;
+    var onCanceled;
+    function done() {
+      if (config.cancelToken) {
+        config.cancelToken.unsubscribe(onCanceled);
+      }
+
+      if (config.signal) {
+        config.signal.removeEventListener('abort', onCanceled);
+      }
+    }
 
     if (utils.isFormData(requestData)) {
       delete requestHeaders['Content-Type']; // Let the browser set it
@@ -129,7 +143,7 @@ module.exports = function xhrAdapter(config) {
     // HTTP basic authentication
     if (config.auth) {
       var username = config.auth.username || '';
-      var password = config.auth.password || '';
+      var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : '';
       requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
     }
 
@@ -139,23 +153,14 @@ module.exports = function xhrAdapter(config) {
     // Set the request timeout in MS
     request.timeout = config.timeout;
 
-    // Listen for ready state
-    request.onreadystatechange = function handleLoad() {
-      if (!request || request.readyState !== 4) {
+    function onloadend() {
+      if (!request) {
         return;
       }
-
-      // The request errored out and we didn't get a response, this will be
-      // handled by onerror instead
-      // With one exception: request that using file: protocol, most browsers
-      // will return status as 0 even though it's a successful request
-      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
-        return;
-      }
-
       // Prepare the response
       var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var responseData = !responseType || responseType === 'text' ||  responseType === 'json' ?
+        request.responseText : request.response;
       var response = {
         data: responseData,
         status: request.status,
@@ -165,11 +170,40 @@ module.exports = function xhrAdapter(config) {
         request: request
       };
 
-      settle(resolve, reject, response);
+      settle(function _resolve(value) {
+        resolve(value);
+        done();
+      }, function _reject(err) {
+        reject(err);
+        done();
+      }, response);
 
       // Clean up request
       request = null;
-    };
+    }
+
+    if ('onloadend' in request) {
+      // Use onloadend if available
+      request.onloadend = onloadend;
+    } else {
+      // Listen for ready state to emulate onloadend
+      request.onreadystatechange = function handleLoad() {
+        if (!request || request.readyState !== 4) {
+          return;
+        }
+
+        // The request errored out and we didn't get a response, this will be
+        // handled by onerror instead
+        // With one exception: request that using file: protocol, most browsers
+        // will return status as 0 even though it's a successful request
+        if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+          return;
+        }
+        // readystate handler is calling before onerror or ontimeout handlers,
+        // so we should call onloadend on the next 'tick'
+        setTimeout(onloadend);
+      };
+    }
 
     // Handle browser request cancellation (as opposed to a manual cancellation)
     request.onabort = function handleAbort() {
@@ -195,11 +229,15 @@ module.exports = function xhrAdapter(config) {
 
     // Handle timeout
     request.ontimeout = function handleTimeout() {
-      var timeoutErrorMessage = 'timeout of ' + config.timeout + 'ms exceeded';
+      var timeoutErrorMessage = config.timeout ? 'timeout of ' + config.timeout + 'ms exceeded' : 'timeout exceeded';
+      var transitional = config.transitional || defaults.transitional;
       if (config.timeoutErrorMessage) {
         timeoutErrorMessage = config.timeoutErrorMessage;
       }
-      reject(createError(timeoutErrorMessage, config, 'ECONNABORTED',
+      reject(createError(
+        timeoutErrorMessage,
+        config,
+        transitional.clarifyTimeoutError ? 'ETIMEDOUT' : 'ECONNABORTED',
         request));
 
       // Clean up request
@@ -210,8 +248,6 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
-
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
         cookies.read(config.xsrfCookieName) :
@@ -241,16 +277,8 @@ module.exports = function xhrAdapter(config) {
     }
 
     // Add responseType to request if needed
-    if (config.responseType) {
-      try {
-        request.responseType = config.responseType;
-      } catch (e) {
-        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
-        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
-        if (config.responseType !== 'json') {
-          throw e;
-        }
-      }
+    if (responseType && responseType !== 'json') {
+      request.responseType = config.responseType;
     }
 
     // Handle progress if needed
@@ -263,21 +291,25 @@ module.exports = function xhrAdapter(config) {
       request.upload.addEventListener('progress', config.onUploadProgress);
     }
 
-    if (config.cancelToken) {
+    if (config.cancelToken || config.signal) {
       // Handle cancellation
-      config.cancelToken.promise.then(function onCanceled(cancel) {
+      // eslint-disable-next-line func-names
+      onCanceled = function(cancel) {
         if (!request) {
           return;
         }
-
+        reject(!cancel || (cancel && cancel.type) ? new Cancel('canceled') : cancel);
         request.abort();
-        reject(cancel);
-        // Clean up request
         request = null;
-      });
+      };
+
+      config.cancelToken && config.cancelToken.subscribe(onCanceled);
+      if (config.signal) {
+        config.signal.aborted ? onCanceled() : config.signal.addEventListener('abort', onCanceled);
+      }
     }
 
-    if (requestData === undefined) {
+    if (!requestData) {
       requestData = null;
     }
 
@@ -321,6 +353,11 @@ function createInstance(defaultConfig) {
   // Copy context to instance
   utils.extend(instance, context);
 
+  // Factory for creating new instances
+  instance.create = function create(instanceConfig) {
+    return createInstance(mergeConfig(defaultConfig, instanceConfig));
+  };
+
   return instance;
 }
 
@@ -330,21 +367,20 @@ var axios = createInstance(defaults);
 // Expose Axios class to allow class inheritance
 axios.Axios = Axios;
 
-// Factory for creating new instances
-axios.create = function create(instanceConfig) {
-  return createInstance(mergeConfig(axios.defaults, instanceConfig));
-};
-
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/axios/lib/cancel/CancelToken.js");
 axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+axios.VERSION = __webpack_require__(/*! ./env/data */ "./node_modules/axios/lib/env/data.js").version;
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
 axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
+
+// Expose isAxiosError
+axios.isAxiosError = __webpack_require__(/*! ./helpers/isAxiosError */ "./node_modules/axios/lib/helpers/isAxiosError.js");
 
 module.exports = axios;
 
@@ -409,11 +445,42 @@ function CancelToken(executor) {
   }
 
   var resolvePromise;
+
   this.promise = new Promise(function promiseExecutor(resolve) {
     resolvePromise = resolve;
   });
 
   var token = this;
+
+  // eslint-disable-next-line func-names
+  this.promise.then(function(cancel) {
+    if (!token._listeners) return;
+
+    var i;
+    var l = token._listeners.length;
+
+    for (i = 0; i < l; i++) {
+      token._listeners[i](cancel);
+    }
+    token._listeners = null;
+  });
+
+  // eslint-disable-next-line func-names
+  this.promise.then = function(onfulfilled) {
+    var _resolve;
+    // eslint-disable-next-line func-names
+    var promise = new Promise(function(resolve) {
+      token.subscribe(resolve);
+      _resolve = resolve;
+    }).then(onfulfilled);
+
+    promise.cancel = function reject() {
+      token.unsubscribe(_resolve);
+    };
+
+    return promise;
+  };
+
   executor(function cancel(message) {
     if (token.reason) {
       // Cancellation has already been requested
@@ -431,6 +498,37 @@ function CancelToken(executor) {
 CancelToken.prototype.throwIfRequested = function throwIfRequested() {
   if (this.reason) {
     throw this.reason;
+  }
+};
+
+/**
+ * Subscribe to the cancel signal
+ */
+
+CancelToken.prototype.subscribe = function subscribe(listener) {
+  if (this.reason) {
+    listener(this.reason);
+    return;
+  }
+
+  if (this._listeners) {
+    this._listeners.push(listener);
+  } else {
+    this._listeners = [listener];
+  }
+};
+
+/**
+ * Unsubscribe from the cancel signal
+ */
+
+CancelToken.prototype.unsubscribe = function unsubscribe(listener) {
+  if (!this._listeners) {
+    return;
+  }
+  var index = this._listeners.indexOf(listener);
+  if (index !== -1) {
+    this._listeners.splice(index, 1);
   }
 };
 
@@ -486,7 +584,9 @@ var buildURL = __webpack_require__(/*! ../helpers/buildURL */ "./node_modules/ax
 var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
 var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
 var mergeConfig = __webpack_require__(/*! ./mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
+var validator = __webpack_require__(/*! ../helpers/validator */ "./node_modules/axios/lib/helpers/validator.js");
 
+var validators = validator.validators;
 /**
  * Create a new instance of Axios
  *
@@ -505,14 +605,14 @@ function Axios(instanceConfig) {
  *
  * @param {Object} config The config specific for this request (merged with this.defaults)
  */
-Axios.prototype.request = function request(config) {
+Axios.prototype.request = function request(configOrUrl, config) {
   /*eslint no-param-reassign:0*/
   // Allow for axios('example/url'[, config]) a la fetch API
-  if (typeof config === 'string') {
-    config = arguments[1] || {};
-    config.url = arguments[0];
-  } else {
+  if (typeof configOrUrl === 'string') {
     config = config || {};
+    config.url = configOrUrl;
+  } else {
+    config = configOrUrl || {};
   }
 
   config = mergeConfig(this.defaults, config);
@@ -526,20 +626,71 @@ Axios.prototype.request = function request(config) {
     config.method = 'get';
   }
 
-  // Hook up interceptors middleware
-  var chain = [dispatchRequest, undefined];
-  var promise = Promise.resolve(config);
+  var transitional = config.transitional;
 
+  if (transitional !== undefined) {
+    validator.assertOptions(transitional, {
+      silentJSONParsing: validators.transitional(validators.boolean),
+      forcedJSONParsing: validators.transitional(validators.boolean),
+      clarifyTimeoutError: validators.transitional(validators.boolean)
+    }, false);
+  }
+
+  // filter out skipped interceptors
+  var requestInterceptorChain = [];
+  var synchronousRequestInterceptors = true;
   this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+    if (typeof interceptor.runWhen === 'function' && interceptor.runWhen(config) === false) {
+      return;
+    }
+
+    synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
+
+    requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
   });
 
+  var responseInterceptorChain = [];
   this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-    chain.push(interceptor.fulfilled, interceptor.rejected);
+    responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
   });
 
-  while (chain.length) {
-    promise = promise.then(chain.shift(), chain.shift());
+  var promise;
+
+  if (!synchronousRequestInterceptors) {
+    var chain = [dispatchRequest, undefined];
+
+    Array.prototype.unshift.apply(chain, requestInterceptorChain);
+    chain = chain.concat(responseInterceptorChain);
+
+    promise = Promise.resolve(config);
+    while (chain.length) {
+      promise = promise.then(chain.shift(), chain.shift());
+    }
+
+    return promise;
+  }
+
+
+  var newConfig = config;
+  while (requestInterceptorChain.length) {
+    var onFulfilled = requestInterceptorChain.shift();
+    var onRejected = requestInterceptorChain.shift();
+    try {
+      newConfig = onFulfilled(newConfig);
+    } catch (error) {
+      onRejected(error);
+      break;
+    }
+  }
+
+  try {
+    promise = dispatchRequest(newConfig);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+
+  while (responseInterceptorChain.length) {
+    promise = promise.then(responseInterceptorChain.shift(), responseInterceptorChain.shift());
   }
 
   return promise;
@@ -554,9 +705,10 @@ Axios.prototype.getUri = function getUri(config) {
 utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
   /*eslint func-names:0*/
   Axios.prototype[method] = function(url, config) {
-    return this.request(utils.merge(config || {}, {
+    return this.request(mergeConfig(config || {}, {
       method: method,
-      url: url
+      url: url,
+      data: (config || {}).data
     }));
   };
 });
@@ -564,7 +716,7 @@ utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData
 utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
   /*eslint func-names:0*/
   Axios.prototype[method] = function(url, data, config) {
-    return this.request(utils.merge(config || {}, {
+    return this.request(mergeConfig(config || {}, {
       method: method,
       url: url,
       data: data
@@ -601,10 +753,12 @@ function InterceptorManager() {
  *
  * @return {Number} An ID used to remove interceptor later
  */
-InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+InterceptorManager.prototype.use = function use(fulfilled, rejected, options) {
   this.handlers.push({
     fulfilled: fulfilled,
-    rejected: rejected
+    rejected: rejected,
+    synchronous: options ? options.synchronous : false,
+    runWhen: options ? options.runWhen : null
   });
   return this.handlers.length - 1;
 };
@@ -717,6 +871,7 @@ var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/util
 var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
 var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
 var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
+var Cancel = __webpack_require__(/*! ../cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -724,6 +879,10 @@ var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/
 function throwIfCancellationRequested(config) {
   if (config.cancelToken) {
     config.cancelToken.throwIfRequested();
+  }
+
+  if (config.signal && config.signal.aborted) {
+    throw new Cancel('canceled');
   }
 }
 
@@ -740,7 +899,8 @@ module.exports = function dispatchRequest(config) {
   config.headers = config.headers || {};
 
   // Transform request data
-  config.data = transformData(
+  config.data = transformData.call(
+    config,
     config.data,
     config.headers,
     config.transformRequest
@@ -766,7 +926,8 @@ module.exports = function dispatchRequest(config) {
     throwIfCancellationRequested(config);
 
     // Transform response data
-    response.data = transformData(
+    response.data = transformData.call(
+      config,
       response.data,
       response.headers,
       config.transformResponse
@@ -779,7 +940,8 @@ module.exports = function dispatchRequest(config) {
 
       // Transform response data
       if (reason && reason.response) {
-        reason.response.data = transformData(
+        reason.response.data = transformData.call(
+          config,
           reason.response.data,
           reason.response.headers,
           config.transformResponse
@@ -824,7 +986,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
   error.response = response;
   error.isAxiosError = true;
 
-  error.toJSON = function() {
+  error.toJSON = function toJSON() {
     return {
       // Standard
       message: this.message,
@@ -839,7 +1001,8 @@ module.exports = function enhanceError(error, config, code, request, response) {
       stack: this.stack,
       // Axios
       config: this.config,
-      code: this.code
+      code: this.code,
+      status: this.response && this.response.status ? this.response.status : null
     };
   };
   return error;
@@ -873,58 +1036,84 @@ module.exports = function mergeConfig(config1, config2) {
   config2 = config2 || {};
   var config = {};
 
-  var valueFromConfig2Keys = ['url', 'method', 'params', 'data'];
-  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy'];
-  var defaultToConfig2Keys = [
-    'baseURL', 'url', 'transformRequest', 'transformResponse', 'paramsSerializer',
-    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
-    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress',
-    'maxContentLength', 'validateStatus', 'maxRedirects', 'httpAgent',
-    'httpsAgent', 'cancelToken', 'socketPath'
-  ];
-
-  utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
-    if (typeof config2[prop] !== 'undefined') {
-      config[prop] = config2[prop];
+  function getMergedValue(target, source) {
+    if (utils.isPlainObject(target) && utils.isPlainObject(source)) {
+      return utils.merge(target, source);
+    } else if (utils.isPlainObject(source)) {
+      return utils.merge({}, source);
+    } else if (utils.isArray(source)) {
+      return source.slice();
     }
-  });
+    return source;
+  }
 
-  utils.forEach(mergeDeepPropertiesKeys, function mergeDeepProperties(prop) {
-    if (utils.isObject(config2[prop])) {
-      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
-    } else if (typeof config2[prop] !== 'undefined') {
-      config[prop] = config2[prop];
-    } else if (utils.isObject(config1[prop])) {
-      config[prop] = utils.deepMerge(config1[prop]);
-    } else if (typeof config1[prop] !== 'undefined') {
-      config[prop] = config1[prop];
+  // eslint-disable-next-line consistent-return
+  function mergeDeepProperties(prop) {
+    if (!utils.isUndefined(config2[prop])) {
+      return getMergedValue(config1[prop], config2[prop]);
+    } else if (!utils.isUndefined(config1[prop])) {
+      return getMergedValue(undefined, config1[prop]);
     }
-  });
+  }
 
-  utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
-    if (typeof config2[prop] !== 'undefined') {
-      config[prop] = config2[prop];
-    } else if (typeof config1[prop] !== 'undefined') {
-      config[prop] = config1[prop];
+  // eslint-disable-next-line consistent-return
+  function valueFromConfig2(prop) {
+    if (!utils.isUndefined(config2[prop])) {
+      return getMergedValue(undefined, config2[prop]);
     }
-  });
+  }
 
-  var axiosKeys = valueFromConfig2Keys
-    .concat(mergeDeepPropertiesKeys)
-    .concat(defaultToConfig2Keys);
-
-  var otherKeys = Object
-    .keys(config2)
-    .filter(function filterAxiosKeys(key) {
-      return axiosKeys.indexOf(key) === -1;
-    });
-
-  utils.forEach(otherKeys, function otherKeysDefaultToConfig2(prop) {
-    if (typeof config2[prop] !== 'undefined') {
-      config[prop] = config2[prop];
-    } else if (typeof config1[prop] !== 'undefined') {
-      config[prop] = config1[prop];
+  // eslint-disable-next-line consistent-return
+  function defaultToConfig2(prop) {
+    if (!utils.isUndefined(config2[prop])) {
+      return getMergedValue(undefined, config2[prop]);
+    } else if (!utils.isUndefined(config1[prop])) {
+      return getMergedValue(undefined, config1[prop]);
     }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function mergeDirectKeys(prop) {
+    if (prop in config2) {
+      return getMergedValue(config1[prop], config2[prop]);
+    } else if (prop in config1) {
+      return getMergedValue(undefined, config1[prop]);
+    }
+  }
+
+  var mergeMap = {
+    'url': valueFromConfig2,
+    'method': valueFromConfig2,
+    'data': valueFromConfig2,
+    'baseURL': defaultToConfig2,
+    'transformRequest': defaultToConfig2,
+    'transformResponse': defaultToConfig2,
+    'paramsSerializer': defaultToConfig2,
+    'timeout': defaultToConfig2,
+    'timeoutMessage': defaultToConfig2,
+    'withCredentials': defaultToConfig2,
+    'adapter': defaultToConfig2,
+    'responseType': defaultToConfig2,
+    'xsrfCookieName': defaultToConfig2,
+    'xsrfHeaderName': defaultToConfig2,
+    'onUploadProgress': defaultToConfig2,
+    'onDownloadProgress': defaultToConfig2,
+    'decompress': defaultToConfig2,
+    'maxContentLength': defaultToConfig2,
+    'maxBodyLength': defaultToConfig2,
+    'transport': defaultToConfig2,
+    'httpAgent': defaultToConfig2,
+    'httpsAgent': defaultToConfig2,
+    'cancelToken': defaultToConfig2,
+    'socketPath': defaultToConfig2,
+    'responseEncoding': defaultToConfig2,
+    'validateStatus': mergeDirectKeys
+  };
+
+  utils.forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
+    var merge = mergeMap[prop] || mergeDeepProperties;
+    var configValue = merge(prop);
+    (utils.isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
   });
 
   return config;
@@ -954,7 +1143,7 @@ var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios
  */
 module.exports = function settle(resolve, reject, response) {
   var validateStatus = response.config.validateStatus;
-  if (!validateStatus || validateStatus(response.status)) {
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
     reject(createError(
@@ -981,6 +1170,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var defaults = __webpack_require__(/*! ./../defaults */ "./node_modules/axios/lib/defaults.js");
 
 /**
  * Transform the data for a request or a response
@@ -991,9 +1181,10 @@ var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/util
  * @returns {*} The resulting transformed data
  */
 module.exports = function transformData(data, headers, fns) {
+  var context = this || defaults;
   /*eslint no-param-reassign:0*/
   utils.forEach(fns, function transform(fn) {
-    data = fn(data, headers);
+    data = fn.call(context, data, headers);
   });
 
   return data;
@@ -1014,6 +1205,7 @@ module.exports = function transformData(data, headers, fns) {
 
 var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
 var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ "./node_modules/axios/lib/helpers/normalizeHeaderName.js");
+var enhanceError = __webpack_require__(/*! ./core/enhanceError */ "./node_modules/axios/lib/core/enhanceError.js");
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -1037,12 +1229,35 @@ function getDefaultAdapter() {
   return adapter;
 }
 
+function stringifySafely(rawValue, parser, encoder) {
+  if (utils.isString(rawValue)) {
+    try {
+      (parser || JSON.parse)(rawValue);
+      return utils.trim(rawValue);
+    } catch (e) {
+      if (e.name !== 'SyntaxError') {
+        throw e;
+      }
+    }
+  }
+
+  return (encoder || JSON.stringify)(rawValue);
+}
+
 var defaults = {
+
+  transitional: {
+    silentJSONParsing: true,
+    forcedJSONParsing: true,
+    clarifyTimeoutError: false
+  },
+
   adapter: getDefaultAdapter(),
 
   transformRequest: [function transformRequest(data, headers) {
     normalizeHeaderName(headers, 'Accept');
     normalizeHeaderName(headers, 'Content-Type');
+
     if (utils.isFormData(data) ||
       utils.isArrayBuffer(data) ||
       utils.isBuffer(data) ||
@@ -1059,20 +1274,32 @@ var defaults = {
       setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
       return data.toString();
     }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
+    if (utils.isObject(data) || (headers && headers['Content-Type'] === 'application/json')) {
+      setContentTypeIfUnset(headers, 'application/json');
+      return stringifySafely(data);
     }
     return data;
   }],
 
   transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
+    var transitional = this.transitional || defaults.transitional;
+    var silentJSONParsing = transitional && transitional.silentJSONParsing;
+    var forcedJSONParsing = transitional && transitional.forcedJSONParsing;
+    var strictJSONParsing = !silentJSONParsing && this.responseType === 'json';
+
+    if (strictJSONParsing || (forcedJSONParsing && utils.isString(data) && data.length)) {
       try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
+        return JSON.parse(data);
+      } catch (e) {
+        if (strictJSONParsing) {
+          if (e.name === 'SyntaxError') {
+            throw enhanceError(e, this, 'E_JSON_PARSE');
+          }
+          throw e;
+        }
+      }
     }
+
     return data;
   }],
 
@@ -1086,15 +1313,16 @@ var defaults = {
   xsrfHeaderName: 'X-XSRF-TOKEN',
 
   maxContentLength: -1,
+  maxBodyLength: -1,
 
   validateStatus: function validateStatus(status) {
     return status >= 200 && status < 300;
-  }
-};
+  },
 
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
+  headers: {
+    common: {
+      'Accept': 'application/json, text/plain, */*'
+    }
   }
 };
 
@@ -1109,6 +1337,19 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/env/data.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/env/data.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  "version": "0.26.0"
+};
 
 /***/ }),
 
@@ -1149,7 +1390,6 @@ var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/util
 
 function encode(val) {
   return encodeURIComponent(val).
-    replace(/%40/gi, '@').
     replace(/%3A/gi, ':').
     replace(/%24/g, '$').
     replace(/%2C/gi, ',').
@@ -1329,7 +1569,32 @@ module.exports = function isAbsoluteURL(url) {
   // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
   // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
   // by any combination of letters, digits, plus, period, or hyphen.
-  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+  return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+module.exports = function isAxiosError(payload) {
+  return utils.isObject(payload) && (payload.isAxiosError === true);
 };
 
 
@@ -1543,6 +1808,100 @@ module.exports = function spread(callback) {
 
 /***/ }),
 
+/***/ "./node_modules/axios/lib/helpers/validator.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/validator.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var VERSION = __webpack_require__(/*! ../env/data */ "./node_modules/axios/lib/env/data.js").version;
+
+var validators = {};
+
+// eslint-disable-next-line func-names
+['object', 'boolean', 'number', 'function', 'string', 'symbol'].forEach(function(type, i) {
+  validators[type] = function validator(thing) {
+    return typeof thing === type || 'a' + (i < 1 ? 'n ' : ' ') + type;
+  };
+});
+
+var deprecatedWarnings = {};
+
+/**
+ * Transitional option validator
+ * @param {function|boolean?} validator - set to false if the transitional option has been removed
+ * @param {string?} version - deprecated version / removed since version
+ * @param {string?} message - some message with additional info
+ * @returns {function}
+ */
+validators.transitional = function transitional(validator, version, message) {
+  function formatMessage(opt, desc) {
+    return '[Axios v' + VERSION + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
+  }
+
+  // eslint-disable-next-line func-names
+  return function(value, opt, opts) {
+    if (validator === false) {
+      throw new Error(formatMessage(opt, ' has been removed' + (version ? ' in ' + version : '')));
+    }
+
+    if (version && !deprecatedWarnings[opt]) {
+      deprecatedWarnings[opt] = true;
+      // eslint-disable-next-line no-console
+      console.warn(
+        formatMessage(
+          opt,
+          ' has been deprecated since v' + version + ' and will be removed in the near future'
+        )
+      );
+    }
+
+    return validator ? validator(value, opt, opts) : true;
+  };
+};
+
+/**
+ * Assert object's properties type
+ * @param {object} options
+ * @param {object} schema
+ * @param {boolean?} allowUnknown
+ */
+
+function assertOptions(options, schema, allowUnknown) {
+  if (typeof options !== 'object') {
+    throw new TypeError('options must be an object');
+  }
+  var keys = Object.keys(options);
+  var i = keys.length;
+  while (i-- > 0) {
+    var opt = keys[i];
+    var validator = schema[opt];
+    if (validator) {
+      var value = options[opt];
+      var result = value === undefined || validator(value, opt, options);
+      if (result !== true) {
+        throw new TypeError('option ' + opt + ' must be ' + result);
+      }
+      continue;
+    }
+    if (allowUnknown !== true) {
+      throw Error('Unknown option ' + opt);
+    }
+  }
+}
+
+module.exports = {
+  assertOptions: assertOptions,
+  validators: validators
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/lib/utils.js":
 /*!*****************************************!*\
   !*** ./node_modules/axios/lib/utils.js ***!
@@ -1555,8 +1914,6 @@ module.exports = function spread(callback) {
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
 
-/*global toString:true*/
-
 // utils is a library of generic helper functions non-specific to axios
 
 var toString = Object.prototype.toString;
@@ -1568,7 +1925,7 @@ var toString = Object.prototype.toString;
  * @returns {boolean} True if value is an Array, otherwise false
  */
 function isArray(val) {
-  return toString.call(val) === '[object Array]';
+  return Array.isArray(val);
 }
 
 /**
@@ -1609,7 +1966,7 @@ function isArrayBuffer(val) {
  * @returns {boolean} True if value is an FormData, otherwise false
  */
 function isFormData(val) {
-  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+  return toString.call(val) === '[object FormData]';
 }
 
 /**
@@ -1623,7 +1980,7 @@ function isArrayBufferView(val) {
   if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
     result = ArrayBuffer.isView(val);
   } else {
-    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+    result = (val) && (val.buffer) && (isArrayBuffer(val.buffer));
   }
   return result;
 }
@@ -1656,6 +2013,21 @@ function isNumber(val) {
  */
 function isObject(val) {
   return val !== null && typeof val === 'object';
+}
+
+/**
+ * Determine if a value is a plain Object
+ *
+ * @param {Object} val The value to test
+ * @return {boolean} True if value is a plain Object, otherwise false
+ */
+function isPlainObject(val) {
+  if (toString.call(val) !== '[object Object]') {
+    return false;
+  }
+
+  var prototype = Object.getPrototypeOf(val);
+  return prototype === null || prototype === Object.prototype;
 }
 
 /**
@@ -1715,7 +2087,7 @@ function isStream(val) {
  * @returns {boolean} True if value is a URLSearchParams object, otherwise false
  */
 function isURLSearchParams(val) {
-  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+  return toString.call(val) === '[object URLSearchParams]';
 }
 
 /**
@@ -1725,7 +2097,7 @@ function isURLSearchParams(val) {
  * @returns {String} The String freed of excess whitespace
  */
 function trim(str) {
-  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+  return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, '');
 }
 
 /**
@@ -1814,34 +2186,12 @@ function forEach(obj, fn) {
 function merge(/* obj1, obj2, obj3, ... */) {
   var result = {};
   function assignValue(val, key) {
-    if (typeof result[key] === 'object' && typeof val === 'object') {
+    if (isPlainObject(result[key]) && isPlainObject(val)) {
       result[key] = merge(result[key], val);
-    } else {
-      result[key] = val;
-    }
-  }
-
-  for (var i = 0, l = arguments.length; i < l; i++) {
-    forEach(arguments[i], assignValue);
-  }
-  return result;
-}
-
-/**
- * Function equal to merge with the difference being that no reference
- * to original objects is kept.
- *
- * @see merge
- * @param {Object} obj1 Object to merge
- * @returns {Object} Result of all merge properties
- */
-function deepMerge(/* obj1, obj2, obj3, ... */) {
-  var result = {};
-  function assignValue(val, key) {
-    if (typeof result[key] === 'object' && typeof val === 'object') {
-      result[key] = deepMerge(result[key], val);
-    } else if (typeof val === 'object') {
-      result[key] = deepMerge({}, val);
+    } else if (isPlainObject(val)) {
+      result[key] = merge({}, val);
+    } else if (isArray(val)) {
+      result[key] = val.slice();
     } else {
       result[key] = val;
     }
@@ -1872,6 +2222,19 @@ function extend(a, b, thisArg) {
   return a;
 }
 
+/**
+ * Remove byte order marker. This catches EF BB BF (the UTF-8 BOM)
+ *
+ * @param {string} content with BOM
+ * @return {string} content value without BOM
+ */
+function stripBOM(content) {
+  if (content.charCodeAt(0) === 0xFEFF) {
+    content = content.slice(1);
+  }
+  return content;
+}
+
 module.exports = {
   isArray: isArray,
   isArrayBuffer: isArrayBuffer,
@@ -1881,6 +2244,7 @@ module.exports = {
   isString: isString,
   isNumber: isNumber,
   isObject: isObject,
+  isPlainObject: isPlainObject,
   isUndefined: isUndefined,
   isDate: isDate,
   isFile: isFile,
@@ -1891,9 +2255,9 @@ module.exports = {
   isStandardBrowserEnv: isStandardBrowserEnv,
   forEach: forEach,
   merge: merge,
-  deepMerge: deepMerge,
   extend: extend,
-  trim: trim
+  trim: trim,
+  stripBOM: stripBOM
 };
 
 
@@ -2081,6 +2445,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7628,7 +7998,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".advanced-search[data-v-781a2080] {\n  padding-bottom: 150px;\n}\n.advanced-search .container .container-img[data-v-781a2080] {\n  height: 350px;\n  width: 600px;\n}\n.advanced-search .container .container-img img[data-v-781a2080] {\n  height: 100%;\n  width: 100%;\n}\n.advanced-search .container #specializations[data-v-781a2080] {\n  width: 80%;\n  border-radius: 10px;\n  padding: 5px 15px;\n  border: 1px solid lightskyblue;\n}\n.advanced-search .container #specializations[data-v-781a2080]:focus, .advanced-search .container #specializations[data-v-781a2080]:focus-visible {\n  border: 2px solid lightskyblue !important;\n  outline: 2px solid lightskyblue !important;\n}", ""]);
+exports.push([module.i, ".advanced-search[data-v-781a2080] {\n  padding-bottom: 80px;\n}\n.advanced-search .container .container-img[data-v-781a2080] {\n  height: 350px;\n  width: 600px;\n}\n.advanced-search .container .container-img img[data-v-781a2080] {\n  height: 100%;\n  width: 100%;\n}\n.advanced-search .container #specializations[data-v-781a2080] {\n  width: 80%;\n  border-radius: 10px;\n  padding: 5px 15px;\n  border: 1px solid lightskyblue;\n}\n.advanced-search .container #specializations[data-v-781a2080]:focus, .advanced-search .container #specializations[data-v-781a2080]:focus-visible {\n  border: 2px solid lightskyblue !important;\n  outline: 2px solid lightskyblue !important;\n}", ""]);
 
 // exports
 
@@ -7647,7 +8017,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".card-doctor[data-v-57578267] {\n  width: calc(25% - 20px) !important;\n  padding: 20px 0;\n  margin: 10px;\n  background-color: #f5f5f5;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n  border-radius: 10px;\n  box-shadow: 3px 10px 10px #b5b7b9;\n  transition: all 0.5s ease 0s;\n}\n.card-doctor[data-v-57578267]:hover {\n  box-shadow: 8px 18px 15px #b5b7b9;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #00234b;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.9;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #00234b;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  transform: scale(0.85);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  transition: all 0.7s;\n  background-color: #fff04b;\n  color: #00234b !important;\n  font-weight: 600;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #00234b;\n}\n.name[data-v-57578267] {\n  min-height: 70px;\n}", ""]);
+exports.push([module.i, ".card-doctor[data-v-57578267] {\n  width: calc(25% - 20px) !important;\n  padding: 30px 0;\n  margin: 10px;\n  background-color: #f5f5f5;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n  border-radius: 10px;\n  box-shadow: 3px 10px 10px #b5b7b9;\n  transition: all 0.5s ease 0s;\n}\n.card-doctor[data-v-57578267]:hover {\n  box-shadow: 8px 18px 15px #b5b7b9;\n}\n.card-doctor .no-vote[data-v-57578267] {\n  font-size: 12px;\n  padding: 13px 0;\n}\n.card-doctor .name[data-v-57578267] {\n  font-size: 22px;\n}\n.card-doctor .address[data-v-57578267] {\n  font-size: 14px;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #00234b;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.9;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #00234b;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  transform: scale(0.85);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  transition: all 0.7s;\n  background-color: #fff04b;\n  color: #00234b !important;\n  font-weight: 600;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #00234b;\n}\n.name[data-v-57578267] {\n  min-height: 70px;\n}", ""]);
 
 // exports
 
@@ -7685,7 +8055,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: #1f87ff;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  -o-object-fit: cover;\n     object-fit: cover;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #006deb;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #6bb0ff;\n  color: white;\n  border-radius: 0 10px 10px 0;\n  background-color: #6bb0ff;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}\n.home .title-premium[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .navigation[data-v-a9aac016] {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.home .navigation button[data-v-a9aac016] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: white;\n  border: 1px solid #6bb0ff;\n  margin: 20px 0;\n  border-radius: 0px 10px 10px 0;\n  color: #1369ce;\n}\n.home .navigation button[data-v-a9aac016]:disabled {\n  color: lightgrey;\n}\n.home .navigation button i[data-v-a9aac016] {\n  padding: 15px;\n  font-size: 20px;\n}\n.home .navigation button.prev[data-v-a9aac016] {\n  border-radius: 15px 0 0 15px;\n}\n.home .navigation button.next[data-v-a9aac016] {\n  border-radius: 0 15px 15px 0;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 0%, #d1e6ff 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #6bb0ff;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #d1e6ff;\n  box-shadow: 10px 10px 5px #b8d9ff;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #3895ff;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #6bb0ff;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #ebf4ff;\n  box-shadow: 10px 10px 5px #d1e6ff;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #6bb0ff;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #6bb0ff;\n  border-color: #6bb0ff;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #3895ff;\n  border-color: #3895ff;\n  color: white;\n}", ""]);
+exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: black;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  -o-object-fit: cover;\n     object-fit: cover;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: black;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #00234b;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #fff04b;\n  color: #00234b;\n  border-radius: 0 10px 10px 0;\n  background-color: #fff04b;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #fff04b;\n  border-color: #fff04b;\n  color: #00234b;\n}\n.home .title-premium[data-v-a9aac016] {\n  color: #00234b;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .navigation[data-v-a9aac016] {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.home .navigation button[data-v-a9aac016] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: white;\n  border: 1px solid #00234b;\n  margin: 20px 0;\n  border-radius: 0px 10px 10px 0;\n  color: #1369ce;\n}\n.home .navigation button[data-v-a9aac016]:disabled {\n  color: lightgrey;\n}\n.home .navigation button i[data-v-a9aac016] {\n  padding: 15px;\n  font-size: 20px;\n}\n.home .navigation button.prev[data-v-a9aac016] {\n  border-radius: 15px 0 0 15px;\n}\n.home .navigation button.next[data-v-a9aac016] {\n  border-radius: 0 15px 15px 0;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #FFFFFF 10%, #d6e5f3 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #00234b;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  border: 2px solid #0053b1;\n  box-shadow: 10px 10px 5px #004798;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: black;\n  font-size: 16px;\n  color: #000b18;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: black;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #00234b;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 300px;\n  width: 475px;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #d6e5f3;\n  box-shadow: 10px 10px 5px lightgrey;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #00234b;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #00234b;\n  border-color: #00234b;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #000b18;\n  border-color: #000b18;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -7704,7 +8074,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".pulse[data-v-b393ccae] {\n  padding-top: 80px;\n  height: 100px;\n  width: 200px;\n  overflow: hidden;\n  margin: auto;\n}\n.pulse[data-v-b393ccae]:after {\n  content: \"\";\n  display: block;\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 200px 100px\" enable-background=\"new 0 0 200px 100px\" xml:space=\"preserve\"><polyline fill=\"none\" stroke-width=\"3px\" stroke=\"lightskyblue\" points=\"2.4,58.7 70.8,58.7 76.1,46.2 81.1,58.7 89.9,58.7 93.8,66.5 102.8,22.7 110.6,78.7 115.3,58.7 126.4,58.7 134.4,54.7 142.4,58.7 197.8,58.7 \"/></svg>') 0 0 no-repeat;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  -webkit-animation: 2s pulse-data-v-b393ccae linear infinite;\n  animation: 2s pulse-data-v-b393ccae linear infinite;\n  clip: rect(0, 0, 100px, 0);\n}\n.pulse[data-v-b393ccae]:before {\n  content: \"\";\n  position: absolute;\n  z-index: -1;\n  left: 2px;\n  right: 2px;\n  bottom: 0;\n  top: 16px;\n  margin: auto;\n  height: 3px;\n}\n@-webkit-keyframes pulse-data-v-b393ccae {\n0% {\n    clip: rect(0, 0, 100px, 0);\n    opacity: 0.4;\n}\n4% {\n    clip: rect(0, 66.66667px, 100px, 0);\n    opacity: 0.6;\n}\n15% {\n    clip: rect(0, 133.33333px, 100px, 0);\n    opacity: 0.8;\n}\n20% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 1;\n}\n80% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n90% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n100% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n}\n@keyframes pulse-data-v-b393ccae {\n0% {\n    clip: rect(0, 0, 100px, 0);\n}\n4% {\n    clip: rect(0, 66.66667px, 100px, 0);\n}\n15% {\n    clip: rect(0, 133.33333px, 100px, 0);\n}\n20% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 1;\n}\n80% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n90% {\n    opacity: 0;\n}\n100% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n}", ""]);
+exports.push([module.i, ".pulse[data-v-b393ccae] {\n  padding: 150px 0;\n  height: 582px;\n  width: 200px;\n  overflow: hidden;\n  margin: auto;\n}\n.pulse[data-v-b393ccae]:after {\n  content: \"\";\n  display: block;\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 200px 100px\" enable-background=\"new 0 0 200px 100px\" xml:space=\"preserve\"><polyline fill=\"none\" stroke-width=\"3px\" stroke=\"steelblue\" points=\"2.4,58.7 70.8,58.7 76.1,46.2 81.1,58.7 89.9,58.7 93.8,66.5 102.8,22.7 110.6,78.7 115.3,58.7 126.4,58.7 134.4,54.7 142.4,58.7 197.8,58.7 \"/></svg>') 0 0 no-repeat;\n  width: 50%;\n  height: 39%;\n  position: absolute;\n  -webkit-animation: 2s pulse-data-v-b393ccae linear infinite;\n  animation: 2s pulse-data-v-b393ccae linear infinite;\n  clip: rect(0, 0, 100px, 0);\n}\n.pulse[data-v-b393ccae]:before {\n  content: \"\";\n  position: absolute;\n  z-index: -1;\n  left: 2px;\n  right: 2px;\n  bottom: 0;\n  top: 16px;\n  margin: auto;\n  height: 3px;\n}\n@-webkit-keyframes pulse-data-v-b393ccae {\n0% {\n    clip: rect(0, 0, 100px, 0);\n    opacity: 0.4;\n}\n4% {\n    clip: rect(0, 66.66667px, 100px, 0);\n    opacity: 0.6;\n}\n15% {\n    clip: rect(0, 133.33333px, 100px, 0);\n    opacity: 0.8;\n}\n20% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 1;\n}\n80% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n90% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n100% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n}\n@keyframes pulse-data-v-b393ccae {\n0% {\n    clip: rect(0, 0, 100px, 0);\n}\n4% {\n    clip: rect(0, 66.66667px, 100px, 0);\n}\n15% {\n    clip: rect(0, 133.33333px, 100px, 0);\n}\n20% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 1;\n}\n80% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n90% {\n    opacity: 0;\n}\n100% {\n    clip: rect(0, 300px, 100px, 0);\n    opacity: 0;\n}\n}", ""]);
 
 // exports
 
@@ -7761,7 +8131,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "footer[data-v-bc338846] {\n  background-color: #00234b;\n  padding: 40px 0;\n  color: white;\n}\nfooter .top-footer[data-v-bc338846] {\n  padding-bottom: 60px;\n}\nfooter .top-footer .logo-footer[data-v-bc338846] {\n  padding: 0;\n  font-size: 40px;\n  text-align: center;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846] {\n  color: white;\n  cursor: pointer;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846]:hover {\n  text-decoration: none;\n}\nfooter .top-footer p[data-v-bc338846] {\n  margin-bottom: 0;\n  font-size: 12px;\n}\nfooter .top-footer ul[data-v-bc338846] {\n  margin: 0;\n  padding: 0;\n}\nfooter .top-footer ul li[data-v-bc338846] {\n  display: inline-block;\n  text-decoration: none;\n  list-style: none;\n  cursor: pointer;\n  padding: 0 5px;\n}\nfooter .bottom-footer .link-footer-bottom[data-v-bc338846] {\n  text-align: center;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846] {\n  color: white;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846]:hover {\n  text-decoration: none;\n  color: #057aff;\n}", ""]);
+exports.push([module.i, "footer[data-v-bc338846] {\n  background-color: #00234b;\n  padding: 40px 0;\n  color: white;\n}\nfooter .top-footer[data-v-bc338846] {\n  padding-bottom: 60px;\n}\nfooter .top-footer .logo-footer[data-v-bc338846] {\n  padding: 0;\n  font-size: 40px;\n  text-align: center;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846] {\n  color: white;\n  cursor: pointer;\n}\nfooter .top-footer .logo-footer a[data-v-bc338846]:hover {\n  text-decoration: none;\n}\nfooter .top-footer p[data-v-bc338846] {\n  margin-bottom: 0;\n  font-size: 12px;\n}\nfooter .top-footer ul[data-v-bc338846] {\n  margin: 0;\n  padding: 0;\n}\nfooter .top-footer ul li[data-v-bc338846] {\n  display: inline-block;\n  text-decoration: none;\n  list-style: none;\n  cursor: pointer;\n  padding: 0 5px;\n}\nfooter .bottom-footer .link-footer-bottom[data-v-bc338846] {\n  text-align: center;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846] {\n  color: white;\n}\nfooter .bottom-footer .link-footer-bottom a[data-v-bc338846]:hover {\n  text-decoration: none;\n  color: black;\n}", ""]);
 
 // exports
 
@@ -7780,7 +8150,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "header[data-v-79cec062] {\n  background-color: #fff04b;\n  color: #00234b;\n}\nheader nav[data-v-79cec062] {\n  padding: 0 !important;\n}\nheader nav .logo[data-v-79cec062] {\n  font-size: 40px;\n  text-decoration: none;\n  padding: 5px 25px;\n  margin: 0 15px;\n}\nheader nav button[data-v-79cec062] {\n  border-color: transparent !important;\n}\nheader nav li a[data-v-79cec062] {\n  text-decoration: none;\n  color: #00234b !important;\n  padding: 5px 10px;\n  margin: 0 15px;\n  display: block;\n  line-height: 80px;\n}\nheader nav li a[data-v-79cec062]:hover {\n  color: #6bb0ff !important;\n  transition: all 0.3s;\n}\n.animated-icon3[data-v-79cec062] {\n  width: 30px;\n  height: 20px;\n  position: relative;\n  margin: 0px;\n  transform: rotate(0deg);\n  transition: 0.5s ease-in-out;\n  cursor: pointer;\n}\n.animated-icon3 span[data-v-79cec062] {\n  display: block;\n  position: absolute;\n  height: 3px;\n  width: 100%;\n  border-radius: 9px;\n  opacity: 1;\n  left: 0;\n  transform: rotate(0deg);\n  transition: 0.25s ease-in-out;\n}\n.animated-icon3 span[data-v-79cec062] {\n  background: white;\n}\n.animated-icon3 span[data-v-79cec062]:nth-child(1) {\n  top: 0px;\n  transform-origin: left center;\n}\n.animated-icon3 span[data-v-79cec062]:nth-child(2) {\n  top: 10px;\n  transform-origin: left center;\n}\n.animated-icon3 span[data-v-79cec062]:nth-child(3) {\n  top: 20px;\n  transform-origin: left center;\n}\n.animated-icon3.open span[data-v-79cec062]:nth-child(1) {\n  transform: rotate(45deg);\n  top: 0px;\n  left: 8px;\n}\n.animated-icon3.open span[data-v-79cec062]:nth-child(2) {\n  width: 0%;\n  opacity: 0;\n}\n.animated-icon3.open span[data-v-79cec062]:nth-child(3) {\n  transform: rotate(-45deg);\n  top: 21px;\n  left: 8px;\n}", ""]);
+exports.push([module.i, "header[data-v-79cec062] {\n  background-color: #fff04b;\n  color: #00234b;\n}\nheader nav[data-v-79cec062] {\n  padding: 0 !important;\n}\nheader nav .logo[data-v-79cec062] {\n  font-size: 40px;\n  text-decoration: none;\n  padding: 5px 25px;\n  margin: 0 15px;\n}\nheader nav button[data-v-79cec062] {\n  border-color: transparent !important;\n}\nheader nav li a[data-v-79cec062] {\n  text-decoration: none;\n  color: #00234b !important;\n  padding: 5px 10px;\n  margin: 0 15px;\n  display: block;\n  line-height: 80px;\n}\nheader nav li a[data-v-79cec062]:hover {\n  color: #00234b !important;\n  transition: all 0.3s;\n}\n.animated-icon3[data-v-79cec062] {\n  width: 30px;\n  height: 20px;\n  position: relative;\n  margin: 0px;\n  transform: rotate(0deg);\n  transition: 0.5s ease-in-out;\n  cursor: pointer;\n}\n.animated-icon3 span[data-v-79cec062] {\n  display: block;\n  position: absolute;\n  height: 3px;\n  width: 100%;\n  border-radius: 9px;\n  opacity: 1;\n  left: 0;\n  transform: rotate(0deg);\n  transition: 0.25s ease-in-out;\n}\n.animated-icon3 span[data-v-79cec062] {\n  background: white;\n}\n.animated-icon3 span[data-v-79cec062]:nth-child(1) {\n  top: 0px;\n  transform-origin: left center;\n}\n.animated-icon3 span[data-v-79cec062]:nth-child(2) {\n  top: 10px;\n  transform-origin: left center;\n}\n.animated-icon3 span[data-v-79cec062]:nth-child(3) {\n  top: 20px;\n  transform-origin: left center;\n}\n.animated-icon3.open span[data-v-79cec062]:nth-child(1) {\n  transform: rotate(45deg);\n  top: 0px;\n  left: 8px;\n}\n.animated-icon3.open span[data-v-79cec062]:nth-child(2) {\n  width: 0%;\n  opacity: 0;\n}\n.animated-icon3.open span[data-v-79cec062]:nth-child(3) {\n  transform: rotate(-45deg);\n  top: 21px;\n  left: 8px;\n}", ""]);
 
 // exports
 
@@ -7799,7 +8169,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".sidebar[data-v-438bbc0a] {\n  background-color: #6bb0ff;\n  border-radius: 10px;\n}", ""]);
+exports.push([module.i, ".sidebar[data-v-438bbc0a] {\n  background-color: #00234b;\n  border-radius: 10px;\n}", ""]);
 
 // exports
 
@@ -40099,21 +40469,15 @@ var render = function () {
     _c("div", { staticClass: "team-content" }, [
       _c("h3", { staticClass: "name" }, [
         _vm._v(
-          " \n                    " +
+          " " +
             _vm._s(_vm.doctorInfo.first_name) +
             " " +
-            _vm._s(_vm.doctorInfo.last_name) +
-            "\n                "
+            _vm._s(_vm.doctorInfo.last_name)
         ),
       ]),
       _vm._v(" "),
-      _c("span", { staticClass: "my-2" }, [
-        _c("i", { staticClass: "fas fa-map-marker-alt mr-1" }),
-        _vm._v(
-          "\n                    " +
-            _vm._s(_vm.doctorInfo.address) +
-            "\n                "
-        ),
+      _c("span", { staticClass: "my-2 address" }, [
+        _vm._v(_vm._s(_vm.doctorInfo.address)),
       ]),
       _vm._v(" "),
       this.doctorInfo.reviews.length != 0
@@ -57741,7 +58105,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Giulia\Documents\Boolean\progetto finale\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
+module.exports = __webpack_require__(/*! C:\Users\Utente\Desktop\Boolean\Progetto Finale\b-doctors-1\resources\js\guest.js */"./resources/js/guest.js");
 
 
 /***/ })

@@ -382,15 +382,15 @@ export default {
           color: $primary-color;
         }
         button{
-          border: 1px solid $primary-color;
-          color: white;
+          border: 1px solid rgb(255, 240, 75);
+          color: $primary-color;
           border-radius: 0 10px 10px 0;
-          background-color: $primary-color;
+          background-color: rgb(255, 240, 75);
 
           &:hover{
-            background-color: darken($primary-color,10%);
-            border-color: darken($primary-color,10%);
-            color: white;
+            background-color: rgb(255, 240, 75);
+            border-color: rgb(255, 240, 75);
+            color: $primary-color;
           }
 
 
@@ -436,7 +436,7 @@ export default {
 
    //info
   .bg-container{
-    background: linear-gradient(to bottom, #FFFFFF 0%, lighten($primary-color, 20%) 100%);
+    background: linear-gradient(to bottom, #FFFFFF 10%, rgb(214, 229, 243) 100%);
     .container-info{
       h5{
         padding: 30px 0;
@@ -506,8 +506,8 @@ export default {
           height: 330px;
           width: 330px;
           border-radius: 40px;
-          border: 1px solid lighten($primary-color, 25%);
-          box-shadow: 10px 10px 5px lighten($primary-color, 20%);
+          border: 1px solid rgb(214, 229, 243);
+          box-shadow: 10px 10px 5px lightgrey;
 
           img{
             border-radius: 40px;
