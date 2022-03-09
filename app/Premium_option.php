@@ -18,6 +18,6 @@ class Premium_option extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'user_premium_option');
+        return $this->belongsToMany('App\User', 'user_premium_option')->withPivot(['start_date', 'end_date']);
     }
 }
