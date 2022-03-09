@@ -138,7 +138,7 @@ export default {
 
 <style lang="scss" scoped>
 .advanced-search {
-    padding-bottom: 150px;
+    padding-bottom: 80px;
     .container {
         .container-img {
             height: 350px;

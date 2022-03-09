@@ -11,8 +11,8 @@ name: 'Loader'
 <style lang="scss" scoped>
 
 .pulse {
-  padding-top: 80px;
-  height: 100px;
+  padding: 150px 0;
+  height: 582px;
   width: 200px;
   overflow: hidden;
   margin: auto;
@@ -21,9 +21,9 @@ name: 'Loader'
   content: '';
 
   display: block;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200px 100px" enable-background="new 0 0 200px 100px" xml:space="preserve"><polyline fill="none" stroke-width="3px" stroke="lightskyblue" points="2.4,58.7 70.8,58.7 76.1,46.2 81.1,58.7 89.9,58.7 93.8,66.5 102.8,22.7 110.6,78.7 115.3,58.7 126.4,58.7 134.4,54.7 142.4,58.7 197.8,58.7 "/></svg>') 0 0 no-repeat;
-  width: 100%;
-  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200px 100px" enable-background="new 0 0 200px 100px" xml:space="preserve"><polyline fill="none" stroke-width="3px" stroke="steelblue" points="2.4,58.7 70.8,58.7 76.1,46.2 81.1,58.7 89.9,58.7 93.8,66.5 102.8,22.7 110.6,78.7 115.3,58.7 126.4,58.7 134.4,54.7 142.4,58.7 197.8,58.7 "/></svg>') 0 0 no-repeat;
+  width: 50%;
+  height: 39%;
   position: absolute;
   -webkit-animation: 2s pulse linear infinite;
   -moz-animation: 2s pulse linear infinite;
