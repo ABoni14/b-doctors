@@ -178,6 +178,7 @@
                 </div>
                 
                 <div class="doc-bottom d-flex">
+                    
                     <div class="vote">
                         <div
                             v-for="( review, key ) in doctor_profile.reviews"
@@ -192,6 +193,7 @@
                     </div>
 
                     <div class="reviews">
+                       <h5 class="text-center mb-3">Recensioni: </h5>
                         <div
                             v-for="( review, key ) in doctor_profile.reviews"
                             :key="key"
