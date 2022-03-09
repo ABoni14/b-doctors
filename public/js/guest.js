@@ -2573,6 +2573,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return parseInt(total / length);
+    },
+    getFirstSpec: function getFirstSpec() {
+      this.doctorInfo.specialization;
     }
   }
 });
