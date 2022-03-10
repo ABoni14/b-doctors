@@ -90,32 +90,12 @@ Route::post('/checkout', function (Request $request) {
         if($transaction->amount == '2.99'){
             $user = User::find(Auth::user()->id);
             if($user->premium_options[0]->name != 'basic'){
-                $datatotale= date('Y-m-d H:m:s',strtotime("+1 day",strtotime($user->premium_options[0]['pivot']['end_date'])));
-                $user->premium_options()->sync([2=>['end_date'=>date('Y-m-d H:m:s', strtotime($datatotale))]]);
+                $user->premium_options()->sync();
             }else{
-                $user->premium_options()->sync([2=>['end_date'=>date('Y-m-d H:m:s', strtotime('tomorrow'))]]);
+                $user->premium_options()->sync();
             }
         }
 
-        if($transaction->amount == '5.99'){
-            $user = User::find(Auth::user()->id);
-            if($user->premium_options[0]->name != 'basic'){
-                $datatotale= date('Y-m-d H:m:s',strtotime("+3 day",strtotime($user->premium_options[0]['pivot']['end_date'])));
-                $user->premium_options()->sync([3=>['end_date'=>date('Y-m-d H:m:s', strtotime($datatotale))]]);
-            }else{
-                $user->premium_options()->sync([3=>['end_date'=>date('Y-m-d H:m:s', strtotime('+3 day'))]]);
-            }
-        }
-
-        if($transaction->amount == '9.99'){
-            $user = User::find(Auth::user()->id);
-            if($user->premium_options[0]->name != 'basic'){
-                $datatotale= date('Y-m-d H:m:s',strtotime("+6 day",strtotime($user->premium_options[0]['pivot']['end_date'])));
-                $user->premium_options()->sync([4=>['end_date'=>date('Y-m-d H:m:s', strtotime($datatotale))]]);
-            }else{
-                $user->premium_options()->sync([4=>['end_date'=>date('Y-m-d H:m:s', strtotime('+6 day'))]]);
-            }
-        }
         return redirect()->back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
 
     } else {
