@@ -9,7 +9,7 @@
             <div class="col-3 ab-card"><a href="{{ route('admin.dashboard.show', Auth::user() ) }}">La mia Pagina</a></div>
             <div class="col-3 ab-card"><a href="{{ route('admin.messages.index', Auth::user() )}}">Messaggi</a></div>
             <div class="col-3 ab-card"><a href="{{ route('admin.reviews.index', Auth::user() )}}">Recensioni</a></div>
-            
+
     </div> --}}
 
     {{-- <div class="container-menu">
@@ -33,7 +33,7 @@
             <div class="stone"></div>
             <div class="stone"></div>
         </div>
-        
+
         <div class="banner-text">
             <h1>B-Doctor navigazione</h1>
             <ul>
@@ -45,6 +45,9 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="action">Recensioni</a>
+                </li>
+                <li>
+                    <a href="{{ route('payment', Auth::user() )}}" class="action">Sponsorizzazione</a>
                 </li>
             </ul>
         </div>

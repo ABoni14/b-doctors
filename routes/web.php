@@ -24,7 +24,13 @@ Route::middleware("auth")
         Route::resource("dashboard", 'UserController');
         Route::resource("messages", "MessageController");
         Route::resource("reviews", "ReviewController");
+        // Route::get("/payments", 'PaymentController@index')->name("payment");
     });
+
+Route::get('/payments', function(){
+
+
+})->name('payment');
 
 Route::get("{any?}", function(){
     return view("guest.home");
