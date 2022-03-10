@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-4">
-                <a href="#" class="data-card">
+                <a href="{{ route('braintree')}}" class="data-card">
                     <h4>{{ $premium[1]->name }}</h4>
                     <h5>Dettaglio Offerta</h5>
                     <p>Sponsorizza il tuo profilo per {{ $premium[1]->duration}} ore! </p>
@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div class="col-4">
-                <a href="#" class="data-card">
+                <a href="{{ route('braintree')}}" class="data-card">
                     <h4>{{ $premium[2]->name }}</h4>
                     <h5>Dettaglio Offerta</h5>
                     <p>Sponsorizza il tuo profilo per {{ $premium[2]->duration}} ore! </p>
@@ -34,7 +34,7 @@
                 </a>
             </div>
             <div class="col-4">
-                <a href="#" class="data-card">
+                <a href="{{ route('braintree')}}" class="data-card">
                     <h4>{{ $premium[3]->name }}</h4>
                     <h5>Dettaglio Offerta</h5>
                     <p>Sponsorizza il tuo profilo per {{ $premium[3]->duration}} ore! </p>

@@ -47,7 +47,7 @@
                     <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="action">Recensioni</a>
                 </li>
                 <li>
-                    <a href="{{ route('payment', Auth::user() )}}" class="action">Sponsorizzazione</a>
+                    <a href="{{ route('admin.payment', Auth::user() )}}" class="action">Sponsorizzazione</a>
                 </li>
             </ul>
         </div>
