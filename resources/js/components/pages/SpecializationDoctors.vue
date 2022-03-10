@@ -10,7 +10,7 @@
             Avvia una Ricerca!
         </h2>
 
-        <div  class="row">
+        <div class="container-grid">
             <CardsDoctors
             v-for="(doctor, index) in doctors"
             :key="index"
@@ -32,9 +32,19 @@ export default {
     },
     components: {
         CardsDoctors
-    }
+    },
+
+
 };
 </script>
 
 <style lang="scss" scoped>
+
+.container-grid{
+    display: grid;
+    margin: 0.2rem;
+    gap: 0.7rem;
+    grid-template-columns:  repeat(4, 1fr);
+}
+
 </style>

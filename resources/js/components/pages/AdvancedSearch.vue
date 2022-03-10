@@ -21,7 +21,7 @@
                             <select class="select-spec"
                                 name="specializations"
                                 id="specializations"
-                                @change="getDoctorsBySpec()"
+                                @change="getDoctorsBySpec(), changeQueryUrl(specToSearch) "
                                 v-model="specToSearch">
                                 <option value="">Seleziona la specializzazione</option>
                                 <option
@@ -121,8 +121,10 @@ export default {
             ],
             reviews: [
                 [0, "Qualsiasi numero di recensioni"],
-                [1, "Almeno due recensione"],
-                [2, "Almeno tre recensioni"],
+                [1, "Almeno una recensione"],
+                [2, "Almeno due recensioni"],
+                [3, "Almeno tre recensioni"],
+                [4, "Più di quattro recensioni"],
             ],
             reviewNumber: 0,
             vote_sum: 0,
@@ -206,10 +208,17 @@ export default {
                 }
             })
             return this.filteredDoctors;
-        }
+        },
+        changeQueryUrl(slug) {
+            this.$router.replace({ query: { specialization: slug } });
+        },
+        removeQueryUrl() {
+            this.$router.replace({ path: '/advanced-search' });
+        },
     },
     mounted(){
         this.getSpecList();
+        this.removeQueryUrl();
         // get slug from home-page for API getDoctorsHome call
         if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
             this.specToSearch = this.$route.params.slug;

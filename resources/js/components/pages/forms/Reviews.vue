@@ -61,7 +61,7 @@
             >{{ sending ? 'invio in corso' : 'invia'}}</button>
         </form>
     </div>
-    
+
 </template>
 
 <script>
@@ -73,7 +73,7 @@ export default {
     data() {
         return {
             apiReview: 'http://127.0.0.1:8000/api/review/',
-            vote: 1,
+            vote: null,
             review_name: '',
             content: '',
             sending: false,
