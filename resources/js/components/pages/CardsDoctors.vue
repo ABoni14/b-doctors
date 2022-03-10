@@ -83,7 +83,7 @@ export default {
 //
 
 .card-doctor {
-    // width: calc(100% / 4 - 20px);
+    width: 280px;
   padding: 30px 0;
   margin: 1rem;
   background-color: #f5f5f5;

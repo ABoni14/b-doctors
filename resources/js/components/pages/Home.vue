@@ -42,9 +42,7 @@
     <div class="container ab-container mt-5 mb-5">
 
       <div class="search d-flex justify-content-center">
-        <!-- <div class="left-search">
-          <img src="https://i.pinimg.com/564x/5f/d6/67/5fd667c10719a499c617b17b7553182b.jpg" alt="">
-        </div> -->
+
         <div class="right-search d-flex flex-column justify-content-center align-items-center">
           <h4 class="my-3 text-center">Prenota online la tua visita medica</h4>
           <div class="input-group mb-3">
@@ -64,7 +62,7 @@
             </datalist>
             <router-link :to="{ name: 'AdvancedSearch', params: {slug: this.output} }">
                 <button
-                    class="btn btn-outline-primary"
+                    class="btn btn-doctors"
                     type="submit"
                     :disabled="!specToSearch"
                     id="search"
@@ -87,18 +85,22 @@
 
     <div
     v-else
-    class="container">
-      <div class="row justify-content-center">
-        <h5 class="title-premium">Medici in evidenza</h5>
-      </div>
-      <div class="container-grid">
+    class="container-fluid">
+ 
+      <h5 class="text-center title-premium">Medici in evidenza</h5>
+
+      <div>
+        <div class="d-flex flex-wrap justify-content-center">
+
           <Loader v-if="isLoading"/>
           <CardsDoctors
           v-for="(doctor, index) in doctors"
           :key="index"
           :doctorInfo="doctor"
-        />
+          />
+        </div>
       </div>
+      
       <div class="navigation" >
         <button class="prev"
         @click="getDoctorsPremium(pagination.current - 1)"
@@ -204,9 +206,6 @@
                 <li>Hai il nostro staff sempre disponibile ad aiutarti</li>
               </ul>
             </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <a class="btn btn-primary" href="#" role="button">Iscriviti</a>
-            </div>
           </div>
         </div>
       </div>
@@ -331,7 +330,7 @@ export default {
         }
         .carousel-text{
           background-color: rgba(255, 255, 255, 0.7);
-          color: darken($primary-color, 15%);
+          color: lighten($primary-color, 10%);
           transition: all .3s;
         }
 
@@ -345,7 +344,7 @@ export default {
 
       }
       .carousel-text{
-        color: darken($primary-color, 25%);
+        color: $primary-color;
         transition: all .3s;
         background-color: rgba(255, 255, 255, 0.5);
         margin-bottom: 40px;
@@ -381,6 +380,15 @@ export default {
         margin-left: 20px;
         input{
           border-radius: 10px 0 0 10px ;
+
+          &:focus{
+            border: none;
+            box-shadow: 0px 0px 20px -5px $primary-color;
+          }
+
+          &:focus button{
+            box-shadow: 0px 0px 20px -5px $primary-color;
+          }
         }
         h4{
           color: $primary-color;
@@ -392,9 +400,9 @@ export default {
           background-color: rgb(255, 240, 75);
 
           &:hover{
-            background-color: rgb(255, 240, 75);
-            border-color: rgb(255, 240, 75);
-            color: $primary-color;
+            background-color: $primary-color;
+            border-color: $primary-color;
+            color: rgb(255, 240, 75);
           }
 
 
@@ -491,8 +499,8 @@ export default {
         font-size: 13px;
       }
       .container-img{
-        height: 300px;
-        width: 475px;
+        height: 100%;
+        width: 100%;
         img{
           height: 100%;
           width: 100%;

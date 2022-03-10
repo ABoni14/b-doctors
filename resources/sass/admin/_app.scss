@@ -6,6 +6,10 @@ main{
   min-height: calc(100vh - 80px);
   padding: 50px 0;
 }
+
+a{
+  color: rgb(0, 35, 75) !important;
+}
 // BUTTONS
 
 .button-back {
@@ -64,10 +68,11 @@ main{
 
 // FORM REGISTER AND LOGIN
 .center{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  margin: 0 auto;
   width: 400px;
   background: white;
   border-radius: 10px;

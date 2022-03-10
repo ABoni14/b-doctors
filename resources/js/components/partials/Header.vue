@@ -46,10 +46,12 @@ export default {
 
 header{
     background-color: rgb(255, 240, 75);
-    color: rgb(0, 35, 75);
+    color: rgb(0, 35, 75) !important;
   nav{
+    color: rgb(0, 35, 75) !important;
     padding:0 !important;
     .logo{
+      color: rgb(0, 35, 75) !important;
       font-size: 40px;
       text-decoration: none;
       padding: 5px 25px;

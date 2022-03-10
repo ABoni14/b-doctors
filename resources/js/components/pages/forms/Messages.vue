@@ -44,23 +44,12 @@
                 ></textarea>
                 <p v-if="error.content" class="errors">{{ error.content[0] }}</p>
             </div>
-            <!-- <div class="form-group">
-                <div class="form-check">
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="gridCheck"
-                    />
-                    <label class="form-check-label" for="gridCheck">
-                    Privacy Policy
-                    </label>
-                </div>
-            </div> -->
+
             <button
                 type="submit"
                 class="btn btn-primary"
                 :disabled="sending"
-            >{{ sending ? 'invio in corso' : 'invia'}}</button>
+            >{{ sending ? 'invio in corso' : 'Invia'}}</button>
         </form>
     </div>
    
@@ -121,6 +110,7 @@ form{
         outline: none;
         &:focus, &:focus-visible{
           outline: 1px solid rgb(6, 92, 190);
+          background-color: white;
         }
       }
       label{
@@ -159,6 +149,7 @@ form{
         resize: none;
         &:focus, &:focus-visible{
           border: 1px solid rgb(6, 92, 190);
+          background-color: white;
         }
     }
   }
