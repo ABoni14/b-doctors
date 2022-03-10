@@ -37351,9 +37351,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Utente\Desktop\Boolean\Progetto Finale\b-doctors-1\resources\js\admin.js */"./resources/js/admin.js");
-__webpack_require__(/*! C:\Users\Utente\Desktop\Boolean\Progetto Finale\b-doctors-1\resources\sass\admin\style.scss */"./resources/sass/admin/style.scss");
-module.exports = __webpack_require__(/*! C:\Users\Utente\Desktop\Boolean\Progetto Finale\b-doctors-1\resources\sass\guest\style.scss */"./resources/sass/guest/style.scss");
+__webpack_require__(/*! /Users/luke/local-documents/Boolean/b-doctors/resources/js/admin.js */"./resources/js/admin.js");
+__webpack_require__(/*! /Users/luke/local-documents/Boolean/b-doctors/resources/sass/admin/style.scss */"./resources/sass/admin/style.scss");
+module.exports = __webpack_require__(/*! /Users/luke/local-documents/Boolean/b-doctors/resources/sass/guest/style.scss */"./resources/sass/guest/style.scss");
 
 
 /***/ })
