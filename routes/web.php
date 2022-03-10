@@ -90,41 +90,26 @@ Route::post('/checkout', function (Request $request) {
 
         if($transaction->amount == '2.99'){
             $user = User::find(Auth::user()->id);
-            if($user->premium_options()->level != 1){
-                // $datatotale= date('Y-m-d',strtotime("+1 day",strtotime($user->premium_options()->withPivot('end_date')->first())));
-                $user->premium_options()->sync([2=>[
-                    'start_date' => Carbon::now()->toDateTimeString(),
-                    'end_date'=> Carbon::now()->addDays(1)
-                ]]);
-            }else{
-                $user->premium_options()->sync([2=>['end_date'=> Carbon::now()->addDays(1)]]);
-            }
+            $user->premium_options()->attach([2=>[
+                'start_date' => Carbon::now()->toDateTimeString(),
+                'end_date'=> Carbon::now()->addDays(1)
+            ]]);
         }
 
         if($transaction->amount == '5.99'){
             $user = User::find(Auth::user()->id);
-            if($user->premium_options()->first() != 1){
-                // $datatotale= date('Y-m-d',strtotime("+3 day",strtotime($user->premium_options()->withPivot('end_date')->first())));
-                $user->premium_options()->sync([3=>[
-                    'start_date' => Carbon::now()->toDateTimeString(),
-                    'end_date'=> Carbon::now()->addDays(3)
-                ]]);
-            }else{
-                $user->premium_options()->sync([3=>['end_date'=> Carbon::now()->addDays(3)]]);
-            }
+            $user->premium_options()->attach([3=>[
+                'start_date' => Carbon::now()->toDateTimeString(),
+                'end_date'=> Carbon::now()->addDays(3)
+            ]]);
         }
 
         if($transaction->amount == '9.99'){
             $user = User::find(Auth::user()->id);
-            if($user->premium_options()->first() != 1){
-                // $datatotale= date('Y-m-d',strtotime("+6 day",strtotime($user->premium_options()->withPivot('end_date')->first())));
-                $user->premium_options()->sync([4=>[
-                    'start_date' => Carbon::now()->toDateTimeString(),
-                    'end_date'=> Carbon::now()->addDays(6)
-                ]]);
-            }else{
-                $user->premium_options()->sync([4=>['end_date'=> Carbon::now()->addDays(6)]]);
-            }
+            $user->premium_options()->attach([4=>[
+                'start_date' => Carbon::now()->toDateTimeString(),
+                'end_date'=> Carbon::now()->addDays(6)
+            ]]);
         }
 
         return redirect()->back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
