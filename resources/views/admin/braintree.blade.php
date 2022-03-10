@@ -13,12 +13,7 @@
                     <label for="amount">
                         <span class="input-label">Amount</span>
                         <div class="input-wrapper amount-wrapper">
-                            {{-- <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10"> --}}
-                            <select name="amount" id="amount">
-                                <option value="2.99">Plan 1</option>
-                                <option value="5.99">Plan 2</option>
-                                <option value="9.99">Plan 3</option>
-                            </select>
+                            <input id="amount" name="amount" type="hidden" min="1" placeholder="Amount" value="@if ($value=='Intermediate' ) 2.99 @elseif ($value=='Advanced')5.99 @elseif($value=='Ultimate')9.99 @endif" readonly>
                         </div>
                     </label>
 

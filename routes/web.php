@@ -36,7 +36,9 @@ Route::middleware("auth")
     });
 
 // Braintree payment form and route
-Route::get("/payments/braintree", function(){
+Route::get("/payments/braintree", function(Request $request){
+
+    $value = $request->value;
 
     $gateway = new Braintree\Gateway([
         'environment' => config('services.braintree.environment'),
@@ -49,6 +51,7 @@ Route::get("/payments/braintree", function(){
 
     return view("admin.braintree", [
         'clientToken' => $clientToken,
+        'value' => $value
     ]);
 
 })->name("braintree");
