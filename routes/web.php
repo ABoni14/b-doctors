@@ -1,8 +1,10 @@
 <?php
 
+use App\User;
 use App\Premium_option;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +58,7 @@ Route::get("/payments/braintree", function(Request $request){
 
 })->name("braintree");
 
+//braintree payment form process and table update
 Route::post('/checkout', function (Request $request) {
 
     $gateway = new Braintree\Gateway([
@@ -72,9 +75,9 @@ Route::post('/checkout', function (Request $request) {
         'amount' => $amount,
         'paymentMethodNonce' => $nonce,
         'customer' => [
-            'firstName' => 'Luca',
-            'lastName' => 'Luca',
-            'email' => 'test@test.com',
+            'firstName' => Auth::user()->first_name,
+            'lastName' => Auth::user()->last_name,
+            'email' => Auth::user()->email,
         ],
         'options' => [
             'submitForSettlement' => true
@@ -83,9 +86,38 @@ Route::post('/checkout', function (Request $request) {
 
     if ($result->success) {
         $transaction = $result->transaction;
-        // header("Location: transaction.php?id=" . $transaction->id);
 
-        return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+        if($transaction->amount == '2.99'){
+            $user = User::find(Auth::user()->id);
+            if($user->premium_options[0]->name != 'basic'){
+                $datatotale= date('Y-m-d H:m:s',strtotime("+1 day",strtotime($user->premium_options[0]['pivot']['end_date'])));
+                $user->premium_options()->sync([2=>['end_date'=>date('Y-m-d H:m:s', strtotime($datatotale))]]);
+            }else{
+                $user->premium_options()->sync([2=>['end_date'=>date('Y-m-d H:m:s', strtotime('tomorrow'))]]);
+            }
+        }
+
+        if($transaction->amount == '5.99'){
+            $user = User::find(Auth::user()->id);
+            if($user->premium_options[0]->name != 'basic'){
+                $datatotale= date('Y-m-d H:m:s',strtotime("+3 day",strtotime($user->premium_options[0]['pivot']['end_date'])));
+                $user->premium_options()->sync([3=>['end_date'=>date('Y-m-d H:m:s', strtotime($datatotale))]]);
+            }else{
+                $user->premium_options()->sync([3=>['end_date'=>date('Y-m-d H:m:s', strtotime('+3 day'))]]);
+            }
+        }
+
+        if($transaction->amount == '9.99'){
+            $user = User::find(Auth::user()->id);
+            if($user->premium_options[0]->name != 'basic'){
+                $datatotale= date('Y-m-d H:m:s',strtotime("+6 day",strtotime($user->premium_options[0]['pivot']['end_date'])));
+                $user->premium_options()->sync([4=>['end_date'=>date('Y-m-d H:m:s', strtotime($datatotale))]]);
+            }else{
+                $user->premium_options()->sync([4=>['end_date'=>date('Y-m-d H:m:s', strtotime('+6 day'))]]);
+            }
+        }
+        return redirect()->back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+
     } else {
         $errorString = "";
 
