@@ -22,7 +22,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm ab-navbar text-white">
+        <nav class="navbar navbar-expand ab-navbar">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ route('home') }}">
                     {{ config('app.name', 'BDoctor') }}
@@ -31,22 +31,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button> --}}
 
-                <div class="navbar text-white" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                    </ul>
+                <div class="navbar" id="navbarSupportedContent">
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto text-white">
+                    <ul class="navbar-nav">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
