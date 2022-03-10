@@ -1,8 +1,11 @@
 <?php
 
+use App\User;
+use Carbon\Carbon;
 use App\Premium_option;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +59,7 @@ Route::get("/payments/braintree", function(Request $request){
 
 })->name("braintree");
 
+//braintree payment form process and table update
 Route::post('/checkout', function (Request $request) {
 
     $gateway = new Braintree\Gateway([
@@ -72,9 +76,9 @@ Route::post('/checkout', function (Request $request) {
         'amount' => $amount,
         'paymentMethodNonce' => $nonce,
         'customer' => [
-            'firstName' => 'Luca',
-            'lastName' => 'Luca',
-            'email' => 'test@test.com',
+            'firstName' => Auth::user()->first_name,
+            'lastName' => Auth::user()->last_name,
+            'email' => Auth::user()->email,
         ],
         'options' => [
             'submitForSettlement' => true
@@ -83,9 +87,33 @@ Route::post('/checkout', function (Request $request) {
 
     if ($result->success) {
         $transaction = $result->transaction;
-        // header("Location: transaction.php?id=" . $transaction->id);
 
-        return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+        if($transaction->amount == '2.99'){
+            $user = User::find(Auth::user()->id);
+            $user->premium_options()->attach([2=>[
+                'start_date' => Carbon::now()->toDateTimeString(),
+                'end_date'=> Carbon::now()->addDays(1)
+            ]]);
+        }
+
+        if($transaction->amount == '5.99'){
+            $user = User::find(Auth::user()->id);
+            $user->premium_options()->attach([3=>[
+                'start_date' => Carbon::now()->toDateTimeString(),
+                'end_date'=> Carbon::now()->addDays(3)
+            ]]);
+        }
+
+        if($transaction->amount == '9.99'){
+            $user = User::find(Auth::user()->id);
+            $user->premium_options()->attach([4=>[
+                'start_date' => Carbon::now()->toDateTimeString(),
+                'end_date'=> Carbon::now()->addDays(6)
+            ]]);
+        }
+
+        return redirect()->back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+
     } else {
         $errorString = "";
 

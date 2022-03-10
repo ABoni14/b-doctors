@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -67,7 +69,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $new_user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'address' => $data['address'],
@@ -75,5 +78,13 @@ class RegisterController extends Controller
             'slug' =>  Str::slug($data['first_name']. '-'. $data['last_name'], '-'),
             'password' => Hash::make($data['password']),
         ]);
+
+        $currentDate = Carbon::now()->toDateTimeString();
+        $new_user->premium_options()->attach([1=>[
+            'start_date' => $currentDate,
+            'end_date' => $currentDate
+        ]]);
+
+        return $new_user;
     }
 }

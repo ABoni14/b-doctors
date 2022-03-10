@@ -3,15 +3,18 @@
 @section('content')
     <div class="container">
         <div class="content">
-            <h1>Payment method Test</h1>
+            <h1>Seleziona un metodo di Pagamento</h1>
             @if (session('success_message'))
                 <h3>{{ session('success_message') }} </h3>
             @endif
-            <form method="post" id="payment-form" action="{{ url('/checkout') }}">
+            <form method="post"
+                id="payment-form"
+                action="{{ url('/checkout') }}"
+                onsubmit="return confirm('Confermi di voler effettuare il Pagamento?')"
+            >
                 @csrf
-                <section>
+                <div>
                     <label for="amount">
-                        <span class="input-label">Amount</span>
                         <div class="input-wrapper amount-wrapper">
                             <input id="amount" name="amount" type="hidden" min="1" placeholder="Amount" value="@if ($value=='Intermediate' ) 2.99 @elseif ($value=='Advanced')5.99 @elseif($value=='Ultimate')9.99 @endif" readonly>
                         </div>
@@ -20,10 +23,9 @@
                     <div class="bt-drop-in-wrapper">
                         <div id="bt-dropin"></div>
                     </div>
-                </section>
-
+                </div>
                 <input id="nonce" name="payment_method_nonce" type="hidden" />
-                <button class="button" type="submit"><span>Test Transaction</span></button>
+                <button class="btn btn-primary" type="submit"><span>Clicca qui per procedere con il Pagamento</span></button>
             </form>
         </div>
     </div>
