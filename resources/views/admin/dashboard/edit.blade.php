@@ -7,7 +7,7 @@
 
     <form action="{{route("admin.dashboard.update", Auth::user())}}" method="POST" enctype="multipart/form-data">
       @csrf
-      @method("PUT") 
+      @method("PUT")
       <div class="mb-3">
 
           @if ($user->photo)
@@ -22,7 +22,7 @@
               class="form-control"
               type="file" name="photo" id="photo">
       </div>
-      
+
       <div class="form-group">
         <label for="phone">Telefono</label>
         <input type="text"
@@ -61,7 +61,7 @@
         placeholder="Inserisci il tuo cv">{{old("cv", $user->cv)}}</textarea>
       </div>
 
-     
+
 
       {{-- <div>
         @foreach ($specializations as $item)
@@ -77,7 +77,7 @@
       </div> --}}
 
 
-      
+
       <div class="container">
         <ul class="ks-cboxtags">
           @foreach ($specializations as $item)
@@ -94,10 +94,10 @@
           @endforeach
 
         </ul>
-      
+
       </div>
         <div>
-          <select name="sources performances[]" id="sources" class="custom-select sources" placeholder="Source Type">
+          <select name="performances[]" multiple="multiple" id="sources" class="custom-select sources" placeholder="Source Type">
 
             @foreach ($performances as $performance)
                 <option
@@ -112,7 +112,7 @@
           </select>
         </div>
       <div>
-{{--         
+{{--
         <select class="custom-select" multiple="multiple" name="performances[]">
             @foreach ($performances as $performance)
                 <option

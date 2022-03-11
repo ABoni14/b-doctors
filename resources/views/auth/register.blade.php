@@ -49,6 +49,28 @@
           <span></span>
           <label for="email">{{ __('Email') }}</label>
         </div>
+
+        <div class="txt_field">
+            {{-- <input id="specialization" type="text" class=" @error('specialization') is-invalid @enderror" name="specialization" value="{{ old('specialization') }}" required autocomplete="specialization"> --}}
+            <select name="specializations" class=" form-control @error('specializations') is-invalid @enderror" id="specializations" required autocomplete="special">
+                <option value="">Seleziona una Specializzazione</option>
+                @foreach ($specializations as $spec)
+                    <option
+                        @if ($spec->id == old('specializations')) selected @endif
+                        value="{{ $spec->id }}"
+                        name="{{ $spec->name }}"
+                    > {{ $spec->name }} </option>
+                @endforeach
+            </select>
+
+            @error('specializations')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            {{-- <span></span>
+            <label for="specialization">{{ __('Specializzazione') }}</label> --}}
+        </div>
         <div class="txt_field">
             <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password">
 
@@ -65,7 +87,7 @@
           <span></span>
           <label for="password-confirm">{{ __('Conferma password') }}</label>
         </div>
-    
+
         <button type="submit" class="btn-doctors">
             {{ __('Registrati') }}
         </button>
