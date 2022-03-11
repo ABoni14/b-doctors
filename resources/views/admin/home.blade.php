@@ -50,6 +50,7 @@
                 <a class="btn-doctors" href="{{ route('admin.dashboard.show', Auth::user() ) }}">La mia Pagina</a>
                 <a class="btn-doctors" href="{{ route('admin.messages.index', Auth::user() )}}">Messaggi</a>
                 <a class="btn-doctors" href="{{ route('admin.reviews.index', Auth::user() )}}">Recensioni</a>
+                <a class="btn-doctors" href="{{ route('admin.payment', Auth::user() )}}">Sponsorizzazione</a>
             </div>
             </nav>
         </div>
