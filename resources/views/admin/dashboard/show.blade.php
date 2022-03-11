@@ -44,8 +44,13 @@
 
         <div class="d-flex justify-content-between align-items-center flex-wrap">
             <a href="{{route("admin.dashboard.edit", Auth::user())}}" class="btn-doctors mr-2  mt-2 ">MODIFICA PROFILO</a>
-            <a href="#" class="btn-doctors mt-2">ELIMINA PROFILO</a>
-
+                <form
+                    onsubmit="return confirm('Desideri eliminare il tuo profilo ?')"
+                    action="{{ route('admin.dashboard.destroy', Auth::user()) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-doctors mt-2">ELIMINA PROFILO</button>
+                </form>
         </div>
 </div>
 
