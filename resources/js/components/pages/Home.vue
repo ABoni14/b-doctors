@@ -66,7 +66,7 @@
                 <button
                     class="btn btn-outline-primary"
                     type="submit"
-                    :disabled="!specToSearch"
+                    :disabled="this.checkedValue === false"
                     id="search"
                 >Cerca</button>
             </router-link>
@@ -248,6 +248,7 @@ export default {
           axios.get(this.apiUrl)
             .then(res =>{
                 this.specs = res.data.specialization
+                console.log(this.specs);
             })
             .catch(err =>{
                 console.error(err);
@@ -294,8 +295,14 @@ export default {
           .replace(/--/g, `-`);
 
         return this.slug;
+    },
+    checkedValue: function () {
+        if(this.specs.some(e => e.name == this.specToSearch)){
+            return true;
+        }
+        return false;
     }
-  },
+ },
   mounted(){
       this.getSpecs();
       this.getDoctorsPremium();

@@ -209,8 +209,8 @@ export default {
             })
             return this.filteredDoctors;
         },
-        changeQueryUrl(slug) {
-            this.$router.replace({ query: { specialization: slug } });
+        changeQueryUrl(specToSearch) {
+            this.$router.replace({ query: { specialization: specToSearch } });
         },
         removeQueryUrl() {
             this.$router.replace({ path: '/advanced-search' });
@@ -223,6 +223,7 @@ export default {
         if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
             this.specToSearch = this.$route.params.slug;
             this.getDoctorsHome();
+            this.changeQueryUrl(this.specToSearch);
         }else{
             console.log('search was null or empty try searching something');
         }
