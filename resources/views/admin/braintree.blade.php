@@ -60,3 +60,7 @@
         });
     </script>
 @endsection
+
+@section('title')
+    | Metodo di pagamento
+@endsection
