@@ -51,3 +51,7 @@
         </div>
     </div>
 @endsection
+
+@section('title')
+    | Sponsorizzazione
+@endsection

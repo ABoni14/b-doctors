@@ -62,3 +62,7 @@
 
 </section>
 @endsection
+
+@section('title')
+    | Dashboard 
+@endsection

@@ -132,3 +132,7 @@
 
 </div>
 @endsection
+
+@section('title')
+    | Modifica profilo
+@endsection

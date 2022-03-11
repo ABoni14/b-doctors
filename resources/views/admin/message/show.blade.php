@@ -20,3 +20,7 @@
   </div>
 </div>
 @endsection
+
+@section('title')
+    | Messaggio n. {{$messages->id}}
+@endsection
