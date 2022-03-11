@@ -23,67 +23,41 @@
             </a>
         </menu>
     </div> --}}
-    <div class="banner">
-        <div class="aestroid">
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-        </div>
+    
+    <div class="area" >
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        
 
-        <div class="banner-text">
-            <h1>B-Doctor navigazione</h1>
-            <ul>
-                <li>
-                    <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="action">La mia Pagina</a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.messages.index', Auth::user() )}}">Messaggi</a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="action">Recensioni</a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.payment', Auth::user() )}}" class="action">Sponsorizzazione</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="logo">
-            <div class="image">
-                <img src="{{asset('img/logo.png')}}" alt="logo">
-            </div>
-            <div class="circle">
-                <a href="{{ route('admin.messages.index', Auth::user() )}}" class="icon">
-                    <img src="{{asset('img/email.png')}}" alt="messages">
-                </a>
-                <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="icon">
-                    <img src="{{asset('img/home.png')}}" alt="home">
-                </a>
-                <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="icon">
-                    <img src="{{asset('img/review.png')}}" alt="review">
-                </a>
-                <a href="{{ route('admin.messages.index', Auth::user() )}}" class="icon">
-                    <img src="{{asset('img/email.png')}}" alt="messages">
-                </a>
-                <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="icon">
-                    <img src="{{asset('img/home.png')}}" alt="home">
-                </a>
-                <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="icon">
-                    <img src="{{asset('img/review.png')}}" alt="review">
-                </a>
-                <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="icon">
-                    <img src="{{asset('img/home.png')}}" alt="home">
-                </a>
-                <a href="{{ route('admin.messages.index', Auth::user() )}}" class="icon">
-                    <img src="{{asset('img/email.png')}}" alt="messages">
-                </a>
-            </div>
-        </div>
     </div>
+
+
+        <div class="div-menu">
+            <h1 class="title-menu">BDoctors</h1>
+            <span class="subtitle-menu">Menù di navigazione</span>
+            <nav class="dashboard-nav-menu">
+            <div class="menuItems">
+                <a class="btn-doctors" href="{{ route('admin.dashboard.show', Auth::user() ) }}">La mia Pagina</a>
+                <a class="btn-doctors" href="{{ route('admin.messages.index', Auth::user() )}}">Messaggi</a>
+                <a class="btn-doctors" href="{{ route('admin.reviews.index', Auth::user() )}}">Recensioni</a>
+            </div>
+            </nav>
+        </div>
+       
+
+
+   
+
 
 </section>
 @endsection

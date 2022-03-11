@@ -96,11 +96,6 @@
         </ul>
       
       </div>
-
-
-      
-
-
         <div>
           <select name="sources performances[]" id="sources" class="custom-select sources" placeholder="Source Type">
 
@@ -131,7 +126,8 @@
             @endforeach
           </select> --}}
       </div>
-      <button type="submit" class="btn btn-primary my-5">Change</button>
+      <button type="submit" class="btn-doctors mt-3">Modifica</button>
+      <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="btn-doctors button-back mt-2">Indietro</a>
     </form>
 
 </div>
