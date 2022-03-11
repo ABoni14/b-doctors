@@ -10,18 +10,18 @@
     <h1 class="text-center mb-3">Messaggi</h2>
     <ul class="responsive-table">
       <li class="row table-header">
-        <div class="space col-2"><i class="fas fa-user"></i> Nome utente</div>
-        <div class="space col-2"><i class="fas fa-envelope"></i> Email utente</div>
-        <div class="space col-5"><i class="fas fa-comment-alt"></i> Contenuto messaggio</div>
-        <div class="space col-3"><i class="fas fa-exclamation"></i> Azioni</div>
+        <div class="space col-md-2"><i class="fas fa-user"></i> Nome utente</div>
+        <div class="space col-md-3"><i class="fas fa-envelope"></i> Email utente</div>
+        <div class="space col-md-4"><i class="fas fa-comment-alt"></i> Contenuto messaggio</div>
+        <div class="space col-md-3"><i class="fas fa-exclamation"></i> Azioni</div>
       </li>
 
       @foreach ($messages as $message)
         <li class="row table-row">
-          <div class="space col-2">{{ $message->first_name }}</div>
-          <div class="space col-2">{{ $message->email }}</div>
-          <div class="space col-5">{{Str::limit($message->content, 50, $end = '...')  }}</div>
-          <div class="space col-3">
+          <div class="space col-md-2 col-sm-12 " data-label="Nome utente">{{ $message->first_name }}</div>
+          <div class="space col-md-3 col-sm-12" data-label="Email utente">{{ $message->email }}</div>
+          <div class="space col-md-4 col-sm-12" data-label="Contenuto messaggio">{{Str::limit($message->content, 50, $end = '...')  }}</div>
+          <div class="col-md-3 col-sm-12 actions">
             <a class="btn-doctors" href="{{ route('admin.messages.show', $message) }}">Mostra</a>
             <form class="d-inline"
             onsubmit="return confirm('Eliminare messaggio di {{$message->first_name}}?')"
