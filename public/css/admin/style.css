@@ -160,17 +160,19 @@
 .subtitle-menu {
   color: #00234b;
   text-align: center;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .title-menu {
   font-size: 70px;
-  color: #00234b;
+  color: white;
   text-transform: uppercase;
   font-weight: 800;
 }
 
 .dashboard-nav-menu {
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 25px;
   background: whitesmoke;
   padding: 16px;
@@ -180,10 +182,11 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 0 30px;
 }
 .dashboard-nav-menu .menuItems a {
   text-align: center;
-  margin: 50px;
+  margin: 20px 0;
   text-decoration: none;
   font-size: 24px;
   font-weight: 600;
@@ -209,7 +212,7 @@
   }
 }
 body {
-  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  background-color: #d4dac5 !important;
 }
 
 main {
@@ -243,8 +246,8 @@ main {
 }
 
 .btn-doctors {
-  background-color: #fff04b;
-  color: #00234b;
+  background-color: #0d6581;
+  color: white;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -258,15 +261,19 @@ main {
 .btn-doctors:hover {
   text-decoration: none;
   transition: all 0.7s;
-  background-color: #00234b;
-  color: #fff04b !important;
+  background-color: #2ec8ce;
+  color: white !important;
 }
 
 .ab-navbar {
   z-index: 999;
   height: 80px !important;
-  background-color: #00234b;
+  background-color: #10233f;
   border-bottom: 1px solid silver;
+  color: white;
+}
+.ab-navbar a {
+  color: white;
 }
 
 .center {
@@ -372,6 +379,7 @@ main {
   background-color: #f5f5f5;
   box-shadow: 3px 10px 10px #b5b7b9;
   border-radius: 10px;
+  color: #10233f;
 }
 
 .profile-top {
@@ -381,6 +389,9 @@ main {
 .info-doctor {
   border-left: 1px solid silver;
   padding-left: 30px;
+}
+.info-doctor strong {
+  color: #0d6581;
 }
 
 .profile-bottom {
@@ -578,13 +589,12 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
 .container-messages {
   background-color: whitesmoke;
   max-width: 100%;
-  border: 1px solid #00234b;
   padding: 30px 10px;
+  background-color: #f5f5f5;
+  box-shadow: 3px 10px 10px #b5b7b9;
   border-radius: 10px;
-  box-shadow: 3px 10px 10px #556e8a;
-}
-.container-messages h1 {
-  color: #00234b;
+  color: #10233f h1;
+  color-color: #00234b;
 }
 
 .responsive-table {
@@ -599,7 +609,7 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   margin-bottom: 15px;
 }
 .responsive-table .table-header {
-  background-color: #00234b;
+  background-color: #10233f;
   color: white;
   font-size: 14px;
   text-transform: uppercase;
@@ -609,50 +619,55 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   background-color: #ffffff;
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
 }
+
 @media all and (max-width: 1200px) {
-  .responsive-table .actions form {
+  .actions form {
     display: block !important;
     margin-top: 15px;
   }
 }
 @media all and (max-width: 767px) {
-  .responsive-table .table-header {
-    display: none;
+  .table-header {
+    display: none !important;
   }
-  .responsive-table .table-row {
+
+  .table-row {
     display: block;
   }
-  .responsive-table .space {
+
+  .space {
     display: flex;
     justify-content: center;
     padding: 10px 0;
   }
-  .responsive-table .space:before {
+  .space:before {
     color: #00234b;
     padding-right: 10px;
     content: attr(data-label);
     font-weight: bold;
   }
-  .responsive-table .actions {
+
+  .actions {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .responsive-table .actions form {
+  .actions form {
     margin-top: 0;
     margin-left: 5px;
   }
-}
-.responsive-table .info-doctor {
-  margin-top: 30px;
-  border-left: none;
-  border-top: 1px solid silver;
-  padding-top: 20px;
-}
-.responsive-table .profile-top {
-  margin-bottom: 0;
-}
 
+  .info-doctor {
+    margin-top: 30px;
+    border-left: none;
+    border-top: 1px solid silver;
+    padding-top: 20px;
+  }
+
+  .profile-top {
+    margin-bottom: 0;
+  }
+}
 .page-contain {
   display: flex;
   min-height: 100vh;

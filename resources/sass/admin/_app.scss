@@ -1,6 +1,6 @@
 
 body{
-  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  background-color: $secondary-color !important;
 }
 main{
   min-height: calc(100vh - 80px);
@@ -34,8 +34,8 @@ main{
 }
 
 .btn-doctors{
-  background-color: #fff04b;
-  color: rgb(0, 35, 75);
+  background-color: $fourth-color;
+  color: white;
   padding: 5px 10px;  
   border: none;
   border-radius: 5px;
@@ -49,8 +49,8 @@ main{
 .btn-doctors:hover{
   text-decoration: none;
   transition: all 0.7s;
-  background-color: rgb(0, 35, 75);
-  color: rgb(255, 240, 75) !important;
+  background-color: $third-color;
+  color: white !important;
 }
 
 // NAVBAR
@@ -58,8 +58,12 @@ main{
 .ab-navbar{
   z-index: 999;
   height: 80px !important;
-  background-color: rgb(0, 35, 75);
+  background-color: $primary-color;
   border-bottom: 1px solid silver;
+  color: white;
+  a{
+    color: white;
+  }
 }
 
 // FORM REGISTER AND LOGIN
@@ -171,6 +175,7 @@ main{
   background-color: #f5f5f5;
   box-shadow: 3px 10px 10px#b5b7b9;
   border-radius: 10px;
+  color: $primary-color
 }
 
 .profile-top{
@@ -180,6 +185,9 @@ main{
 .info-doctor{
   border-left: 1px solid silver;
   padding-left: 30px;
+  strong{
+    color: $fourth-color;
+  }
 }
 
 .profile-bottom{
@@ -366,10 +374,11 @@ border: 2px solid #e9a1ff;
 .container-messages {
   background-color: whitesmoke;
   max-width: 100%;
-  border: 1px solid rgb(0, 35, 75);
   padding: 30px 10px;
-  border-radius:  10px;
-  box-shadow: 3px 10px 10px rgb(85, 110, 138);
+  background-color: #f5f5f5;
+  box-shadow: 3px 10px 10px#b5b7b9;
+  border-radius: 10px;
+  color: $primary-color
   h1{
     color: rgb(0, 35, 75);
   }
@@ -386,7 +395,7 @@ border: 2px solid #e9a1ff;
     margin-bottom: 15px;
   }
   .table-header {
-    background-color: rgb(0, 35, 75);
+    background-color: $primary-color ;
     color: white;
     font-size: 14px;
     text-transform: uppercase;
@@ -397,7 +406,7 @@ border: 2px solid #e9a1ff;
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
   }
 
-
+}
 
 
   @media all and (max-width: 1200px){
@@ -407,9 +416,11 @@ border: 2px solid #e9a1ff;
     }
   }
   
+
+
   @media all and (max-width: 767px) {
     .table-header {
-      display: none;
+      display: none !important;
     }
     .table-row{
       display: block;
@@ -434,15 +445,14 @@ border: 2px solid #e9a1ff;
         margin-left: 5px;
       }
     }
+    .info-doctor{
+      margin-top: 30px;
+      border-left: none;
+      border-top: 1px solid silver;
+      padding-top: 20px;
+    }
+    .profile-top{
+      margin-bottom: 0;
+    }
   }
 
-  .info-doctor{
-    margin-top: 30px;
-    border-left: none;
-    border-top: 1px solid silver;
-    padding-top: 20px;
-  }
-  .profile-top{
-    margin-bottom: 0;
-  }
-}
