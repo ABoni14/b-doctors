@@ -47,7 +47,7 @@
 
             <button
                 type="submit"
-                class="btn btn-primary"
+                class="btn"
                 :disabled="sending"
             >{{ sending ? 'invio in corso' : 'Invia'}}</button>
         </form>
@@ -95,6 +95,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../../sass/guest/_vars.scss';
 
 form{
     .txt_field{
@@ -125,16 +126,16 @@ form{
       width: 100%;
       height: 50px;
       border: none;
-      background: rgb(255, 240, 75);
+      background: $fourth-color;
       border-radius: 5px;
       font-size: 18px;
-      color: rgb(0, 35, 75);
+      color: white;
       font-weight: 700;
       cursor: pointer;
       outline: none;
       margin-top: 20px;
       &:hover{
-        background-color: rgb(0, 35, 75);
+        background-color: $third-color;
         color: white;
         transition: .5s;
       }

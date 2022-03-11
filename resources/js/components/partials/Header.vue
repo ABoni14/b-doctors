@@ -1,15 +1,20 @@
 <template>
   <header>
     <nav class="navbar navbar-expand-lg navbar">
-      <router-link :to="{name: 'home'}" class="logo">
-        <img src="../../../../public/img/logo.png" alt="logo" width="70px">
-        BDoctors
-      </router-link>
-      <button class="navbar-toggler third-button px-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent22" aria-controls="navbarSupportedContent22" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="d-flex align-items-center">
+        <router-link :to="{name: 'home'}" class="logo">
+        <img src="../../../../public/img/logo2.png" alt="logo" width="70px">
+        </router-link>
+        <router-link :to="{name: 'home'}" class="link-page d-none d-sm-block">
+          BDoctors
+        </router-link>
+      </div>
+      
+      <button class="navbar-toggler third-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent22" aria-controls="navbarSupportedContent22" aria-expanded="false" aria-label="Toggle navigation">
         <div class="animated-icon3"><span></span><span></span><span></span></div>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent22">
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0 px-5">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item ml-auto active">
              <router-link :to="{name: 'AdvancedSearch'}" class="advanced-search nav-link">
                <i class="fas fa-search"></i>
@@ -49,14 +54,15 @@ header{
     color: white;
   nav{
     color: rgb(0, 35, 75) !important;
-    padding:0 !important;
+    padding:0 15px !important;
     .logo{
-      color: rgb(0, 35, 75) !important;
+      padding: 5px 15px;
+      color: white;
+    }
+    .link-page{
+      color: white;
       font-size: 40px;
       text-decoration: none;
-      padding: 5px 25px;
-      margin: 0 15px;
-      color: white;
     }
     button{
       border-color: transparent !important; 
@@ -69,7 +75,7 @@ header{
       display: block;
       line-height: 80px;
       &:hover{
-        color: $primary-color !important ;
+        color: $third-color !important ;
         transition: all 0.3s;
       }
     }

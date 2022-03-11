@@ -366,6 +366,7 @@ export default {
   }
   //Search
   .ab-container{
+    
     .search{
       .left-search{
         width: 30%;
@@ -394,18 +395,19 @@ export default {
           color: $primary-color;
         }
         button{
-          border: 1px solid rgb(255, 240, 75);
-          color: $primary-color;
+          border: 1px solid $fourth-color;
+          color: white;
+          font-weight: 600;
           border-radius: 0 10px 10px 0;
-          background-color: rgb(255, 240, 75);
+          background-color: $fourth-color;
 
           &:hover{
-            background-color: $primary-color;
-            border-color: $primary-color;
-            color: rgb(255, 240, 75);
+            background-color: $third-color;
+            border-color: $third-color;
           }
-
-
+          &:disabled{
+            opacity: 1;
+          }
         }
       }
     }
@@ -448,7 +450,7 @@ export default {
 
    //info
   .bg-container{
-    background: linear-gradient(to bottom, #FFFFFF 10%, rgb(214, 229, 243) 100%);
+    background: linear-gradient(to bottom, $secondary-color 10%, white 100%);
     .container-info{
       h5{
         padding: 30px 0;
@@ -463,20 +465,17 @@ export default {
           height: 200px;
           width: 200px;
           border-radius: 50%;
-          border: 2px solid lighten($primary-color, 20%);
-          box-shadow: 10px 10px 5px lighten($primary-color, 15%);
+          box-shadow: 0px 10px 5px lightgray;
         }
         .text-info{
           margin-top: 40px;
           .title-info{
-            color: black;
+            color: $primary-color;
             font-size: 16px;
-            color: darken($primary-color, 10%);
             font-weight: 600;
-
           }
           p{
-            color: black;
+            color: $fourth-color;
             font-size: 13px;
             margin-top: 10px;
           }

@@ -39,6 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../sass/guest/_vars.scss';
 
 .container-grid{
     display: grid;

@@ -9,6 +9,7 @@ name: 'Loader'
 </script>
 
 <style lang="scss" scoped>
+@import '../../../sass/guest/_vars.scss';
 
 .pulse {
   padding: 150px 0;
