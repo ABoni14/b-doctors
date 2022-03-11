@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;
+
+700&display=swap);@charset "UTF-8";
 .context h1 {
   text-align: center;
   color: #fff;
@@ -288,6 +290,7 @@ a {
   border-bottom: 1px solid silver;
   color: white;
 }
+
 .ab-navbar a {
   color: white;
 }
@@ -420,6 +423,7 @@ a {
   border-left: 1px solid silver;
   padding-left: 30px;
 }
+
 .info-doctor strong {
   color: #0d6581;
 }
@@ -624,11 +628,8 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   background-color: #f5f5f5;
   box-shadow: 3px 10px 10px #b5b7b9;
   border-radius: 10px;
-  box-shadow: 3px 10px 10px #556e8a;
-}
-
-.container-messages h1 {
-  color: #00234b;
+  color: #10233f h1;
+  color-color: #00234b;
 }
 
 .responsive-table {
@@ -669,30 +670,30 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
     display: none !important;
   }
 
-  .responsive-table .table-row {
+  .table-row {
     display: block;
   }
 
-  .responsive-table .space {
+  .space {
     display: flex;
     justify-content: center;
     padding: 10px 0;
   }
 
-  .responsive-table .space:before {
+  .space:before {
     color: #00234b;
     padding-right: 10px;
     content: attr(data-label);
     font-weight: bold;
   }
 
-  .responsive-table .actions {
+  .actions {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .responsive-table .actions form {
+  .actions form {
     margin-top: 0;
     margin-left: 5px;
   }
@@ -708,6 +709,7 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
     margin-bottom: 0;
   }
 }
+
 .page-contain {
   display: flex;
   min-height: 100vh;
@@ -733,6 +735,7 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   box-shadow: 0 1.5em 2.5em -0.5em rgba(0, 0, 0, 0.1);
   transition: transform 0.45s ease, background 0.45s ease;
 }
+
 .data-card h4 {
   color: #2E3C40;
   font-size: 2em;
@@ -743,6 +746,7 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   border-bottom: 2px solid #753BBD;
   transition: color 0.45s ease, border 0.45s ease;
 }
+
 .data-card h5 {
   color: #627084;
   text-transform: uppercase;
@@ -753,6 +757,7 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   margin: 0 0 1.777777778em;
   transition: color 0.45s ease;
 }
+
 .data-card p {
   opacity: 0;
   color: #FFFFFF;
@@ -762,6 +767,7 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   transform: translateY(-1em);
   transition: opacity 0.45s ease, transform 0.5s ease;
 }
+
 .data-card .link-text {
   display: block;
   color: #753BBD;
@@ -771,54 +777,53 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   margin: auto 0 0;
   transition: color 0.45s ease;
 }
+
 .data-card .link-text svg {
   margin-left: 0.5em;
   transition: transform 0.6s ease;
 }
+
 .data-card .link-text svg path {
   transition: fill 0.45s ease;
 }
+
 .data-card:hover {
   background: #753BBD;
   transform: scale(1.02);
 }
+
 .data-card:hover h4 {
   color: #FFFFFF;
   border-bottom-color: #A754C4;
 }
+
 .data-card:hover h5 {
   color: #FFFFFF;
 }
+
 .data-card:hover p {
   opacity: 1;
   transform: none;
 }
+
 .data-card:hover .link-text {
   color: #FFFFFF;
 }
+
 .data-card:hover .link-text svg {
   -webkit-animation: point 1.25s infinite alternate;
           animation: point 1.25s infinite alternate;
 }
+
 .data-card:hover .link-text svg path {
   fill: #FFFFFF;
-}
-
-.responsive-table .info-doctor {
-  margin-top: 30px;
-  border-left: none;
-  border-top: 1px solid silver;
-  padding-top: 20px;
-}
-
-.responsive-table .profile-top {
-  margin-bottom: 0;
 }
 
 @-webkit-keyframes point {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(0.125em);
   }
@@ -828,10 +833,12 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(0.125em);
   }
 }
+
 /*!
  * Bootstrap v4.6.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

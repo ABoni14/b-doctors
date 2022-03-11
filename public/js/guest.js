@@ -2142,10 +2142,10 @@ __webpack_require__.r(__webpack_exports__);
       });
       return this.filteredDoctors;
     },
-    changeQueryUrl: function changeQueryUrl(slug) {
+    changeQueryUrl: function changeQueryUrl(specToSearch) {
       this.$router.replace({
         query: {
-          specialization: slug
+          specialization: specToSearch
         }
       });
     },
@@ -2162,6 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
     if (this.$route.params.slug != undefined && this.$route.params.slug != null) {
       this.specToSearch = this.$route.params.slug;
       this.getDoctorsHome();
+      this.changeQueryUrl(this.specToSearch);
     } else {
       console.log('search was null or empty try searching something');
     }
@@ -2833,6 +2834,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.apiUrl).then(function (res) {
         _this.specs = res.data.specialization;
+        console.log(_this.specs);
       })["catch"](function (err) {
         console.error(err);
       });
@@ -2871,6 +2873,17 @@ __webpack_require__.r(__webpack_exports__);
     output: function output() {
       this.slug = this.specToSearch.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "-and-").replace(/--/g, "-");
       return this.slug;
+    },
+    checkedValue: function checkedValue() {
+      var _this3 = this;
+
+      if (this.specs.some(function (e) {
+        return e.name == _this3.specToSearch;
+      })) {
+        return true;
+      }
+
+      return false;
     }
   },
   mounted: function mounted() {
@@ -40581,7 +40594,7 @@ var render = function () {
                         staticClass: "btn btn-doctors",
                         attrs: {
                           type: "submit",
-                          disabled: !_vm.specToSearch,
+                          disabled: this.checkedValue === false,
                           id: "search",
                         },
                       },
@@ -57705,7 +57718,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\aboni\OneDrive\Documents\Boolean\LARAVEL\PROGETTO FINALE\b-doctors\b-doctors\resources\js\guest.js */"./resources/js/guest.js");
+module.exports = __webpack_require__(/*! /Users/luke/local-documents/Boolean/b-doctors/resources/js/guest.js */"./resources/js/guest.js");
 
 
 /***/ })

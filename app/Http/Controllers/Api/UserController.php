@@ -67,7 +67,7 @@ class UserController extends Controller
     {
         $doctors = User::whereHas('premium_options' , function(Builder $query){
             $query->where('premium_option_id', '>', 1);
-        })->with(['premium_options', 'reviews', 'specializations'])->paginate(4);
+        })->with(['premium_options', 'reviews', 'specializations'])->take(30)->paginate(4);
 
         return response()->json($doctors);
     }
