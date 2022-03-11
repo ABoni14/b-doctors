@@ -48,8 +48,10 @@ header{
     background-color: $primary-color;
     color: white;
   nav{
+    color: rgb(0, 35, 75) !important;
     padding:0 !important;
     .logo{
+      color: rgb(0, 35, 75) !important;
       font-size: 40px;
       text-decoration: none;
       padding: 5px 25px;
