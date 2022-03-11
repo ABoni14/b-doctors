@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Specialization;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -79,6 +80,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        $new_user->specializations()->attach($data['specializations']);
         $currentDate = Carbon::now()->toDateTimeString();
         $new_user->premium_options()->attach([1=>[
             'start_date' => $currentDate,
@@ -86,5 +88,11 @@ class RegisterController extends Controller
         ]]);
 
         return $new_user;
+    }
+
+    public function showRegistrationForm()
+    {
+        $specializations = Specialization::all();
+        return view("auth.register", compact("specializations"));
     }
 }
