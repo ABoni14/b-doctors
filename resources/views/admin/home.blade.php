@@ -23,7 +23,6 @@
             </a>
         </menu>
     </div> --}}
-<<<<<<< HEAD
     
     <div class="area" >
         <ul class="circles">
@@ -39,36 +38,6 @@
             <li></li>
         </ul>
         
-=======
-    <div class="banner">
-        <div class="aestroid">
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-            <div class="stone"></div>
-        </div>
-
-        <div class="banner-text">
-            <h1>B-Doctor navigazione</h1>
-            <ul>
-                <li>
-                    <a href="{{ route('admin.dashboard.show', Auth::user() ) }}" class="action">La mia Pagina</a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.messages.index', Auth::user() )}}">Messaggi</a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.reviews.index', Auth::user() )}}" class="action">Recensioni</a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.payment', Auth::user() )}}" class="action">Sponsorizzazione</a>
-                </li>
-            </ul>
-        </div>
->>>>>>> 18a38b91d4e51782a4be16a97fc680941b1d89cd
 
     </div>
 
