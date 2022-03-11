@@ -45,8 +45,8 @@ export default {
 @import '../../../sass/guest/_vars.scss';
 
 header{
-    background-color: rgb(255, 240, 75);
-    color: rgb(0, 35, 75);
+    background-color: $primary-color;
+    color: white;
   nav{
     padding:0 !important;
     .logo{
@@ -54,13 +54,14 @@ header{
       text-decoration: none;
       padding: 5px 25px;
       margin: 0 15px;
+      color: white;
     }
     button{
       border-color: transparent !important; 
     }
     li a{
       text-decoration: none;
-      color: rgb(0, 35, 75) !important;
+      color: white;
       padding: 5px 10px;
       margin: 0 15px;
       display: block;

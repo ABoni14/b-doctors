@@ -140,17 +140,19 @@
 .subtitle-menu {
   color: rgb(0, 35, 75);
   text-align: center;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .title-menu {
   font-size: 70px;
-  color: rgb(0, 35, 75);
+  color: white;
   text-transform: uppercase;
   font-weight: 800;
 }
 
 .dashboard-nav-menu {
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 25px;
   background: whitesmoke;
   padding: 16px;
@@ -159,9 +161,10 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 0 30px;
       a {
         text-align: center;
-        margin: 50px;
+        margin: 20px 0;
         text-decoration: none;
         font-size: 24px;
         font-weight: 600;
