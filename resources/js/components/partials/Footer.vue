@@ -8,16 +8,17 @@
             </div>
           <div class="my-4 col-12 col-sm-10 col-md-6 col-lg-6 text-center justify-content-center align-items-center">
             <p>
-              Doctolib Srl, - Società con socio unico, soggetta a direzione e coordinamento di Doctolib SAS - Sede Legale: Milano, Corso Giacomo Matteotti n. 1 - Capitale Sociale: euro 3.010.000,00 i.v.
-              Codice Fiscale e Registro Imprese di Milano Monza Brianza Lodi n. 11537360965 - REA: MI - 2609715 - doctolib.it – PEC doctolibsrl@legalmail.it
+              BDoctor Srl, - Società con socio unico, soggetta a direzione e coordinamento di BDoctor SAS - Sede Legale: Milano, Corso Giacomo Matteotti n. 1 - Capitale Sociale: euro 3.010.000,00 i.v.
+              Codice Fiscale e Registro Imprese di Milano Monza Brianza Lodi n. 11537360965 - REA: MI - 2609715 - BDoctor.it – PEC BDoctorsrl@legalmail.it
             </p>
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-3 text-center justify-content-center align-items-center">
             <ul>
-              <li>Logo</li>
-              <li>Logo</li>
-              <li>Logo</li>
-              <li>Logo</li>
+              <li><i class="fab fa-twitter"></i></li>
+              <li><i class="fab fa-facebook-f"></i></li>
+              <li><i class="fab fa-instagram"></i></li>
+              <li><i class="fab fa-telegram-plane"></i></li>
+              <li><i class="fab fa-github"></i></li>
             </ul>
           </div>
         </div>
@@ -46,7 +47,7 @@ export default {
 @import '../../../sass/guest/_vars.scss';
 
 footer{
-  background-color: rgb(0, 35, 75);
+  background-color: $fourth-color;
   padding: 40px 0;
   color:white;
   
@@ -94,7 +95,7 @@ footer{
         color: white;
         &:hover{
           text-decoration: none;
-          color: darken($primary-color, 20%)
+          color: $primary-color
         }
       }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-4">
+    <div class="container-fluid my-4">
         <h2 v-if="doctors.length > 0" class="text-center my-5">
             I risultati della tua ricerca per {{title_spec}}
         </h2>
@@ -10,7 +10,7 @@
             Avvia una Ricerca!
         </h2>
 
-        <div class="container-grid">
+        <div class="row justify-content-center">
             <CardsDoctors
             v-for="(doctor, index) in doctors"
             :key="index"
@@ -39,6 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../sass/guest/_vars.scss';
 
 .container-grid{
     display: grid;

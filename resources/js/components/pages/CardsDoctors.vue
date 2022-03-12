@@ -1,38 +1,13 @@
 <template>
-    <!-- <div class="col-3">
-        <div class="card-doctor">
-            <div class="top-card-doctor">
-                <img src='doctorInfo.photo' alt="...">
-            </div>
-            <div class="bottom-card-doctor">
-                <h4>{{doctorInfo.first_name}} {{doctorInfo.last_name}}</h4>
-                <router-link :to="{ name: 'DoctorPage' , params: { DoctorPage: JSON.stringify(doctorInfo) } }">Vai al profilo</router-link>
-                <strong>Vote: </strong>
-                <i
-                    v-for="(item, index) in 5"
-                    :key="index"
-                    class="fa-star"
-                    :class="index < getAvgVote() ? 'fas' : 'far'"
-                ></i>
-            </div>
-
-        </div>
-    </div> -->
 
 
-            <div class="card-doctor">
-                <!-- <div v-if="doctorInfo.premium_options > 1" class="favicon">
-                    <i class="fas fa-crown"></i>
-                </div> -->
+            <div class="card-doctor col-sm-12 col-md-5 col-lg-3">
                 <div class="picture">
                     <img class="img-fluid" :src="doctorInfo.photo">
                 </div>
-                <!-- <div v-if="doctorInfo."> -->
-
-                <!-- </div> -->
                 <div class="team-content">
                     <h3 class="name"> {{doctorInfo.first_name}} {{doctorInfo.last_name}}</h3>
-                    <h5>{{ doctorInfo.specializations[0].name }}</h5>
+                    <h5 class="specialization">{{ doctorInfo.specializations[0].name }}</h5>
                     <span class="my-2 address">{{doctorInfo.address}}</span>
                     <h5 class="vote my-3">
                         <i
@@ -76,14 +51,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .card-doctor
-//     margin: 15px 0;
-//     border-radius: 15px;
-//     padding: 10px;
-//
+@import '../../../sass/guest/_vars.scss';
 
 .card-doctor {
-    width: 280px;
+  max-width: 280px;
   padding: 30px 0;
   margin: 1rem;
   background-color: #f5f5f5;
@@ -122,12 +93,12 @@ export default {
   width: 100%;
   height: 0;
   border-radius: 50%;
-  background-color: rgb(0, 35, 75);
+  background-color: $fourth-color;
   position: absolute;
   bottom: 135%;
   right: 0;
   left: 0;
-  opacity: 0.9;
+  opacity: 0.8;
   transform: scale(3);
   transition: all 0.3s linear 0s;
 }
@@ -141,7 +112,7 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: rgb(0, 35, 75);
+  background-color: $fourth-color;
   position: absolute;
   top: 0;
   left: 0;
@@ -163,9 +134,7 @@ export default {
 .card-doctor:hover .btn-doctors{
 
     transition: all 0.7s;
-    background-color: rgb(255, 240, 75);
-    color: rgb(0, 35, 75) !important;
-    font-weight: 600;
+    background-color: $third-color;
 }
 
 .card-doctor .vote {
@@ -177,16 +146,11 @@ export default {
 
 .btn-doctors{
     padding: 5px 10px;
-    background-color: rgb(0, 35, 75);
+    background-color: $fourth-color;
 }
 
-.name{
-    min-height: 60px;
+.specialization{
+  min-height: 50px;
 }
-
-
-
-
-
 
 </style>
