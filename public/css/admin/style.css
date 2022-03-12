@@ -635,8 +635,19 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   background-color: #f5f5f5;
   box-shadow: 3px 10px 10px #b5b7b9;
   border-radius: 10px;
-  color: #10233f h1;
-  color-color: #00234b;
+  color: #10233f;
+}
+
+.container-messages h1 {
+  color: #00234b;
+}
+
+.container-messages .actions {
+  padding: unset;
+}
+
+.container-messages .actions .delete-msg {
+  padding: 8px 20px;
 }
 
 .responsive-table {
@@ -703,6 +714,10 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   .actions form {
     margin-top: 0;
     margin-left: 5px;
+  }
+
+  .actions form .delete-msg {
+    padding: 10px 20px !important;
   }
 
   .info-doctor {

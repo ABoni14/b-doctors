@@ -38,6 +38,18 @@
                 </a>
             </div>
         </div>
+        <div class="row">
+            @if (session('success_message'))
+                    <div class="col-12 my-3 text-center alert alert-success" role="alert">
+                        <h3>{{ session('success_message') }} </h3>
+                    </div>
+            @endif
+            @if (session('success_message'))
+                    <div class="col-12 text-center">
+                        <h3>Grazie per il per il tuo acquisto!</h3>
+                    </div>
+            @endif
+        </div>
     </div>
 @endsection
 

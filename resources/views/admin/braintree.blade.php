@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="content">
-            <h1>Seleziona un metodo di Pagamento</h1>
-            @if (session('success_message'))
-                <h3>{{ session('success_message') }} </h3>
+            <h1 class="text-center">Inserisci un metodo di Pagamento</h1>
+            @if ($value)
+            <h4 class="text-center my-4">Stai per acquistare il pacchetto: <strong>{{ $value }}</strong></h4>
             @endif
             <form method="post"
                 id="payment-form"
@@ -25,7 +25,8 @@
                     </div>
                 </div>
                 <input id="nonce" name="payment_method_nonce" type="hidden" />
-                <button class="btn btn-primary" type="submit"><span>Clicca qui per procedere con il Pagamento</span></button>
+                <a href="{{ route('admin.payment', Auth::user() ) }}" class="action btn-doctors button-back mb-3">Indietro</a>
+                <button class="btn-doctors ml-4" type="submit"><span>Paga ora <i class="fas fa-shopping-cart"></i></span></button>
             </form>
         </div>
     </div>
