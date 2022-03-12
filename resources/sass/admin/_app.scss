@@ -20,7 +20,7 @@ a{
   &::after {
     content: '«';
     position: absolute;
-    opacity: 0;  
+    opacity: 0;
     top: 8px;
     right: -20px;
     transition: 0.5s;
@@ -40,7 +40,7 @@ a{
 .btn-doctors{
   background-color: $fourth-color;
   color: white;
-  padding: 5px 10px;  
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   font-size: 14px;
@@ -140,7 +140,7 @@ a{
       margin: -5px 0 20px 5px;
       cursor: pointer;
       a{
-        text-decoration: none; 
+        text-decoration: none;
         color: #a6a6a6;
       }
       &:hover{
@@ -198,6 +198,18 @@ a{
 .profile-bottom{
   border-top: 1px solid silver;
   padding-top: 20px;
+}
+
+.image-box{
+    width: 200px !important;
+    height: 200px !important;
+    margin: 1rem;
+    img{
+
+        max-height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
 }
 
 //edit profile
@@ -321,7 +333,7 @@ border: 2px solid #e9a1ff;
     box-shadow: 0 2px 1px rgba(0,0,0,.07);
     background: #fff;
     transition: all .4s ease-in-out;
-    
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -420,7 +432,7 @@ border: 2px solid #e9a1ff;
       margin-top: 15px;
     }
   }
-  
+
 
 
   @media all and (max-width: 767px) {

@@ -433,6 +433,20 @@ a {
   padding-top: 20px;
 }
 
+.image-box {
+  width: 200px !important;
+  height: 200px !important;
+  margin: 1rem;
+}
+
+.image-box img {
+  max-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+}
+
 .container {
   max-width: 640px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

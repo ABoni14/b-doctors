@@ -2236,6 +2236,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardsDoctors",
   props: {
@@ -40213,12 +40218,23 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-doctor" }, [
-    _c("div", { staticClass: "picture" }, [
-      _c("img", {
-        staticClass: "img-fluid",
-        attrs: { src: _vm.doctorInfo.photo },
-      }),
-    ]),
+    _vm.doctorInfo.photo.substring(0, 4) === "http"
+      ? _c("div", { staticClass: "picture" }, [
+          _c("img", {
+            staticClass: "img-fluid",
+            attrs: { src: _vm.doctorInfo.photo },
+          }),
+        ])
+      : _vm.doctorInfo.photo.substring(0, 4) != "http"
+      ? _c("div", { staticClass: "picture" }, [
+          _c("img", {
+            staticClass: "img-fluid",
+            attrs: {
+              src: "http://127.0.0.1:8000/storage/" + _vm.doctorInfo.photo,
+            },
+          }),
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "team-content" }, [
       _c("h3", { staticClass: "name" }, [

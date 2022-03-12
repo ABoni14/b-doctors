@@ -24,10 +24,15 @@
                 <!-- <div v-if="doctorInfo.premium_options > 1" class="favicon">
                     <i class="fas fa-crown"></i>
                 </div> -->
-                <div class="picture">
+                <div v-if="doctorInfo.photo.substring(0,4) === 'http'" class="picture">
                     <img class="img-fluid" :src="doctorInfo.photo">
                 </div>
-                <!-- <div v-if="doctorInfo."> -->
+
+                <div v-else-if="doctorInfo.photo.substring(0,4) != 'http'" class="picture">
+                    <img class="img-fluid" :src="`http://127.0.0.1:8000/storage/${doctorInfo.photo}`">
+                </div>
+
+
 
                 <!-- </div> -->
                 <div class="team-content">
