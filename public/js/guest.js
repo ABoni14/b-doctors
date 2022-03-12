@@ -2236,8 +2236,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardsDoctors",
   props: {
@@ -2270,6 +2268,16 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _forms_Messages_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forms/Messages.vue */ "./resources/js/components/pages/forms/Messages.vue");
 /* harmony import */ var _forms_Reviews_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./forms/Reviews.vue */ "./resources/js/components/pages/forms/Reviews.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7588,7 +7596,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".doctor[data-v-3ba5a564] {\n  min-height: 300px;\n  padding: 20px 30px;\n  color: #00234b;\n}\n.doctor img[data-v-3ba5a564] {\n  border-radius: 50%;\n}\n.doctor .doc-top[data-v-3ba5a564] {\n  padding-bottom: 30px;\n  border-bottom: 1px solid lightgray;\n}\n.doctor .doc-bottom[data-v-3ba5a564] {\n  padding: 30px 0;\n  border-bottom: 1px solid lightgray;\n}\n.doctor .doc-bottom .vote[data-v-3ba5a564] {\n  border-right: 1px solid lightgray;\n}\n.doctor .doc-bottom .vote .fa-star[data-v-3ba5a564] {\n  color: #0d6581;\n}\n.doctor .doc-bottom .reviews[data-v-3ba5a564] {\n  height: 400px;\n  overflow: auto;\n  padding: 0 30px;\n}\n.doctor .doc-bottom .reviews[data-v-3ba5a564]::-webkit-scrollbar {\n  display: block;\n}\n.doctor .doc-bottom .reviews .fa-star[data-v-3ba5a564] {\n  color: #2ec8ce;\n}\n.doctor .doctor-details[data-v-3ba5a564] {\n  border-bottom: 4px solid #f0f0f0;\n  padding-bottom: 50px;\n}\n.forms[data-v-3ba5a564] {\n  min-height: 300px;\n  padding: 20px 30px;\n  background-color: #f7f8f9;\n  border: 1px solid lightgrey;\n}\n.forms .form-top[data-v-3ba5a564] {\n  border-bottom: 2px solid lightgray;\n  margin-bottom: 30px;\n}", ""]);
+exports.push([module.i, ".doctor[data-v-3ba5a564] {\n  min-height: 300px;\n  padding: 20px 30px;\n  color: #00234b;\n}\n.doctor img[data-v-3ba5a564] {\n  border-radius: 50%;\n}\n.doctor .doc-top[data-v-3ba5a564] {\n  padding-bottom: 30px;\n  border-bottom: 1px solid lightgray;\n}\n.doctor .doc-top .picture[data-v-3ba5a564] {\n  height: 210px;\n  width: 210px;\n  margin-right: 1rem;\n}\n.doctor .doc-top .picture .img-fluid[data-v-3ba5a564] {\n  width: 100%;\n  height: auto;\n  max-height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: top;\n     object-position: top;\n}\n.doctor .doc-bottom[data-v-3ba5a564] {\n  padding: 30px 0;\n  border-bottom: 1px solid lightgray;\n}\n.doctor .doc-bottom .vote[data-v-3ba5a564] {\n  border-right: 1px solid lightgray;\n}\n.doctor .doc-bottom .vote .fa-star[data-v-3ba5a564] {\n  color: #0d6581;\n}\n.doctor .doc-bottom .reviews[data-v-3ba5a564] {\n  height: 400px;\n  overflow: auto;\n  padding: 0 30px;\n}\n.doctor .doc-bottom .reviews[data-v-3ba5a564]::-webkit-scrollbar {\n  display: block;\n}\n.doctor .doc-bottom .reviews .fa-star[data-v-3ba5a564] {\n  color: #2ec8ce;\n}\n.doctor .doctor-details[data-v-3ba5a564] {\n  border-bottom: 4px solid #f0f0f0;\n  padding-bottom: 50px;\n}\n.forms[data-v-3ba5a564] {\n  min-height: 300px;\n  padding: 20px 30px;\n  background-color: #f7f8f9;\n  border: 1px solid lightgrey;\n}\n.forms .form-top[data-v-3ba5a564] {\n  border-bottom: 2px solid lightgray;\n  margin-bottom: 30px;\n}", ""]);
 
 // exports
 
@@ -40273,20 +40281,37 @@ var render = function () {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "doctor col-lg-8 col-md-12" }, [
         _c("div", { staticClass: "doc-top d-flex align-items-center" }, [
-          _vm.doctor_profile.photo === null
-            ? _c("div", { staticClass: "mr-5" }, [
+          _vm.doctor_profile.photo === null ||
+          _vm.doctor_profile.photo === undefined
+            ? _c("div", { staticClass: "picture" }, [
                 _c("img", {
+                  staticClass: "img-fluid",
                   attrs: {
-                    src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOQAAADdCAMAAACc/C7aAAAAaVBMVEXDw8MAAADGxsaXl5fJycnMzMxSUlKRkZF1dXV5eXnCwsIFBQWlpaV+fn66urqurq5dXV1sbGxMTEyKiopXV1czMzOcnJwaGhqoqKiEhIQlJSUrKysODg5mZmZHR0ezs7M7OzsVFRU5OTmFwHepAAAC+klEQVR4nO3bi1KjMBSAYXIarIbea2uttVXf/yE36Q0qobrITHP0/2Z2Zt2xDP+GQEDMMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANQ56dCtY+JcZge9zgzsrXvipGc61EtzLO29KbpKLMx9mkPpI83H410XFiblyGFufy7Ph0lHPnSya/aByFuqRv7sSqchUvwV83k4EHFtt6QhcrwOl4GXZdv9VBApq3CdK/w1c9nykNUQ+XK6pG/abin5SFmWy5Z+u6FMP7K6unttt6cKIqflSE4a9tQd/zRtKflI6ZeRw6Y9deFS2ryl5COzUXkzMWoIcZm45bixUkGkfd6PormyyBMZPxkzaVouKIjM7PAwjtPm/XRP4Rse8/hgaoh0djzdbl9XeePJxc7CUBdmHi/REOkPx3Bb2DTlnOwP6L34vNQReZ3szqffRXRa/oJIcetzpJnksS2pj3T5pPrIqmfr6wL9kbZvynWf/8uuPi21Rzrxa4WijCzMW/0j6iKdV/lSZPH5Ges0V3+4flqi+uV77Ql07QmCtkg7GlcumM4uI0/ZC+UjGe67FpVl+qhWGGw/f0pRpIS99aeWjTtV2rdopBleTktNkZkMwvmzMHf20BCaY42FWV3MXFWR2eZY8ezvpY/N8aF8UhuZz84jtV+Iu/d4YfiGu+oHFUX6e43i1LDODs1FfCT9P8+lXN7piZRxNWOS23nTOB7syvsRPZHZ+qKhv2uckMfBLqelmsjLew1/anlpOlbLwT5vSUeks/2rQVG9U5eSyLC0+f+3JE53XToiRT6+OjhjPjRFunz6dVHM9DAtVURG7zW+ZbAfSw2R0mpCHvi1vFMRabctC/1/zdaKisjTTwnaRIYfhCmIdHbQunF/Rl5J8pEizfca37Pxkzr5yNnXHdfNJPGRHNrRvP9D81HqkbnNO5D2W5K//X1XFyK7kuyby3/iHXTp8rcJVmk2/onfCwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALi1f4DsKck70eEzAAAAAElFTkSuQmCC",
-                    alt: "",
+                    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Missing_avatar.svg/240px-Missing_avatar.svg.png",
                   },
                 }),
               ])
-            : _c("div", { staticClass: "mr-5" }, [
+            : _vm.doctor_profile.photo.substring(0, 4) != "http" &&
+              _vm.doctor_profile.photo != null
+            ? _c("div", { staticClass: "picture" }, [
                 _c("img", {
-                  attrs: { src: _vm.doctor_profile.photo, alt: "..." },
+                  staticClass: "img-fluid",
+                  attrs: {
+                    src:
+                      "http://127.0.0.1:8000/storage/" +
+                      _vm.doctor_profile.photo,
+                  },
                 }),
-              ]),
+              ])
+            : _vm.doctor_profile.photo.substring(0, 4) == "http" &&
+              _vm.doctor_profile.photo != null
+            ? _c("div", { staticClass: "picture" }, [
+                _c("img", {
+                  staticClass: "img-fluid",
+                  attrs: { src: _vm.doctor_profile.photo },
+                }),
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "div",
@@ -40365,7 +40390,7 @@ var render = function () {
             { staticClass: "reviews col-12 col-md-8" },
             [
               _c("h5", { staticClass: "text-center mb-3" }, [
-                _vm._v("Recensioni: "),
+                _vm._v("Recensioni:"),
               ]),
               _vm._v(" "),
               _vm._l(_vm.doctor_profile.reviews, function (review, key) {
@@ -40403,7 +40428,7 @@ var render = function () {
             _vm._v(
               "\n                    Riguardo dr. " +
                 _vm._s(_vm.doctor_profile.first_name) +
-                " " +
+                "\n                    " +
                 _vm._s(_vm.doctor_profile.last_name) +
                 "\n                "
             ),

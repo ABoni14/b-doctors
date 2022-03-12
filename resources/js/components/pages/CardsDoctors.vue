@@ -10,9 +10,8 @@
         <div
             v-else-if="
                 doctorInfo.photo.substring(0, 4) != 'http' &&
-                doctorInfo.photo != null
-            "
-            class="picture"
+                doctorInfo.photo != null"
+                class="picture"
         >
             <img
                 class="img-fluid"
@@ -23,8 +22,7 @@
         <div
             v-else-if="
                 doctorInfo.photo.substring(0, 4) == 'http' &&
-                doctorInfo.photo != null
-            "
+                doctorInfo.photo != null"
             class="picture"
         >
             <img class="img-fluid" :src="doctorInfo.photo" />
