@@ -2025,108 +2025,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'AdvancedSearch',
+  name: "AdvancedSearch",
   components: {
     SpecializationDoctors: _SpecializationDoctors_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Loader: _Loader_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['slug'],
+  props: ["slug"],
   data: function data() {
     return {
       baseApi: "http://127.0.0.1:8000/api/",
-      specList: 'http://127.0.0.1:8000/api/specializations',
-      spec: 'doctors/specialization/',
+      specList: "http://127.0.0.1:8000/api/specializations",
+      spec: "doctors/specialization/",
       doctors: [],
       specialization: [],
-      title_spec: '',
-      specToSearch: '',
+      title_spec: "",
+      specToSearch: "",
       filterStar: 0,
       filterReview: 0,
-      error: '',
+      error: "",
       isLoading: false,
       filteredDoctors: [],
       stars: [[0, "Qualsiasi valutazione"], [1, "Almeno una stella"], [2, "Almeno due stelle"], [3, "Almeno tre stelle"], [4, "Almeno quattro stelle"], [5, "Cinque stelle"]],
@@ -2142,7 +2061,7 @@ __webpack_require__.r(__webpack_exports__);
     getSpecList: function getSpecList() {
       var _this = this;
 
-      this.error = '';
+      this.error = "";
       axios.get(this.specList).then(function (res) {
         _this.specialization = res.data.specialization;
       })["catch"](function (err) {
@@ -2153,7 +2072,7 @@ __webpack_require__.r(__webpack_exports__);
     getDoctorsBySpec: function getDoctorsBySpec() {
       var _this2 = this;
 
-      this.error = '';
+      this.error = "";
       this.isLoading = true;
       axios.get(this.baseApi + this.spec + this.specToSearch).then(function (res) {
         _this2.doctors = res.data.premium_users;
@@ -2169,7 +2088,7 @@ __webpack_require__.r(__webpack_exports__);
     getDoctorsHome: function getDoctorsHome() {
       var _this3 = this;
 
-      this.error = '';
+      this.error = "";
       this.isLoading = true;
       axios.get(this.baseApi + this.spec + this.specToSearch).then(function (res) {
         _this3.doctors = res.data.premium_users;
@@ -2227,7 +2146,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeQueryUrl: function removeQueryUrl() {
       this.$router.replace({
-        path: '/advanced-search'
+        path: "/advanced-search"
       });
     }
   },
@@ -2240,7 +2159,7 @@ __webpack_require__.r(__webpack_exports__);
       this.getDoctorsHome();
       this.changeQueryUrl(this.specToSearch);
     } else {
-      console.log('search was null or empty try searching something');
+      console.log("search was null or empty try searching something");
     }
   }
 });
@@ -2256,6 +2175,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7727,7 +7664,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".container-grid[data-v-2a852903] {\n  display: grid;\n  margin: 0.2rem;\n  gap: 0.7rem;\n  grid-template-columns: repeat(4, 1fr);\n}", ""]);
+exports.push([module.i, ".custom-row[data-v-2a852903] {\n  width: 80%;\n  margin: 0 auto;\n}", ""]);
 
 // exports
 
@@ -40045,7 +39982,9 @@ var render = function () {
                     },
                     [
                       _vm._v(
-                        "\n                " + _vm._s(singleSpecialization.name)
+                        "\n                    " +
+                          _vm._s(singleSpecialization.name) +
+                          "\n                "
                       ),
                     ]
                   )
@@ -40096,7 +40035,13 @@ var render = function () {
                 return _c(
                   "option",
                   { key: index, domProps: { value: star[0] } },
-                  [_vm._v(_vm._s(star[1]))]
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(star[1]) +
+                        "\n                    "
+                    ),
+                  ]
                 )
               }),
               0
@@ -40142,7 +40087,13 @@ var render = function () {
                 return _c(
                   "option",
                   { key: index, domProps: { value: review[0] } },
-                  [_vm._v(_vm._s(review[1]))]
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(review[1]) +
+                        "\n                    "
+                    ),
+                  ]
                 )
               }),
               0
@@ -40207,7 +40158,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card-doctor" }, [
+  return _c("div", { staticClass: "card-doctor col-sm-12 col-md-5 col-lg-3" }, [
     _vm.doctorInfo.photo === null
       ? _c("div", { staticClass: "picture" }, [
           _c("img", {
@@ -40217,10 +40168,8 @@ var render = function () {
             },
           }),
         ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.doctorInfo.photo.substring(0, 4) != "http" &&
-    _vm.doctorInfo.photo != null
+      : _vm.doctorInfo.photo.substring(0, 4) != "http" &&
+        _vm.doctorInfo.photo != null
       ? _c("div", { staticClass: "picture" }, [
           _c("img", {
             staticClass: "img-fluid",
@@ -40242,15 +40191,20 @@ var render = function () {
     _c("div", { staticClass: "team-content" }, [
       _c("h3", { staticClass: "name" }, [
         _vm._v(
-          " " +
+          "\n            " +
             _vm._s(_vm.doctorInfo.first_name) +
             " " +
-            _vm._s(_vm.doctorInfo.last_name)
+            _vm._s(_vm.doctorInfo.last_name) +
+            "\n        "
         ),
       ]),
       _vm._v(" "),
       _c("h5", { staticClass: "specialization" }, [
-        _vm._v(_vm._s(_vm.doctorInfo.specializations[0].name)),
+        _vm._v(
+          "\n            " +
+            _vm._s(_vm.doctorInfo.specializations[0].name) +
+            "\n        "
+        ),
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "my-2 address" }, [
@@ -41152,7 +41106,7 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "row justify-content-center" },
+      { staticClass: "row custom-row justify-content-center" },
       _vm._l(_vm.doctors, function (doctor, index) {
         return _c("CardsDoctors", { key: index, attrs: { doctorInfo: doctor } })
       }),

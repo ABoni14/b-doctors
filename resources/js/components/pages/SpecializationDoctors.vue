@@ -10,7 +10,7 @@
             Avvia una Ricerca!
         </h2>
 
-        <div class="row justify-content-center">
+        <div class="row custom-row justify-content-center">
             <CardsDoctors
             v-for="(doctor, index) in doctors"
             :key="index"
@@ -41,11 +41,9 @@ export default {
 <style lang="scss" scoped>
 @import '../../../sass/guest/_vars.scss';
 
-.container-grid{
-    display: grid;
-    margin: 0.2rem;
-    gap: 0.7rem;
-    grid-template-columns:  repeat(4, 1fr);
+.custom-row{
+    width: 80%;
+    margin:0 auto;
 }
 
 </style>
