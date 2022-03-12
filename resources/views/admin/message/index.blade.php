@@ -22,7 +22,7 @@
           <div class="space col-md-3 col-sm-12" data-label="Email utente">{{ $message->email }}</div>
           <div class="space col-md-4 col-sm-12" data-label="Contenuto messaggio">{{Str::limit($message->content, 50, $end = '...')  }}</div>
           <div class="col-md-3 col-sm-12 actions">
-            <a class="btn-doctors" href="{{ route('admin.messages.show', $message) }}">Mostra</a>
+            <a class="btn-doctors show-msg" href="{{ route('admin.messages.show', $message) }}">Mostra</a>
             <form class="d-inline"
             onsubmit="return confirm('Eliminare messaggio di {{$message->first_name}}?')"
               action="{{route('admin.messages.destroy', $message)}}"
@@ -30,13 +30,13 @@
             >
             @csrf
             @method("DELETE")
-              <button type="submit" class="btn-doctors"><i class="fas fa-exclamation-triangle"></i> Elimina</button>
+              <button type="submit" class="btn-doctors delete-msg"><i class="fas fa-exclamation-triangle"></i> Elimina</button>
             </form>
           </div>
-          
+
         </li>
       @endforeach
-     
+
     </ul>
   </div>
 

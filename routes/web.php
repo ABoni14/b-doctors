@@ -90,6 +90,7 @@ Route::post('/checkout', function (Request $request) {
 
         if($transaction->amount == '2.99'){
             $user = User::find(Auth::user()->id);
+            $end_date = Carbon::now()->addDays(1);
             $user->premium_options()->attach([2=>[
                 'start_date' => Carbon::now()->toDateTimeString(),
                 'end_date'=> Carbon::now()->addDays(1)
@@ -98,6 +99,7 @@ Route::post('/checkout', function (Request $request) {
 
         if($transaction->amount == '5.99'){
             $user = User::find(Auth::user()->id);
+            $end_date = Carbon::now()->addDays(3);
             $user->premium_options()->attach([3=>[
                 'start_date' => Carbon::now()->toDateTimeString(),
                 'end_date'=> Carbon::now()->addDays(3)
@@ -106,13 +108,14 @@ Route::post('/checkout', function (Request $request) {
 
         if($transaction->amount == '9.99'){
             $user = User::find(Auth::user()->id);
+            $end_date = Carbon::now()->addDays(6);
             $user->premium_options()->attach([4=>[
                 'start_date' => Carbon::now()->toDateTimeString(),
                 'end_date'=> Carbon::now()->addDays(6)
             ]]);
         }
 
-        return redirect()->back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+        return redirect('/admin/payments')->with('success_message', 'Transazione eseguita con successo! Il tuo codice transazione: '. $transaction->id);
 
     } else {
         $errorString = "";

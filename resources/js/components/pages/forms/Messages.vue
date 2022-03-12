@@ -7,7 +7,7 @@
                 <input type="hidden" name="user_id" id="user_id" :value="doctor_id"/>
 
                 <div class="txt_field">
-                    
+
                     <label for="email"></label>
                     <input
                         type="email"
@@ -52,7 +52,7 @@
             >{{ sending ? 'invio in corso' : 'Invia'}}</button>
         </form>
     </div>
-   
+
 </template>
 
 <script>
