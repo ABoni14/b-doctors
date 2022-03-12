@@ -2241,6 +2241,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardsDoctors",
   props: {
@@ -7682,7 +7685,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".card-doctor[data-v-57578267] {\n  width: 280px;\n  padding: 30px 0;\n  margin: 1rem;\n  background-color: #f5f5f5;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n  border-radius: 10px;\n  box-shadow: 3px 10px 10px #b5b7b9;\n  transition: all 0.5s ease 0s;\n}\n.card-doctor[data-v-57578267]:hover {\n  box-shadow: 8px 18px 15px #b5b7b9;\n}\n.card-doctor .no-vote[data-v-57578267] {\n  font-size: 12px;\n  padding: 13px 0;\n}\n.card-doctor .name[data-v-57578267] {\n  font-size: 22px;\n}\n.card-doctor .address[data-v-57578267] {\n  font-size: 14px;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #00234b;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.9;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #00234b;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  transform: scale(0.85);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  transition: all 0.7s;\n  background-color: #fff04b;\n  color: #00234b !important;\n  font-weight: 600;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #00234b;\n}\n.name[data-v-57578267] {\n  min-height: 60px;\n}", ""]);
+exports.push([module.i, ".card-doctor[data-v-57578267] {\n  width: 280px;\n  padding: 30px 0;\n  margin: 1rem;\n  background-color: #f5f5f5;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n  border-radius: 10px;\n  box-shadow: 3px 10px 10px #b5b7b9;\n  transition: all 0.5s ease 0s;\n}\n.card-doctor[data-v-57578267]:hover {\n  box-shadow: 8px 18px 15px #b5b7b9;\n}\n.card-doctor .no-vote[data-v-57578267] {\n  font-size: 12px;\n  padding: 13px 0;\n}\n.card-doctor .name[data-v-57578267] {\n  font-size: 22px;\n}\n.card-doctor .address[data-v-57578267] {\n  font-size: 14px;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #00234b;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.9;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #00234b;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  max-height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: top;\n     object-position: top;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  transform: scale(0.85);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  transition: all 0.7s;\n  background-color: #fff04b;\n  color: #00234b !important;\n  font-weight: 600;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #00234b;\n}\n.name[data-v-57578267] {\n  min-height: 60px;\n}", ""]);
 
 // exports
 
@@ -40218,20 +40221,33 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-doctor" }, [
-    _vm.doctorInfo.photo.substring(0, 4) === "http"
+    _vm.doctorInfo.photo === null
       ? _c("div", { staticClass: "picture" }, [
           _c("img", {
             staticClass: "img-fluid",
-            attrs: { src: _vm.doctorInfo.photo },
+            attrs: {
+              src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Missing_avatar.svg/240px-Missing_avatar.svg.png",
+            },
           }),
         ])
-      : _vm.doctorInfo.photo.substring(0, 4) != "http"
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.doctorInfo.photo.substring(0, 4) != "http" &&
+    _vm.doctorInfo.photo != null
       ? _c("div", { staticClass: "picture" }, [
           _c("img", {
             staticClass: "img-fluid",
             attrs: {
               src: "http://127.0.0.1:8000/storage/" + _vm.doctorInfo.photo,
             },
+          }),
+        ])
+      : _vm.doctorInfo.photo.substring(0, 4) == "http" &&
+        _vm.doctorInfo.photo != null
+      ? _c("div", { staticClass: "picture" }, [
+          _c("img", {
+            staticClass: "img-fluid",
+            attrs: { src: _vm.doctorInfo.photo },
           }),
         ])
       : _vm._e(),

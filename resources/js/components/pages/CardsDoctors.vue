@@ -24,15 +24,18 @@
                 <!-- <div v-if="doctorInfo.premium_options > 1" class="favicon">
                     <i class="fas fa-crown"></i>
                 </div> -->
-                <div v-if="doctorInfo.photo.substring(0,4) === 'http'" class="picture">
-                    <img class="img-fluid" :src="doctorInfo.photo">
+
+                <div v-if="doctorInfo.photo === null" class="picture">
+                    <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Missing_avatar.svg/240px-Missing_avatar.svg.png">
                 </div>
 
-                <div v-else-if="doctorInfo.photo.substring(0,4) != 'http'" class="picture">
+                <div v-if="doctorInfo.photo.substring(0,4) != 'http' && doctorInfo.photo != null" class="picture">
                     <img class="img-fluid" :src="`http://127.0.0.1:8000/storage/${doctorInfo.photo}`">
                 </div>
 
-
+                <div v-else-if="doctorInfo.photo.substring(0,4) == 'http' && doctorInfo.photo != null" class="picture">
+                    <img class="img-fluid" :src="doctorInfo.photo">
+                </div>
 
                 <!-- </div> -->
                 <div class="team-content">
@@ -156,6 +159,9 @@ export default {
 .card-doctor .picture img {
   width: 100%;
   height: auto;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: top;
   border-radius: 50%;
   transform: scale(1);
   transition: all 0.9s ease 0s;
