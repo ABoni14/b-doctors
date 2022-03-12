@@ -1,7 +1,7 @@
 <template>
 
     <div class="advanced-search">
-        <div class="container-fluid">
+        <!-- <div class="container-fluid">
             <div class="container">
                 <div
                     class="row flex-column justify-content-center align-items-center"
@@ -83,7 +83,83 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+        <div class="container d-flex flex-column justify-content-center text-center">
+
+            <div class="">
+                <h1>Seleziona una specializzazione</h1>
+                <select class="select-spec"
+                    name="specializations"
+                    id="specializations"
+                    @change="getDoctorsBySpec(), changeQueryUrl(specToSearch) "
+                    v-model="specToSearch">
+                    <option value="">Seleziona la specializzazione</option>
+                    <option
+                    v-for="(singleSpecialization, index) in specialization"
+                    :key="index"
+                    :value="singleSpecialization.slug"
+                    :name="singleSpecialization.name"
+                >
+                    {{singleSpecialization.name}}</option>
+                </select>
+            </div>
+
+            <div class="my-4 d-flex justify-content-center">
+                <div class="mr-5">
+                    <h4>Filtra per media voti</h4>
+                    <select
+                        class="filter"
+                        @change="averageVoteFilter"
+                        v-model="filterStar"
+                        :disabled="!specToSearch"
+                    >
+                        <option
+                        v-for="(star, index) in stars"
+                        :key="index"
+                        :value="star[0]">{{star[1]}}</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <h4>Filtra per numero recensioni</h4>
+                    <select
+                        class="filter"
+                        v-model="filterReview"
+                        @change="filterNumberReview"
+                        :disabled="!specToSearch"
+                    >
+                        <option
+                        v-for="(review, index) in reviews"
+                        :key="index"
+                        :value="review[0]">{{review[1]}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
+
+            <div>
+                <div v-if="isLoading">
+                    <Loader />
+                </div>
+
+                <div v-else
+                class="">
+                    <SpecializationDoctors
+                    :doctors="filteredDoctors"
+                    :error="error"
+                    :title_spec="title_spec"
+                    />
+                </div>
+            </div>
+            <div class="container-img mt-4 text-center">
+                <img
+                    src="../../../../public/img/medical.jpg"
+                    alt=""
+                />
+            </div>
+        
     </div>
 </template>
 
@@ -234,26 +310,38 @@ export default {
 @import '../../../sass/guest/_vars.scss';
 
 .advanced-search {
-    padding-bottom: 80px;
-    .container {
-        .container-img {
-            height: 350px;
-            width: 600px;
-            img {
-                height: 100%;
-                width: 100%;
-            }
+padding-top: 80px;  
+color: $primary-color;
+    .select-spec{
+        width: 80%;
+        border-radius: 10px;
+        padding: 20px 15px;
+        border: 1px solid $fourth-color;
+        color: $fourth-color;
+        font-weight: 600;
+        font-size: 20px;
+        &:focus, &:focus-visible{
+            outline: 2px solid $fourth-color !important;
         }
-        #specializations{
+    }
+    .filter{
+        border-radius: 10px;
+        padding: 15px;
+        border: 1px solid $fourth-color;
+        font-weight: 600;
+        font-size: 20px;
+        color: $fourth-color;
+        &:focus, &:focus-visible{
+            outline: 2px solid $fourth-color !important;
+            color: $fourth-color;
+        }
+    }
+    .container-img {
+        img {
             width: 80%;
-            border-radius: 10px;
-            padding: 5px 15px;
-            border: 1px solid lightskyblue;
-            &:focus, &:focus-visible{
-                border: 2px solid lightskyblue !important;
-                outline: 2px solid lightskyblue !important;
-            }
         }
     }
 }
+
+
 </style>

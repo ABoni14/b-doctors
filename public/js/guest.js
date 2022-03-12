@@ -2394,6 +2394,82 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7874,7 +7950,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".advanced-search[data-v-781a2080] {\n  padding-bottom: 80px;\n}\n.advanced-search .container .container-img[data-v-781a2080] {\n  height: 350px;\n  width: 600px;\n}\n.advanced-search .container .container-img img[data-v-781a2080] {\n  height: 100%;\n  width: 100%;\n}\n.advanced-search .container #specializations[data-v-781a2080] {\n  width: 80%;\n  border-radius: 10px;\n  padding: 5px 15px;\n  border: 1px solid lightskyblue;\n}\n.advanced-search .container #specializations[data-v-781a2080]:focus, .advanced-search .container #specializations[data-v-781a2080]:focus-visible {\n  border: 2px solid lightskyblue !important;\n  outline: 2px solid lightskyblue !important;\n}", ""]);
+exports.push([module.i, ".advanced-search[data-v-781a2080] {\n  padding-top: 80px;\n  color: #10233f;\n}\n.advanced-search .select-spec[data-v-781a2080] {\n  width: 80%;\n  border-radius: 10px;\n  padding: 20px 15px;\n  border: 1px solid #0d6581;\n  color: #0d6581;\n  font-weight: 600;\n  font-size: 20px;\n}\n.advanced-search .select-spec[data-v-781a2080]:focus, .advanced-search .select-spec[data-v-781a2080]:focus-visible {\n  outline: 2px solid #0d6581 !important;\n}\n.advanced-search .filter[data-v-781a2080] {\n  border-radius: 10px;\n  padding: 15px;\n  border: 1px solid #0d6581;\n  font-weight: 600;\n  font-size: 20px;\n  color: #0d6581;\n}\n.advanced-search .filter[data-v-781a2080]:focus, .advanced-search .filter[data-v-781a2080]:focus-visible {\n  outline: 2px solid #0d6581 !important;\n  color: #0d6581;\n}\n.advanced-search .container-img img[data-v-781a2080] {\n  width: 80%;\n}", ""]);
 
 // exports
 
@@ -7893,7 +7969,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".card-doctor[data-v-57578267] {\n  width: 280px;\n  padding: 30px 0;\n  margin: 1rem;\n  background-color: #f5f5f5;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n  border-radius: 10px;\n  box-shadow: 3px 10px 10px #b5b7b9;\n  transition: all 0.5s ease 0s;\n}\n.card-doctor[data-v-57578267]:hover {\n  box-shadow: 8px 18px 15px #b5b7b9;\n}\n.card-doctor .no-vote[data-v-57578267] {\n  font-size: 12px;\n  padding: 13px 0;\n}\n.card-doctor .name[data-v-57578267] {\n  font-size: 22px;\n}\n.card-doctor .address[data-v-57578267] {\n  font-size: 14px;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #0d6581;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.8;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #0d6581;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  transform: scale(0.85);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  transition: all 0.7s;\n  background-color: #2ec8ce;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #0d6581;\n}\n.specialization[data-v-57578267] {\n  min-height: 50px;\n}", ""]);
+exports.push([module.i, ".card-doctor[data-v-57578267] {\n  max-width: 280px;\n  padding: 30px 0;\n  margin: 1rem;\n  background-color: #f5f5f5;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n  border-radius: 10px;\n  box-shadow: 3px 10px 10px #b5b7b9;\n  transition: all 0.5s ease 0s;\n}\n.card-doctor[data-v-57578267]:hover {\n  box-shadow: 8px 18px 15px #b5b7b9;\n}\n.card-doctor .no-vote[data-v-57578267] {\n  font-size: 12px;\n  padding: 13px 0;\n}\n.card-doctor .name[data-v-57578267] {\n  font-size: 22px;\n}\n.card-doctor .address[data-v-57578267] {\n  font-size: 14px;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #0d6581;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.8;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #0d6581;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  transform: scale(0.85);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  transition: all 0.7s;\n  background-color: #2ec8ce;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #0d6581;\n}\n.specialization[data-v-57578267] {\n  min-height: 50px;\n}", ""]);
 
 // exports
 
@@ -40245,200 +40321,194 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "advanced-search" }, [
-    _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "row flex-column justify-content-center align-items-center",
-          },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "row justify-content-center" }, [
-                _c("h4", [_vm._v("Seleziona una specializzazione")]),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.specToSearch,
-                        expression: "specToSearch",
-                      },
-                    ],
-                    staticClass: "select-spec",
-                    attrs: { name: "specializations", id: "specializations" },
-                    on: {
-                      change: [
-                        function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.specToSearch = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        },
-                        function ($event) {
-                          _vm.getDoctorsBySpec(),
-                            _vm.changeQueryUrl(_vm.specToSearch)
-                        },
-                      ],
-                    },
+    _c(
+      "div",
+      {
+        staticClass:
+          "container d-flex flex-column justify-content-center text-center",
+      },
+      [
+        _c("div", {}, [
+          _c("h1", [_vm._v("Seleziona una specializzazione")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.specToSearch,
+                  expression: "specToSearch",
+                },
+              ],
+              staticClass: "select-spec",
+              attrs: { name: "specializations", id: "specializations" },
+              on: {
+                change: [
+                  function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.specToSearch = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
                   },
-                  [
-                    _c("option", { attrs: { value: "" } }, [
-                      _vm._v("Seleziona la specializzazione"),
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(
-                      _vm.specialization,
-                      function (singleSpecialization, index) {
-                        return _c(
-                          "option",
-                          {
-                            key: index,
-                            attrs: { name: singleSpecialization.name },
-                            domProps: { value: singleSpecialization.slug },
-                          },
-                          [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(singleSpecialization.name)
-                            ),
-                          ]
-                        )
-                      }
-                    ),
+                  function ($event) {
+                    _vm.getDoctorsBySpec(), _vm.changeQueryUrl(_vm.specToSearch)
+                  },
+                ],
+              },
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("Seleziona la specializzazione"),
+              ]),
+              _vm._v(" "),
+              _vm._l(
+                _vm.specialization,
+                function (singleSpecialization, index) {
+                  return _c(
+                    "option",
+                    {
+                      key: index,
+                      attrs: { name: singleSpecialization.name },
+                      domProps: { value: singleSpecialization.slug },
+                    },
+                    [
+                      _vm._v(
+                        "\n                " + _vm._s(singleSpecialization.name)
+                      ),
+                    ]
+                  )
+                }
+              ),
+            ],
+            2
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "my-4 d-flex justify-content-center" }, [
+          _c("div", { staticClass: "mr-5" }, [
+            _c("h4", [_vm._v("Filtra per media voti")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filterStar,
+                    expression: "filterStar",
+                  },
+                ],
+                staticClass: "filter",
+                attrs: { disabled: !_vm.specToSearch },
+                on: {
+                  change: [
+                    function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.filterStar = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.averageVoteFilter,
                   ],
-                  2
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row justify-content-center mt-4" }, [
-                _c("div", { staticClass: "mr-5" }, [
-                  _c("h5", [_vm._v("Filtra per media voti")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.filterStar,
-                          expression: "filterStar",
-                        },
-                      ],
-                      attrs: { disabled: !_vm.specToSearch },
-                      on: {
-                        change: [
-                          function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.filterStar = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                          _vm.averageVoteFilter,
-                        ],
-                      },
+                },
+              },
+              _vm._l(_vm.stars, function (star, index) {
+                return _c(
+                  "option",
+                  { key: index, domProps: { value: star[0] } },
+                  [_vm._v(_vm._s(star[1]))]
+                )
+              }),
+              0
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("h4", [_vm._v("Filtra per numero recensioni")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filterReview,
+                    expression: "filterReview",
+                  },
+                ],
+                staticClass: "filter",
+                attrs: { disabled: !_vm.specToSearch },
+                on: {
+                  change: [
+                    function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.filterReview = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
                     },
-                    _vm._l(_vm.stars, function (star, index) {
-                      return _c(
-                        "option",
-                        { key: index, domProps: { value: star[0] } },
-                        [_vm._v(_vm._s(star[1]))]
-                      )
-                    }),
-                    0
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("h5", [_vm._v("Filtra per numero recensioni")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.filterReview,
-                          expression: "filterReview",
-                        },
-                      ],
-                      attrs: { disabled: !_vm.specToSearch },
-                      on: {
-                        change: [
-                          function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.filterReview = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                          _vm.filterNumberReview,
-                        ],
-                      },
-                    },
-                    _vm._l(_vm.reviews, function (review, index) {
-                      return _c(
-                        "option",
-                        { key: index, domProps: { value: review[0] } },
-                        [_vm._v(_vm._s(review[1]))]
-                      )
-                    }),
-                    0
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm.isLoading
-                  ? _c("div", [_c("Loader")], 1)
-                  : _c(
-                      "div",
-                      { staticClass: "row" },
-                      [
-                        _c("SpecializationDoctors", {
-                          attrs: {
-                            doctors: _vm.filteredDoctors,
-                            error: _vm.error,
-                            title_spec: _vm.title_spec,
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-            ]),
-          ]
-        ),
-      ]),
+                    _vm.filterNumberReview,
+                  ],
+                },
+              },
+              _vm._l(_vm.reviews, function (review, index) {
+                return _c(
+                  "option",
+                  { key: index, domProps: { value: review[0] } },
+                  [_vm._v(_vm._s(review[1]))]
+                )
+              }),
+              0
+            ),
+          ]),
+        ]),
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", [
+      _vm.isLoading
+        ? _c("div", [_c("Loader")], 1)
+        : _c(
+            "div",
+            {},
+            [
+              _c("SpecializationDoctors", {
+                attrs: {
+                  doctors: _vm.filteredDoctors,
+                  error: _vm.error,
+                  title_spec: _vm.title_spec,
+                },
+              }),
+            ],
+            1
+          ),
     ]),
+    _vm._v(" "),
+    _vm._m(0),
   ])
 }
 var staticRenderFns = [
@@ -40446,12 +40516,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-img" }, [
+    return _c("div", { staticClass: "container-img mt-4 text-center" }, [
       _c("img", {
-        attrs: {
-          src: "https://img.freepik.com/free-vector/patients-doctors-meeting-waiting-clinic-hall-hospital-interior-illustration-with-reception-person-wheelchair-visiting-doctor-office-medical-examination-consultation_74855-8496.jpg?w=1060",
-          alt: "",
-        },
+        attrs: { src: __webpack_require__(/*! ../../../../public/img/medical.jpg */ "./public/img/medical.jpg"), alt: "" },
       }),
     ])
   },
@@ -40477,7 +40544,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card-doctor" }, [
+  return _c("div", { staticClass: "card-doctor col-sm-12 col-md-5 col-lg-3" }, [
     _c("div", { staticClass: "picture" }, [
       _c("img", {
         staticClass: "img-fluid",
@@ -41379,7 +41446,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container my-4" }, [
+  return _c("div", { staticClass: "container-fluid my-4" }, [
     _vm.doctors.length > 0
       ? _c("h2", { staticClass: "text-center my-5" }, [
           _vm._v(
@@ -41398,7 +41465,7 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "container-grid" },
+      { staticClass: "row justify-content-center" },
       _vm._l(_vm.doctors, function (doctor, index) {
         return _c("CardsDoctors", { key: index, attrs: { doctorInfo: doctor } })
       }),
@@ -56862,6 +56929,17 @@ module.exports = function(module) {
 /***/ (function(module, exports) {
 
 module.exports = "/images/logo2.png?3a903d75111e32d3acd8e4e6f6801542";
+
+/***/ }),
+
+/***/ "./public/img/medical.jpg":
+/*!********************************!*\
+  !*** ./public/img/medical.jpg ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/medical.jpg?b19eeb759d9fb5584e2e62c85a6a764f";
 
 /***/ }),
 

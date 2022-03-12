@@ -1,7 +1,7 @@
 <template>
 
 
-            <div class="card-doctor">
+            <div class="card-doctor col-sm-12 col-md-5 col-lg-3">
                 <div class="picture">
                     <img class="img-fluid" :src="doctorInfo.photo">
                 </div>
@@ -54,7 +54,7 @@ export default {
 @import '../../../sass/guest/_vars.scss';
 
 .card-doctor {
-  width: 280px;
+  max-width: 280px;
   padding: 30px 0;
   margin: 1rem;
   background-color: #f5f5f5;
