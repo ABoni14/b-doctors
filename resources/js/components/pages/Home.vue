@@ -121,7 +121,7 @@
     <div class="container-fluid bg-container">
       <div class="container container-info mt-5 mb-5">
       <div class="row justify-content-center">
-        <h5>Come funziona BDoctors?</h5>
+        <h5 class="title-section">Come funziona BDoctors?</h5>
       </div>
       <div class="row justify-content-around align-items-center">
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-info d-flex flex-column justify-content-center align-items-center mt-3">
@@ -158,7 +158,7 @@
       <div class="container container-us">
         <div class="row justify-content-center align-items-center">
           <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <h4>Dicono di noi</h4>
+            <h5 class="title-section">Dicono di noi</h5>
             <p>
               Oltre il 99% di pazienti soddisfatti <br><br>
 
@@ -191,9 +191,9 @@
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <h4>
+            <h5 class="title-section">
               Sei un medico? Iscriviti ora!
-            </h4>
+            </h5>
             <p>
               <strong>Iscriviti e raggiungi nuovi pazienti</strong>  <br><br>
               Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. <br><br>
@@ -457,14 +457,8 @@ export default {
 
    //info
   .bg-container{
-    background: linear-gradient(to bottom, $secondary-color 10%, white 100%);
+    // background: linear-gradient(to bottom, #f3f3f3 10%, white 100%);
     .container-info{
-      h5{
-        padding: 30px 0;
-        color: $primary-color;
-        font-size: 25px;
-        margin: 0;
-      }
       .img-info{
         text-align: center;
 
@@ -557,6 +551,17 @@ export default {
 
     }
   }
+  .title-section{
+    font-size: 30px;
+    font-weight: 600;
+    color: $primary-color;
+    padding: 12px 0;
+  }
 
+  @media all and (max-width: 653px) {
+    .title-section{
+      text-align: center;
+    }
+  }
 }
 </style>

@@ -24,8 +24,8 @@
                 </select>
             </div>
 
-            <div class="my-4 d-flex justify-content-center">
-                <div class="mr-5">
+            <div class="my-4 row">
+                <div class="col-xs-12 col-md-6 ab-filter">
                     <h4>Filtra per media voti</h4>
                     <select
                         class="filter"
@@ -43,7 +43,7 @@
                     </select>
                 </div>
 
-                <div>
+                <div class="col-xs-12 col-md-6 ab-filter">
                     <h4>Filtra per numero recensioni</h4>
                     <select
                         class="filter"
@@ -238,6 +238,7 @@ export default {
     padding-top: 80px;
     color: $primary-color;
     .select-spec {
+        background-color: white;
         width: 80%;
         border-radius: 10px;
         padding: 20px 15px;
@@ -251,6 +252,8 @@ export default {
         }
     }
     .filter {
+        background-color: white;
+        width: 80%;
         border-radius: 10px;
         padding: 15px;
         border: 1px solid $fourth-color;
@@ -261,6 +264,9 @@ export default {
         &:focus-visible {
             outline: 2px solid $fourth-color !important;
             color: $fourth-color;
+        }
+        &:disabled{
+            background-color: lightgrey;
         }
     }
     .container-img {

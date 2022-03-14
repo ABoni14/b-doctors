@@ -1,5 +1,5 @@
 <template>
-    <div class="container d-flex my-5">
+    <div class="container my-5 ab-container">
         <div class="row">
             <div class="doctor col-lg-8 col-md-12">
                 <div class="doc-top d-flex align-items-center">
@@ -170,6 +170,9 @@ export default {
 <style lang="scss" scoped>
 @import "../../../sass/guest/_vars.scss";
 
+// *{
+//     outline: 2px solid red;
+// }
 .doctor {
     min-height: 300px;
     padding: 20px 30px;
@@ -230,5 +233,15 @@ export default {
         border-bottom: 2px solid lightgray;
         margin-bottom: 30px;
     }
+}
+
+@media all and (max-width: 470px){
+    // .doc-bottom{
+    //     width: 80%;
+    // }
+
+    // .forms, .doctor-details{
+    //     width: 80%;
+    // }
 }
 </style>

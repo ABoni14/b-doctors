@@ -24,12 +24,16 @@
     <div id="app">
         <nav class="navbar navbar-expand ab-navbar">
             <div class="container">
-                <a class="navbar-brand text-white" href="{{ route('home') }}">
+                <div class="d-flex align-items-center">  
+                    <a href="{{ route('home') }}">
+                        <img src="{{asset('images/logo2.png')}}" alt="logo" width="70px" class="mr-3">
+                    </a> 
+                    
+                    <a class="navbar-brand text-white ab-text-logo d-none d-sm-block" href="{{ route('home') }}">
                     BDoctors
-                </a>
-                {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button> --}}
+                    </a>
+                </div>
+                
 
                 <div class="navbar" id="navbarSupportedContent">
 
@@ -47,7 +51,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white ab-text-header" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name }}
                                 </a>
 
