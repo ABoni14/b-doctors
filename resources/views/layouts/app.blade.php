@@ -24,12 +24,40 @@
     <div id="app">
         <nav class="navbar navbar-expand ab-navbar">
             <div class="container">
-                <a class="navbar-brand text-white" href="{{ route('home') }}">
+                <div class="d-flex align-items-center">
+                    @auth
+                    <a 
+                    href="{{ route('logout') }}"
+                    onclick="confirm('Stai per effettuare il logout, confermi?')
+                    event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        <img src="{{asset('images/logo2.png')}}" alt="logo" width="70px" class="mr-3">
+                    </a> 
+                    
+                    <a class="navbar-brand text-white ab-text-logo d-none d-sm-block" 
+                    href="{{ route('logout') }}"
+                    onclick="
+                    confirm('Stai per effettuare il logout, confermi?')
+                    event.preventDefault();
+                    document.getElementById('logout-form').submit();">
                     BDoctors
-                </a>
-                {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button> --}}
+                    </a> 
+                    @endauth
+                    
+                    @guest
+                    <a 
+                    href="{{ route('home') }}">
+                        <img src="{{asset('images/logo2.png')}}" alt="logo" width="70px" class="mr-3">
+                    </a> 
+                    
+                    <a class="navbar-brand text-white ab-text-logo d-none d-sm-block" 
+                    href="{{ route('home') }}">
+                    BDoctors
+                    </a>
+                    @endguest
+                    
+                </div>
+                
 
                 <div class="navbar" id="navbarSupportedContent">
 
@@ -38,16 +66,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-white ab-text-header" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-white ab-text-header" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white ab-text-header" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name }}
                                 </a>
 

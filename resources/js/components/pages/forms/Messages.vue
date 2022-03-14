@@ -46,6 +46,7 @@
             </div>
 
             <button
+                onclick="confirm('Confermi di voler inviare il messaggio?')"
                 type="submit"
                 class="btn"
                 :disabled="sending"

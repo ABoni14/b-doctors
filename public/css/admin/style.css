@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;
 
-700&display=swap);@charset "UTF-8";
+700&display=swap);@import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);@charset "UTF-8";
 .context h1 {
   text-align: center;
   color: #fff;
@@ -173,7 +173,7 @@
 
 .title-menu {
   font-size: 70px;
-  color: white;
+  color: #10233f;
   text-transform: uppercase;
   font-weight: 800;
 }
@@ -181,7 +181,7 @@
 .dashboard-nav-menu {
   border-radius: 10px;
   margin: 25px;
-  background: whitesmoke;
+  background: #cacaca88;
   padding: 16px;
 }
 
@@ -224,7 +224,8 @@
 }
 
 body {
-  background-color: #efefe6 !important;
+  background-color: white;
+  font-family: "Open Sans", sans-serif;
 }
 
 main {
@@ -286,6 +287,30 @@ main {
   background-color: #10233f;
   border-bottom: 1px solid silver;
   color: white;
+}
+
+.ab-navbar .ab-text-header {
+  font-size: 20px;
+}
+
+.ab-navbar .ab-text-logo {
+  font-size: 40px !important;
+}
+
+.ab-form-select {
+  border: none !important;
+  color: #adadad !important;
+  padding: 0 !important;
+  font-weight: normal;
+  font-size: 16px !important;
+}
+
+.ab-form-select option {
+  color: black !important;
+}
+
+.ab-form-select option:focus-visible {
+  color: black !important;
 }
 
 .center {

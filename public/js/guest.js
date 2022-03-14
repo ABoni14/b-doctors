@@ -2048,8 +2048,8 @@ __webpack_require__.r(__webpack_exports__);
       error: "",
       isLoading: false,
       filteredDoctors: [],
-      stars: [[0, "Qualsiasi valutazione"], [1, "Almeno una stella"], [2, "Almeno due stelle"], [3, "Almeno tre stelle"], [4, "Almeno quattro stelle"], [5, "Cinque stelle"]],
-      reviews: [[0, "Qualsiasi numero di recensioni"], [1, "Almeno una recensione"], [2, "Almeno due recensioni"], [3, "Almeno tre recensioni"], [4, "Più di quattro recensioni"]],
+      stars: [[0, "Stelle valutazione"], [1, "Almeno una stella"], [2, "Almeno due stelle"], [3, "Almeno tre stelle"], [4, "Almeno quattro stelle"], [5, "Cinque stelle"]],
+      reviews: [[0, "Numero recensioni"], [1, "Almeno una recensione"], [2, "Almeno due recensioni"], [3, "Almeno tre recensioni"], [4, "Più di quattro recensioni"]],
       reviewNumber: 0,
       vote_sum: 0,
       vote_avg: 0,
@@ -2236,6 +2236,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardsDoctors",
   props: {
@@ -2268,6 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _forms_Messages_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forms/Messages.vue */ "./resources/js/components/pages/forms/Messages.vue");
 /* harmony import */ var _forms_Reviews_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./forms/Reviews.vue */ "./resources/js/components/pages/forms/Reviews.vue");
+/* harmony import */ var _Loader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loader.vue */ "./resources/js/components/pages/Loader.vue");
 //
 //
 //
@@ -2393,29 +2397,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DoctorPage",
   components: {
     Messages: _forms_Messages_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Reviews: _forms_Reviews_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Reviews: _forms_Reviews_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Loader: _Loader_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
       apiUrl: "http://127.0.0.1:8000/api/profile-detail/",
       doctor_slug: this.$route.params.slug,
       doctor_profile: {},
-      doctorId: null
+      doctorId: null,
+      isLoading: false
     };
   },
   methods: {
     getDoctorBySlug: function getDoctorBySlug() {
       var _this = this;
 
+      this.isLoading = true;
       axios.get(this.apiUrl + this.doctor_slug).then(function (res) {
         _this.doctor_profile = res.data;
         _this.doctorId = res.data.id;
+        _this.isLoading = false;
         console.log(_this.doctor_profile);
       });
     },
@@ -2423,15 +2458,23 @@ __webpack_require__.r(__webpack_exports__);
       var total = 0,
           length = this.doctor_profile.reviews.length;
 
+      if (length == 0) {
+        return 0;
+      }
+
       for (var i = 0; i < length; i++) {
         total += parseFloat(this.doctor_profile.reviews[i].vote);
       }
 
       return parseInt(total / length);
+    },
+    scrollTop: function scrollTop() {
+      window.scrollTo(0, 0);
     }
   },
   mounted: function mounted() {
     this.getDoctorBySlug();
+    this.scrollTop();
   }
 });
 
@@ -2458,12 +2501,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Error404",
   methods: {
     backToHome: function backToHome() {
       this.$router.replace({
-        name: 'home'
+        name: "home"
       });
     }
   }
@@ -2761,6 +2807,9 @@ __webpack_require__.r(__webpack_exports__);
           this.searchbycount(--this.currentPage, this.orderByCount);
         }
       }
+    },
+    scrollTop: function scrollTop() {
+      window.scrollTo(0, 0);
     }
   },
   computed: {
@@ -2783,6 +2832,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getSpecs();
     this.getDoctorsPremium();
+    this.scrollTop();
   }
 });
 
@@ -2863,6 +2913,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -7558,7 +7609,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".advanced-search[data-v-781a2080] {\n  padding-top: 80px;\n  color: #10233f;\n}\n.advanced-search .select-spec[data-v-781a2080] {\n  width: 80%;\n  border-radius: 10px;\n  padding: 20px 15px;\n  border: 1px solid #0d6581;\n  color: #0d6581;\n  font-weight: 600;\n  font-size: 20px;\n}\n.advanced-search .select-spec[data-v-781a2080]:focus, .advanced-search .select-spec[data-v-781a2080]:focus-visible {\n  outline: 2px solid #0d6581 !important;\n}\n.advanced-search .filter[data-v-781a2080] {\n  border-radius: 10px;\n  padding: 15px;\n  border: 1px solid #0d6581;\n  font-weight: 600;\n  font-size: 20px;\n  color: #0d6581;\n}\n.advanced-search .filter[data-v-781a2080]:focus, .advanced-search .filter[data-v-781a2080]:focus-visible {\n  outline: 2px solid #0d6581 !important;\n  color: #0d6581;\n}\n.advanced-search .container-img img[data-v-781a2080] {\n  width: 80%;\n}", ""]);
+exports.push([module.i, ".advanced-search[data-v-781a2080] {\n  padding-top: 80px;\n  color: #10233f;\n}\n.advanced-search .select-spec[data-v-781a2080] {\n  background-color: white;\n  width: 80%;\n  border-radius: 10px;\n  padding: 20px 15px;\n  border: 1px solid #0d6581;\n  color: #0d6581;\n  font-weight: 600;\n  font-size: 20px;\n}\n.advanced-search .select-spec[data-v-781a2080]:focus, .advanced-search .select-spec[data-v-781a2080]:focus-visible {\n  outline: 2px solid #0d6581 !important;\n}\n.advanced-search .filter[data-v-781a2080] {\n  background-color: white;\n  width: 60%;\n  border-radius: 10px;\n  padding: 12px;\n  border: 1px solid #0d6581;\n  font-weight: 600;\n  font-size: 15px;\n  color: #0d6581;\n}\n.advanced-search .filter[data-v-781a2080]:focus, .advanced-search .filter[data-v-781a2080]:focus-visible {\n  outline: 2px solid #0d6581 !important;\n  color: #0d6581;\n}\n.advanced-search .filter[data-v-781a2080]:disabled {\n  background-color: lightgrey;\n}\n.advanced-search .container-img img[data-v-781a2080] {\n  width: 80%;\n}", ""]);
 
 // exports
 
@@ -7577,7 +7628,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".card-doctor[data-v-57578267] {\n  max-width: 280px;\n  padding: 30px 0;\n  margin: 1rem;\n  background-color: #f5f5f5;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n  border-radius: 10px;\n  box-shadow: 3px 10px 10px #b5b7b9;\n  transition: all 0.5s ease 0s;\n}\n.card-doctor[data-v-57578267]:hover {\n  box-shadow: 8px 18px 15px #b5b7b9;\n}\n.card-doctor .no-vote[data-v-57578267] {\n  font-size: 12px;\n  padding: 13px 0;\n}\n.card-doctor .name[data-v-57578267] {\n  font-size: 22px;\n}\n.card-doctor .address[data-v-57578267] {\n  font-size: 14px;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #0d6581;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.8;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #0d6581;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  max-height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: top;\n     object-position: top;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  transform: scale(0.85);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  transition: all 0.7s;\n  background-color: #2ec8ce;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #0d6581;\n}\n.specialization[data-v-57578267] {\n  min-height: 50px;\n}", ""]);
+exports.push([module.i, ".card-doctor[data-v-57578267] {\n  max-width: 280px;\n  padding: 30px 0;\n  margin: 1rem;\n  background-color: #f5f5f5;\n  text-align: center;\n  overflow: hidden;\n  position: relative;\n  border-radius: 10px;\n  box-shadow: 3px 10px 10px #b5b7b9;\n  transition: all 0.5s ease 0s;\n}\n.card-doctor[data-v-57578267]:hover {\n  box-shadow: 8px 18px 15px #b5b7b9;\n}\n.card-doctor .no-vote[data-v-57578267] {\n  font-size: 12px;\n  padding: 13px 0;\n}\n.card-doctor .name[data-v-57578267] {\n  font-size: 22px;\n}\n.card-doctor .address[data-v-57578267] {\n  font-size: 14px;\n}\n.card-doctor .crown[data-v-57578267] {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  z-index: 999;\n}\n.card-doctor .crown i[data-v-57578267] {\n  font-size: 1.3rem;\n  color: #10233f;\n}\n.card-doctor .picture[data-v-57578267] {\n  display: inline-block;\n  height: 130px;\n  width: 130px;\n  margin-bottom: 30px;\n  z-index: 1;\n  position: relative;\n}\n.card-doctor .picture[data-v-57578267]::before {\n  content: \"\";\n  width: 100%;\n  height: 0;\n  border-radius: 50%;\n  background-color: #0d6581;\n  position: absolute;\n  bottom: 135%;\n  right: 0;\n  left: 0;\n  opacity: 0.8;\n  transform: scale(3);\n  transition: all 0.3s linear 0s;\n}\n.card-doctor:hover .picture[data-v-57578267]::before {\n  height: 100%;\n}\n.card-doctor:hover .fa-crown[data-v-57578267] {\n  color: #ffff;\n  transition: all 0.3s linear 0s;\n}\n.card-doctor .picture[data-v-57578267]::after {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #0d6581;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: -1;\n}\n.card-doctor .picture img[data-v-57578267] {\n  width: 100%;\n  height: auto;\n  max-height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: top;\n     object-position: top;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: all 0.9s ease 0s;\n}\n.card-doctor:hover .picture img[data-v-57578267] {\n  transform: scale(0.85);\n}\n.card-doctor:hover .btn-doctors[data-v-57578267] {\n  transition: all 0.7s;\n  background-color: #2ec8ce;\n}\n.card-doctor .vote[data-v-57578267] {\n  display: block;\n  font-size: 15px;\n  color: #4e5052;\n  text-transform: capitalize;\n}\n.btn-doctors[data-v-57578267] {\n  padding: 5px 10px;\n  background-color: #0d6581;\n}\n.specialization[data-v-57578267] {\n  min-height: 50px;\n}", ""]);
 
 // exports
 
@@ -7596,7 +7647,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".doctor[data-v-3ba5a564] {\n  min-height: 300px;\n  padding: 20px 30px;\n  color: #00234b;\n}\n.doctor img[data-v-3ba5a564] {\n  border-radius: 50%;\n}\n.doctor .doc-top[data-v-3ba5a564] {\n  padding-bottom: 30px;\n  border-bottom: 1px solid lightgray;\n}\n.doctor .doc-top .picture[data-v-3ba5a564] {\n  height: 210px;\n  width: 210px;\n  margin-right: 1rem;\n}\n.doctor .doc-top .picture .img-fluid[data-v-3ba5a564] {\n  width: 100%;\n  height: auto;\n  max-height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: top;\n     object-position: top;\n}\n.doctor .doc-bottom[data-v-3ba5a564] {\n  padding: 30px 0;\n  border-bottom: 1px solid lightgray;\n}\n.doctor .doc-bottom .vote[data-v-3ba5a564] {\n  border-right: 1px solid lightgray;\n}\n.doctor .doc-bottom .vote .fa-star[data-v-3ba5a564] {\n  color: #0d6581;\n}\n.doctor .doc-bottom .reviews[data-v-3ba5a564] {\n  height: 400px;\n  overflow: auto;\n  padding: 0 30px;\n}\n.doctor .doc-bottom .reviews[data-v-3ba5a564]::-webkit-scrollbar {\n  display: block;\n}\n.doctor .doc-bottom .reviews .fa-star[data-v-3ba5a564] {\n  color: #2ec8ce;\n}\n.doctor .doctor-details[data-v-3ba5a564] {\n  border-bottom: 4px solid #f0f0f0;\n  padding-bottom: 50px;\n}\n.forms[data-v-3ba5a564] {\n  min-height: 300px;\n  padding: 20px 30px;\n  background-color: #f7f8f9;\n  border: 1px solid lightgrey;\n}\n.forms .form-top[data-v-3ba5a564] {\n  border-bottom: 2px solid lightgray;\n  margin-bottom: 30px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.doctor[data-v-3ba5a564] {\n  min-height: 300px;\n  padding: 20px 30px;\n  color: #00234b;\n}\n.doctor img[data-v-3ba5a564] {\n  border-radius: 50%;\n}\n.doctor .doc-top[data-v-3ba5a564] {\n  padding-bottom: 30px;\n  border-bottom: 1px solid lightgray;\n}\n.doctor .doc-top .picture[data-v-3ba5a564] {\n  height: 210px;\n  width: 210px;\n  margin-right: 1rem;\n}\n.doctor .doc-top .picture .img-fluid[data-v-3ba5a564] {\n  width: 100%;\n  height: auto;\n  max-height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: top;\n     object-position: top;\n}\n.doctor .doc-bottom[data-v-3ba5a564] {\n  padding: 30px 0;\n  border-bottom: 1px solid lightgray;\n}\n.doctor .doc-bottom .vote[data-v-3ba5a564] {\n  border-right: 1px solid lightgray;\n}\n.doctor .doc-bottom .vote .fa-star[data-v-3ba5a564] {\n  color: #0d6581;\n}\n.doctor .doc-bottom .reviews[data-v-3ba5a564] {\n  height: 400px;\n  overflow: auto;\n  padding: 0 30px;\n}\n.doctor .doc-bottom .reviews[data-v-3ba5a564]::-webkit-scrollbar {\n  display: block;\n}\n.doctor .doc-bottom .reviews .fa-star[data-v-3ba5a564] {\n  color: #2ec8ce;\n}\n.doctor .doctor-details[data-v-3ba5a564] {\n  border-bottom: 4px solid #f0f0f0;\n  padding-bottom: 50px;\n}\n.forms[data-v-3ba5a564] {\n  min-height: 300px;\n  padding: 20px 30px;\n  background-color: #f7f8f9;\n  border: 1px solid lightgrey;\n}\n.forms .form-top[data-v-3ba5a564] {\n  border-bottom: 2px solid lightgray;\n  margin-bottom: 30px;\n}\n.button-back[data-v-3ba5a564] {\n  transition: all 0.5s;\n  display: inline-block;\n  position: relative;\n  transition: 0.5s;\n}\n.button-back[data-v-3ba5a564]::after {\n  content: \"\\AB\";\n  position: absolute;\n  opacity: 0;\n  top: 8px;\n  right: -20px;\n  transition: 0.5s;\n}\n.button-back[data-v-3ba5a564]:hover {\n  padding-right: 40px;\n  padding-left: 10px;\n  color: #fff04b;\n  background-color: #00234b;\n}\n.button-back[data-v-3ba5a564]:hover:after {\n  opacity: 1;\n  right: 20px;\n}\n.btn-doctors[data-v-3ba5a564] {\n  background-color: #0d6581;\n  color: white;\n  border: none;\n  border-radius: 5px;\n  font-size: 14px;\n  font-weight: 700;\n  cursor: pointer;\n  outline: none;\n  padding: 10px 30px;\n  margin-left: 30px;\n}\n.btn-doctors[data-v-3ba5a564]:hover {\n  text-decoration: none;\n  transition: all 0.7s;\n  background-color: #2ec8ce;\n  color: white !important;\n}", ""]);
 
 // exports
 
@@ -7615,7 +7666,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".custom_container .mainbox[data-v-efe27474] {\n  margin: auto;\n  height: 600px;\n  max-width: 600px;\n  position: relative;\n}\n.custom_container .err[data-v-efe27474] {\n  color: #10233f;\n  font-family: \"Nunito Sans\", sans-serif;\n  font-size: 11rem;\n  position: absolute;\n  left: 20%;\n  top: 8%;\n}\n.custom_container .far[data-v-efe27474] {\n  position: absolute;\n  font-size: 8.5rem;\n  left: 42%;\n  top: 15%;\n  color: #10233f;\n}\n.custom_container .err2[data-v-efe27474] {\n  color: #10233f;\n  font-family: \"Nunito Sans\", sans-serif;\n  font-size: 11rem;\n  position: absolute;\n  left: 68%;\n  top: 8%;\n}\n.custom_container .msg[data-v-efe27474] {\n  text-align: center;\n  font-family: \"Nunito Sans\", sans-serif;\n  font-size: 1.6rem;\n  position: absolute;\n  left: 16%;\n  top: 45%;\n  width: 75%;\n}\n.custom_container a[data-v-efe27474] {\n  text-decoration: none;\n  color: #0d6581;\n  font-style: italic;\n  font-weight: bold;\n}\n.custom_container a[data-v-efe27474]:hover {\n  text-decoration: underline;\n}", ""]);
 
 // exports
 
@@ -7634,7 +7685,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .container-grid[data-v-a9aac016] {\n  display: grid;\n  margin: 0.2rem;\n  gap: 0.7rem;\n  grid-template-columns: repeat(4, 1fr);\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner:hover img[data-v-a9aac016] {\n  filter: none;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner:hover .carousel-text[data-v-a9aac016] {\n  background-color: rgba(255, 255, 255, 0.7);\n  color: #1a3a68;\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  -o-object-fit: cover;\n     object-fit: cover;\n  filter: grayscale(50%);\n  transition: all 0.3s;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #10233f;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.5);\n  margin-bottom: 40px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016]:focus {\n  border: none;\n  box-shadow: 0px 0px 20px -5px #10233f;\n}\n.home .ab-container .search .right-search input:focus button[data-v-a9aac016] {\n  box-shadow: 0px 0px 20px -5px #10233f;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #10233f;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #0d6581;\n  color: white;\n  font-weight: 600;\n  border-radius: 0 10px 10px 0;\n  background-color: #0d6581;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #2ec8ce;\n  border-color: #2ec8ce;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:disabled {\n  opacity: 1;\n}\n.home .title-premium[data-v-a9aac016] {\n  color: #10233f;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .navigation[data-v-a9aac016] {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.home .navigation button[data-v-a9aac016] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: white;\n  border: 1px solid #10233f;\n  margin: 20px 0;\n  border-radius: 0px 10px 10px 0;\n  color: #1369ce;\n}\n.home .navigation button[data-v-a9aac016]:disabled {\n  color: lightgrey;\n}\n.home .navigation button i[data-v-a9aac016] {\n  padding: 15px;\n  font-size: 20px;\n}\n.home .navigation button.prev[data-v-a9aac016] {\n  border-radius: 15px 0 0 15px;\n}\n.home .navigation button.next[data-v-a9aac016] {\n  border-radius: 0 15px 15px 0;\n}\n.home .bg-container[data-v-a9aac016] {\n  background: linear-gradient(to bottom, #efefe6 10%, white 100%);\n}\n.home .bg-container .container-info h5[data-v-a9aac016] {\n  padding: 30px 0;\n  color: #10233f;\n  font-size: 25px;\n  margin: 0;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  box-shadow: 0px 10px 5px lightgray;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: #10233f;\n  font-size: 16px;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: #0d6581;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #10233f;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #d6e5f3;\n  box-shadow: 10px 10px 5px lightgrey;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #10233f;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #10233f;\n  border-color: #10233f;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #060c16;\n  border-color: #060c16;\n  color: white;\n}", ""]);
+exports.push([module.i, ".home[data-v-a9aac016] {\n  padding: unset;\n}\n.home .container-grid[data-v-a9aac016] {\n  display: grid;\n  margin: 0.2rem;\n  gap: 0.7rem;\n  grid-template-columns: repeat(4, 1fr);\n}\n.home .ab-carousel[data-v-a9aac016] {\n  height: 450px;\n}\n.home .ab-carousel .ab-inner[data-v-a9aac016] {\n  height: 450px;\n  cursor: pointer;\n}\n.home .ab-carousel .ab-inner img[data-v-a9aac016] {\n  height: 500px;\n  width: auto;\n  -o-object-fit: cover;\n     object-fit: cover;\n  filter: grayscale(40%);\n  transition: all 0.3s;\n  -o-object-position: top;\n     object-position: top;\n}\n.home .ab-carousel .ab-inner .carousel-text[data-v-a9aac016] {\n  color: #10233f;\n  transition: all 0.3s;\n  background-color: rgba(255, 255, 255, 0.85);\n  margin-bottom: 40px;\n  border-radius: 10px;\n}\n.home .ab-carousel .ab-inner .carousel-control-prev:hover span[data-v-a9aac016], .home .ab-carousel .ab-inner .carousel-control-next:hover span[data-v-a9aac016] {\n  filter: opacity(1);\n  color: white;\n  filter: drop-shadow(0 10px 10px gray);\n  transition: all 0.3s;\n}\n.home .ab-container .search .left-search[data-v-a9aac016] {\n  width: 30%;\n}\n.home .ab-container .search .left-search img[data-v-a9aac016] {\n  width: 100%;\n}\n.home .ab-container .search .right-search[data-v-a9aac016] {\n  display: flex;\n  align-items: center;\n  width: 70%;\n  margin-left: 20px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016] {\n  border-radius: 10px 0 0 10px;\n}\n.home .ab-container .search .right-search input[data-v-a9aac016]:focus {\n  border: none;\n  box-shadow: 0px 0px 20px -5px #10233f;\n}\n.home .ab-container .search .right-search input:focus button[data-v-a9aac016] {\n  box-shadow: 0px 0px 20px -5px #10233f;\n}\n.home .ab-container .search .right-search h4[data-v-a9aac016] {\n  color: #10233f;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016] {\n  border: 1px solid #0d6581;\n  color: white;\n  font-weight: 600;\n  border-radius: 0 10px 10px 0;\n  background-color: #0d6581;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:hover {\n  background-color: #2ec8ce;\n  border-color: #2ec8ce;\n}\n.home .ab-container .search .right-search button[data-v-a9aac016]:disabled {\n  opacity: 1;\n}\n.home .title-premium[data-v-a9aac016] {\n  color: #10233f;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .navigation[data-v-a9aac016] {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.home .navigation button[data-v-a9aac016] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: white;\n  border: 1px solid #10233f;\n  margin: 20px 0;\n  border-radius: 0px 10px 10px 0;\n  color: #0d6581;\n}\n.home .navigation button[data-v-a9aac016]:disabled {\n  color: lightgrey;\n}\n.home .navigation button i[data-v-a9aac016] {\n  padding: 15px;\n  font-size: 20px;\n}\n.home .navigation button.prev[data-v-a9aac016] {\n  border-radius: 15px 0 0 15px;\n}\n.home .navigation button.next[data-v-a9aac016] {\n  border-radius: 0 15px 15px 0;\n}\n.home .navigation button[data-v-a9aac016]:hover {\n  color: #2ec8ce;\n}\n.home .bg-container .container-info .img-info[data-v-a9aac016] {\n  text-align: center;\n}\n.home .bg-container .container-info .img-info img[data-v-a9aac016] {\n  height: 200px;\n  width: 200px;\n  border-radius: 50%;\n  box-shadow: 0px 10px 5px lightgray;\n}\n.home .bg-container .container-info .img-info .text-info[data-v-a9aac016] {\n  margin-top: 40px;\n}\n.home .bg-container .container-info .img-info .text-info .title-info[data-v-a9aac016] {\n  color: #10233f;\n  font-size: 16px;\n  font-weight: 600;\n}\n.home .bg-container .container-info .img-info .text-info p[data-v-a9aac016] {\n  color: #0d6581;\n  font-size: 13px;\n  margin-top: 10px;\n}\n.home .container-fluid-us .container-us[data-v-a9aac016] {\n  margin-bottom: 20px;\n}\n.home .container-fluid-us .container-us h4[data-v-a9aac016] {\n  font-size: 25px;\n  color: #10233f;\n  padding: 10px 0 20px 0;\n}\n.home .container-fluid-us .container-us p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-fluid-us .container-us .container-img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-fluid-us .container-us .container-img img[data-v-a9aac016] {\n  height: 100%;\n  width: 100%;\n}\n.home .container-med[data-v-a9aac016] {\n  padding: 50px 0;\n}\n.home .container-med .container .row .container-img[data-v-a9aac016] {\n  height: 330px;\n  width: 330px;\n  border-radius: 40px;\n  border: 1px solid #d6e5f3;\n  box-shadow: 10px 10px 5px lightgrey;\n}\n.home .container-med .container .row .container-img img[data-v-a9aac016] {\n  border-radius: 40px;\n  height: 100%;\n  width: 100%;\n}\n.home .container-med .container .row h4[data-v-a9aac016] {\n  color: #10233f;\n  font-size: 25px;\n  padding: 10px 0;\n}\n.home .container-med .container .row p[data-v-a9aac016] {\n  font-size: 13px;\n}\n.home .container-med .container .row a[data-v-a9aac016] {\n  background-color: #10233f;\n  border-color: #10233f;\n  border-radius: 10px;\n  padding: 5px 30px;\n}\n.home .container-med .container .row a[data-v-a9aac016]:hover {\n  background-color: #060c16;\n  border-color: #060c16;\n  color: white;\n}\n.home .title-section[data-v-a9aac016] {\n  font-size: 30px;\n  font-weight: 600;\n  color: #10233f;\n  padding: 12px 0;\n}\n@media all and (max-width: 653px) {\n.home .title-section[data-v-a9aac016] {\n    text-align: center;\n}\n}", ""]);
 
 // exports
 
@@ -40003,8 +40054,8 @@ var render = function () {
           ),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "my-4 d-flex justify-content-center" }, [
-          _c("div", { staticClass: "mr-5" }, [
+        _c("div", { staticClass: "my-4 row" }, [
+          _c("div", { staticClass: "col-xs-12 col-md-6 ab-filter" }, [
             _c("h4", [_vm._v("Filtra per media voti")]),
             _vm._v(" "),
             _c(
@@ -40056,8 +40107,8 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
-          _c("div", [
-            _c("h4", [_vm._v("Filtra per numero recensioni")]),
+          _c("div", { staticClass: "col-xs-12 col-md-6 ab-filter" }, [
+            _c("h4", [_vm._v("Filtra per recensioni")]),
             _vm._v(" "),
             _c(
               "select",
@@ -40167,6 +40218,12 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-doctor col-sm-12 col-md-5 col-lg-3" }, [
+    _vm.doctorInfo.premium_options[0]
+      ? _c("div", { staticClass: "crown" }, [
+          _c("i", { staticClass: "fas fa-crown" }),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
     _vm.doctorInfo.photo === null
       ? _c("div", { staticClass: "picture" }, [
           _c("img", {
@@ -40277,194 +40334,219 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container d-flex my-5" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "doctor col-lg-8 col-md-12" }, [
-        _c("div", { staticClass: "doc-top d-flex align-items-center" }, [
-          _vm.doctor_profile.photo === null ||
-          _vm.doctor_profile.photo === undefined
-            ? _c("div", { staticClass: "picture" }, [
-                _c("img", {
-                  staticClass: "img-fluid",
-                  attrs: {
-                    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Missing_avatar.svg/240px-Missing_avatar.svg.png",
-                  },
-                }),
-              ])
-            : _vm.doctor_profile.photo.substring(0, 4) != "http" &&
-              _vm.doctor_profile.photo != null
-            ? _c("div", { staticClass: "picture" }, [
-                _c("img", {
-                  staticClass: "img-fluid",
-                  attrs: {
-                    src:
-                      "http://127.0.0.1:8000/storage/" +
-                      _vm.doctor_profile.photo,
-                  },
-                }),
-              ])
-            : _vm.doctor_profile.photo.substring(0, 4) == "http" &&
-              _vm.doctor_profile.photo != null
-            ? _c("div", { staticClass: "picture" }, [
-                _c("img", {
-                  staticClass: "img-fluid",
-                  attrs: { src: _vm.doctor_profile.photo },
-                }),
-              ])
-            : _vm._e(),
+  return _c("div", { staticClass: "container my-5 ab-container" }, [
+    _vm.isLoading
+      ? _c("div", { staticClass: "row" }, [_c("Loader")], 1)
+      : _c("div", [
+          _vm._m(0),
           _vm._v(" "),
-          _c(
-            "div",
-            [
-              _c("h1", [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(_vm.doctor_profile.first_name) +
-                    "\n                        " +
-                    _vm._s(_vm.doctor_profile.last_name) +
-                    "\n                    "
-                ),
-              ]),
-              _vm._v(" "),
-              _vm._l(
-                _vm.doctor_profile.specializations,
-                function (specialization, index) {
-                  return _c("div", { key: index }, [
-                    _c("h5", [
-                      _c("i", { staticClass: "fas fa-user-md mr-3" }),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "doctor col-lg-8 col-md-12" }, [
+              _c("div", { staticClass: "doc-top d-flex align-items-center" }, [
+                _vm.doctor_profile.photo === null ||
+                _vm.doctor_profile.photo === undefined
+                  ? _c("div", { staticClass: "picture" }, [
+                      _c("img", {
+                        staticClass: "img-fluid",
+                        attrs: {
+                          src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Missing_avatar.svg/240px-Missing_avatar.svg.png",
+                        },
+                      }),
+                    ])
+                  : _vm.doctor_profile.photo.substring(0, 4) != "http" &&
+                    _vm.doctor_profile.photo != null
+                  ? _c("div", { staticClass: "picture" }, [
+                      _c("img", {
+                        staticClass: "img-fluid",
+                        attrs: {
+                          src:
+                            "http://127.0.0.1:8000/storage/" +
+                            _vm.doctor_profile.photo,
+                        },
+                      }),
+                    ])
+                  : _vm.doctor_profile.photo.substring(0, 4) == "http" &&
+                    _vm.doctor_profile.photo != null
+                  ? _c("div", { staticClass: "picture" }, [
+                      _c("img", {
+                        staticClass: "img-fluid",
+                        attrs: { src: _vm.doctor_profile.photo },
+                      }),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  [
+                    _c("h1", [
                       _vm._v(
                         "\n                            " +
-                          _vm._s(specialization.name) +
+                          _vm._s(_vm.doctor_profile.first_name) +
+                          "\n                            " +
+                          _vm._s(_vm.doctor_profile.last_name) +
                           "\n                        "
                       ),
                     ]),
-                  ])
-                }
-              ),
-              _vm._v(" "),
-              _c("span", { staticClass: "d-block" }, [
-                _c("i", { staticClass: "fas fa-map mr-3" }),
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(_vm.doctor_profile.address) +
-                    "\n                    "
+                    _vm._v(" "),
+                    _vm._l(
+                      _vm.doctor_profile.specializations,
+                      function (specialization, index) {
+                        return _c("div", { key: index }, [
+                          _c("h5", [
+                            _c("i", { staticClass: "fas fa-user-md mr-3" }),
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(specialization.name) +
+                                "\n                            "
+                            ),
+                          ]),
+                        ])
+                      }
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "d-block" }, [
+                      _c("i", { staticClass: "fas fa-map mr-3" }),
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.doctor_profile.address) +
+                          "\n                        "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", [
+                      _c("i", { staticClass: "fas fa-phone mr-3" }),
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.doctor_profile.phone) +
+                          "\n                        "
+                      ),
+                    ]),
+                  ],
+                  2
                 ),
               ]),
               _vm._v(" "),
-              _c("span", [
-                _c("i", { staticClass: "fas fa-phone mr-3" }),
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(_vm.doctor_profile.phone) +
-                    "\n                    "
-                ),
-              ]),
-            ],
-            2
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "doc-bottom row" }, [
-          _c("div", { staticClass: "vote col-12 col-md-4" }, [
-            _c("div", { staticClass: "text-center" }, [
-              _c("h5", { staticClass: "mb-3" }, [_vm._v("Media voti")]),
-              _vm._v(" "),
-              _c("h2", [_vm._v(_vm._s(_vm.calcAverage()))]),
-              _vm._v(" "),
-              _c(
-                "h6",
-                _vm._l(5, function (int, index) {
-                  return _c("i", {
-                    key: index,
-                    staticClass: "fa-star",
-                    class: index < _vm.calcAverage() ? "fas" : "far",
-                  })
-                }),
-                0
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "reviews col-12 col-md-8" },
-            [
-              _c("h5", { staticClass: "text-center mb-3" }, [
-                _vm._v("Recensioni:"),
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.doctor_profile.reviews, function (review, key) {
-                return _c("div", { key: key, staticClass: "review" }, [
-                  _c("h5", [
-                    _vm._v(
-                      "\n                            Nome utente:\n                            " +
-                        _vm._s(review.user_review_name) +
-                        "\n                        "
+              _c("div", { staticClass: "doc-bottom row" }, [
+                _c("div", { staticClass: "vote col-12 col-md-4" }, [
+                  _c("div", { staticClass: "text-center" }, [
+                    _c("h5", { staticClass: "mb-3" }, [_vm._v("Media voti")]),
+                    _vm._v(" "),
+                    _c("h2", [_vm._v(_vm._s(_vm.calcAverage()))]),
+                    _vm._v(" "),
+                    _c(
+                      "h6",
+                      _vm._l(5, function (int, index) {
+                        return _c("i", {
+                          key: index,
+                          staticClass: "fa-star",
+                          class: index < _vm.calcAverage() ? "fas" : "far",
+                        })
+                      }),
+                      0
                     ),
                   ]),
-                  _vm._v(" "),
-                  _c(
-                    "h6",
-                    _vm._l(5, function (int, index) {
-                      return _c("i", {
-                        key: index,
-                        staticClass: "fa-star",
-                        class: index < review.vote ? "fas" : "far",
-                      })
-                    }),
-                    0
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "reviews col-12 col-md-8" },
+                  [
+                    _c("h5", { staticClass: "text-center mb-3" }, [
+                      _vm._v("Recensioni:"),
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(
+                      _vm.doctor_profile.reviews.reverse(),
+                      function (review, key) {
+                        return _c("div", { key: key, staticClass: "review" }, [
+                          _c("h5", [
+                            _vm._v(
+                              "\n                                Nome utente:\n                                " +
+                                _vm._s(review.user_review_name) +
+                                "\n                            "
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "h6",
+                            _vm._l(5, function (int, index) {
+                              return _c("i", {
+                                key: index,
+                                staticClass: "fa-star",
+                                class: index < review.vote ? "fas" : "far",
+                              })
+                            }),
+                            0
+                          ),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(review.content))]),
+                        ])
+                      }
+                    ),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "doctor-details my-5" }, [
+                _c("h5", [
+                  _vm._v(
+                    "\n                        Riguardo dr. " +
+                      _vm._s(_vm.doctor_profile.first_name) +
+                      "\n                        " +
+                      _vm._s(_vm.doctor_profile.last_name) +
+                      "\n                    "
                   ),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(review.content))]),
-                ])
-              }),
-            ],
-            2
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "doctor-details my-5" }, [
-          _c("h5", [
-            _vm._v(
-              "\n                    Riguardo dr. " +
-                _vm._s(_vm.doctor_profile.first_name) +
-                "\n                    " +
-                _vm._s(_vm.doctor_profile.last_name) +
-                "\n                "
-            ),
-          ]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.doctor_profile.cv))]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "forms d-flex flex-column col-lg-4 col-md-12" },
-        [
-          _c("div", { staticClass: "form-top" }, [
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.doctor_profile.cv))]),
+              ]),
+            ]),
+            _vm._v(" "),
             _c(
               "div",
-              { staticClass: "mb-4", attrs: { id: "messages" } },
-              [_c("Messages", { attrs: { doctor_id: _vm.doctorId } })],
-              1
+              { staticClass: "forms d-flex flex-column col-lg-4 col-md-12" },
+              [
+                _c("div", { staticClass: "form-top" }, [
+                  _c(
+                    "div",
+                    { staticClass: "mb-4", attrs: { id: "messages" } },
+                    [_c("Messages", { attrs: { doctor_id: _vm.doctorId } })],
+                    1
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-bottom" }, [
+                  _c(
+                    "div",
+                    { attrs: { id: "reviews" } },
+                    [_c("Reviews", { attrs: { doctor_id: _vm.doctorId } })],
+                    1
+                  ),
+                ]),
+              ]
             ),
           ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-bottom" }, [
-            _c(
-              "div",
-              { attrs: { id: "reviews" } },
-              [_c("Reviews", { attrs: { doctor_id: _vm.doctorId } })],
-              1
-            ),
-          ]),
-        ]
-      ),
-    ]),
+        ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn-doctors button-back my-3",
+          attrs: { onclick: "window.history.back(-1); return false;" },
+        },
+        [_vm._v("Indietro")]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -40486,25 +40568,34 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12 text-center" }, [
-        _c("h2", [_vm._v("Error 404")]),
-        _vm._v(" "),
-        _c("h3", [_vm._v("Pagina non trovata!")]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            attrs: { href: "" },
-            on: {
-              click: function ($event) {
-                return _vm.backToHome()
+  return _c("div", { staticClass: "container-fluid custom_container" }, [
+    _c("div", { staticClass: "mainbox" }, [
+      _c("div", { staticClass: "err" }, [_vm._v("4")]),
+      _vm._v(" "),
+      _c("i", { staticClass: "far fa-question-circle fa-spin" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "err2" }, [_vm._v("4")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "msg" }, [
+        _vm._v(
+          "\n            Questa pagina è stata spostata oppure è in quarantena?\n            Non è mai esistita?\n            "
+        ),
+        _c("p", { staticClass: "my-4" }, [
+          _vm._v("Torna alla pagina "),
+          _c(
+            "a",
+            {
+              attrs: { href: "" },
+              on: {
+                click: function ($event) {
+                  return _vm.backToHome()
+                },
               },
             },
-          },
-          [_vm._v("Torna alla Home Page")]
-        ),
+            [_vm._v("Home")]
+          ),
+          _vm._v(" e riproviamo!"),
+        ]),
       ]),
     ]),
   ])
@@ -40543,7 +40634,7 @@ var render = function () {
               "right-search d-flex flex-column justify-content-center align-items-center",
           },
           [
-            _c("h4", { staticClass: "my-3 text-center" }, [
+            _c("h5", { staticClass: "my-3 text-center title-section" }, [
               _vm._v("Prenota online la tua visita medica"),
             ]),
             _vm._v(" "),
@@ -40634,7 +40725,7 @@ var render = function () {
           1
         )
       : _c("div", { staticClass: "container-fluid" }, [
-          _c("h5", { staticClass: "text-center title-premium" }, [
+          _c("h5", { staticClass: "text-center title-section" }, [
             _vm._v("Medici in evidenza"),
           ]),
           _vm._v(" "),
@@ -40739,7 +40830,7 @@ var staticRenderFns = [
             _c("img", {
               staticClass: "d-block w-100",
               attrs: {
-                src: "https://www.altroconsumo.it/-/media/altroconsumo/images/home/salute/diritti%20in%20salute/pediatra_shu_409317970_1600x900.jpg?rev=346e0a47-c527-44f0-aef0-e2a5f2916aa5&hash=E20754E8AB30F2EDACB21CEE91EF243D",
+                src: "https://www.fpcgilfirenze.it/sindacato/wp-content/uploads/2018/01/fpcgilfirenze_medici.jpg",
                 alt: "...",
               },
             }),
@@ -40765,7 +40856,7 @@ var staticRenderFns = [
             _c("img", {
               staticClass: "d-block w-100",
               attrs: {
-                src: "https://cdn-static.findly.com/wp-content/uploads/sites/566/2017/10/PA-Blog-Image.png",
+                src: "https://wallpapercave.com/wp/wp2469685.jpg",
                 alt: "...",
               },
             }),
@@ -40835,7 +40926,9 @@ var staticRenderFns = [
     return _c("div", { staticClass: "container-fluid bg-container" }, [
       _c("div", { staticClass: "container container-info mt-5 mb-5" }, [
         _c("div", { staticClass: "row justify-content-center" }, [
-          _c("h5", [_vm._v("Come funziona BDoctors?")]),
+          _c("h5", { staticClass: "title-section" }, [
+            _vm._v("Come funziona BDoctors?"),
+          ]),
         ]),
         _vm._v(" "),
         _c(
@@ -40941,7 +41034,9 @@ var staticRenderFns = [
           { staticClass: "row justify-content-center align-items-center" },
           [
             _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
-              _c("h4", [_vm._v("Dicono di noi")]),
+              _c("h5", { staticClass: "title-section" }, [
+                _vm._v("Dicono di noi"),
+              ]),
               _vm._v(" "),
               _c("p", [
                 _vm._v("\n            Oltre il 99% di pazienti soddisfatti "),
@@ -41010,7 +41105,7 @@ var staticRenderFns = [
             ),
             _vm._v(" "),
             _c("div", { staticClass: "col-12 col-sm-12 col-md-6 col-lg-6" }, [
-              _c("h4", [
+              _c("h5", { staticClass: "title-section" }, [
                 _vm._v(
                   "\n            Sei un medico? Iscriviti ora!\n          "
                 ),
@@ -41295,7 +41390,11 @@ var render = function () {
           "button",
           {
             staticClass: "btn",
-            attrs: { type: "submit", disabled: _vm.sending },
+            attrs: {
+              onclick: "confirm('Confermi di voler inviare il messaggio?')",
+              type: "submit",
+              disabled: _vm.sending,
+            },
           },
           [_vm._v(_vm._s(_vm.sending ? "invio in corso" : "Invia"))]
         ),
