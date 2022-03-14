@@ -1,6 +1,6 @@
 <template>
     <div class="card-doctor col-sm-12 col-md-5 col-lg-3">
-        <div v-if="doctorInfo.premium_options[0]">
+        <div class="crown" v-if="doctorInfo.premium_options[0]">
             <i class="fas fa-crown"></i>
         </div>
         <div v-if="doctorInfo.photo === null" class="picture">
@@ -110,6 +110,16 @@ export default {
     .address {
         font-size: 14px;
     }
+    .crown{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 999;
+        i{
+            font-size: 1.3rem;
+            color: $primary-color;
+        }
+    }
 }
 
 .card-doctor .picture {
@@ -138,6 +148,11 @@ export default {
 
 .card-doctor:hover .picture::before {
     height: 100%;
+}
+
+.card-doctor:hover .fa-crown{
+    color: #ffff;
+    transition: all 0.3s linear 0s;
 }
 
 .card-doctor .picture::after {

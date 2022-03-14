@@ -90,28 +90,28 @@ Route::post('/checkout', function (Request $request) {
 
         if($transaction->amount == '2.99'){
             $user = User::find(Auth::user()->id);
-            $end_date = Carbon::now()->addDays(1);
+
             $user->premium_options()->attach([2=>[
                 'start_date' => Carbon::now()->toDateTimeString(),
-                'end_date'=> Carbon::now()->addDays(1)
+                'end_date'=> Carbon::now()->addHours(24)
             ]]);
         }
 
         if($transaction->amount == '5.99'){
             $user = User::find(Auth::user()->id);
-            $end_date = Carbon::now()->addDays(3);
+
             $user->premium_options()->attach([3=>[
                 'start_date' => Carbon::now()->toDateTimeString(),
-                'end_date'=> Carbon::now()->addDays(3)
+                'end_date'=> Carbon::now()->addHours(72)
             ]]);
         }
 
         if($transaction->amount == '9.99'){
             $user = User::find(Auth::user()->id);
-            $end_date = Carbon::now()->addDays(6);
+
             $user->premium_options()->attach([4=>[
                 'start_date' => Carbon::now()->toDateTimeString(),
-                'end_date'=> Carbon::now()->addDays(6)
+                'end_date'=> Carbon::now()->addHours(144)
             ]]);
         }
 
