@@ -25,11 +25,20 @@
         <nav class="navbar navbar-expand ab-navbar">
             <div class="container">
                 <div class="d-flex align-items-center">  
-                    <a href="{{ route('home') }}">
+                    <a 
+                    href="{{ route('logout') }}"
+                    onclick="confirm('Stai per effettuare il logout, confermi?')
+                    event.preventDefault();
+                    document.getElementById('logout-form').submit();">
                         <img src="{{asset('images/logo2.png')}}" alt="logo" width="70px" class="mr-3">
                     </a> 
                     
-                    <a class="navbar-brand text-white ab-text-logo d-none d-sm-block" href="{{ route('home') }}">
+                    <a class="navbar-brand text-white ab-text-logo d-none d-sm-block" 
+                    href="{{ route('logout') }}"
+                    onclick="
+                    confirm('Stai per effettuare il logout, confermi?')
+                    event.preventDefault();
+                    document.getElementById('logout-form').submit();">
                     BDoctors
                     </a>
                 </div>

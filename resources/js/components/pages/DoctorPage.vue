@@ -1,7 +1,18 @@
 <template>
     <div class="container my-5 ab-container">
-        <div class="row">
-            <div class="doctor col-lg-8 col-md-12">
+        <div 
+        v-if="isLoading"
+        class="row">
+            <Loader />
+        </div>
+        <div
+        v-else>
+           <div class="row">
+               <a href="http://127.0.0.1:8000/home-page" class="btn-doctors button-back my-3">Indietro</a>
+           </div>
+                
+            <div class="row">
+                <div class="doctor col-lg-8 col-md-12">
                 <div class="doc-top d-flex align-items-center">
                     <div v-if="doctor_profile.photo === null || doctor_profile.photo === undefined" class="picture">
                         <img
@@ -120,18 +131,22 @@
                 </div>
             </div>
         </div>
+            </div>
+            
     </div>
 </template>
 
 <script>
 import Messages from "./forms/Messages.vue";
 import Reviews from "./forms/Reviews.vue";
+import Loader from "./Loader.vue"
 
 export default {
     name: "DoctorPage",
     components: {
         Messages,
         Reviews,
+        Loader
     },
 
     data() {
@@ -140,13 +155,16 @@ export default {
             doctor_slug: this.$route.params.slug,
             doctor_profile: {},
             doctorId: null,
+            isLoading: false,
         };
     },
     methods: {
         getDoctorBySlug() {
+            this.isLoading = true;
             axios.get(this.apiUrl + this.doctor_slug).then((res) => {
                 this.doctor_profile = res.data;
                 this.doctorId = res.data.id;
+                this.isLoading = false
                 console.log(this.doctor_profile);
             });
         },
@@ -160,9 +178,14 @@ export default {
 
             return parseInt(total / length);
         },
+
+        scrollTop(){
+            window.scrollTo(0, 0);
+        }
     },
     mounted() {
         this.getDoctorBySlug();
+        this.scrollTop();
     },
 };
 </script>
@@ -234,14 +257,48 @@ export default {
         margin-bottom: 30px;
     }
 }
+.button-back {
+  transition: all 0.5s;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  &::after {
+    content: '«';
+    position: absolute;
+    opacity: 0;
+    top: 8px;
+    right: -20px;
+    transition: 0.5s;
+  }
+  &:hover{
+    padding-right: 40px;
+    padding-left:10px;
+    color: #fff04b;
+    background-color: rgb(0, 35, 75);
+  }
+  &:hover:after {
+    opacity: 1;
+    right: 20px;
+  }
+}
 
-@media all and (max-width: 470px){
-    // .doc-bottom{
-    //     width: 80%;
-    // }
+.btn-doctors{
+  background-color: $fourth-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  padding: 10px 30px;
+  margin-left: 30px;
+}
 
-    // .forms, .doctor-details{
-    //     width: 80%;
-    // }
+.btn-doctors:hover{
+  text-decoration: none;
+  transition: all 0.7s;
+  background-color: $third-color;
+  color: white !important;
 }
 </style>

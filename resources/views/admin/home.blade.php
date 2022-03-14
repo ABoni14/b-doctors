@@ -19,8 +19,6 @@
         
 
     </div>
-
-
         <div class="div-menu">
             <h1 class="title-menu">BDoctors</h1>
             <span class="subtitle-menu">Menù di navigazione</span>
@@ -33,12 +31,6 @@
                 </div>
             </nav>
         </div>
-       
-
-
-   
-
-
 </section>
 @endsection
 

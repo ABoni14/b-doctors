@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="col-xs-12 col-md-6 ab-filter">
-                    <h4>Filtra per numero recensioni</h4>
+                    <h4>Filtra per recensioni</h4>
                     <select
                         class="filter"
                         v-model="filterReview"
@@ -107,7 +107,7 @@ export default {
             isLoading: false,
             filteredDoctors: [],
             stars: [
-                [0, "Qualsiasi valutazione"],
+                [0, "Stelle valutazione"],
                 [1, "Almeno una stella"],
                 [2, "Almeno due stelle"],
                 [3, "Almeno tre stelle"],
@@ -115,7 +115,7 @@ export default {
                 [5, "Cinque stelle"],
             ],
             reviews: [
-                [0, "Qualsiasi numero di recensioni"],
+                [0, "Numero recensioni"],
                 [1, "Almeno una recensione"],
                 [2, "Almeno due recensioni"],
                 [3, "Almeno tre recensioni"],
@@ -253,12 +253,12 @@ export default {
     }
     .filter {
         background-color: white;
-        width: 80%;
+        width: 60%;
         border-radius: 10px;
-        padding: 15px;
+        padding: 12px;
         border: 1px solid $fourth-color;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 15px;
         color: $fourth-color;
         &:focus,
         &:focus-visible {

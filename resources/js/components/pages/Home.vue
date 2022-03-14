@@ -15,14 +15,14 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="https://www.altroconsumo.it/-/media/altroconsumo/images/home/salute/diritti%20in%20salute/pediatra_shu_409317970_1600x900.jpg?rev=346e0a47-c527-44f0-aef0-e2a5f2916aa5&hash=E20754E8AB30F2EDACB21CEE91EF243D" class="d-block w-100" alt="...">
+          <img src="https://www.fpcgilfirenze.it/sindacato/wp-content/uploads/2018/01/fpcgilfirenze_medici.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block carousel-text">
             <h5>Chiedi al dottore</h5>
             <p> Risolvi i tuoi dubbi riguardanti la salute chiedendo agli specialisti suggeriti. Riceverai più risposte in modo completamente gratuito, solitamente entro 48h. </p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="https://cdn-static.findly.com/wp-content/uploads/sites/566/2017/10/PA-Blog-Image.png" class="d-block w-100" alt="...">
+          <img src="https://wallpapercave.com/wp/wp2469685.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block carousel-text">
             <h5>La tua opinione conta!</h5>
             <p>Consulta le recensioni degli ex pazienti per scegliere con più consapevolezza e lasciane una a tua volta dopo la visita. </p>
@@ -44,7 +44,7 @@
       <div class="search d-flex justify-content-center">
 
         <div class="right-search d-flex flex-column justify-content-center align-items-center">
-          <h4 class="my-3 text-center">Prenota online la tua visita medica</h4>
+          <h5 class="my-3 text-center title-section">Prenota online la tua visita medica</h5>
           <div class="input-group mb-3">
             <input
             type="text"
@@ -87,7 +87,7 @@
     v-else
     class="container-fluid">
  
-      <h5 class="text-center title-premium">Medici in evidenza</h5>
+      <h5 class="text-center title-section">Medici in evidenza</h5>
 
       <div>
         <div class="d-flex flex-wrap justify-content-center">
@@ -284,6 +284,9 @@ export default {
           }
         }
       },
+      scrollTop(){
+            window.scrollTo(0, 0);
+      }
   },
   computed:{
     output: function () {
@@ -305,6 +308,7 @@ export default {
   mounted(){
       this.getSpecs();
       this.getDoctorsPremium();
+      this.scrollTop();
   }
 }
 </script>
@@ -330,31 +334,31 @@ export default {
     .ab-inner{
       height: 450px;
       cursor: pointer;
-      &:hover{
-        img{
-          filter: none;
-            transition: all 0.3s;
-        }
-        .carousel-text{
-          background-color: rgba(255, 255, 255, 0.7);
-          color: lighten($primary-color, 10%);
-          transition: all .3s;
-        }
-
-      }
+      // &:hover{
+      //   img{
+      //     filter: none;
+      //       transition: all 0.3s;
+      //   }
+      //   .carousel-text{
+      //     background-color: rgba(255, 255, 255, 0.7);
+      //     color: lighten($primary-color, 10%);
+      //     transition: all .3s;
+      //   }
+      // }
       img{
         height: 500px;
         width: auto;
         object-fit: cover;
-        filter: grayscale(50%);
+        filter: grayscale(40%);
         transition: all 0.3s;
-
+        object-position: top;
       }
       .carousel-text{
         color: $primary-color;
         transition: all .3s;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.85);
         margin-bottom: 40px;
+        border-radius: 10px;
       }
       .carousel-control-prev, .carousel-control-next{
         &:hover{
@@ -438,7 +442,7 @@ export default {
       border: 1px solid $primary-color;
       margin: 20px 0;
       border-radius: 0px 10px 10px 0;
-      color: #1369ce;
+      color: $fourth-color;
       &:disabled{
         color: lightgrey;
       }
@@ -451,6 +455,9 @@ export default {
       }
       &.next{
         border-radius: 0 15px 15px 0;
+      }
+      &:hover{
+        color: $third-color;
       }
     }
   }
