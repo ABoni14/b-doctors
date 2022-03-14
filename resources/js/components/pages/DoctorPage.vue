@@ -8,7 +8,9 @@
         <div
         v-else>
            <div class="row">
-               <a href="http://127.0.0.1:8000/home-page" class="btn-doctors button-back my-3">Indietro</a>
+               <a 
+               class="btn-doctors button-back my-3" 
+               onclick="window.history.back(-1); return false;">Indietro</a>
            </div>
                 
             <div class="row">

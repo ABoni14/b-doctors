@@ -2774,6 +2774,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -40878,7 +40880,7 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "btn-doctors button-back my-3",
-          attrs: { href: "http://127.0.0.1:8000/home-page" },
+          attrs: { onclick: "window.history.back(-1); return false;" },
         },
         [_vm._v("Indietro")]
       ),
