@@ -1,5 +1,8 @@
 <template>
     <div class="card-doctor col-sm-12 col-md-5 col-lg-3">
+        <div v-if="doctorInfo.premium_options[0]">
+            <i class="fas fa-crown"></i>
+        </div>
         <div v-if="doctorInfo.photo === null" class="picture">
             <img
                 class="img-fluid"

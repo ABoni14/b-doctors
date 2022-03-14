@@ -281,6 +281,20 @@ main {
   font-size: 40px !important;
 }
 
+.ab-form-select {
+  border: none !important;
+  color: #adadad !important;
+  padding: 0 !important;
+  font-weight: normal;
+  font-size: 16px !important;
+}
+.ab-form-select option {
+  color: black !important;
+}
+.ab-form-select option:focus-visible {
+  color: black !important;
+}
+
 .center {
   margin: 0 auto;
   max-width: 400px;

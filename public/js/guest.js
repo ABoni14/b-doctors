@@ -2600,6 +2600,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardsDoctors",
   props: {
@@ -40558,6 +40561,10 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-doctor col-sm-12 col-md-5 col-lg-3" }, [
+    _vm.doctorInfo.premium_options[0]
+      ? _c("div", [_c("i", { staticClass: "fas fa-crown" })])
+      : _vm._e(),
+    _vm._v(" "),
     _vm.doctorInfo.photo === null
       ? _c("div", { staticClass: "picture" }, [
           _c("img", {

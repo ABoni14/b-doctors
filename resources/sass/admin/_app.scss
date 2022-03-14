@@ -71,6 +71,19 @@ main{
 }
 
 // FORM REGISTER AND LOGIN
+.ab-form-select{
+  border: none !important;
+  color: #adadad !important;
+  padding: 0 !important;
+  font-weight: normal;
+  font-size: 16px !important;
+  option{
+    color: black !important;
+    &:focus-visible{
+      color: black !important;
+    }
+  }
+}
 .center{
   margin: 0 auto;
   max-width: 400px;
