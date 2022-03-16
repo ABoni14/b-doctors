@@ -86,7 +86,7 @@
     <div
     v-else
     class="container-fluid">
- 
+
       <h5 class="text-center title-section">Medici in evidenza</h5>
 
       <div>
@@ -100,7 +100,7 @@
           />
         </div>
       </div>
-      
+
       <div class="navigation" >
         <button class="prev"
         @click="getDoctorsPremium(pagination.current - 1)"
@@ -162,11 +162,11 @@
             <p>
               Oltre il 99% di pazienti soddisfatti <br><br>
 
-              iDoctors è il primo sito in Italia di prenotazioni di visite mediche ed esami diagnostici, online dal 2008. <br><br>
+              BDoctors è il primo sito in Italia di prenotazioni di visite mediche ed esami diagnostici, online dal 2008. <br><br>
 
-              Crediamo nell'importanza dell'informazione e della trasparenza per aiutare i pazienti a scegliere il medico giusto tra gli oltre 9.000 presenti su iDoctors. <br><br>
+              Crediamo nell'importanza dell'informazione e della trasparenza per aiutare i pazienti a scegliere il medico giusto tra gli oltre 9.000 presenti su BDoctors. <br><br>
 
-              Per questo su iDoctors, solo i pazienti che hanno prenotato attraverso il sito e svolto la prestazione possono rilasciare un feedback sul medico: una garanzia dell'affidabilità delle 113.553 recensioni che leggi.
+              Per questo su BDoctors, solo i pazienti che hanno prenotato attraverso il sito e svolto la prestazione possono rilasciare un feedback sul medico: una garanzia dell'affidabilità delle 113.553 recensioni che leggi.
             </p>
           </div>
 
@@ -196,8 +196,8 @@
             </h5>
             <p>
               <strong>Iscriviti e raggiungi nuovi pazienti</strong>  <br><br>
-              Più di 2 milioni di pazienti cercano ogni mese il loro Medico su iDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. <br><br>
-              <strong>Con iDoctors:</strong> <br><br>
+              Più di 2 milioni di pazienti cercano ogni mese il loro Medico su BDoctors, il primo sito in Italia per visitatori e numero di prenotazioni. <br><br>
+              <strong>Con BDoctors:</strong> <br><br>
               <ul>
                 <li>Ricevi prenotazioni da nuovi pazienti</li>
                 <li>Migliori la tua visibilità e la tua reputazione online</li>
@@ -377,7 +377,7 @@ export default {
   }
   //Search
   .ab-container{
-    
+
     .search{
       .left-search{
         width: 30%;
